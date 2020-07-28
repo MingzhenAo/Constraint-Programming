@@ -1,0 +1,21 @@
+student name:   Mingzhen Ao <Mingzhen.Ao@anu.edu.au>
+
+Topic:
+Solving Puzzle Games Using Constraint Solving Techniques
+
+
+
+Learning Objectives:
+--------------------
+
+After successfully completing the project the student should be able to:
+- model combinatorial puzzle games in a "correct" way (meaning that the student's model adequately represents the actual puzzle game in the real world, i.e., that the model's set of solutions corresponds perfectly to the set of solutions of the actual puzzle) using different constraint description languages, such as CSPs, LPs/ILPs/MIPs, or SAT.
+- formalize those models using standard descriptions languages for the respective established standard solvers for the respective formalisms.
+- conduct an empirical evaluation thereby comparing the different types of models with each other
+
+
+Project Description:
+--------------------
+
+In this project the student has to model a range of combinatorial puzzle games, such as Cube Puzzler - Go and IQ Twist by Smart Games. Further puzzles to model and solve will be decided on together by the supervisors and the student. Each puzzle will have to be modeled using different constraint languagues, such as CSPs, LPs/ILPs/MIPs, or SAT. The student has to research appropriate solvers that are able to solve these problems. The student has to conduct an empirical evaluation that compares the different models/solvers and different options of the respective solvers or models and their impact on runtime (e.g., CSPs allow different kinds of constraint propagation; and each problem can be modeled in different ways, even with the same constraint language).
+
