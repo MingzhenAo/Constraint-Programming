@@ -1,0 +1,324 @@
+\section{IQ twist}
+\label{sec:IQ twist}
+\subsection{CSP model}
+\label{sec:CSP model}
+In this part, I'd like to use CSP to model the IQ twist game. Above all, I'd like to define all the initial state for each piece:
+\begin{center}\includegraphics{Yellow1.png} 
+\\initial state of Yellow 1
+\\\includegraphics{yellow2.jpg}
+\\initial state of Yellow 2
+\\\includegraphics{blue1.jpg}
+\\initial state of Blue 1
+\\\includegraphics{blue2.jpg}
+\\initial state of Blue 2
+\\\includegraphics{green1.jpg}
+\\initial state of Green 1 
+\\\includegraphics{green2.jpg}
+\\initial state of Green 2
+\\\includegraphics{red1.jpg}
+\\initial state of Red 1 
+\\\includegraphics{red2.jpg}
+\\initial state of Red 2 
+\end{center}
+For this method, there are some rules. Firstly, all the variables correspond to the initial states. Such as the Yellow 2, I use $Vy_{21}$ to represent the left and bottom unit. For other variables, name them as $Vy_{22}$, $Vy_{23}$, $Vy_{24}$ and $Vy_{25}$ follow the order from left to right and bottom up.
+\begin{center}
+\includegraphics{example.jpg}
+\\naming rules example for yellow 2
+\end{center}
+\subsubsection{Variables}
+$V=(V_{y11},V_{y12},V_{y13},V_{y21},V_{y22},V_{y23},V_{y24},V_{y25},V_{b11},V_{b12},V_{b13},V_{b14},
+\\V_{b15},V_{b21},V_{b22},V_{b23},V_{b24},V_{g11},V_{g12},V_{g13},V_{g14},V_{g21},V_{g22},V_{g23},V_{r11},
+\\V_{r12},V_{r13},V_{r14},V_{r21},V_{r22},V_{r23},V_{r24},V_{ry1}, V_{ry2}, V_{rb1}, V_{rb2}, V_{rg1}, V_{rg2}, V_{rr})$\\
+\\ it consists of two parts:\\
+\\$V units = (V_{y11},V_{y12},V_{y13},V_{y21},V_{y22},V_{y23},V_{y24},V_{y25},V_{b11},V_{b12},V_{b13},V_{b14},
+\\V_{b15},V_{b21},V_{b22},V_{b23},V_{b24},V_{g11},V_{g12},V_{g13},V_{g14},V_{g21},V_{g22},V_{g23},V_{r11},
+\\V_{r12},V_{r13},V_{r14},V_{r21},V_{r22},V_{r23},V_{r24})$\\
+\\$V pegs = (V_{ry1}, V_{ry2}, V_{rb1}, V_{rb2}, V_{rg1}, V_{rg2}, V_{rr})$
+\subsubsection{Domains}
+For all v \in V unit\hspace{1ex},\hspace{1ex} $Dv=\{(i,j),  (i,j) \in Z \times Z:  0<i \leq 8 \hspace{1ex} and \hspace{1ex} 0<j \leq 4\}$\\
+\\
+For all v \in V regs \hspace{1ex},\hspace{1ex} $Dv=\{None or (i,j),  (i,j) \in Z \times Z:  0<i \leq 8 \hspace{1ex} and \hspace{1ex} 0<j \leq 4\}$
+\subsubsection{Constrains}
+\circled{1} For each pairs of variables-$V_{m}$ and $V_{n}$, $V_{m}$ $\in$ V units, $V_{n}$ $\in$ V units
+\begin{center}
+$Cv_{m},v_{n}=\{((a,b),(c,d))\in D\times D: a \neq c   \hspace{1ex} or \hspace{1ex}  b \neq d\}$
+\end{center}
+\circled{2} 
+For each pairs of variables-$V_{m}$ and $V_{n}$, $V_{m}$ \in $V regs$, $V_{n}$ \in $V regs,$ \\
+$if \hspace{1ex} V_{n} \neq None \hspace{1ex} and \hspace{1ex} V_{n} \neq None, Cv_{m},v_{n}=\{((a,b),(c,d))\in D\times D: a \neq c   \hspace{1ex} or \hspace{1ex}  b \neq d\}$\\
+\\\circled{3} piece Yellow1
+\\$C{v_{y11},v_{y12}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{y11},v_{y13}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\or
+\\$C{v_{y11},v_{y12}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{y11},v_{y13}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\or
+\\$C{v_{y11},v_{y12}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{y11},v_{y13}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\or
+\\$C{v_{y11},v_{y12}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{y11},v_{y13}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\or
+\\$C{v_{y11},v_{y12}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{y11},v_{y13}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\or
+\\$C{v_{y11},v_{y12}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{y11},v_{y13}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\or
+\\$C{v_{y11},v_{y12}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{y11},v_{y13}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\or
+\\$C{v_{y11},v_{y12}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{y11},v_{y13}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\\circled{4} piece Yellow2
+\\$C{v_{y21},v_{y22}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{y21},v_{y23}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{y21},v_{y24}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{y21},v_{y25}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\or
+\\$C{v_{y21},v_{y22}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{y21},v_{y23}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{y21},v_{y24}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\$C{v_{y21},v_{y25}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\or
+\\$C{v_{y21},v_{y22}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{y21},v_{y23}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{y21},v_{y24}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{y21},v_{y25}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\or
+\\$C{v_{y21},v_{y22}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{y21},v_{y23}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{y21},v_{y24}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\$C{v_{y21},v_{y25}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\or
+\\$C{v_{y21},v_{y22}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{y21},v_{y23}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{y21},v_{y24}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{y21},v_{y25}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\or
+\\$C{v_{y21},v_{y22}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{y21},v_{y23}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{y21},v_{y24}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\$C{v_{y21},v_{y25}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\or
+\\$C{v_{y21},v_{y22}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{y21},v_{y23}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{y21},v_{y24}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{y21},v_{y25}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\or
+\\$C{v_{y21},v_{y22}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{y21},v_{y23}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{y21},v_{y24}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\$C{v_{y21},v_{y25}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\\circled{5} piece Blue1 
+\\$C{v_{b11},v_{b12}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{b11},v_{b13}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{b11},v_{b14}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\$C{v_{b11},v_{b15}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\or
+\\$C{v_{b11},v_{b12}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{b11},v_{b13}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{b11},v_{b14}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{b11},v_{b15}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\or
+\\$C{v_{b11},v_{b12}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{b11},v_{b13}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{b11},v_{b14}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\$C{v_{b11},v_{b15}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\or
+\\$C{v_{b11},v_{b12}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{b11},v_{b13}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{b11},v_{b14}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{b11},v_{b15}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\or
+\\$C{v_{b11},v_{b12}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{b11},v_{b13}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{b11},v_{b14}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\$C{v_{b11},v_{b15}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\or
+\\$C{v_{b11},v_{b12}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{b11},v_{b13}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{b11},v_{b14}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{b11},v_{b15}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\or
+\\$C{v_{b11},v_{b12}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{b11},v_{b13}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{b11},v_{b14}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\$C{v_{b11},v_{b15}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\or
+\\$C{v_{b11},v_{b12}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{b11},v_{b13}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{b11},v_{b14}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{b11},v_{b15}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\\circled{6} piece Blue2 
+\\$C{v_{b21},v_{b22}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{b21},v_{b23}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{b21},v_{b24}}=\{((a,b),(c,d))\in D\times D: c = a + 3\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\or
+\\$C{v_{b21},v_{b22}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{b21},v_{b23}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\$C{v_{b21},v_{b24}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b + 3 \}$ , 
+\\or
+\\$C{v_{b21},v_{b22}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{b21},v_{b23}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{b21},v_{b24}}=\{((a,b),(c,d))\in D\times D: c = a - 3\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\or
+\\$C{v_{b21},v_{b22}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{b21},v_{b23}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\$C{v_{b21},v_{b24}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b - 3 \}$ , 
+\\or
+\\$C{v_{b21},v_{b22}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{b21},v_{b23}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{b21},v_{b24}}=\{((a,b),(c,d))\in D\times D: c = a - 3\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\or
+\\$C{v_{b21},v_{b22}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{b21},v_{b23}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\$C{v_{b21},v_{b24}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b - 3 \}$ , 
+\\or
+\\$C{v_{b21},v_{b22}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{b21},v_{b23}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{b21},v_{b24}}=\{((a,b),(c,d))\in D\times D: c = a + 3\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\or
+\\$C{v_{b21},v_{b22}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{b21},v_{b23}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\$C{v_{b21},v_{b24}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b + 3 \}$ , 
+\\\circled{7} piece Green1 
+\\$C{v_{g11},v_{g12}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{g11},v_{g13}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{g11},v_{g14}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\or
+\\$C{v_{g11},v_{g12}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{g11},v_{g13}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\$C{v_{g11},v_{g14}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\or
+\\$C{v_{g11},v_{g12}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{g11},v_{g13}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{g11},v_{g14}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\or
+\\$C{v_{g11},v_{g12}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{g11},v_{g13}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\$C{v_{g11},v_{g14}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\or
+\\$C{v_{g11},v_{g12}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{g11},v_{g13}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{g11},v_{g14}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\or
+\\$C{v_{g11},v_{g12}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{g11},v_{g13}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\$C{v_{g11},v_{g14}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\or
+\\$C{v_{g11},v_{g12}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{g11},v_{g13}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{g11},v_{g14}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\or
+\\$C{v_{g11},v_{g12}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{g11},v_{g13}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\$C{v_{g11},v_{g14}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\\circled{8} piece Green2 
+\\$C{v_{g21},v_{g22}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{g21},v_{g23}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\or
+\\$C{v_{g21},v_{g22}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{g21},v_{g23}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\or
+\\$C{v_{g21},v_{g22}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{g21},v_{g23}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\or
+\\$C{v_{g21},v_{g22}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{g21},v_{g23}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\or
+\\$C{v_{g21},v_{g22}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{g21},v_{g23}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\or
+\\$C{v_{g21},v_{g22}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{g21},v_{g23}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\or
+\\$C{v_{g21},v_{g22}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{g21},v_{g23}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\or
+\\$C{v_{g21},v_{g22}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{g21},v_{g23}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\\circled{9} piece Red1 
+\\$C{v_{r11},v_{r12}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{r11},v_{r13}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{r11},v_{r14}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\or
+\\$C{v_{r11},v_{r12}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{r11},v_{r13}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{r11},v_{r14}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\or
+\\$C{v_{r11},v_{r12}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{r11},v_{r13}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{r11},v_{r14}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\or
+\\$C{v_{r11},v_{r12}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{r11},v_{r13}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{r11},v_{r14}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\or
+\\$C{v_{r11},v_{r12}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{r11},v_{r13}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{r11},v_{r14}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\or
+\\$C{v_{r11},v_{r12}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{r11},v_{r13}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{r11},v_{r14}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\or
+\\$C{v_{r11},v_{r12}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{r11},v_{r13}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{r11},v_{r14}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\or
+\\$C{v_{r11},v_{r12}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{r11},v_{r13}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{r11},v_{r14}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\\circled{10} piece Red2 
+\\$C{v_{r21},v_{r22}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{r21},v_{r23}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{r21},v_{r24}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\or
+\\$C{v_{r21},v_{r22}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{r21},v_{r23}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\$C{v_{r21},v_{r24}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\or
+\\$C{v_{r21},v_{r22}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{r21},v_{r23}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{r21},v_{r24}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\or
+\\$C{v_{r21},v_{r22}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{r21},v_{r23}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\$C{v_{r21},v_{r24}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\or
+\\$C{v_{r21},v_{r22}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{r21},v_{r23}}=\{((a,b),(c,d))\in D\times D: c = a - 2\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\$C{v_{r21},v_{r24}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\or
+\\$C{v_{r21},v_{r22}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\$C{v_{r21},v_{r23}}=\{((a,b),(c,d))\in D\times D: c = a - 0\hspace{1ex} and \hspace{1ex}  d = b - 2 \}$ , 
+\\$C{v_{r21},v_{r24}}=\{((a,b),(c,d))\in D\times D: c = a - 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\or
+\\$C{v_{r21},v_{r22}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{r21},v_{r23}}=\{((a,b),(c,d))\in D\times D: c = a + 2\hspace{1ex} and \hspace{1ex}  d = b - 0 \}$ , 
+\\$C{v_{r21},v_{r24}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b - 1 \}$ , 
+\\or
+\\$C{v_{r21},v_{r22}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b + 1 \}$ , 
+\\$C{v_{r21},v_{r23}}=\{((a,b),(c,d))\in D\times D: c = a + 0\hspace{1ex} and \hspace{1ex}  d = b + 2 \}$ , 
+\\$C{v_{r21},v_{r24}}=\{((a,b),(c,d))\in D\times D: c = a + 1\hspace{1ex} and \hspace{1ex}  d = b + 0 \}$ , 
+\\\circled{11} Yellow reg1 
+\\$if\hspace{1ex} V_{ry1} \neq None, Cv_{ry1}= \{V_{ry1}=V_{y11} \hspace{1ex} or \hspace{1ex} V_{ry1}=V_{y21} \hspace{1ex} or \hspace{1ex} V_{ry1}=V_{y22} \hspace{1ex} or \hspace{1ex} V_{ry1}=V_{y24} \}$
+\\\circled{12} Yellow reg2 
+\\$if\hspace{1ex} V_{ry2} \neq None, Cv_{ry2}= \{V_{ry2}=V_{y11} \hspace{1ex} or \hspace{1ex} V_{ry2}=V_{y21} \hspace{1ex} or \hspace{1ex} V_{ry2}=V_{y22} \hspace{1ex} or\hspace{1ex} V_{ry2}=V_{y24} \}$
+\\\circled{13} Blue reg1 
+\\$if\hspace{1ex} V_{rb1} \neq None, Cv_{rb1}= \{V_{rb1}=V_{b13} \hspace{1ex} or \hspace{1ex} V_{rb1}=V_{b15} \hspace{1ex} or\hspace{1ex} 
+V_{rb1}=V_{b23}\}$
+\\\circled{14} Blue reg2 
+\\$if \hspace{1ex}V_{rb2} \neq None, Cv_{rb2}= \{V_{rb2}=V_{b13} \hspace{1ex} or\hspace{1ex}  V_{rb2}=V_{b15} \hspace{1ex} or\hspace{1ex} 
+V_{rb2}=V_{b23}\}$
+\\\circled{15} Green reg1 
+\\$if\hspace{1ex} V_{rg1} \neq None, Cv_{rg1}= \{V_{rg1}=V_{g13} \hspace{1ex} or\hspace{1ex}  V_{rg1}=V_{g14} \hspace{1ex} or\hspace{1ex} 
+V_{rg1}=V_{g22} \hspace{1ex} or\hspace{1ex}  V_{rg1}=V_{g23}\}$
+\\\circled{16} Green reg2 
+\\$if \hspace{1ex}V_{rg2} \neq None, Cv_{rg2}= \{V_{rg2}=V_{g13} \hspace{1ex} or\hspace{1ex}  V_{rg2}=V_{g14} \hspace{1ex} or\hspace{1ex} 
+V_{rg2}=V_{g22} \hspace{1ex} or\hspace{1ex}  V_{rg2}=V_{g23}\}$
+\\\circled{17} Red reg 
+\\$if\hspace{1ex} V_{rr} \neq None, Cv_{rr}= \{V_{rr}=V_{r12} \hspace{1ex} or\hspace{1ex}  V_{rr}=V_{r21} \hspace{1ex} or\hspace{1ex}  V_{rr}=V_{r23}\}$
+\subsection{LP model}
+\label{sec:LP model}

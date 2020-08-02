@@ -1,0 +1,10 @@
+\contentsline {chapter}{Declaration}{ii}%
+\contentsline {chapter}{Acknowledgements}{iii}%
+\contentsline {chapter}{Abstract}{iv}%
+\contentsline {section}{\numberline {1}Introduction}{2}%
+\contentsline {section}{\numberline {2}IQ twist}{3}%
+\contentsline {subsection}{\numberline {2.1}CSP model}{3}%
+\contentsline {subsubsection}{\numberline {2.1.1}Variables}{4}%
+\contentsline {subsubsection}{\numberline {2.1.2}Domains}{4}%
+\contentsline {subsubsection}{\numberline {2.1.3}Constrains}{4}%
+\contentsline {subsection}{\numberline {2.2}LP model}{10}%
