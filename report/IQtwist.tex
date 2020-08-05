@@ -44,14 +44,15 @@ $For \hspace{1ex} all \hspace{1ex} v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=
 \\
 $For \hspace{1ex} all \hspace{1ex} v \in \VPegs \hspace{1ex},\hspace{1ex} D(v)=\{(0,0)\} \hspace{1ex} \cup \hspace{1ex}\{(i,j) \in \mathbb{Z} \times \mathbb{Z}\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}$
 \subsection{Constrains}
-Firstly, there should be no 2 unit variables contain the same value.\\
-\\\circled{1} $For \hspace{1ex} each \hspace{1ex} pair\hspace{1ex} of \hspace{1ex}variables-V_{m} \hspace{1ex} and \hspace{1ex} V_{n}, V_{m} \in \VUnits, V_{n} \in \VUnits,$
+Firstly, there should be no 2 different unit variables contain the same value.\\
+\\\circled{1} 
+$For \hspace{1ex} each \hspace{1ex} pair\hspace{1ex} of \hspace{1ex}variables-V_{m} \hspace{1ex} and \hspace{1ex} V_{n}, V_{m} \in \VUnits, V_{n} \in \VUnits,V_{m} \neq V_{n}  $
 \begin{center}
 $\Constraints{m}{n}=\{((a,b),(c,d))\in \Domain{m} \times \Domain{n}\mid a \neq c   \hspace{1ex} or \hspace{1ex}  b \neq d\}$
 \end{center}
-Similarly, there should be no 2 reg variables contain the same value except both of them are not on the board.\\
+Similarly, there should be no 2 different reg variables contain the same value except both of them are not on the board.\\
 \circled{2} 
-$For \hspace{1ex} each \hspace{1ex} pair \hspace{1ex} of\hspace{1ex} variables-V_{m}\hspace{1ex} and \hspace{1ex}V_{n}, V_{m} \in \VPegs, V_{n} \in \VPegs,$
+$For \hspace{1ex} each \hspace{1ex} pair \hspace{1ex} of\hspace{1ex} variables-V_{m}\hspace{1ex} and \hspace{1ex}V_{n}, V_{m} \in \VPegs, V_{n} \in \VPegs, V_{m} \neq V_{n}$
 \begin{center}
 $\Constraints{m}{n}=\{((0,0),(0,0))\}\cup \{((a,b),(c,d))\in \Domain{m}\times \Domain{n}\mid a \neq c   \hspace{1ex} or \hspace{1ex}  b \neq d\}$\\
 \end{center}
@@ -288,7 +289,7 @@ example of 8 situations
 \\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
 \\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
 \\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ \\
-\\ For all pegs, each of them must follow the hollow rings which contain the same color as them.  
+\\ For all pegs, each of them must follow the hollow rings which contain the same color as them exception they are both not on the board (representation as ((0,0),(0,0)).
 \\\circled{11} Yellow peg1 
 \\$\Constraint{py1}= \{((a,b),(c,d))\in \Domain{py1} \times \Domain{y11}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{py1} \times \Domain{y21}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{py1} \times \Domain{y22}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\}\hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{py1} \times \Domain{y24}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex}\cup\hspace{1ex} \{(0,0)\}$
 \\\circled{12} Yellow peg2 
