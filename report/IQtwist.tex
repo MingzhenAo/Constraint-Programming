@@ -27,7 +27,7 @@ In this part, I'd like to use CSP to model the IQ twist game. Above all, I'd lik
 \\\includegraphics{red2.jpg}
 \\initial state of Red 2 
 \end{center}
-For this method, there are some rules. Firstly, all the variables correspond to the initial states. Such as the Yellow 2, I use $V_{y21}$ to represent the left and bottom unit. For other variables, name them as $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$ follow the order from left to right and bottom up.
+For this method, there are some rules. Firstly, all the variables correspond to the initial states. Such as the Yellow 2, I use $V_{y21}$ to represent the left and bottom unit. For other variables, name them as $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$ follow the order from left to right and bottom-up.
 \begin{center}
 \includegraphics{example.jpg}
 \\naming rules example for yellow 2
@@ -287,8 +287,8 @@ example of 8 situations
 \\$\cup$
 \\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
 \\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
-\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ 
-\\ For all pegs, each of them must follow the hollow rings which contain the same color with them.  
+\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ \\
+\\ For all pegs, each of them must follow the hollow rings which contain the same color as them.  
 \\\circled{11} Yellow peg1 
 \\$\Constraint{py1}= \{((a,b),(c,d))\in \Domain{py1} \times \Domain{y11}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{py1} \times \Domain{y21}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{py1} \times \Domain{y22}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\}\hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{py1} \times \Domain{y24}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex}\cup\hspace{1ex} \{(0,0)\}$
 \\\circled{12} Yellow peg2 
