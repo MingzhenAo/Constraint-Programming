@@ -33,7 +33,6 @@ For this method, there are some rules. Firstly, all the variables correspond to 
 \\naming rules example for yellow 2
 \end{center}
 \subsection{Variables}
-
 $\VUnits=\{ V_{y11},V_{y12},
 V_{y13},V_{y21},V_{y22},V_{y23},V_{y24},V_{y25},\\V_{b11},V_{b12},V_{b13},V_{b14},
 V_{b15},V_{b21},V_{b22},V_{b23},\\V_{b24},V_{g11},V_{g12},V_{g13},V_{g14},V_{g21},V_{g22},V_{g23},\\V_{r11},
@@ -45,284 +44,264 @@ $For \hspace{1ex} all \hspace{1ex} v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=
 \\
 $For \hspace{1ex} all \hspace{1ex} v \in \VPegs \hspace{1ex},\hspace{1ex} D(v)=\{(0,0)\} \hspace{1ex} \cup \hspace{1ex}\{(i,j) \in \mathbb{Z} \times \mathbb{Z}\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}$
 \subsection{Constrains}
-\circled{1} $For \hspace{1ex} each \hspace{1ex} pair\hspace{1ex} of \hspace{1ex}variables-V_{m} \hspace{1ex} and \hspace{1ex} V_{n}, V_{m} \in \VUnits, V_{n} \in \VUnits,$
+Firstly, there should be no 2 unit variables contain the same value.\\
+\\\circled{1} $For \hspace{1ex} each \hspace{1ex} pair\hspace{1ex} of \hspace{1ex}variables-V_{m} \hspace{1ex} and \hspace{1ex} V_{n}, V_{m} \in \VUnits, V_{n} \in \VUnits,$
 \begin{center}
 $\Constraints{m}{n}=\{((a,b),(c,d))\in \Domain{m} \times \Domain{n}\mid a \neq c   \hspace{1ex} or \hspace{1ex}  b \neq d\}$
 \end{center}
+Similarly, there should be no 2 reg variables contain the same value except both of them are not on the board.\\
 \circled{2} 
 $For \hspace{1ex} each \hspace{1ex} pair \hspace{1ex} of\hspace{1ex} variables-V_{m}\hspace{1ex} and \hspace{1ex}V_{n}, V_{m} \in \VPegs, V_{n} \in \VPegs,$
 \begin{center}
 $\Constraints{m}{n}=\{((0,0),(0,0))\}\cup \{((a,b),(c,d))\in \Domain{m}\times \Domain{n}\mid a \neq c   \hspace{1ex} or \hspace{1ex}  b \neq d\}$\\
 \end{center}
+For the constrain 3 to 10, each of them represents the piece. In fact, for each piece, there might be 8 situations. For example:
+\begin{center}
+\includegraphics[scale=0.5]{domainexplain.jpg}\\
+example of 8 situations
+\end{center}
 \circled{3} piece Yellow1
-\\$\Constraints{y11}{y12}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y12}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{y11}{y13}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y13}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
+\\$\Constraints{y11}{y12}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y12}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
+\\$\Constraints{y11}{y13}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y13}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b    \}$  
 \\$\cup$
-\\$\Constraints{y11}{y12}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y12}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{y11}{y13}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y13}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
+\\$\Constraints{y11}{y12}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y12}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{y11}{y13}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y13}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b + 2 \}$  
 \\$\cup$
-\\$\Constraints{y11}{y12}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y12}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{y11}{y13}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y13}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
+\\$\Constraints{y11}{y12}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y12}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
+\\$\Constraints{y11}{y13}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y13}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b   \}$  
 \\$\cup$
-\\$\Constraints{y11}{y12}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y12}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{y11}{y13}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y13}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
-\\$\cup$
-\\$\Constraints{y11}{y12}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y12}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{y11}{y13}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y13}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\cup$
-\\$\Constraints{y11}{y12}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y12}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{y11}{y13}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y13}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
-\\$\cup$
-\\$\Constraints{y11}{y12}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y12}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{y11}{y13}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y13}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\cup$
-\\$\Constraints{y11}{y12}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y12}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{y11}{y13}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y13}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
+\\$\Constraints{y11}{y12}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y12}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{y11}{y13}=\{((a,b),(c,d))\in \Domain{y11}\times \Domain{y13}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b - 2 \}$  
 \\\circled{4} piece Yellow2
-\\$\Constraints{y21}{y22}=\{((a,b),(c,d))\in \Domain {y21} \times \Domain{y22} \mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
+\\$\Constraints{y21}{y22}=\{((a,b),(c,d))\in \Domain {y21} \times \Domain{y22} \mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
 \\$\Constraints{y21}{y23}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y23}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
 \\$\Constraints{y21}{y24}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y24}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{y21}{y25}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y25}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
+\\$\Constraints{y21}{y25}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y25}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$  
 \\$\cup$
-\\$\Constraints{y21}{y22}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y22}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{y21}{y22}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y22}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
 \\$\Constraints{y21}{y23}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y23}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
 \\$\Constraints{y21}{y24}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y24}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
-\\$\Constraints{y21}{y25}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y25}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{y21}{y25}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y25}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$  
 \\$\cup$
-\\$\Constraints{y21}{y22}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y22}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
+\\$\Constraints{y21}{y22}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y22}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
 \\$\Constraints{y21}{y23}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y23}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
 \\$\Constraints{y21}{y24}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y24}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{y21}{y25}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y25}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
+\\$\Constraints{y21}{y25}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y25}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$  
 \\$\cup$
-\\$\Constraints{y21}{y22}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y22}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{y21}{y22}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y22}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
 \\$\Constraints{y21}{y23}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y23}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
 \\$\Constraints{y21}{y24}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y24}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
-\\$\Constraints{y21}{y25}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y25}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{y21}{y25}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y25}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$  
 \\$\cup$
-\\$\Constraints{y21}{y22}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y22}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
+\\$\Constraints{y21}{y22}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y22}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
 \\$\Constraints{y21}{y23}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y23}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
 \\$\Constraints{y21}{y24}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y24}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{y21}{y25}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y25}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
+\\$\Constraints{y21}{y25}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y25}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$  
 \\$\cup$
-\\$\Constraints{y21}{y22}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y22}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{y21}{y22}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y22}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
 \\$\Constraints{y21}{y23}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y23}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
 \\$\Constraints{y21}{y24}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y24}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
-\\$\Constraints{y21}{y25}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y25}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{y21}{y25}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y25}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$  
 \\$\cup$
-\\$\Constraints{y21}{y22}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y22}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
+\\$\Constraints{y21}{y22}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y22}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
 \\$\Constraints{y21}{y23}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y23}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
 \\$\Constraints{y21}{y24}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y24}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{y21}{y25}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y25}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
+\\$\Constraints{y21}{y25}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y25}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$  
 \\$\cup$
-\\$\Constraints{y21}{y22}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y22}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{y21}{y22}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y22}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
 \\$\Constraints{y21}{y23}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y23}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
 \\$\Constraints{y21}{y24}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y24}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
-\\$\Constraints{y21}{y25}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y25}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{y21}{y25}=\{((a,b),(c,d))\in \Domain{y21} \times \Domain{y25}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$  
 \\\circled{5} piece Blue1 
-\\$\Constraints{b11}{b12}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b12}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{b11}{b12}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b12}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
 \\$\Constraints{b11}{b13}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b13}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{b11}{b14}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{y14}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
-\\$\Constraints{b11}{b15}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b15}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
+\\$\Constraints{b11}{b14}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{y14}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
+\\$\Constraints{b11}{b15}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b15}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$  
 \\$\cup$
-\\$\Constraints{b11}{b12}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b12}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
+\\$\Constraints{b11}{b12}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b12}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
 \\$\Constraints{b11}{b13}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b13}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{b11}{b14}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{y14}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{b11}{b15}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b15}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{b11}{b14}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{y14}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
+\\$\Constraints{b11}{b15}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b15}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$  
 \\$\cup$
-\\$\Constraints{b11}{b12}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b12}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{b11}{b12}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b12}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
 \\$\Constraints{b11}{b13}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b13}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{b11}{b14}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{y14}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
-\\$\Constraints{b11}{b15}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b15}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
+\\$\Constraints{b11}{b14}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{y14}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
+\\$\Constraints{b11}{b15}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b15}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$  
 \\$\cup$
-\\$\Constraints{b11}{b12}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b12}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
+\\$\Constraints{b11}{b12}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b12}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
 \\$\Constraints{b11}{b13}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b13}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{b11}{b14}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{y14}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{b11}{b15}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b15}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{b11}{b14}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{y14}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
+\\$\Constraints{b11}{b15}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b15}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$  
 \\$\cup$
-\\$\Constraints{b11}{b12}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b12}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{b11}{b12}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b12}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
 \\$\Constraints{b11}{b13}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b13}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{b11}{b14}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{y14}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
-\\$\Constraints{b11}{b15}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b15}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
+\\$\Constraints{b11}{b14}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{y14}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
+\\$\Constraints{b11}{b15}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b15}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$  
 \\$\cup$
-\\$\Constraints{b11}{b12}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b12}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
+\\$\Constraints{b11}{b12}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b12}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
 \\$\Constraints{b11}{b13}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b13}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{b11}{b14}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{y14}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{b11}{b15}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b15}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{b11}{b14}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{y14}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
+\\$\Constraints{b11}{b15}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b15}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$  
 \\$\cup$
-\\$\Constraints{b11}{b12}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b12}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{b11}{b12}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b12}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
 \\$\Constraints{b11}{b13}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b13}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{b11}{b14}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{y14}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
-\\$\Constraints{b11}{b15}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b15}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
+\\$\Constraints{b11}{b14}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{y14}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
+\\$\Constraints{b11}{b15}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b15}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$  
 \\$\cup$
-\\$\Constraints{b11}{b12}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b12}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
+\\$\Constraints{b11}{b12}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b12}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
 \\$\Constraints{b11}{b13}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b13}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{b11}{b14}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{y14}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{b11}{b15}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b15}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{b11}{b14}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{y14}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
+\\$\Constraints{b11}{b15}=\{((a,b),(c,d))\in \Domain{b11} \times \Domain{b15}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$  
 \\\circled{6} piece Blue2 
-\\$\Constraints{b21}{b22}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b22}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{b21}{b23}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b23}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{b21}{b24}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b24}\mid c = a + 3\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
+\\$\Constraints{b21}{b22}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b22}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
+\\$\Constraints{b21}{b23}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b23}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
+\\$\Constraints{b21}{b24}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b24}\mid c = a + 3\hspace{1ex} , \hspace{1ex}  d = b    \}$  
 \\$\cup$
-\\$\Constraints{b21}{b22}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b22}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{b21}{b23}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b23}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
-\\$\Constraints{b21}{b24}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b24}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b + 3 \}$ , 
+\\$\Constraints{b21}{b22}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b22}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{b21}{b23}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b23}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
+\\$\Constraints{b21}{b24}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b24}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b + 3 \}$  
 \\$\cup$
-\\$\Constraints{b21}{b22}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b22}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{b21}{b23}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b23}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{b21}{b24}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b24}\mid c = a - 3\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
+\\$\Constraints{b21}{b22}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b22}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
+\\$\Constraints{b21}{b23}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b23}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
+\\$\Constraints{b21}{b24}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b24}\mid c = a - 3\hspace{1ex} , \hspace{1ex}  d = b   \}$  
 \\$\cup$
-\\$\Constraints{b21}{b22}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b22}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{b21}{b23}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b23}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
-\\$\Constraints{b21}{b24}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b24}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b - 3 \}$ , 
-\\$\cup$
-\\$\Constraints{b21}{b22}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b22}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{b21}{b23}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b23}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{b21}{b24}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b24}\mid c = a - 3\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\cup$
-\\$\Constraints{b21}{b22}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b22}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{b21}{b23}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b23}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
-\\$\Constraints{b21}{b24}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b24}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b - 3 \}$ , 
-\\$\cup$
-\\$\Constraints{b21}{b22}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b22}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{b21}{b23}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b23}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{b21}{b24}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b24}\mid c = a + 3\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\cup$
-\\$\Constraints{b21}{b22}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b22}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{b21}{b23}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b23}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
-\\$\Constraints{b21}{b24}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b24}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b + 3 \}$ , 
+\\$\Constraints{b21}{b22}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b22}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{b21}{b23}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b23}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
+\\$\Constraints{b21}{b24}=\{((a,b),(c,d))\in \Domain{b21} \times \Domain{b24}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b - 3 \}$  
 \\\circled{7} piece Green1 
-\\$\Constraints{g11}{g12}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g12}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{g11}{g13}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g13}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{g11}{g14}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g14}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{g11}{g12}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g12}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
+\\$\Constraints{g11}{g13}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g13}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
+\\$\Constraints{g11}{g14}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g14}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$  
 \\$\cup$
-\\$\Constraints{g11}{g12}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g12}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{g11}{g13}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g13}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
-\\$\Constraints{g11}{g14}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g14}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{g11}{g12}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g12}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{g11}{g13}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g13}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
+\\$\Constraints{g11}{g14}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g14}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$  
 \\$\cup$
-\\$\Constraints{g11}{g12}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g12}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{g11}{g13}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g13}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{g11}{g14}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g14}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{g11}{g12}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g12}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
+\\$\Constraints{g11}{g13}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g13}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
+\\$\Constraints{g11}{g14}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g14}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$  
 \\$\cup$
-\\$\Constraints{g11}{g12}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g12}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{g11}{g13}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g13}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
-\\$\Constraints{g11}{g14}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g14}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{g11}{g12}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g12}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{g11}{g13}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g13}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
+\\$\Constraints{g11}{g14}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g14}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$  
 \\$\cup$
-\\$\Constraints{g11}{g12}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g12}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{g11}{g13}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g13}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{g11}{g14}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g14}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{g11}{g12}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g12}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
+\\$\Constraints{g11}{g13}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g13}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
+\\$\Constraints{g11}{g14}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g14}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$  
 \\$\cup$
-\\$\Constraints{g11}{g12}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g12}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{g11}{g13}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g13}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
-\\$\Constraints{g11}{g14}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g14}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{g11}{g12}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g12}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{g11}{g13}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g13}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
+\\$\Constraints{g11}{g14}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g14}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ 
 \\$\cup$
-\\$\Constraints{g11}{g12}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g12}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{g11}{g13}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g13}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{g11}{g14}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g14}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{g11}{g12}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g12}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
+\\$\Constraints{g11}{g13}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g13}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
+\\$\Constraints{g11}{g14}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g14}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$  
 \\$\cup$
-\\$\Constraints{g11}{g12}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g12}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{g11}{g13}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g13}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
-\\$\Constraints{g11}{g14}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g14}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{g11}{g12}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g12}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{g11}{g13}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g13}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
+\\$\Constraints{g11}{g14}=\{((a,b),(c,d))\in \Domain{g11} \times \Domain{g14}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$  
 \\\circled{8} piece Green2 
-\\$\Constraints{g21}{g22}=\{((a,b),(c,d))\in\Domain{g21} \times \Domain{g22}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{g21}{g23}=\{((a,b),(c,d))\in \Domain{g21} \times \Domain{g23}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{g21}{g22}=\{((a,b),(c,d))\in\Domain{g21} \times \Domain{g22}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
+\\$\Constraints{g21}{g23}=\{((a,b),(c,d))\in \Domain{g21} \times \Domain{g23}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$  
 \\$\cup$
-\\$\Constraints{g21}{g22}=\{((a,b),(c,d))\in\Domain{g21} \times \Domain{g22}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{g21}{g23}=\{((a,b),(c,d))\in \Domain{g21} \times \Domain{g23}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{g21}{g22}=\{((a,b),(c,d))\in\Domain{g21} \times \Domain{g22}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{g21}{g23}=\{((a,b),(c,d))\in \Domain{g21} \times \Domain{g23}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$  
 \\$\cup$
-\\$\Constraints{g21}{g22}=\{((a,b),(c,d))\in\Domain{g21} \times \Domain{g22}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{g21}{g23}=\{((a,b),(c,d))\in \Domain{g21} \times \Domain{g23}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{g21}{g22}=\{((a,b),(c,d))\in\Domain{g21} \times \Domain{g22}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
+\\$\Constraints{g21}{g23}=\{((a,b),(c,d))\in \Domain{g21} \times \Domain{g23}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$  
 \\$\cup$
-\\$\Constraints{g21}{g22}=\{((a,b),(c,d))\in\Domain{g21} \times \Domain{g22}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{g21}{g23}=\{((a,b),(c,d))\in \Domain{g21} \times \Domain{g23}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{g21}{g22}=\{((a,b),(c,d))\in\Domain{g21} \times \Domain{g22}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{g21}{g23}=\{((a,b),(c,d))\in \Domain{g21} \times \Domain{g23}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$  
 \\$\cup$
-\\$\Constraints{g21}{g22}=\{((a,b),(c,d))\in\Domain{g21} \times \Domain{g22}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{g21}{g23}=\{((a,b),(c,d))\in \Domain{g21} \times \Domain{g23}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{g21}{g22}=\{((a,b),(c,d))\in\Domain{g21} \times \Domain{g22}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
+\\$\Constraints{g21}{g23}=\{((a,b),(c,d))\in \Domain{g21} \times \Domain{g23}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$  
 \\$\cup$
-\\$\Constraints{g21}{g22}=\{((a,b),(c,d))\in\Domain{g21} \times \Domain{g22}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{g21}{g23}=\{((a,b),(c,d))\in \Domain{g21} \times \Domain{g23}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{g21}{g22}=\{((a,b),(c,d))\in\Domain{g21} \times \Domain{g22}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{g21}{g23}=\{((a,b),(c,d))\in \Domain{g21} \times \Domain{g23}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$  
 \\$\cup$
-\\$\Constraints{g21}{g22}=\{((a,b),(c,d))\in\Domain{g21} \times \Domain{g22}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{g21}{g23}=\{((a,b),(c,d))\in \Domain{g21} \times \Domain{g23}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{g21}{g22}=\{((a,b),(c,d))\in\Domain{g21} \times \Domain{g22}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
+\\$\Constraints{g21}{g23}=\{((a,b),(c,d))\in \Domain{g21} \times \Domain{g23}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$  
 \\$\cup$
-\\$\Constraints{g21}{g22}=\{((a,b),(c,d))\in\Domain{g21} \times \Domain{g22}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{g21}{g23}=\{((a,b),(c,d))\in \Domain{g21} \times \Domain{g23}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{g21}{g22}=\{((a,b),(c,d))\in\Domain{g21} \times \Domain{g22}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{g21}{g23}=\{((a,b),(c,d))\in \Domain{g21} \times \Domain{g23}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$  
 \\\circled{9} piece Red1 
-\\$\Constraints{r11}{r12}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r12}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
+\\$\Constraints{r11}{r12}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r12}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
 \\$\Constraints{r11}{r13}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r13}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{r11}{r14}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r14}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{r11}{r14}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r14}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$  
 \\$\cup$
-\\$\Constraints{r11}{r12}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r12}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{r11}{r12}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r12}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
 \\$\Constraints{r11}{r13}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r13}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{r11}{r14}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r14}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
+\\$\Constraints{r11}{r14}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r14}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$  
 \\$\cup$
-\\$\Constraints{r11}{r12}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r12}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
+\\$\Constraints{r11}{r12}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r12}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
 \\$\Constraints{r11}{r13}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r13}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{r11}{r14}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r14}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{r11}{r14}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r14}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$  
 \\$\cup$
-\\$\Constraints{r11}{r12}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r12}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{r11}{r12}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r12}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
 \\$\Constraints{r11}{r13}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r13}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{r11}{r14}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r14}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
+\\$\Constraints{r11}{r14}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r14}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$  
 \\$\cup$
-\\$\Constraints{r11}{r12}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r12}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
+\\$\Constraints{r11}{r12}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r12}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
 \\$\Constraints{r11}{r13}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r13}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{r11}{r14}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r14}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{r11}{r14}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r14}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$  
 \\$\cup$
-\\$\Constraints{r11}{r12}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r12}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{r11}{r12}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r12}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
 \\$\Constraints{r11}{r13}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r13}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{r11}{r14}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r14}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
+\\$\Constraints{r11}{r14}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r14}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$  
 \\$\cup$
-\\$\Constraints{r11}{r12}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r12}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
+\\$\Constraints{r11}{r12}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r12}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
 \\$\Constraints{r11}{r13}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r13}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{r11}{r14}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r14}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{r11}{r14}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r14}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$  
 \\$\cup$
-\\$\Constraints{r11}{r12}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r12}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{r11}{r12}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r12}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
 \\$\Constraints{r11}{r13}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r13}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{r11}{r14}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r14}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
+\\$\Constraints{r11}{r14}=\{((a,b),(c,d))\in \Domain{r11} \times \Domain{r14}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$  
 \\\circled{10} piece Red2 
-\\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
+\\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
+\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$  
 \\$\cup$
-\\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
-\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
+\\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
+\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b    \}$  
 \\$\cup$
-\\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
+\\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
+\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b - 1 \}$  
 \\$\cup$
-\\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
-\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
+\\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
+\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b   \}$  
 \\$\cup$
-\\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
-\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
+\\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a - 2\hspace{1ex} , \hspace{1ex}  d = b    \}$ , 
+\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$  
 \\$\cup$
-\\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
-\\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a - 0\hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
-\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
+\\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a  \hspace{1ex} , \hspace{1ex}  d = b - 2 \}$ , 
+\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a - 1\hspace{1ex} , \hspace{1ex}  d = b   \}$  
 \\$\cup$
-\\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b - 0 \}$ , 
-\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b - 1 \}$ , 
+\\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
+\\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a + 2\hspace{1ex} , \hspace{1ex}  d = b   \}$ , 
+\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b - 1 \}$  
 \\$\cup$
-\\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
-\\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a + 0\hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
-\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b + 0 \}$ , 
+\\$\Constraints{r21}{r22}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r22}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b + 1 \}$ , 
+\\$\Constraints{r21}{r23}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r23}\mid c = a   \hspace{1ex} , \hspace{1ex}  d = b + 2 \}$ , 
+\\$\Constraints{r21}{r24}=\{((a,b),(c,d))\in \Domain{r21} \times \Domain{r24}\mid c = a + 1\hspace{1ex} , \hspace{1ex}  d = b    \}$ 
+\\ For all pegs, each of them must follow the hollow rings which contain the same color with them.  
 \\\circled{11} Yellow peg1 
-\\$\Cons{py1}{y11}{y21}{y22}{y24}= \{((a,b),(c,d))\in \Domain{py1} \times \Domain{y11}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{py1} \times \Domain{y21}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{py1} \times \Domain{y22}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\}\hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{py1} \times \Domain{y24}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex}\cup\hspace{1ex} \{(0,0)\}$
+\\$\Constraint{py1}= \{((a,b),(c,d))\in \Domain{py1} \times \Domain{y11}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{py1} \times \Domain{y21}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{py1} \times \Domain{y22}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\}\hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{py1} \times \Domain{y24}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex}\cup\hspace{1ex} \{(0,0)\}$
 \\\circled{12} Yellow peg2 
-\\$\Cons{py2}{y11}{y21}{y22}{y24}= \{((a,b),(c,d))\in \Domain{py2} \times \Domain{y11}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{py2} \times \Domain{y21}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{py2} \times \Domain{y22}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{py2} \times \Domain{y24}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex}\cup\hspace{1ex} \{(0,0)\}$
+\\$\Constraint{py2}= \{((a,b),(c,d))\in \Domain{py2} \times \Domain{y11}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{py2} \times \Domain{y21}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{py2} \times \Domain{y22}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{py2} \times \Domain{y24}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex}\cup\hspace{1ex} \{(0,0)\}$
 \\\circled{13} Blue peg1 
-\\$\Con{pb1}{b13}{b15}{b23}= \{((a,b),(c,d))\in \Domain{pb1} \times \Domain{b13}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{pb1} \times \Domain{b15}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{pb1} \times \Domain{b23}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{(0,0)\}$
+\\$\Constraint{pb1}= \{((a,b),(c,d))\in \Domain{pb1} \times \Domain{b13}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{pb1} \times \Domain{b15}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{pb1} \times \Domain{b23}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{(0,0)\}$
 \\\circled{14} Blue peg2 
-\\$\Con{pb2}{b13}{b15}{b23}= \{((a,b),(c,d))\in \Domain{pb2} \times \Domain{b13}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{pb2} \times \Domain{b15}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{pb2} \times \Domain{b23}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{(0,0)\}$
+\\$\Constraint{pb2}= \{((a,b),(c,d))\in \Domain{pb2} \times \Domain{b13}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{pb2} \times \Domain{b15}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{pb2} \times \Domain{b23}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{(0,0)\}$
 \\\circled{15} Green peg1 
-\\$\Cons{pg1}{g13}{g14}{g22}{g23}= \{((a,b),(c,d))\in \Domain{pg1} \times \Domain{g13}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{pg1} \times \Domain{g14}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{pg1} \times \Domain{g22}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\}\hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{pg1} \times \Domain{g23}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{(0,0)\}$
+\\$\Constraint{pg1}= \{((a,b),(c,d))\in \Domain{pg1} \times \Domain{g13}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{pg1} \times \Domain{g14}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{pg1} \times \Domain{g22}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\}\hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{pg1} \times \Domain{g23}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{(0,0)\}$
 \\\circled{16} Green peg2 
-\\$\Cons{pg2}{g13}{g14}{g22}{g23}= \{((a,b),(c,d))\in \Domain{pg2} \times \Domain{g13}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{pg2} \times \Domain{g14}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{pg2} \times \Domain{g22}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\}\hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{pg2} \times \Domain{g23}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{(0,0)\}$
+\\$\Constraint{pg2} = \{((a,b),(c,d))\in \Domain{pg2} \times \Domain{g13}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{pg2} \times \Domain{g14}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{pg2} \times \Domain{g22}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\}\hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{pg2} \times \Domain{g23}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{(0,0)\}$
 \\\circled{17} Red peg 
-\\$\Con{pr}{r12}{r21}{r23}= \{((a,b),(c,d))\in \Domain{pr} \times \Domain{r12}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{pr} \times \Domain{r21}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{pr} \times \Domain{r23}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\}\hspace{1ex} \cup \hspace{1ex} \{(0,0)\}$
+\\$\Constraint{pr} = \{((a,b),(c,d))\in \Domain{pr} \times \Domain{r12}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{((a,b),(c,d))\in \Domain{pr} \times \Domain{r21}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\} \hspace{1ex} \cup \hspace{1ex} \{ ((a,b),(c,d))\in \Domain{pr} \times \Domain{r23}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\}\hspace{1ex} \cup \hspace{1ex} \{(0,0)\}$
 \section{LP model}
 \label{sec:LP model}
