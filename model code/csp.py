@@ -63,12 +63,13 @@ problem.addVariable('Vpr',a or (0,0))
 '''
 
 problem.addConstraint(AllDifferentConstraint(), ('Vy11', 'Vy12', 'Vy13',
-                                                 'Vy21', 'Vy22','Vy23', 'Vy24', 'Vy25',
+                                                 'Vy21', 'Vy22', 'Vy23', 'Vy24', 'Vy25',
                                                  'Vb11', 'Vb12', 'Vb13', 'Vb14', 'Vb15',
                                                  'Vb21', 'Vb22', 'Vb23','Vb24',
                                                  'Vg11', 'Vg12', 'Vg13', 'Vg14',
                                                  'Vg21', 'Vg22', 'Vg23',
-                                                 'Vr11', 'Vr12', 'Vr13', 'Vr14'))
+                                                 'Vr11', 'Vr12', 'Vr13', 'Vr14',
+                                                 'Vr21', 'Vr22', 'Vr23','Vr24'))
 
 
 
