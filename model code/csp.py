@@ -17,162 +17,19 @@ a = [
 from constraint import *
 starttime = datetime.datetime.now()
 problem = Problem()
-problem.addVariables(['Vr11', 'Vr12', 'Vr13', 'Vr14',
-                      'Vr21', 'Vr22', 'Vr23', 'Vr24' ]
-                     , a)
-problem.addVariable('Vpr', a or [(0,0)])
+problem.addVariables(['Vy11', 'Vy12', 'Vy13',
+                      'Vy21', 'Vy22', 'Vy23', 'Vy24', 'Vy25',
+                      'Vb11', 'Vb12', 'Vb13', 'Vb14', 'Vb15',
+                      'Vb21', 'Vb22', 'Vb23', 'Vb24',
+                      'Vg11', 'Vg12', 'Vg13', 'Vg14',
+                      'Vg21', 'Vg22', 'Vg23',
+                      'Vr11', 'Vr12', 'Vr13', 'Vr14',
+                      'Vr21', 'Vr22', 'Vr23', 'Vr24'], a)
+
+problem.addVariables(['Vpr','Vpb1','Vpb2','Vpy1','Vpy2','Vpg1','Vpg2'],a or[(0,0)])
 
 problem.addConstraint(AllDifferentConstraint(),[
-                     'Vr11', 'Vr12', 'Vr13', 'Vr14',
-                       'Vr21', 'Vr22', 'Vr23', 'Vr24'
-                      ])
-
-# piece Vr1
-problem.addConstraint(
-    lambda p1, p2, p3, p4: (p2[0] == p1[0] + 1 and p2[1] == p1[1] and p3[0] == p1[0] + 1 and p3[1] == p1[1] + 1
-                            and p4[0] == p1[0] + 2 and p4[1] == p1[1] + 1) or
-                           (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] - 1 and p3[1] == p1[1] + 1
-                            and p4[0] == p1[0] - 1 and p4[1] == p1[1] + 2) or
-                           (p2[0] == p1[0] - 1 and p2[1] == p1[1] and p3[0] == p1[0] - 1 and p3[1] == p1[1] - 1
-                            and p4[0] == p1[0] - 2 and p4[1] == p1[1] - 1) or
-                           (p2[0] == p1[0] and p2[1] == p1[1] - 1 and p3[0] == p1[0] + 1 and p3[1] == p1[1] - 1
-                            and p4[0] == p1[0] + 1 and p4[1] == p1[1] - 2) or
-                           (p2[0] == p1[0] - 1 and p2[1] == p1[1] and p3[0] == p1[0] - 1 and p3[1] == p1[1] + 1
-                            and p4[0] == p1[0] - 2 and p4[1] == p1[1] + 1) or
-                           (p2[0] == p1[0] and p2[1] == p1[1] - 1 and p3[0] == p1[0] - 1 and p3[1] == p1[1] - 1
-                            and p4[0] == p1[0] - 1 and p4[1] == p1[1] - 2) or
-                           (p2[0] == p1[0] + 1 and p2[1] == p1[1] and p3[0] == p1[0] + 1 and p3[1] == p1[1] - 1
-                            and p4[0] == p1[0] + 2 and p4[1] == p1[1] - 1) or
-                           (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] + 1 and p3[1] == p1[1] + 1
-                            and p4[0] == p1[0] + 1 and p4[1] == p1[1] + 2)
-
-    ,
-    ('Vr11', 'Vr12', 'Vr13', 'Vr14'))
-
-# piece Vr2
-problem.addConstraint(
-    lambda p1, p2, p3, p4: (p2[0] == p1[0] + 1 and p2[1] == p1[1] and p3[0] == p1[0] + 2 and p3[1] == p1[1]
-                            and p4[0] == p1[0] and p4[1] == p1[1] + 1) or
-                           (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] and p3[1] == p1[1] + 2
-                            and p4[0] == p1[0] - 1 and p4[1] == p1[1]) or
-                           (p2[0] == p1[0] - 1 and p2[1] == p1[1] and p3[0] == p1[0] - 2 and p3[1] == p1[1]
-                            and p4[0] == p1[0] and p4[1] == p1[1] - 1) or
-                           (p2[0] == p1[0] and p2[1] == p1[1] - 1 and p3[0] == p1[0] and p3[1] == p1[1] - 2
-                            and p4[0] == p1[0] + 1 and p4[1] == p1[1]) or
-                           (p2[0] == p1[0] - 1 and p2[1] == p1[1] and p3[0] == p1[0] - 2 and p3[1] == p1[1]
-                            and p4[0] == p1[0] and p4[1] == p1[1] + 1) or
-                           (p2[0] == p1[0] and p2[1] == p1[1] - 1 and p3[0] == p1[0] and p3[1] == p1[1] - 2
-                            and p4[0] == p1[0] - 1 and p4[1] == p1[1]) or
-                           (p2[0] == p1[0] + 1 and p2[1] == p1[1] and p3[0] == p1[0] + 2 and p3[1] == p1[1]
-                            and p4[0] == p1[0] and p4[1] == p1[1] - 1) or
-                           (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] and p3[1] == p1[1] + 2
-                            and p4[0] == p1[0] + 1 and p4[1] == p1[1])
-    ,
-    ('Vr21', 'Vr22', 'Vr23', 'Vr24'))
-#piece Red peg
-problem.addConstraint(lambda p1, p2 ,p3 ,p4 :      (p1==(0,0)) or 
-                                                   (p1==p2) or 
-                                                   (p1==p3) or
-                                                   (p1==p4) 
-                      ,
-                                   ['Vpr', 'Vr12', 'Vr21', 'Vr23'])
-'''
-# piece Vg1
-problem.addConstraint(
-    lambda p1, p2, p3, p4: (p2[0] == p1[0] + 1 and p2[1] == p1[1] and p3[0] == p1[0] + 2 and p3[1] == p1[1]
-                            and p4[0] == p1[0] + 1 and p4[1] == p1[1] + 1) or
-                           (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] and p3[1] == p1[1] + 2
-                            and p4[0] == p1[0] - 1 and p4[1] == p1[1] + 1) or
-                           (p2[0] == p1[0] - 1 and p2[1] == p1[1] and p3[0] == p1[0] - 2 and p3[1] == p1[1]
-                            and p4[0] == p1[0] - 1 and p4[1] == p1[1] - 1) or
-                           (p2[0] == p1[0] and p2[1] == p1[1] - 1 and p3[0] == p1[0] and p3[1] == p1[1] - 2
-                            and p4[0] == p1[0] + 1 and p4[1] == p1[1] - 1) or
-                           (p2[0] == p1[0] - 1 and p2[1] == p1[1] and p3[0] == p1[0] - 2 and p3[1] == p1[1]
-                            and p4[0] == p1[0] - 1 and p4[1] == p1[1] - 1) or
-                           (p2[0] == p1[0] and p2[1] == p1[1] - 1 and p3[0] == p1[0] and p3[1] == p1[1] - 2
-                            and p4[0] == p1[0] - 1 and p4[1] == p1[1] - 1) or
-                           (p2[0] == p1[0] + 1 and p2[1] == p1[1] and p3[0] == p1[0] + 2 and p3[1] == p1[1]
-                            and p4[0] == p1[0] + 1 and p4[1] == p1[1] - 1) or
-                           (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] and p3[1] == p1[1] + 2
-                            and p4[0] == p1[0] + 1 and p4[1] == p1[1] + 1)
-    ,
-    ('Vg11', 'Vg12', 'Vg13', 'Vg14'))
-
-# piece Vg2
-problem.addConstraint(
-    lambda p1, p2, p3: (p2[0] == p1[0] + 1 and p2[1] == p1[1] and p3[0] == p1[0] + 1 and p3[1] == p1[1] + 1) or
-                       (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] - 1 and p3[1] == p1[1] + 1) or
-                       (p2[0] == p1[0] - 1 and p2[1] == p1[1] and p3[0] == p1[0] - 1 and p3[1] == p1[1] - 1) or
-                       (p2[0] == p1[0] and p2[1] == p1[1] - 1 and p3[0] == p1[0] + 1 and p3[1] == p1[1] - 1) or
-                       (p2[0] == p1[0] - 1 and p2[1] == p1[1] and p3[0] == p1[0] - 1 and p3[1] == p1[1] + 1) or
-                       (p2[0] == p1[0] and p2[1] == p1[1] - 1 and p3[0] == p1[0] - 1 and p3[1] == p1[1] - 1) or
-                       (p2[0] == p1[0] + 1 and p2[1] == p1[1] and p3[0] == p1[0] + 1 and p3[1] == p1[1] - 1) or
-                       (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] + 1 and p3[1] == p1[1] + 1)
-    ,
-    ('Vg21', 'Vg22', 'Vg23'))
-#piece Green peg1
-problem.addConstraint(lambda p1, p2 ,p3 ,p4,p5 :   (p1==p2) or 
-                                                   (p1==p3) or
-                                                   (p1==p4) or
-                                                   (p1==p5)
-                      ,
-                                   ['Vpg1', 'Vg13', 'Vg14', 'Vg22','Vg23'])
-
-
-
-#piece Green peg2
-problem.addConstraint(lambda p1, p2 ,p3 ,p4,p5 :   (p1==(0,0)) or 
-                                                   (p1==p2) or
-                                                   (p1==p3) or
-                                                   (p1==p4) or
-                                                   (p1==p5) 
-                      ,
-                                   ['Vpg2', 'Vg13', 'Vg14', 'Vg22','Vg23'])
-
-#piece yellow peg1
-problem.addConstraint(lambda p1, p2 ,p3 ,p4,p5 :   (p1==(0,0))or
-                                                   (p1==p2) or 
-                                                   (p1==p3) or
-                                                   (p1==p4) or
-                                                   (p1==p5)
-                      ,
-                                  ('Vpy1', 'Vy11', 'Vy21', 'Vy22','Vy24'))
-#piece yellow peg2
-problem.addConstraint(lambda p1, p2 ,p3 ,p4,p5 :   (p1==(0,0))or
-                                                   (p1==p2) or 
-                                                   (p1==p3) or
-                                                   (p1==p4) or
-                                                   (p1==p5) 
-                                                   
-                      ,
-                                   ['Vpy2', 'Vy11', 'Vy21', 'Vy22','Vy24'])
-
-#piece blue peg1
-problem.addConstraint(lambda p1,p2,p3,p4 :      (p1==(0,0)) or
-                                                (p1==p2) or 
-                                                (p1==p3) or
-                                                (p1==p4) 
-                      ,
-                                   ['Vpb1', 'Vb13', 'Vb15', 'Vb23'])
-#piece Blue peg2
-problem.addConstraint(lambda p1, p2 ,p3 ,p4 :   (p1==(0,0)) or
-                                                (p1==p2) or 
-                                                (p1==p3) or
-                                                (p1==p4) 
-                                                 
-                      ,
-                                   ['Vpb2', 'Vb13', 'Vb15', 'Vb23'])
-
-problem.addVariable('Vpr',[(3,3)])
-problem.addVariable('Vpb1', [(3,2)])
-problem.addVariable('Vpr',[(3,3)])
-problem.addVariable('Vpb2',[(0,0)]) 
-problem.addVariable('Vpy1',[(0,0)])
-problem.addVariable('Vpy2',[(0,0)])
-problem.addVariable('Vpg1',[(5,1)]) 
-problem.addVariable('Vpg2',[(0,0)]) 
-
-problem.addConstraint(AllDifferentConstraint(),['Vy11', 'Vy12', 'Vy13',
+                      'Vy11', 'Vy12', 'Vy13',
                       'Vy21', 'Vy22', 'Vy23', 'Vy24', 'Vy25',
                       'Vb11', 'Vb12', 'Vb13', 'Vb14', 'Vb15',
                       'Vb21', 'Vb22', 'Vb23', 'Vb24',
@@ -180,15 +37,6 @@ problem.addConstraint(AllDifferentConstraint(),['Vy11', 'Vy12', 'Vy13',
                       'Vg21', 'Vg22', 'Vg23',
                       'Vr11', 'Vr12', 'Vr13', 'Vr14',
                       'Vr21', 'Vr22', 'Vr23', 'Vr24'])
-
-
-#piece blue peg1
-problem.addConstraint(lambda p1,p2,p3 :      (p1==Vpb1) or 
-                                             (p2==Vpb1) or
-                                             (p3==Vpb1) 
-                      ,
-                                   ['Vb13', 'Vb15', 'Vb23'])
-
 # piece Vb1
 problem.addConstraint(
     lambda p1, p2, p3, p4, p5: (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] + 1 and p3[1] == p1[1] + 1
@@ -267,41 +115,92 @@ problem.addConstraint(
                                     1] + 1)
     ,
     ('Vy21', 'Vy22', 'Vy23', 'Vy24', 'Vy25'))
+# piece Vg1
+problem.addConstraint(
+    lambda p1, p2, p3, p4: (p2[0] == p1[0] + 1 and p2[1] == p1[1] and p3[0] == p1[0] + 2 and p3[1] == p1[1]
+                            and p4[0] == p1[0] + 1 and p4[1] == p1[1] + 1) or
+                           (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] and p3[1] == p1[1] + 2
+                            and p4[0] == p1[0] - 1 and p4[1] == p1[1] + 1) or
+                           (p2[0] == p1[0] - 1 and p2[1] == p1[1] and p3[0] == p1[0] - 2 and p3[1] == p1[1]
+                            and p4[0] == p1[0] - 1 and p4[1] == p1[1] - 1) or
+                           (p2[0] == p1[0] and p2[1] == p1[1] - 1 and p3[0] == p1[0] and p3[1] == p1[1] - 2
+                            and p4[0] == p1[0] + 1 and p4[1] == p1[1] - 1) or
+                           (p2[0] == p1[0] - 1 and p2[1] == p1[1] and p3[0] == p1[0] - 2 and p3[1] == p1[1]
+                            and p4[0] == p1[0] - 1 and p4[1] == p1[1] - 1) or
+                           (p2[0] == p1[0] and p2[1] == p1[1] - 1 and p3[0] == p1[0] and p3[1] == p1[1] - 2
+                            and p4[0] == p1[0] - 1 and p4[1] == p1[1] - 1) or
+                           (p2[0] == p1[0] + 1 and p2[1] == p1[1] and p3[0] == p1[0] + 2 and p3[1] == p1[1]
+                            and p4[0] == p1[0] + 1 and p4[1] == p1[1] - 1) or
+                           (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] and p3[1] == p1[1] + 2
+                            and p4[0] == p1[0] + 1 and p4[1] == p1[1] + 1)
+    ,
+    ('Vg11', 'Vg12', 'Vg13', 'Vg14'))
 
+# piece Vg2
+problem.addConstraint(
+    lambda p1, p2, p3: (p2[0] == p1[0] + 1 and p2[1] == p1[1] and p3[0] == p1[0] + 1 and p3[1] == p1[1] + 1) or
+                       (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] - 1 and p3[1] == p1[1] + 1) or
+                       (p2[0] == p1[0] - 1 and p2[1] == p1[1] and p3[0] == p1[0] - 1 and p3[1] == p1[1] - 1) or
+                       (p2[0] == p1[0] and p2[1] == p1[1] - 1 and p3[0] == p1[0] + 1 and p3[1] == p1[1] - 1) or
+                       (p2[0] == p1[0] - 1 and p2[1] == p1[1] and p3[0] == p1[0] - 1 and p3[1] == p1[1] + 1) or
+                       (p2[0] == p1[0] and p2[1] == p1[1] - 1 and p3[0] == p1[0] - 1 and p3[1] == p1[1] - 1) or
+                       (p2[0] == p1[0] + 1 and p2[1] == p1[1] and p3[0] == p1[0] + 1 and p3[1] == p1[1] - 1) or
+                       (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] + 1 and p3[1] == p1[1] + 1)
+    ,
+    ('Vg21', 'Vg22', 'Vg23'))
+# piece Vr1
+problem.addConstraint(
+    lambda p1, p2, p3, p4: (p2[0] == p1[0] + 1 and p2[1] == p1[1] and p3[0] == p1[0] + 1 and p3[1] == p1[1] + 1
+                            and p4[0] == p1[0] + 2 and p4[1] == p1[1] + 1) or
+                           (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] - 1 and p3[1] == p1[1] + 1
+                            and p4[0] == p1[0] - 1 and p4[1] == p1[1] + 2) or
+                           (p2[0] == p1[0] - 1 and p2[1] == p1[1] and p3[0] == p1[0] - 1 and p3[1] == p1[1] - 1
+                            and p4[0] == p1[0] - 2 and p4[1] == p1[1] - 1) or
+                           (p2[0] == p1[0] and p2[1] == p1[1] - 1 and p3[0] == p1[0] + 1 and p3[1] == p1[1] - 1
+                            and p4[0] == p1[0] + 1 and p4[1] == p1[1] - 2) or
+                           (p2[0] == p1[0] - 1 and p2[1] == p1[1] and p3[0] == p1[0] - 1 and p3[1] == p1[1] + 1
+                            and p4[0] == p1[0] - 2 and p4[1] == p1[1] + 1) or
+                           (p2[0] == p1[0] and p2[1] == p1[1] - 1 and p3[0] == p1[0] - 1 and p3[1] == p1[1] - 1
+                            and p4[0] == p1[0] - 1 and p4[1] == p1[1] - 2) or
+                           (p2[0] == p1[0] + 1 and p2[1] == p1[1] and p3[0] == p1[0] + 1 and p3[1] == p1[1] - 1
+                            and p4[0] == p1[0] + 2 and p4[1] == p1[1] - 1) or
+                           (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] + 1 and p3[1] == p1[1] + 1
+                            and p4[0] == p1[0] + 1 and p4[1] == p1[1] + 2)
 
+    ,
+    ('Vr11', 'Vr12', 'Vr13', 'Vr14'))
+
+# piece Vr2
+problem.addConstraint(
+    lambda p1, p2, p3, p4: (p2[0] == p1[0] + 1 and p2[1] == p1[1] and p3[0] == p1[0] + 2 and p3[1] == p1[1]
+                            and p4[0] == p1[0] and p4[1] == p1[1] + 1) or
+                           (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] and p3[1] == p1[1] + 2
+                            and p4[0] == p1[0] - 1 and p4[1] == p1[1]) or
+                           (p2[0] == p1[0] - 1 and p2[1] == p1[1] and p3[0] == p1[0] - 2 and p3[1] == p1[1]
+                            and p4[0] == p1[0] and p4[1] == p1[1] - 1) or
+                           (p2[0] == p1[0] and p2[1] == p1[1] - 1 and p3[0] == p1[0] and p3[1] == p1[1] - 2
+                            and p4[0] == p1[0] + 1 and p4[1] == p1[1]) or
+                           (p2[0] == p1[0] - 1 and p2[1] == p1[1] and p3[0] == p1[0] - 2 and p3[1] == p1[1]
+                            and p4[0] == p1[0] and p4[1] == p1[1] + 1) or
+                           (p2[0] == p1[0] and p2[1] == p1[1] - 1 and p3[0] == p1[0] and p3[1] == p1[1] - 2
+                            and p4[0] == p1[0] - 1 and p4[1] == p1[1]) or
+                           (p2[0] == p1[0] + 1 and p2[1] == p1[1] and p3[0] == p1[0] + 2 and p3[1] == p1[1]
+                            and p4[0] == p1[0] and p4[1] == p1[1] - 1) or
+                           (p2[0] == p1[0] and p2[1] == p1[1] + 1 and p3[0] == p1[0] and p3[1] == p1[1] + 2
+                            and p4[0] == p1[0] + 1 and p4[1] == p1[1])
+    ,
+    ('Vr21', 'Vr22', 'Vr23', 'Vr24'))
 #piece Red peg
-problem.addConstraint(lambda p1, p2 ,p3 ,p4 :      (p1==p2) or 
+problem.addConstraint(lambda p1, p2 ,p3 ,p4 :      (p1==(0,0)) or 
+                                                   (p1==p2) or 
                                                    (p1==p3) or
                                                    (p1==p4) 
                       ,
                                    ['Vpr', 'Vr12', 'Vr21', 'Vr23'])
 
-#piece blue peg1
-problem.addConstraint(lambda p1,p2,p3,p4 :      (p1==p2) or 
-                                                (p1==p3) or
-                                                (p1==p4) 
-                      ,
-                                   ['Vpb1', 'Vb13', 'Vb15', 'Vb23'])
-
-
-
-#piece Blue peg1
-problem.addConstraint(lambda p1, p2 ,p3 ,p4 :      (p1==p2) or 
-                                                   (p1==p3) or
-                                                   (p1==p4) 
-                      ,
-                                   ['Vpb1', 'Vb13', 'Vb15', 'Vb23'])
-
-#piece Blue peg2
-problem.addConstraint(lambda p1, p2 ,p3 ,p4 :   (p1[0]==p2[0] and p1[1]==p2[1]) or 
-                                                (p1[0]==p3[0] and p1[1]==p3[1]) or
-                                                (p1[0]==p4[0] and p1[1]==p4[1]) or
-                                                (p1[0]==0 and p1[1]==0) 
-                      ,
-                                   ['Vpb2', 'Vb13', 'Vb15', 'Vb23'])
-
 #piece Green peg1
-problem.addConstraint(lambda p1, p2 ,p3 ,p4,p5 :   (p1==p2) or 
+problem.addConstraint(lambda p1, p2 ,p3 ,p4,p5 :   (p1==(0,0))or
+                                                   (p1==p2) or 
                                                    (p1==p3) or
                                                    (p1==p4) or
                                                    (p1==p5)
@@ -311,16 +210,51 @@ problem.addConstraint(lambda p1, p2 ,p3 ,p4,p5 :   (p1==p2) or
 
 
 #piece Green peg2
-problem.addConstraint(lambda p1, p2 ,p3 ,p4,p5 :   (p1[0]==p2[0] and p1[1]==p2[1]) or 
-                                                   (p1[0]==p3[0] and p1[1]==p3[1]) or
-                                                   (p1[0]==p4[0] and p1[1]==p4[1]) or
-                                                   (p1[0]==p5[0] and p1[1]==p5[1]) or
-                                                   (p1[0]==0 and p1[1]==0) 
+problem.addConstraint(lambda p1, p2 ,p3 ,p4,p5 :   (p1==(0,0)) or 
+                                                   (p1==p2) or
+                                                   (p1==p3) or
+                                                   (p1==p4) or
+                                                   (p1==p5) 
                       ,
                                    ['Vpg2', 'Vg13', 'Vg14', 'Vg22','Vg23'])
-'''
+
+#piece yellow peg1
+problem.addConstraint(lambda p1,p2,p3,p4,p5:   (p1==(0,0))or
+                                               (p1==p2) or 
+                                               (p1==p3) or
+                                               (p1==p4) or
+                                               (p1==p5)
+                      ,
+                                  ('Vpy1', 'Vy11', 'Vy21', 'Vy22','Vy24'))
+#piece yellow peg2
+problem.addConstraint(lambda p1,p2,p3,p4,p5:   (p1==(0,0))or
+                                               (p1==p2) or 
+                                               (p1==p3) or
+                                               (p1==p4) or
+                                               (p1==p5) 
+                                                   
+                      ,
+                                   ['Vpy2', 'Vy11', 'Vy21', 'Vy22','Vy24'])
+
+#piece blue peg1
+problem.addConstraint(lambda p1,p2,p3,p4 :      (p1==(0,0)) or
+                                                (p1==p2) or 
+                                                (p1==p3) or
+                                                (p1==p4) 
+                      ,
+                                   ['Vpb1', 'Vb13', 'Vb15', 'Vb23'])
+#piece Blue peg2
+problem.addConstraint(lambda p1,p2,p3,p4 :      (p1==(0,0)) or
+                                                (p1==p2) or 
+                                                (p1==p3) or
+                                                (p1==p4) 
+                                                 
+                      ,
+                                   ['Vpb2', 'Vb13', 'Vb15', 'Vb23'])
+
+
 solution = problem.getSolution()
-f = open('redpieceandredpeg.log','a')
+f = open('allsituation.log','a')
 sys.stdout = f
 endtime = datetime.datetime.now()
 print(solution)
