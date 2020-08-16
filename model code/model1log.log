@@ -1,0 +1,92 @@
+Chuffed
+Vpr = 0;
+Vpb1 = 22;
+Vpb2 = 81;
+Vpg1 = 0;
+Vpg2 = 0;
+Vpy1 = 0;
+Vpy2 = 0;
+Vb11 = 73;
+Vb12 = 72;
+Vb13 = 82;
+Vb14 = 71;
+Vb15 = 81;
+Vb21 = 42;
+Vb22 = 32;
+Vb23 = 22;
+Vb24 = 12;
+Vg11 = 61;
+Vg12 = 51;
+Vg13 = 41;
+Vg14 = 52;
+Vg21 = 13;
+Vg22 = 14;
+Vg23 = 24;
+Vr11 = 44;
+Vr12 = 34;
+Vr13 = 33;
+Vr14 = 23;
+Vr21 = 84;
+Vr22 = 74;
+Vr23 = 64;
+Vr24 = 83;
+Vy11 = 31;
+Vy12 = 21;
+Vy13 = 11;
+Vy21 = 62;
+Vy22 = 63;
+Vy23 = 53;
+Vy24 = 54;
+Vy25 = 43;
+% time elapsed: 0.25 s
+----------
+Yuck
+timeout-1minutes
+or-tool
+Vpr = 0;
+Vpb1 = 22;
+Vpb2 = 81;
+Vpg1 = 0;
+Vpg2 = 0;
+Vpy1 = 0;
+Vpy2 = 0;
+Vb11 = 73;
+Vb12 = 72;
+Vb13 = 82;
+Vb14 = 71;
+Vb15 = 81;
+Vb21 = 42;
+Vb22 = 32;
+Vb23 = 22;
+Vb24 = 12;
+Vg11 = 41;
+Vg12 = 51;
+Vg13 = 61;
+Vg14 = 52;
+Vg21 = 13;
+Vg22 = 14;
+Vg23 = 24;
+Vr11 = 23;
+Vr12 = 33;
+Vr13 = 34;
+Vr14 = 44;
+Vr21 = 84;
+Vr22 = 74;
+Vr23 = 64;
+Vr24 = 83;
+Vy11 = 11;
+Vy12 = 21;
+Vy13 = 31;
+Vy21 = 62;
+Vy22 = 63;
+Vy23 = 53;
+Vy24 = 54;
+Vy25 = 43;
+% time elapsed: 17.90 s
+----------
+==========
+% time elapsed: 17.90 s
+coin-bc
+timeout-1minutes
+gurobi
+timeout-1minutes
