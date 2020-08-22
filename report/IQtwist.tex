@@ -34,16 +34,19 @@ For this method, there are some rules. Firstly, all the variables correspond to 
 \\naming rules example for yellow 2
 \end{center}
 \subsection{Variables}
-$\VUnits=\{ V_{y11},V_{y12},
-V_{y13},V_{y21},V_{y22},V_{y23},V_{y24},V_{y25},\\V_{b11},V_{b12},V_{b13},V_{b14},
-V_{b15},V_{b21},V_{b22},V_{b23},\\V_{b24},V_{g11},V_{g12},V_{g13},V_{g14},V_{g21},V_{g22},V_{g23},\\V_{r11},
-V_{r12},V_{r13},V_{r14},V_{r21},V_{r22},V_{r23},V_{r24}\}$\\
-\\$\VPegs = \{V_{py1}, V_{py2}, V_{pb1}, V_{pb2}, V_{pg1}, V_{pg2}, V_{pr}\}$\\
-\\$V = \VUnits \cup \VPegs.$
+\begin{align*}
+\VUnits=\{&V_{y11},V_{y12},V_{y13},\\&V_{y21},V_{y22},V_{y23},V_{y24},V_{y25},\\&V_{b11},V_{b12},V_{b13},V_{b14},
+V_{b15},\\&V_{b21},V_{b22},V_{b23},V_{b24},\\&V_{g11},V_{g12},V_{g13},V_{g14},\\&V_{g21},V_{g22},V_{g23},\\&V_{r11},
+V_{r12},V_{r13},V_{r14},\\&V_{r21},V_{r22},V_{r23},V_{r24}\}\\
+\\\VPegs = \{&V_{py1}, V_{py2}, V_{pb1}, V_{pb2}, V_{pg1}, V_{pg2}, V_{pr}\}\\
+\\V = &\VUnits \cup \VPegs.
+\end{align*}
 \subsection{Domains}
-$For \hspace{1ex} all \hspace{1ex} v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=\{(i,j) \in \mathbb{Z} \times \mathbb{Z}	\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}$\\
+\begin{align*}
+&For \hspace{1ex} all \hspace{1ex} v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=\{(i,j) \in \mathbb{Z} \times \mathbb{Z}	\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}\\
 \\
-$For \hspace{1ex} all \hspace{1ex} v \in \VPegs \hspace{1ex},\hspace{1ex} D(v)=\{(0,0)\} \hspace{1ex} \cup \hspace{1ex}\{(i,j) \in \mathbb{Z} \times \mathbb{Z}\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}$
+&For \hspace{1ex} all \hspace{1ex} v \in \VPegs \hspace{1ex},\hspace{1ex} D(v)=\{(0,0)\} \hspace{1ex} \cup \hspace{1ex}\{(i,j) \in \mathbb{Z} \times \mathbb{Z}\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}
+\end{align*}
 \subsection{Constrains}
 Firstly, there should be no 2 different unit variables contain the same value.\\
 \\\circled{1} 
@@ -218,5 +221,4 @@ example of 8 situations
 \\&\{ ((a,b),(c,d))\in \Domain{pr} \times \Domain{r23}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\}\hspace{1ex} \cup 
 \\& \{(0,0)\}
 \end{align*}
-\section{LP model}
-\label{sec:LP model}
+
