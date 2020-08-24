@@ -1,23 +1,26 @@
 from subprocess import STDOUT, check_output
+import os
+import time
+from os import path
 '''
 There are total 120 situations in the guidebook, 24 for
 each level of difficulty, so I pick 4 situations for each degree. And
 all the number of situations are the multiple of 6. For example, 6,12,18....114,120.
 The oder of pegs:blue1,blue2,green1,green2,yellow1,yellow2,red
 '''
-test=[
-      [22,81,00,00,00,00,00],[61,00,43,00,41,62,00],[00,00,61,63,62,00,64],[61,72,63,64,14,62,24],
-      [00,00,21,23,42,51,63],[71,00,00,00,21,00,81],[12,34,31,00,62,81,64],[72,82,22,84,54,00,12],
-      [00,00,24,43,52,00,33],[13,00,24,00,22,00,44],[33,64,23,00,00,00,62],[22,23,64,00,53,00,51],
-      [63,00,53,00,43,00,33],[42,73,23,00,00,00,00],[44,73,31,32,00,00,23],[00,00,22,83,52,00,54],
-      [00,00,64,83,43,62,00],[00,00,23,82,32,51,53],[51,00,34,00,54,00,31],[52,00,54,00,00,00,61]
-      ]
-solvers=['Chuffed','Yuck','or-tool','coin-bc','gurobi']
+start=[[12,23,32,00,43,52,63],[74,00,52,53,31,34,71],[41,74,63,64,52,53,42],[22,42,34,43,31,00,23],[84,00,00,00,11,81,14],[22,81,00,00,00,00,00],
+      [21,54,32,43,63,72,81],[11,43,42,74,71,00,14],[71,00,51,62,53,00,72],[71,81,74,84,64,00,61],[21,22,23,24,41,51,31],[61,00,43,00,41,63,00],
+      [51,61,71,81,31,41,00],[23,34,32,00,33,43,53],[73,74,53,34,33,54,00],[00,00,63,00,62,53,52],[21,23,42,52,32,61,63],[00,00,61,63,62,00,64],
+      [24,71,61,62,23,52,13],[14,24,12,42,74,84,83],[12,74,13,52,44,73,83],[71,81,52,44,21,84,14],[22,63,13,23,11,62,33],[61,72,63,64,14,62,24]]
+solvers=['choco','jacop','Chuffed','Yuck','Or-tool','Coin-bc','Gurobi']
+java_solver=[]
 n = 1
-for data in test:
+for data in start:
     f = open('CSPmodel.mzn')
     name='model'+str(n)+'.mzn'
-    with open(name,"w") as f1:
+    if not path.isdir('start/model'+str(n)):
+        os.mkdir('start/model'+str(n))
+    with open('start/model'+str(n)+'/'+name,"w") as f1:
         for line in f:
             f1.write(line);
         text ='\n'\
@@ -29,15 +32,24 @@ for data in test:
             'constraint Vpy2=' + str(data[5]) + ';\n'\
             'constraint Vpr='  + str(data[6]) + ';\n'
         f1.write(text)
-    file= open('model'+str(n)+'log.log','w')
+    os.system("minizinc.exe -c --solver org.minizinc.mzn-fzn"+'  start/model'+str(n)+'/'+name+" --sac" )
     for solver in solvers:
-            file.write(solver + '\n')
-            command = 'timeout 60 minizinc.exe --solver ' + solver + " " + name + " --output-time"
+            file = open('start/model'+str(n)+'/'+'model' + str(n) + solver+'.log', 'w')
+            if solver=='jacop':
+                start=time.time()
+                command = "java -cp jacop-4.7.0.jar org.jacop.fz.Fz2jacop start/model"+str(n)+'/model'+str(n)+".fzn"
+            elif solver=='choco':
+                start = time.time()
+                command ="java -cp choco-parsers-4.10.3-jar-with-dependencies.jar org.chocosolver.parser.flatzinc.ChocoFZN start/model"+str(n)+'/model'+str(n)+".fzn"
+            else:
+                command = 'timeout 1800 minizinc.exe --solver ' + solver + " " + 'start/model'+str(n)+'/'+name + " --output-time --sac"
             try:
-               text= check_output(command, stderr=STDOUT, timeout=60,shell=True)
+               text= check_output(command, stderr=STDOUT, timeout=1800,shell=True)
                text_string = text.decode(encoding='UTF-8')
-               for line in text_string:
-                   file.write(line)
+               file.write(text_string)
+               if (solver=='jacop') or (solver=='choco'):
+                       end = time.time()
+                       file.write("the excute time:"+str(end-start))
             except Exception:
-               file.write('timeout-1minutes\n')
+               file.write('timeout-30minutes\n')
     n += 1
