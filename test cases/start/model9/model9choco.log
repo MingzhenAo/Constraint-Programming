@@ -1,0 +1,7 @@
+% [start/model9/model9.fzn]
+% simple solver
+% parse instance...
+ANTLR Tool version 4.5 used for code generation does not match the current runtime version 4.8ANTLR Tool version 4.5 used for code generation does not match the current runtime version 4.8% solve instance...
+% Model[model9.fzn_1], 436 variables, 788 constraints, building time: 0.522s, w/o user-defined search strategy, w/o complementary search strategy
+=====UNSATISFIABLE=====
+the excute time:1.2381584644317627
