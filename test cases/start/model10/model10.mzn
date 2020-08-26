@@ -179,9 +179,9 @@ constraint (g0(Vr22) = g0(Vr21) + 1/\ g1(Vr22) = g1(Vr21)/\ g0(Vr23) = g0(Vr21) 
            
 
 constraint Vpb1=71;
-constraint Vpb2=0;
-constraint Vpg1=51;
-constraint Vpg2=62;
-constraint Vpy1=53;
+constraint Vpb2=81;
+constraint Vpg1=74;
+constraint Vpg2=84;
+constraint Vpy1=64;
 constraint Vpy2=0;
-constraint Vpr=73;
+constraint Vpr=61;
