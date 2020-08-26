@@ -4,7 +4,7 @@ Created on Wed Aug 26 13:11:48 2020
 
 @author: Mingzhen Ao
 """
-
+import os
 a1=[[0,0,0],[1,0,0],[0,0,1],[0,1,1],[1,0,-1]]
 def rotateXY(a):
     #roteta 90 (anticlockwise)
@@ -127,10 +127,16 @@ def printf(a1):
   all_situation.append(a20)
   all_situation.append(a21)
   all_situation.append(a22)
+  save_list=[]
   for situation in all_situation:
-      print("&(d=a+"+str(situation[1][0])+",e=b+"+str(situation[1][1])+",f=c+"+str(situation[1][2])+", g=a+"+str(situation[2][0])+",h=b+"+\
-            str(situation[2][1])+"i=c+"+str(situation[2][2])+",j=a+"+str(situation[3][0])+",k=b+"+str(situation[3][1])+",l=c+"+str(situation[3][2])+\
+      save_list.append("&(d=a+"+str(situation[1][0])+",e=b+"+str(situation[1][1])+",f=c+"+str(situation[1][2])+", g=a+"+str(situation[2][0])+",h=b+"+\
+            str(situation[2][1])+",i=c+"+str(situation[2][2])+",j=a+"+str(situation[3][0])+",k=b+"+str(situation[3][1])+",l=c+"+str(situation[3][2])+\
               ",m=a+"+str(situation[4][0])+",n=b+"+str(situation[4][1])+",o=c+"+str(situation[4][2])+')or\\')
+  return save_list
+with open('example.txt','w') as file:
+     for line in printf(a1):
+         file.write(line)
+
       
 
 

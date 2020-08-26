@@ -14,7 +14,7 @@ start=[[12,23,32,00,43,52,63],[74,00,52,53,31,34,71],[41,74,63,64,52,53,42],[22,
       [24,71,61,62,23,52,13],[14,24,12,42,74,84,83],[12,74,13,52,44,73,83],[71,81,52,44,21,84,14],[22,63,13,23,11,62,33],[61,72,63,64,14,62,24]]
 solvers=['choco','jacop','Chuffed','Yuck','Or-tool','Coin-bc','Gurobi']
 java_solver=[]
-n = 14
+n = 17
 while n<25:
     k=int(n-1)
     data=start[k]
@@ -38,10 +38,10 @@ while n<25:
     for solver in solvers:
             file = open('start/model'+str(n)+'/'+'model' + str(n) + solver+'.log', 'w')
             if solver=='jacop':
-                start=time.time()
+                begin=time.time()
                 command = "java -cp jacop-4.7.0.jar org.jacop.fz.Fz2jacop start/model"+str(n)+'/model'+str(n)+".fzn"
             elif solver=='choco':
-                start = time.time()
+                begin = time.time()
                 command ="java -cp choco-parsers-4.10.3-jar-with-dependencies.jar org.chocosolver.parser.flatzinc.ChocoFZN start/model"+str(n)+'/model'+str(n)+".fzn"
             else:
                 command = 'timeout 1800 minizinc.exe --solver ' + solver + " " + 'start/model'+str(n)+'/'+name + " --output-time --sac"
@@ -51,7 +51,7 @@ while n<25:
                file.write(text_string)
                if (solver=='jacop') or (solver=='choco'):
                        end = time.time()
-                       file.write("the excute time:"+str(end-start))
+                       file.write("the excute time:"+str(end-begin))
             except Exception:
                file.write('timeout-30minutes\n')
     n += 1
