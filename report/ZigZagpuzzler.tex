@@ -1,7 +1,7 @@
 \chapter{Zig Zag Puzzler}
 For the Zig Zag puzzler, there are 2 playing modes. Therefore,each mode will correspond to one model. The significant difference between them are the three-dimensional system of coordinate.
 Above all, I would like to define all the variables based on the piece.
-\section{playing mode 1 - CSP model}
+\section{playing mode 1- CSP model}
 \label{sec:CSP model1}
 Firstly, I'd like to explain how to calculate the position based on the board.
 \begin{center}
@@ -11,6 +11,20 @@ the variable explanation of blue1\\
 \begin{center}
 \includegraphics[scale=0.5]{game2blue2.jpg}\\
 the variable explanation of blue2
+\includegraphics{3Dred1.jpg}\\
+the variable explanation of red1
+\includegraphics{3Dred2.jpg}\\
+the variable explanation of red2
+\includegraphics{3Dgreen1.jpg}\\
+the variable explanation of green1
+\includegraphics{3Dgreen2.jpg}\\
+the variable explanation of green2
+\includegraphics{3Dorange.jpg}\\
+the variable explanation of orange
+\includegraphics{3Dpurple.jpg}\\
+the variable explanation of purple
+\includegraphics{3Dyellow.jpg}\\
+the variable explanation of yellow
 \end{center}
 \begin{center}
 \includegraphics[scale=0.5]{ZIGZAGmodel1board.jpg} \\
@@ -24,7 +38,7 @@ V_{r12},V_{r13},\\&V_{r21},V_{r22},V_{r23},\\&V_{o1},V_{o2},V_{o3},V_{o4},\\&V_{
 \end{align*}
 \subsection{Domains}
 \begin{align*}
-For \hspace{1ex} all \hspace{1ex} v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=\{&(i,j,k) \in \mathbb{Z} \times \mathbb{Z}	\times \mathbb{Z} \mid  0<i \leq 5 \hspace{1ex} , \hspace{1ex} 0<j \leq 5,\hspace{1ex} 0<k \leq 5,\\& i+j\leq 6,\hspace{1ex} j+k\leq 6,\hspace{1ex}i+k\leq 6,\hspace{1ex}i+j+k\leq 7\}
+For \hspace{1ex} all \hspace{1ex} v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=\{&(x,y,z) \in \mathbb{Z} \times \mathbb{Z}	\times \mathbb{Z} \mid  0<x \leq 5 \hspace{1ex} , \hspace{1ex} 0<y \leq 5,\hspace{1ex} 0<z \leq 5,\\& x+y\leq 6,\hspace{1ex} y+z\leq 6,\hspace{1ex}x+z\leq 6,\hspace{1ex}x+y+z\leq 7\}
 \end{align*}
 \subsection{Constraints}
 \begin{small}
@@ -83,7 +97,141 @@ For \hspace{1ex} all \hspace{1ex} v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=\
 \\&(d=a-1,e=b ,f=c , g=a ,h=b-1,i=c ,j=a ,k=b-1,l=c-1,m=a-1,n=b+1,o=c )\}
 \end{align*}
 \end{small}
-\section{playing mode 2 - CSP model}
+\begin{align*}
+&\Const{g11}{g12}{g13}{g14}=\{\\
+&((a,b,c),(d,e,f),(g,h,i),(j,k,l))\in \Domain {g11} \times \Domain{g12}\times \Domain{g13}\times \Domain{g14}\mid\\
+&(d=a ,e=b+1,f=c , g=a ,h=b+1,i=c+1,j=a ,k=b+2,l=c+1)or\\
+&(d=a-1,e=b ,f=c , g=a-1,h=b ,i=c+1,j=a-2,k=b ,l=c+1)or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b-1,i=c+1,j=a ,k=b-2,l=c+1)or\\
+&(d=a+1,e=b ,f=c , g=a+1,h=b ,i=c+1,j=a+2,k=b ,l=c+1)or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b-1,i=c-1,j=a ,k=b-2,l=c-1)or\\
+&(d=a+1,e=b ,f=c , g=a+1,h=b ,i=c-1,j=a+2,k=b ,l=c-1)or\\
+&(d=a ,e=b+1,f=c , g=a ,h=b+1,i=c-1,j=a ,k=b+2,l=c-1)or\\
+&(d=a-1,e=b ,f=c , g=a-1,h=b ,i=c-1,j=a-2,k=b ,l=c-1)or\\
+&(d=a ,e=b ,f=c+1, g=a ,h=b-1,i=c+1,j=a ,k=b-1,l=c+2)or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b-1,i=c-1,j=a ,k=b-2,l=c-1)or\\
+&(d=a ,e=b ,f=c-1, g=a ,h=b+1,i=c-1,j=a ,k=b+1,l=c-2)or\\
+&(d=a ,e=b+1,f=c , g=a ,h=b+1,i=c-1,j=a ,k=b+2,l=c-1)or\\
+&(d=a ,e=b ,f=c+1, g=a ,h=b+1,i=c+1,j=a ,k=b+1,l=c+2)or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b-1,i=c+1,j=a ,k=b-2,l=c+1)or\\
+&(d=a ,e=b ,f=c-1, g=a ,h=b-1,i=c-1,j=a ,k=b-1,l=c-2)or\\
+&(d=a ,e=b+1,f=c , g=a-1,h=b+1,i=c ,j=a-1,k=b+2,l=c )or\\
+&(d=a ,e=b ,f=c+1, g=a-1,h=b ,i=c+1,j=a-1,k=b ,l=c+2)or\\
+&(d=a ,e=b-1,f=c , g=a-1,h=b-1,i=c ,j=a-1,k=b-2,l=c )or\\
+&(d=a ,e=b+1,f=c , g=a ,h=b+1,i=c-1,j=a ,k=b+2,l=c-1)or\\
+&(d=a ,e=b ,f=c+1, g=a ,h=b+1,i=c+1,j=a ,k=b+1,l=c+2)or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b-1,i=c+1,j=a ,k=b-2,l=c+1)or\\
+&(d=a ,e=b ,f=c-1, g=a ,h=b-1,i=c-1,j=a ,k=b-1,l=c-2)
+\end{align*}
+\begin{align*}
+&\Const{o1}{o2}{o3}{o4}=\{\\
+&((a,b,c),(d,e,f),(g,h,i),(j,k,l))\in \Domain {o1} \times \Domain{o2}\times \Domain{o3}\times \Domain{o4}\mid\\
+&(d=a ,e=b+1,f=c , g=a+1,h=b ,i=c ,j=a ,k=b ,l=c+1)or\\
+&(d=a-1,e=b ,f=c , g=a ,h=b+1,i=c ,j=a ,k=b ,l=c+1)or\\
+&(d=a ,e=b-1,f=c , g=a-1,h=b ,i=c ,j=a ,k=b ,l=c+1)or\\
+&(d=a+1,e=b ,f=c , g=a ,h=b-1,i=c ,j=a ,k=b ,l=c+1)or\\
+&(d=a ,e=b-1,f=c , g=a+1,h=b ,i=c ,j=a ,k=b ,l=c-1)or\\
+&(d=a+1,e=b ,f=c , g=a ,h=b+1,i=c ,j=a ,k=b ,l=c-1)or\\
+&(d=a ,e=b+1,f=c , g=a-1,h=b ,i=c ,j=a ,k=b ,l=c-1)or\\
+&(d=a-1,e=b ,f=c , g=a ,h=b-1,i=c ,j=a ,k=b ,l=c-1)or\\
+&(d=a ,e=b ,f=c+1, g=a+1,h=b ,i=c ,j=a ,k=b-1,l=c )or\\
+&(d=a ,e=b-1,f=c , g=a+1,h=b ,i=c ,j=a ,k=b ,l=c-1)or\\
+&(d=a ,e=b ,f=c-1, g=a+1,h=b ,i=c ,j=a ,k=b+1,l=c )or\\
+&(d=a ,e=b+1,f=c , g=a-1,h=b ,i=c ,j=a ,k=b ,l=c-1)or\\
+&(d=a ,e=b ,f=c+1, g=a-1,h=b ,i=c ,j=a ,k=b+1,l=c )or\\
+&(d=a ,e=b-1,f=c , g=a-1,h=b ,i=c ,j=a ,k=b ,l=c+1)or\\
+&(d=a ,e=b ,f=c-1, g=a-1,h=b ,i=c ,j=a ,k=b-1,l=c )or\\
+&(d=a ,e=b+1,f=c , g=a ,h=b ,i=c+1,j=a-1,k=b ,l=c )or\\
+&(d=a ,e=b ,f=c+1, g=a ,h=b-1,i=c ,j=a-1,k=b ,l=c )or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b ,i=c-1,j=a-1,k=b ,l=c )or\\
+&(d=a ,e=b+1,f=c , g=a-1,h=b ,i=c ,j=a ,k=b ,l=c-1)or\\
+&(d=a ,e=b ,f=c+1, g=a-1,h=b ,i=c ,j=a ,k=b+1,l=c )or\\
+&(d=a ,e=b-1,f=c , g=a-1,h=b ,i=c ,j=a ,k=b ,l=c+1)or\\
+&(d=a ,e=b ,f=c-1, g=a-1,h=b ,i=c ,j=a ,k=b-1,l=c )
+\end{align*}
+\begin{align*}
+&\Const{p1}{p2}{p3}{p4}=\{\\
+&((a,b,c),(d,e,f),(g,h,i),(j,k,l))\in \Domain {p1} \times \Domain{p2}\times \Domain{p3}\times \Domain{p4}\mid\\
+&(d=a ,e=b+1,f=c , g=a-1,h=b+1,i=c ,j=a ,k=b ,l=c+1)or\\
+&(d=a-1,e=b ,f=c , g=a-1,h=b-1,i=c ,j=a ,k=b ,l=c+1)or\\
+&(d=a ,e=b-1,f=c , g=a+1,h=b-1,i=c ,j=a ,k=b ,l=c+1)or\\
+&(d=a+1,e=b ,f=c , g=a+1,h=b+1,i=c ,j=a ,k=b ,l=c+1)or\\
+&(d=a ,e=b-1,f=c , g=a-1,h=b-1,i=c ,j=a ,k=b ,l=c-1)or\\
+&(d=a+1,e=b ,f=c , g=a+1,h=b-1,i=c ,j=a ,k=b ,l=c-1)or\\
+&(d=a ,e=b+1,f=c , g=a+1,h=b+1,i=c ,j=a ,k=b ,l=c-1)or\\
+&(d=a-1,e=b ,f=c , g=a-1,h=b+1,i=c ,j=a ,k=b ,l=c-1)or\\
+&(d=a ,e=b ,f=c+1, g=a-1,h=b ,i=c+1,j=a ,k=b-1,l=c )or\\
+&(d=a ,e=b-1,f=c , g=a-1,h=b-1,i=c ,j=a ,k=b ,l=c-1)or\\
+&(d=a ,e=b ,f=c-1, g=a-1,h=b ,i=c-1,j=a ,k=b+1,l=c )or\\
+&(d=a ,e=b+1,f=c , g=a+1,h=b+1,i=c ,j=a ,k=b ,l=c-1)or\\
+&(d=a ,e=b ,f=c+1, g=a+1,h=b ,i=c+1,j=a ,k=b+1,l=c )or\\
+&(d=a ,e=b-1,f=c , g=a+1,h=b-1,i=c ,j=a ,k=b ,l=c+1)or\\
+&(d=a ,e=b ,f=c-1, g=a+1,h=b ,i=c-1,j=a ,k=b-1,l=c )or\\
+&(d=a ,e=b+1,f=c , g=a ,h=b+1,i=c-1,j=a-1,k=b ,l=c )or\\
+&(d=a ,e=b ,f=c+1, g=a ,h=b+1,i=c+1,j=a-1,k=b ,l=c )or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b-1,i=c+1,j=a-1,k=b ,l=c )or\\
+&(d=a ,e=b+1,f=c , g=a+1,h=b+1,i=c ,j=a ,k=b ,l=c-1)or\\
+&(d=a ,e=b ,f=c+1, g=a+1,h=b ,i=c+1,j=a ,k=b+1,l=c )or\\
+&(d=a ,e=b-1,f=c , g=a+1,h=b-1,i=c ,j=a ,k=b ,l=c+1)or\\
+&(d=a ,e=b ,f=c-1, g=a+1,h=b ,i=c-1,j=a ,k=b-1,l=c )
+\end{align*}
+\begin{align*}
+&\Const{y1}{y2}{y3}{y4}=\{\\
+&((a,b,c),(d,e,f),(g,h,i),(j,k,l))\in \Domain {y1} \times \Domain{y2}\times \Domain{y3}\times \Domain{y4}\mid\\
+&(d=a ,e=b+1,f=c , g=a ,h=b+2,i=c ,j=a ,k=b+1,l=c+1)or\\
+&(d=a-1,e=b ,f=c , g=a-2,h=b ,i=c ,j=a-1,k=b ,l=c+1)or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b-2,i=c ,j=a ,k=b-1,l=c+1)or\\
+&(d=a+1,e=b ,f=c , g=a+2,h=b ,i=c ,j=a+1,k=b ,l=c+1)or\\
+&(d=a ,e=b ,f=c+1, g=a ,h=b ,i=c+2,j=a ,k=b-1,l=c+1)or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b-2,i=c ,j=a ,k=b-1,l=c-1)or\\
+&(d=a ,e=b ,f=c-1, g=a ,h=b ,i=c-2,j=a ,k=b+1,l=c-1)or\\
+&(d=a ,e=b+1,f=c , g=a ,h=b+2,i=c ,j=a-1,k=b+1,l=c )or\\
+&(d=a ,e=b ,f=c+1, g=a ,h=b ,i=c+2,j=a-1,k=b ,l=c+1)or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b-2,i=c ,j=a-1,k=b-1,l=c )
+\end{align*}
+\begin{align*}
+&\Con{r11}{r12}{r13}=\{\\
+&((a,b,c),(d,e,f),(g,h,i))\in \Domain {r11} \times \Domain{r12}\times \Domain{r13}\mid\\
+&(d=a ,e=b+1,f=c , g=a ,h=b ,i=c+1)or\\
+&(d=a-1,e=b ,f=c , g=a ,h=b ,i=c+1)or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b ,i=c+1)or\\
+&(d=a+1,e=b ,f=c , g=a ,h=b ,i=c+1)or\\
+&(d=a ,e=b ,f=c+1, g=a ,h=b-1,i=c )or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b ,i=c-1)or\\
+&(d=a ,e=b ,f=c-1, g=a ,h=b+1,i=c )or\\
+&(d=a ,e=b+1,f=c , g=a-1,h=b ,i=c )or\\
+&(d=a ,e=b ,f=c+1, g=a-1,h=b ,i=c )or\\
+&(d=a ,e=b-1,f=c , g=a-1,h=b ,i=c )
+\end{align*}
+\begin{align*}
+&\Con{r21}{r22}{r23}=\{\\
+&((a,b,c),(d,e,f),(g,h,i))\in \Domain {r21} \times \Domain{r22}\times \Domain{r23}\mid\\
+&(d=a ,e=b+1,f=c , g=a ,h=b ,i=c+1)or\\
+&(d=a-1,e=b ,f=c , g=a ,h=b ,i=c+1)or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b ,i=c+1)or\\
+&(d=a+1,e=b ,f=c , g=a ,h=b ,i=c+1)or\\
+&(d=a ,e=b ,f=c+1, g=a ,h=b-1,i=c )or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b ,i=c-1)or\\
+&(d=a ,e=b ,f=c-1, g=a ,h=b+1,i=c )or\\
+&(d=a ,e=b+1,f=c , g=a-1,h=b ,i=c )or\\
+&(d=a ,e=b ,f=c+1, g=a-1,h=b ,i=c )or\\
+&(d=a ,e=b-1,f=c , g=a-1,h=b ,i=c )
+\end{align*}
+\begin{align*}
+&\Con{g21}{g22}{g23}=\{\\
+&((a,b,c),(d,e,f),(g,h,i))\in \Domain {g21} \times \Domain{g22}\times \Domain{g23}\mid\\
+&(d=a ,e=b+1,f=c , g=a ,h=b+2,i=c )or\\
+&(d=a-1,e=b ,f=c , g=a-2,h=b ,i=c )or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b-2,i=c )or\\
+&(d=a+1,e=b ,f=c , g=a+2,h=b ,i=c )or\\
+&(d=a ,e=b ,f=c+1, g=a ,h=b ,i=c+2)or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b-2,i=c )or\\
+&(d=a ,e=b ,f=c-1, g=a ,h=b ,i=c-2)or\\
+&(d=a ,e=b+1,f=c , g=a ,h=b+2,i=c )or\\
+&(d=a ,e=b ,f=c+1, g=a ,h=b ,i=c+2)or\\
+&(d=a ,e=b-1,f=c , g=a ,h=b-2,i=c )
+\end{align*}
+\section{playing mode 2- CSP model}
 \begin{center}
 \includegraphics[scale=0.2]{ZIGZAGmodel2board.jpg} \\
 explanation of zig zag puzzler model2
@@ -97,6 +245,6 @@ V_{r12},V_{r13},\\&V_{r21},V_{r22},V_{r23},\\&V_{o1},V_{o2},V_{o3},V_{o4},\\&V_{
 \end{align*}
 \subsection{Domains}
 \begin{align*}
-For \hspace{1ex} all \hspace{1ex} v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=\{&(i,j,k) \in \mathbb{Z} \times \mathbb{Z}	\times \mathbb{Z} \mid  0<i \leq 5 \hspace{1ex} , \hspace{1ex} 0<j \leq 4,\hspace{1ex} 0<k \leq 4,j=k\} \hspace{1ex}\cup\\
-\{&(i,j,k) \in \mathbb{Z} \times \mathbb{Z}	\times \mathbb{Z} \mid  0<i \leq 5 \hspace{1ex} , \hspace{1ex} 0<j \leq 4,\hspace{1ex} 0<k \leq 3,j=k+1\}
+For \hspace{1ex} all \hspace{1ex} v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=\{&(x,y,z) \in \mathbb{Z} \times \mathbb{Z}	\times \mathbb{Z} \mid  0<x \leq 5 \hspace{1ex} , \hspace{1ex} 0<y \leq 4,\hspace{1ex} 0<z \leq 4,y=z\} \hspace{1ex}\cup\\
+\{&(x,y,z) \in \mathbb{Z} \times \mathbb{Z}	\times \mathbb{Z} \mid  0<x \leq 5 \hspace{1ex} , \hspace{1ex} 0<y \leq 4,\hspace{1ex} 0<z \leq 3,y=z+1\}
 \end{align*}
