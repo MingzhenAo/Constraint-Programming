@@ -1,0 +1,42 @@
+Academic license - for non-commercial use only
+Vpr = 33;
+Vpb1 = 42;
+Vpb2 = 0;
+Vpg1 = 71;
+Vpg2 = 0;
+Vpy1 = 54;
+Vpy2 = 0;
+Vb11 = 31;
+Vb12 = 41;
+Vb13 = 42;
+Vb14 = 51;
+Vb15 = 52;
+Vb21 = 44;
+Vb22 = 34;
+Vb23 = 24;
+Vb24 = 14;
+Vg11 = 64;
+Vg12 = 74;
+Vg13 = 84;
+Vg14 = 73;
+Vg21 = 61;
+Vg22 = 71;
+Vg23 = 72;
+Vr11 = 32;
+Vr12 = 22;
+Vr13 = 21;
+Vr14 = 11;
+Vr21 = 13;
+Vr22 = 23;
+Vr23 = 33;
+Vr24 = 12;
+Vy11 = 83;
+Vy12 = 82;
+Vy13 = 81;
+Vy21 = 62;
+Vy22 = 63;
+Vy23 = 53;
+Vy24 = 54;
+Vy25 = 43;
+% time elapsed: 1390.24 s
+----------
