@@ -21,18 +21,23 @@
 %% By default, Computer Modern is used.
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01] \ProvidesPackage{anuthesis}
-[1996/11/04 v0.1 ANU Thesis Style (SB)]
+[2005/04/04 v0.2 ANU Thesis Style (SB/RW)]
 %%
 %% Declare options
 %%
 \DeclareOption{cm}{\def\thesisfont{cm}}
 \DeclareOption{lucida}{\def\thesisfont{lucida}}
 \DeclareOption{palatino}{\def\thesisfont{palatino}}
+\DeclareOption{minionpro}{\def\thesisfont{minionpro}}
 \DeclareOption{times}{\def\thesisfont{times}}
+\DeclareOption{draft}{\def\thesisqualifier{DRAFT}}
+\DeclareOption{svn}{\def\thesisqualifier{\svnnolinkurl{\svnkw{Filename}}~~\textsf{r\svnfilerev~\svnfileyear-\svnfilemonth-\svnfileday~\svnfilehour:\svnfileminute}}}
+\DeclareOption{exam}{\def\thesisqualifier{UNDER EXAMINATION}}
+\DeclareOption{final}{\def\thesisqualifier{}}
 %%
 %% Default to computer modern
 %%
-\ExecuteOptions{cm}
+\ExecuteOptions{cm,final}
 %%
 %% Check for non-default options
 %%
@@ -41,11 +46,11 @@
 %% Set up things for each of the different font options.
 %%
 \RequirePackage{ifthen}
-%\ifthenelse{\equal{\thesisfont}{cm}}{\DeclareFontShape{T1}{cmss}{bx}{sc}{<->ssub*cmr/m/sc}{}\RequirePackage{latexsym}\def\aboutthesis{Typeset in Computer Modern by \TeX\ and \LaTeXe{}.}}{}
-\ifthenelse{\equal{\thesisfont}{cm}}{\RequirePackage{latexsym}\def\aboutthesis{Typeset in Computer Modern by \TeX\ and \LaTeXe{}.}}{}
-\ifthenelse{\equal{\thesisfont}{lucida}}{\RequirePackage[nolucidascale]{lucbr}\renewcommand{\ttdefault}{hlct}\def\aboutthesis{Typeset in Lucida by \TeX\ and \LaTeXe{}.}}{}
-\ifthenelse{\equal{\thesisfont}{palatino}}{\RequirePackage{palatino}\def\aboutthesis{Typeset in Palatino by \TeX\ and \LaTeXe{}.}}{}
-\ifthenelse{\equal{\thesisfont}{times}}{\RequirePackage{mathptm}\RequirePackage{times}\def\aboutthesis{Typeset in Times by \TeX\ and \LaTeXe{}.}}{}
+\ifthenelse{\equal{\thesisfont}{cm}}{\RequirePackage{latexsym}\def\aboutthesis{\footnotesize Typeset in Computer Modern by \TeX\ and \LaTeXe{}.}}{}
+\ifthenelse{\equal{\thesisfont}{lucida}}{\RequirePackage[nolucidascale]{lucbr}\renewcommand{\ttdefault}{hlct}\def\aboutthesis{\footnotesize Typeset in Lucida by \TeX\ and \LaTeXe{}.}}{}
+\ifthenelse{\equal{\thesisfont}{palatino}}{\RequirePackage[sc]{mathpazo}\def\aboutthesis{\footnotesize Typeset in Palatino by \TeX\ and \LaTeXe{}.}}{}
+\ifthenelse{\equal{\thesisfont}{minionpro}}{\def\aboutthesis{\footnotesize Typeset in Minion Pro by \TeX\ and \LaTeXe{}.}}{}
+\ifthenelse{\equal{\thesisfont}{times}}{\RequirePackage{mathptmx}\RequirePackage{times}\def\aboutthesis{\footnotesize Typeset in Times by \TeX\ and \LaTeXe{}.}}{}
 %%
 %% Use English (Australian) style dates
 %%
@@ -62,6 +67,11 @@ July\or August\or September\or October\or November\or December\fi
 %%
 \let\Ss=\S
 %%
+%% Macros for including author and date
+%%
+\def\thesisauthor{\makeatletter\@author\makeatother}
+\def\submitdate{\makeatletter\@date\makeatother}
+%%
 %% Marginpars
 %%
 \def\marginlabel#1{\mbox{}\marginpar{\raggedright\hspace{0pt}#1}}
@@ -73,61 +83,67 @@ July\or August\or September\or October\or November\or December\fi
 \renewcommand\section{\@startsection {section}{1}{\z@}%
                                    {-3.5ex \@plus -1ex \@minus -.2ex}%
                                    {2.3ex \@plus.2ex}%
-                                   {\normalfont\Large\bfseries}}
+                                   {\normalfont\Large\bfseries\oldstylenums}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
                                      {-3.25ex\@plus -1ex \@minus -.2ex}%
                                      {1.5ex \@plus .2ex}%
-                                     {\normalfont\large\bfseries}}
+                                     {\normalfont\large\bfseries\oldstylenums}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                                      {-3.25ex\@plus -1ex \@minus -.2ex}%
                                      {1.5ex \@plus .2ex}%
-                                   {\normalfont\normalsize\bfseries}}
+                                   {\normalfont\normalsize\bfseries\oldstylenums}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
                                     {3.25ex \@plus1ex \@minus.2ex}%
                                     {-1em}%
-                                    {\normalfont\normalsize\bfseries}}
+                                    {\normalfont\normalsize\bfseries\oldstylenums}}
 \renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
                                        {3.25ex \@plus1ex \@minus .2ex}%
                                        {-1em}%
-                                    {\normalfont\normalsize\bfseries}}
+                                    {\normalfont\normalsize\bfseries\oldstylenums}}
 %%
 %% Use Sans in chapter titles in toc
 %%
-\renewcommand*\l@chapter[2]{%
-  \ifnum \c@tocdepth >\m@ne
-    \addpenalty{-\@highpenalty}%
-    \vskip 1.0em \@plus\p@
-    \setlength\@tempdima{1.5em}%
-    \begingroup
-      \parindent \z@ \rightskip \@pnumwidth
-      \parfillskip -\@pnumwidth
-      \leavevmode \bfseries
-      \advance\leftskip\@tempdima
-      \hskip -\leftskip
-      #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
-      \penalty\@highpenalty
-    \endgroup
-  \fi}
+%\renewcommand*\l@chapter[2]{%
+%  \ifnum \c@tocdepth >\m@ne
+%    \addpenalty{-\@highpenalty}%
+%    \vskip 1.0em \@plus\p@
+%    \setlength\@tempdima{1.5em}%
+%    \begingroup
+%      \parindent \z@ \rightskip \@pnumwidth
+%      \parfillskip -\@pnumwidth
+%      \leavevmode \bfseries
+%      \advance\leftskip\@tempdima
+%      \hskip -\leftskip
+%      #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+%      \penalty\@highpenalty
+%    \endgroup
+%  \fi}
+%%
+%% Get things set up for thesis qualifier (e.g. 'DRAFT' & 'UNDER EXAM')
+%%
+\def\tqfoot{{\small{\bfseries \thesisqualifier}}}
+\newlength{\tqfootlen}\settowidth{\tqfootlen}{\tqfoot}
+
 %%
 %% Fix page style to do page numbers properly
 %%
-\def\dopagenum#1{\rm\bfseries#1}
+\def\dopagenum#1{\rm\bfseries\oldstylenums{#1}}
 \def\ps@plain{\let\@mkboth\@gobbletwo
-     \let\@oddhead\@empty\def\@oddfoot{\reset@font\hfil\dopagenum\thepage
-     \hfil}\let\@evenhead\@empty\let\@evenfoot\@oddfoot}
+     \let\@oddhead\@empty\def\@oddfoot{\hspace{\tqfootlen}\reset@font\hfil\dopagenum\thepage\hfil\tqfoot}\let\@evenhead\@empty\let\@evenfoot\@oddfoot}
+
 %%
 %% Fix up captions (Entire captions small, "Figure X" in bold)
-%%
-\def\@makecaption#1#2{%
-  \vskip\abovecaptionskip
-  \sbox\@tempboxa{{\small{\bfseries #1}: #2}}%
-  \ifdim \wd\@tempboxa >\hsize
-    {\small{\bfseries #1:} #2}\par
-  \else
-    \global \@minipagefalse
-    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
-  \fi
-  \vskip\belowcaptionskip}
+%%  jamesb: replaced by the caption package
+%\def\@makecaption#1#2{%
+%  \vskip\abovecaptionskip
+%  \sbox\@tempboxa{{\small{\bfseries \oldstylenums{#1}}: #2}}%
+%  \ifdim \wd\@tempboxa >\hsize
+%    {\small{\bfseries \oldstylenums{#1}:} #2}\par
+%  \else
+%    \global \@minipagefalse
+%    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+%  \fi
+%  \vskip\belowcaptionskip}
 %%
 %% Get all the spacing right
 %%
@@ -135,14 +151,14 @@ July\or August\or September\or October\or November\or December\fi
 \RequirePackage{setspace}
 \setstretch{1.045}
 % horizontal stuff - page width 210mm
-\textwidth 150mm      
-\oddsidemargin 16.5mm %15mm   % 40 - 25.4
-\evensidemargin -7mm     % 
+\textwidth 144.6mm      
+\oddsidemargin 14.6mm   % 40 - 25.4
+\evensidemargin 0mm     % 
 % vertical stuff - page height 297mm
-\topmargin -7mm %-12mm         % 
+\topmargin -3mm         % 
 \headheight 5mm         % header box - space for 1 line
 \headsep 7mm            %
-\textheight 240mm       % 
+\textheight 220mm       % 
 
 %%
 %% Page style -- modified from Cambridge University Press style
@@ -151,27 +167,27 @@ July\or August\or September\or October\or November\or December\fi
 %%
 %% Chapter headings (in original case)
 %%
-\def\ps@headings{\let\@mkboth\markboth\def\@oddfoot{}\def\@evenfoot{}\def
+\def\ps@headings{\let\@mkboth\markboth\def\@oddfoot{\hfil\tqfoot\hfil}\def\@evenfoot{\hfil\tqfoot\hfil}\def
   \@evenhead{\vbox{\hbox to \textwidth{\rlap{\dopagenum\thepage}\hfil \sl
-        \leftmark\hfil}\vskip 16pt\hrule height0.425pt}}\def
+        \leftmark\hfil}\vskip 16pt\hrule height1pt}}\def
   \@oddhead{\vbox{\hbox to \textwidth{\hfil\sl\rightmark\hfil\llap{%
-        \dopagenum\thepage}}\vskip 16pt\hrule height0.425pt}}\def
+        \dopagenum\thepage}}\vskip 16pt\hrule height1pt}}\def
   \chaptermark##1{\markboth {{\ifnum \c@secnumdepth
 >\m@ne
 \fi ##1}}{}}\def\sectionmark##1{\markright
 {{\ifnum \c@secnumdepth >\z@
-{\upshape\Ss\thesection} \ \ \fi ##1}}}}
-\def\@rulehead#1{\hrule height0.425pt \vskip 14pt \Huge \bf 
-   #1 \vskip 14pt\hrule height0.425pt}
+{\upshape\Ss\oldstylenums{\thesection}} \ \ \fi ##1}}}}
+\def\@rulehead#1{\hrule height1pt \vskip 14pt \Huge \bf 
+   #1 \vskip 14pt\hrule height1pt}
 \def\@makechapterhead#1{ { \parindent 0pt 
- \ifnum \c@secnumdepth >\m@ne \raggedleft\large\bf \@chapapp{} \thechapter \par 
+ \ifnum \c@secnumdepth >\m@ne \raggedleft\large\bf \@chapapp{} \oldstylenums{\thechapter} \par 
  \vskip 20pt \fi \raggedright \@rulehead{#1} \par 
  \nobreak \vskip 80pt } }
 
 \def\@makeschapterhead#1{ { \parindent 0pt \raggedright 
  \@rulehead{#1} \par \nobreak \vskip 40pt } }
-\def\thebibliography#1{\chapter*{Bibliography\@mkboth
- {Bibliography}{Bibliography}} \addcontentsline{toc}{chapter}{Bibliography}
+\def\thebibliography#1{\chapter*{References\@mkboth
+ {References}{References}} \addcontentsline{toc}{chapter}{References}
  \list {\@biblabel{\arabic{enumi}}}{\settowidth\labelwidth{\@biblabel{#1}}
  \leftmargin\labelwidth
  \advance\leftmargin\labelsep
@@ -193,14 +209,31 @@ July\or August\or September\or October\or November\or December\fi
 \def\endtheindex{\if@restonecol\onecolumn\else\clearpage\fi}
 %The headings are Contents not CONTENTS
 \def\tableofcontents{\@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
- \fi\chapter*{Contents\@mkboth{Contents}{Contents}}
+ \fi\pdfbookmark[0]{Contents}{tocmark}
+ \chapter*{Contents\@mkboth{Contents}{Contents} }
  \@starttoc{toc}\if@restonecol\twocolumn\fi}
 \def\l@part#1#2{\addpenalty{-\@highpenalty}
- \addvspace{2.25em plus 1pt} \begingroup
- \@tempdima 3em \parindent \z@ \rightskip \@pnumwidth \parfillskip
--\@pnumwidth 
- {\large \bf \leavevmode #1\hfil \hbox to\@pnumwidth{\hss #2}}\par
+ \addvspace{0.8em}
+  %{\center \rule{\textwidth}{0.25pt}} \\ 
+ %
+ \begingroup \@tempdima 3em
+ \parindent \z@ \rightskip \@pnumwidth \parfillskip -\@pnumwidth
+ %\hspace{0cm}
+ \rule{\textwidth}{0.25pt}
+ %\hspace{0cm}
+ \par
+ \nobreak \endgroup
+ \addvspace{1.4em}
+ \begingroup \@tempdima 3em
+ \parindent \z@ \rightskip \@pnumwidth \parfillskip -\@pnumwidth
+ {\large \bf \leavevmode #1\hfil \hbox to\@pnumwidth{\hss \oldstylenums{#2}}}\par
  \nobreak \endgroup}
+%\def\l@chapter#1#2{\addpenalty{-\@highpenalty}
+% \addvspace{2.25em plus 1pt} \begingroup
+% \@tempdima 3em \parindent \z@ \rightskip \@pnumwidth \parfillskip
+%-\@pnumwidth
+% {\large \bf \leavevmode #1\hfil \hbox to\@pnumwidth{\hss #2}}\par
+% \nobreak \endgroup}
 \headheight 30pt \headsep 20pt 
 \ps@headings  %to override previous
 %% 
