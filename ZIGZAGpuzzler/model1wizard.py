@@ -72,7 +72,7 @@ wizard=[[               (),                   (),                   (),         
 correspond=[('Vy1','Vy2','Vy3','Vy4'),('Vb11','Vb12','Vb13','Vb14','Vb15'),('Vb21','Vb22','Vb23','Vb24','Vb25'),('Vg11','Vg12','Vg13','Vg14'),
 ('Vg21','Vg22','Vg23'),('Vr11','Vr12','Vr13'),('Vr21','Vr22','Vr23'),('Vo1','Vo2','Vo3','Vo4'),('Vp1','Vp2','Vp3','Vp4')]
 solvers=['choco','jacop','Chuffed','Yuck','Or-tool','Coin-bc','Gurobi']
-n=1
+n=2
 while n<9:
     k=int(n-1)
     element=wizard[k]
