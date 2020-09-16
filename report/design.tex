@@ -1,9 +1,9 @@
-\chapter{Design and Implementation}
+\chapter{CSP Models for Smart Games}
 \label{cha:design}
 Generally, this part will explain 3 different designs. One of them is for IQ twist and the other two are for ZIG ZAG. 
 \section{Smart Design}
 \label{sec:des-hotpath}
-\subsection{IQ twist}
+\subsection{IQ Twist}
 In this part, I'd like to use CSP to model the IQ twist game. Above all, I'd like to define all the initial state for each piece:
 \begin{center}
 \includegraphics{figs/yellow1.jpg} 
@@ -221,7 +221,7 @@ example of 8 situations
 \\&\{ ((a,b),(c,d))\in \Domain{pr} \times \Domain{r23}\mid c = a \hspace{1ex} , \hspace{1ex}  d = b\}\hspace{1ex} \cup 
 \\& \{(0,0)\}
 \end{align*}
-\subsection{ZIG ZAG}
+\subsection{ZIG ZAG Puzzler}
 For the Zig Zag puzzler, there are 2 playing modes, which uses the same pieces but different board. Therefore,each mode will correspond to same variables as well as the same constraints but different domains.
 Firstly, I'd like to explain how to calculate the position based on the board.
 \begin{center}
