@@ -24,7 +24,7 @@ junior=[[               (),(522,521,421,532,511),                   (),(343,443,
         [               (),(332,322,321,432,222),                   (),               (),(211,311,411),           (),           (),(121,221,122,111),(421,521,511,422)]]
 correspond=[('Vy1','Vy2','Vy3','Vy4'),('Vb11','Vb12','Vb13','Vb14','Vb15'),('Vb21','Vb22','Vb23','Vb24','Vb25'),('Vg11','Vg12','Vg13','Vg14'),
 ('Vg21','Vg22','Vg23'),('Vr11','Vr12','Vr13'),('Vr21','Vr22','Vr23'),('Vo1','Vo2','Vo3','Vo4'),('Vp1','Vp2','Vp3','Vp4')]
-solvers=['choco','jacop','Chuffed','Yuck','Or-tool','Coin-bc','Gurobi']
+solvers=['picat','choco','jacop','Chuffed','Yuck','Or-tool','Coin-bc','Gurobi']
 n=1
 while n<9:
     k=int(n-1)
@@ -134,7 +134,10 @@ while n<9:
     os.system("minizinc.exe -c --solver org.minizinc.mzn-fzn"+'  playingmode2/junior/model'+str(n)+'/'+name+" --sac" )
     for solver in solvers:
             file = open('playingmode2/junior/model'+str(n)+'/'+'model' + str(n) + solver+'.log', 'w')
-            if solver=='jacop':
+            if solver=='picat':
+                begin=time.time()
+                command ="timeout 1800 picat fzn_picat_sat.pi playingmode2/junior/model"+str(n)+'/model'+str(n)+".fzn"
+            elif solver=='jacop':
                 begin=time.time()
                 command = "java -cp jacop-4.7.0.jar org.jacop.fz.Fz2jacop playingmode2/junior/model"+str(n)+'/model'+str(n)+".fzn"
             elif solver=='choco':
@@ -146,7 +149,7 @@ while n<9:
                text= check_output(command, stderr=STDOUT, timeout=1800,shell=True)
                text_string = text.decode(encoding='UTF-8')
                file.write(text_string)
-               if (solver=='jacop') or (solver=='choco'):
+               if (solver=='jacop') or (solver=='choco') or (solver=='picat'):
                        end = time.time()
                        file.write("the excute time:"+str(end-begin))
             except Exception:

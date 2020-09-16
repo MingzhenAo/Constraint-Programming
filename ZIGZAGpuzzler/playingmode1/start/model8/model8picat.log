@@ -1,0 +1,15 @@
+% solving(playingmode1/start/model8/model8.fzn)
+% loading playingmode1/start/model8/model8.fzn
+Vb21 = 221;
+Vb22 = 121;
+Vb23 = 211;
+Vb24 = 212;
+Vb25 = 131;
+Vg21 = 113;
+Vg22 = 112;
+Vg23 = 111;
+Vr21 = 222;
+Vr22 = 223;
+Vr23 = 322;
+----------
+the excute time:2.2927017211914062

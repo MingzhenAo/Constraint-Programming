@@ -1,0 +1,8 @@
+% solving(playingmode2/start/model2/model2.fzn)
+% loading playingmode2/start/model2/model2.fzn
+Vg11 = 243;
+Vg12 = 233;
+Vg13 = 232;
+Vg14 = 222;
+----------
+the excute time:0.1167593002319336

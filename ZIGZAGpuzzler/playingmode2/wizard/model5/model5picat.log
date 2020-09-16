@@ -1,0 +1,31 @@
+% solving(playingmode2/wizard/model5/model5.fzn)
+% loading playingmode2/wizard/model5/model5.fzn
+Vy1 = 211;
+Vy2 = 311;
+Vy3 = 411;
+Vy4 = 321;
+Vb11 = 532;
+Vb12 = 533;
+Vb13 = 433;
+Vb14 = 522;
+Vb15 = 543;
+Vg11 = 343;
+Vg12 = 443;
+Vg13 = 444;
+Vg14 = 544;
+Vg21 = 344;
+Vg22 = 244;
+Vg23 = 144;
+Vr21 = 121;
+Vr22 = 221;
+Vr23 = 111;
+Vo1 = 332;
+Vo2 = 432;
+Vo3 = 333;
+Vo4 = 322;
+Vp1 = 421;
+Vp2 = 521;
+Vp3 = 511;
+Vp4 = 422;
+----------
+the excute time:19.22082781791687

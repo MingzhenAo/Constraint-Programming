@@ -1,0 +1,12 @@
+% solving(playingmode1/start/model3/model3.fzn)
+% loading playingmode1/start/model3/model3.fzn
+Vo1 = 213;
+Vo2 = 212;
+Vo3 = 113;
+Vo4 = 223;
+Vp1 = 111;
+Vp2 = 112;
+Vp3 = 122;
+Vp4 = 211;
+----------
+the excute time:1.5637383460998535

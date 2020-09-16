@@ -1,0 +1,16 @@
+% solving(playingmode2/start/model5/model5.fzn)
+% loading playingmode2/start/model5/model5.fzn
+Vy1 = 211;
+Vy2 = 311;
+Vy3 = 411;
+Vy4 = 321;
+Vb11 = 522;
+Vb12 = 521;
+Vb13 = 421;
+Vb14 = 532;
+Vb15 = 511;
+Vr21 = 543;
+Vr22 = 533;
+Vr23 = 544;
+----------
+the excute time:3.695261240005493

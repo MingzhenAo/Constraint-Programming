@@ -1,0 +1,11 @@
+% solving(playingmode2/start/model4/model4.fzn)
+% loading playingmode2/start/model4/model4.fzn
+Vr21 = 532;
+Vr22 = 432;
+Vr23 = 533;
+Vp1 = 521;
+Vp2 = 511;
+Vp3 = 411;
+Vp4 = 522;
+----------
+the excute time:1.4389963150024414
