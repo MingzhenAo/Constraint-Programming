@@ -1,0 +1,36 @@
+% solving(master/model18/model18.fzn)
+% loading master/model18/model18.fzn
+Vb11 = 82;
+Vb12 = 83;
+Vb13 = 73;
+Vb14 = 84;
+Vb15 = 74;
+Vb21 = 64;
+Vb22 = 54;
+Vb23 = 44;
+Vb24 = 34;
+Vg11 = 11;
+Vg12 = 12;
+Vg13 = 13;
+Vg14 = 22;
+Vg21 = 21;
+Vg22 = 31;
+Vg23 = 32;
+Vr11 = 33;
+Vr12 = 23;
+Vr13 = 24;
+Vr14 = 14;
+Vr21 = 43;
+Vr22 = 42;
+Vr23 = 41;
+Vr24 = 53;
+Vy11 = 81;
+Vy12 = 71;
+Vy13 = 61;
+Vy21 = 51;
+Vy22 = 52;
+Vy23 = 62;
+Vy24 = 63;
+Vy25 = 72;
+----------
+the excute time:1.6365034580230713

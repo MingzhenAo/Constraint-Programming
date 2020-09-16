@@ -1,0 +1,36 @@
+% solving(expert/model15/model15.fzn)
+% loading expert/model15/model15.fzn
+Vb11 = 23;
+Vb12 = 22;
+Vb13 = 32;
+Vb14 = 21;
+Vb15 = 31;
+Vb21 = 14;
+Vb22 = 13;
+Vb23 = 12;
+Vb24 = 11;
+Vg11 = 24;
+Vg12 = 34;
+Vg13 = 44;
+Vg14 = 33;
+Vg21 = 72;
+Vg22 = 71;
+Vg23 = 61;
+Vr11 = 41;
+Vr12 = 51;
+Vr13 = 52;
+Vr14 = 62;
+Vr21 = 83;
+Vr22 = 82;
+Vr23 = 81;
+Vr24 = 73;
+Vy11 = 84;
+Vy12 = 74;
+Vy13 = 64;
+Vy21 = 42;
+Vy22 = 43;
+Vy23 = 53;
+Vy24 = 54;
+Vy25 = 63;
+----------
+the excute time:0.8683488368988037

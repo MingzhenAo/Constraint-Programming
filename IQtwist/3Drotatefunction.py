@@ -72,7 +72,7 @@ def rotateXZ1(xz1,n):
     return result
 
 def all_roate_situation(a1):
-    all_situations=[]
+    all_situations={}
     a2=rotateXY1(rotateYZ1(rotateXZ1(a1,0), 0),1)
     a3=rotateXY1(rotateYZ1(rotateXZ1(a1,0), 0),2)
     a4=rotateXY1(rotateYZ1(rotateXZ1(a1,0), 0),3)
@@ -136,84 +136,88 @@ def all_roate_situation(a1):
     a62=rotateXY1(rotateYZ1(rotateXZ1(a1,3), 3),1)
     a63=rotateXY1(rotateYZ1(rotateXZ1(a1,3), 3),2)
     a64=rotateXY1(rotateYZ1(rotateXZ1(a1,3), 3),3)
-    all_situations.append(tuple(a1))
-    all_situations.append(tuple(a2))
-    all_situations.append(tuple(a3))
-    all_situations.append(tuple(a4))
-    all_situations.append(tuple(a5))
-    all_situations.append(tuple(a6))
-    all_situations.append(tuple(a7))
-    all_situations.append(tuple(a8))
-    all_situations.append(tuple(a9))
-    all_situations.append(tuple(a10))
-    all_situations.append(tuple(a11))
-    all_situations.append(tuple(a12))
-    all_situations.append(tuple(a13))
-    all_situations.append(tuple(a14))
-    all_situations.append(tuple(a15))
-    all_situations.append(tuple(a16))
-    all_situations.append(tuple(a17))
-    all_situations.append(tuple(a18))
-    all_situations.append(tuple(a19))
-    all_situations.append(tuple(a20))
-    all_situations.append(tuple(a21))
-    all_situations.append(tuple(a22))
-    all_situations.append(tuple(a23))
-    all_situations.append(tuple(a24))
-    all_situations.append(tuple(a25))
-    all_situations.append(tuple(a26))
-    all_situations.append(tuple(a27))
-    all_situations.append(tuple(a28))
-    all_situations.append(tuple(a29))
-    all_situations.append(tuple(a30))
-    all_situations.append(tuple(a31))
-    all_situations.append(tuple(a32))
-    all_situations.append(tuple(a33))
-    all_situations.append(tuple(a34))
-    all_situations.append(tuple(a35))
-    all_situations.append(tuple(a36))
-    all_situations.append(tuple(a37))
-    all_situations.append(tuple(a38))
-    all_situations.append(tuple(a39))
-    all_situations.append(tuple(a40))
-    all_situations.append(tuple(a41))
-    all_situations.append(tuple(a42))
-    all_situations.append(tuple(a43))
-    all_situations.append(tuple(a44))
-    all_situations.append(tuple(a45))
-    all_situations.append(tuple(a46))
-    all_situations.append(tuple(a47))
-    all_situations.append(tuple(a48))
-    all_situations.append(tuple(a49))
-    all_situations.append(tuple(a50))
-    all_situations.append(tuple(a51))
-    all_situations.append(tuple(a52))
-    all_situations.append(tuple(a53))
-    all_situations.append(tuple(a54))
-    all_situations.append(tuple(a55))
-    all_situations.append(tuple(a56))
-    all_situations.append(tuple(a57))
-    all_situations.append(tuple(a58))
-    all_situations.append(tuple(a59))
-    all_situations.append(tuple(a60))
-    all_situations.append(tuple(a61))
-    all_situations.append(tuple(a62))
-    all_situations.append(tuple(a63))
-    all_situations.append(tuple(a64))
+    all_situations[0]=tuple(a1)
+    all_situations[1]=tuple(a2)
+    all_situations[2]=tuple(a3)
+    all_situations[3]=tuple(a4)
+    all_situations[10]=tuple(a5)
+    all_situations[20]=tuple(a9)
+    all_situations[30]=tuple(a13)
+    all_situations[100]=tuple(a17)
+    all_situations[200]=tuple(a33)
+    all_situations[300]=tuple(a49)
+    
+    
+    all_situations[11]=tuple(a6)
+    all_situations[12]=tuple(a7)
+    all_situations[13]=tuple(a8)
+    all_situations[21]=tuple(a10)
+    all_situations[22]=tuple(a11)
+    all_situations[23]=tuple(a12)
+    all_situations[31]=tuple(a14)
+    all_situations[32]=tuple(a15)
+    all_situations[33]=tuple(a16)
+    all_situations[101]=tuple(a18)
+    all_situations[102]=tuple(a19)
+    all_situations[103]=tuple(a20)
+    all_situations[110]=tuple(a21)
+    all_situations[120]=tuple(a25)
+    all_situations[130]=tuple(a29)
+    all_situations[201]=tuple(a34)
+    all_situations[202]=tuple(a35)
+    all_situations[203]=tuple(a36)
+    all_situations[210]=tuple(a37)
+    all_situations[220]=tuple(a41)
+    all_situations[230]=tuple(a45)
+    all_situations[301]=tuple(a50)
+    all_situations[302]=tuple(a51)
+    all_situations[303]=tuple(a52)
+    all_situations[310]=tuple(a53) 
+    all_situations[320]=tuple(a57)
+    all_situations[330]=tuple(a61)
+    
+    
+    all_situations[111]=tuple(a22)
+    all_situations[112]=tuple(a23)
+    all_situations[113]=tuple(a24)
+    all_situations[121]=tuple(a26)
+    all_situations[122]=tuple(a27)
+    all_situations[123]=tuple(a28)
+    all_situations[131]=tuple(a30)
+    all_situations[132]=tuple(a31)
+    all_situations[133]=tuple(a32)
+    all_situations[211]=tuple(a38)
+    all_situations[212]=tuple(a39)
+    all_situations[213]=tuple(a40)
+    all_situations[221]=tuple(a42)
+    all_situations[222]=tuple(a43)
+    all_situations[223]=tuple(a44)
+    all_situations[231]=tuple(a46)
+    all_situations[232]=tuple(a47)
+    all_situations[233]=tuple(a48)
+    all_situations[311]=tuple(a54)
+    all_situations[312]=tuple(a55)
+    all_situations[313]=tuple(a56)
+    all_situations[321]=tuple(a58)
+    all_situations[322]=tuple(a59)
+    all_situations[323]=tuple(a60)
+    all_situations[331]=tuple(a62)
+    all_situations[332]=tuple(a63)
+    all_situations[333]=tuple(a64)
     return  all_situations
-   
-check={}
-n=0
-for element in all_roate_situation(current):
-    n+=1
-    if element not in check:
-        check[element]=[n]
-    else:
-        check[element].append(n)
-      
-print(check)
 
-
+def print_repeat(list_):
+    uniques={}
+    repeat={}
+    for key,value in list_.items():
+         if value not in uniques:
+             uniques[value]=key
+         else:
+             if uniques[value] not in repeat:
+                 repeat[uniques[value]]=[key]
+             else:
+                 repeat[uniques[value]].append(key)
+    return repeat
 
 
 

@@ -10,8 +10,8 @@ expert=[[33,52,00,00,00,00,00],[73,74,14,23,33,42,13],[00,00,51,00,41,61,00],[42
         [52,00,73,00,33,00,54],[42,00,52,62,00,00,72],[00,00,61,00,72,00,43],[42,00,51,00,00,00,21],[62,74,42,71,23,00,00],[13,00,24,00,22,00,44],
         [21,33,53,00,61,71,00],[51,72,23,00,00,00,43],[31,32,61,00,54,84,00],[31,62,14,82,44,00,00],[33,00,42,43,00,00,32],[33,64,23,00,00,00,62],
         [31,71,22,73,43,54,00],[62,64,12,33,00,00,00],[00,00,41,52,42,84,12],[00,00,00,00,14,71,53],[23,34,64,00,52,71,00],[22,23,64,00,53,00,51]]
-solvers=['choco','jacop','Chuffed','Yuck','Or-tool','Coin-bc','Gurobi']
-n = 12
+solvers=['picat','choco','jacop','Chuffed','Yuck','Or-tool','Coin-bc','Gurobi']
+n = 1
 while n<25:
     k=int(n-1)
     data=expert[k]
@@ -34,7 +34,10 @@ while n<25:
     os.system("minizinc.exe -c --solver org.minizinc.mzn-fzn"+'  expert/model'+str(n)+'/'+name+" --sac" )
     for solver in solvers:
             file = open('expert/model'+str(n)+'/'+'model' + str(n) + solver+'.log', 'w')
-            if solver=='jacop':
+            if solver=='picat':
+                begin=time.time()
+                command ="timeout 1800 picat fzn_picat_sat.pi expert/model"+str(n)+'/model'+str(n)+".fzn"
+            elif solver=='jacop':
                 begin=time.time()
                 command = "java -cp jacop-4.7.0.jar org.jacop.fz.Fz2jacop expert/model"+str(n)+'/model'+str(n)+".fzn"
             elif solver=='choco':
@@ -46,7 +49,7 @@ while n<25:
                text= check_output(command, stderr=STDOUT, timeout=1800,shell=True)
                text_string = text.decode(encoding='UTF-8')
                file.write(text_string)
-               if (solver=='jacop') or (solver=='choco'):
+               if (solver=='jacop') or (solver=='choco') or (solver=='picat'):
                        end = time.time()
                        file.write("the excute time:"+str(end-begin))
             except Exception:
