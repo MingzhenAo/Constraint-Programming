@@ -3,7 +3,7 @@ TEXFILE = $(PREFIX).tex
 BIBFILE = $(PREFIX).aux
 LATEX = pdflatex
 BIBTEX = bibtex
-TRASH = *.aux *.log *.dvi *.ps *.nav *.out *.snm *.backup *.bak *.toc *~ *.bbl *.blg *.toc *.pdf *.lof *.gz *.bst *.idx *.lot *.idx
+TRASH = *.aux *.log *.dvi *.ps *.nav *.out *.snm *.backup *.bak *.toc *~ *.bbl *.blg *.toc *.pdf *.lof *.gz *.bst *.idx *.lot *.idx *.brf
 
 fast:
 	$(LATEX) -halt-on-error $(TEXFILE)
