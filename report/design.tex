@@ -43,6 +43,7 @@ Therefore, if we assign 0, 90, 180 and 270 degrees to the $\theta$, we get 4 sit
   \item $x'=x\cos90^{\circ} - y\sin90^{\circ}\hspace{10pt},y'=x\sin90^{\circ} + y\cos90^{\circ}\hspace{12pt}\implies x'=-y, y'=x$
   \item $x'=x\cos180^{\circ} - y\sin180^{\circ}, y'=x\sin180^{\circ} + y\cos180^{\circ} \implies x'=-x, y'=-y$
   \item $x'=x\cos270^{\circ} - y\sin270^{\circ}, y'=x\sin270^{\circ} + y\cos270^{\circ} \implies x'=y\hspace{10pt},y'=-x$
+  \label{rotation4}
 \end{itemize}
 In IQ twist, there exists mirroring operation, if a point flip over around the y-axis, we get  (-x,y) from (x,y). Similarly, all the 4 situations flip over around the y-axis. we get 4 more situations: 
 \begin{itemize}
@@ -50,6 +51,7 @@ In IQ twist, there exists mirroring operation, if a point flip over around the y
   \item  $x'=-y, y'=x\hspace{10pt}$                flip over around the y-axis $\implies x''=y,y''=x$
   \item  $x'=-x, y'=-y$               flip over around the y-axis $\implies x''=x, y''=-y$
   \item  $x'=y\hspace{10pt},y'=-x$    flip over around the y-axis $\implies x''=-y\hspace{8pt}, y''=-x$
+  \label{mirrorrotate4}
 \end{itemize}
 Therefore, there should be total 8 situations for each unit of pieces. However, there might be some special situations like x=1, y=1. In such a case, according to the 8 formulas, there are only 4 situations because 4 of them are repeated.
 \subsection{3D Rotation Matrix}
@@ -226,6 +228,9 @@ which means that when $\beta=0^{\circ}$, regardless of the number of degrees of 
 \end{equation}
 Hence, all combinations among $\beta=0^{\circ}$, $\theta=0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$ and $\gamma=0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$ can be obtained from one combination among $\beta=180^{\circ}$, $\theta=0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$ and $\gamma=0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$. So we only need to consider the all situations when $\beta=0^{\circ}$ because the all situations in $\beta=180^{\circ}$ are duplicates. There should be a total of 16 situations (4$\times$4). Finally, consider the all situations in $\beta=90^{\circ}$,$\beta=270^{\circ}$,$\beta=^{\circ}0$ and $\beta=180^{\circ}$. There should be a total of 4+4+16=24 situations.
 \section{IQ Twist}
+In this part, the design of CSP model for IQ twist will be discussed. 
+\subsection{Variables}
+Above all, the initial state of each piece is defined in Figure 3.1. For this method, there are some rules. Firstly, all the variables are corresponding to the initial states. Such as the yellow2, Figure 3.2 shows that the $V_{y21}$ is used to represent the left and bottom unit. For other variables, we name them as $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$, which follows the order from left to right and bottom-up. In addition, there are 7 pegs. Therefore, the variables can be represented as \VUnits and \VPegs.
 \begin{figure}[htbp]
 \begin{subfigure}[b]{.24\textwidth}
 \centering
@@ -278,22 +283,12 @@ Hence, all combinations among $\beta=0^{\circ}$, $\theta=0^{\circ}$ or $90^{\cir
 \caption{Initial state of each piece}
   \label{fig:allinit}
 \end{figure}
-In this part, the CSP model design for IQ twist will be discussed. Above all, the initial state of each piece is defined in figure 3.1.
-\\For this method, there are some rules. Firstly, all the variables are corresponding to the initial states. Such as the yellow2, figure 3.2 shows that the $V_{y21}$ is used to represent the left and bottom unit. For other variables, we name them as $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$, which follows the order from left to right and bottom-up. The unit which is corresponding to the first variable (here it is $V_{y21}$) will be considered as the origin of coordinate. And all the other units will rotate around it. 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.4\textwidth]{figs/example.jpg}
+    \includegraphics[width=0.3\textwidth]{figs/example.jpg}
     \caption{Name rules for yellow2}
     \label{fig:namerules}
 \end{figure}
-For the board, figure 3.3 shows that the 2D coordinate system is used to represent the positions on the board. 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.8\textwidth]{figs/IQtwistboard.jpg}
-\caption{The coordinate system for IQ twist}
-    \label{fig:coordinate}
-\end{figure}
-\subsection{Variables}
 \begin{align*}
 \VUnits=\{&V_{y11},V_{y12},V_{y13},\\&V_{y21},V_{y22},V_{y23},V_{y24},V_{y25},\\&V_{b11},V_{b12},V_{b13},V_{b14},
 V_{b15},\\&V_{b21},V_{b22},V_{b23},V_{b24},\\&V_{g11},V_{g12},V_{g13},V_{g14},\\&V_{g21},V_{g22},V_{g23},\\&V_{r11},
@@ -302,32 +297,43 @@ V_{r12},V_{r13},V_{r14},\\&V_{r21},V_{r22},V_{r23},V_{r24}\}\\
 \\V = &\VUnits \cup \VPegs.
 \end{align*}
 \subsection{Domains}
+For the board, Figure 3.3 shows that the 2D coordinate system is used to represent the positions. In our model, the left and bottom position as (0,0) and the right and top as (8,4). So, all placements will be between them. The pegs are special, they can be put in any places on the board or not on the board.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{figs/IQtwistboard.jpg}
+\caption{The coordinate system for IQ twist}
+    \label{fig:coordinate}
+\end{figure}
 \begin{align*}
 &For \hspace{1ex} all \hspace{1ex} v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=\{(i,j) \in \mathbb{Z} \times \mathbb{Z}	\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}\\
 \\
 &For \hspace{1ex} all \hspace{1ex} v \in \VPegs \hspace{1ex},\hspace{1ex} D(v)=\{(0,0)\} \hspace{1ex} \cup \hspace{1ex}\{(i,j) \in \mathbb{Z} \times \mathbb{Z}\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}
 \end{align*}
 \subsection{Constrains}
-Firstly, there should be no 2 different unit variables contain the same value.\\
-\\\circled{1} 
-For each pair of variables $V_{m}$ and $V_{n}$, $V_{m} \in \VUnits$, $V_{n} \in \VUnits$,$V_{m} \neq V_{n}$,
-\begin{center}
-$\Constraints{m}{n}=\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{m} \times \Domain{n}\mid x_{1} \neq x_{2}   \hspace{1ex} or \hspace{1ex}  y_{1} \neq y_{2}\}$
-\end{center}
-Similarly, there should be no 2 different reg variables contain the same value except both of them are not on the board.\\
-\\\circled{2} 
-For each pair of variables $V_{m}$ and $V_{n}$, $V_{m} \in \VPegs$, $V_{n} \in \VPegs$, $V_{m} \neq V_{n}$,
-\begin{align*}
-\Constraints{m}{n}=&\{((0,0),(0,0))\}\cup \\ 
-&\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{m}\times \Domain{n}\mid x_{1} \neq x_{2}   \hspace{1ex} or \hspace{1ex}  y_{1} \neq y_{2}\}
-\end{align*}
-From constrain 3 to 10, each of them represents the piece. In fact, for each piece, there might be 8 situations that has been discussed in 2D matrix. For example:
+Firstly, there should be no 2 different unit variables contain the same value. Similarly, there should be no 2 different reg variables contain the same value except both of them are not on the board. In Figure 3.4 , the unit which is corresponding to the first variable (here it is $V_{y21}$) will be considered as a point $(x,y)$. Therefore, the $V_{y21}$, $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$ are respectively represented as $(x,y)$, $(x+1,y)$, $(x+1,x+1)$, $(x+2,y+1)$ and $(x+1,y+2)$, which indicates that all other variables can be connected with the first variables. In addition, all other placements can get from the initial state of the piece by rotations. According to 3.1.1, there are 8 rotation situations. Figure 3.5 points out all placements for yellow2. Furthermore, for the pegs, unless they are not on the board, there must be a hollow unit of pieces which contains the same color with the pegs to match them.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth]{figs/explanation2D.jpg}
+\caption{The explanation of 2D rotation}
+    \label{fig:explanation2D}
+\end{figure}
 \begin{figure}
 \centering
 \includegraphics[width =\textwidth]{figs/domainexplain.jpg}
     \caption{Example of 8 situations}
     \label{fig:Exampleof8}
-\end{figure}
+\end{figure} 
+\\\circled{1} 
+For each pair of variables $V_{m}$ and $V_{n}$, $V_{m} \in \VUnits$, $V_{n} \in \VUnits$,$V_{m} \neq V_{n}$,
+\begin{center}
+$\Constraints{m}{n}=\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{m} \times \Domain{n}\mid x_{1} \neq x_{2}   \hspace{1ex} or \hspace{1ex}  y_{1} \neq y_{2}\}$
+\end{center}
+\circled{2} 
+For each pair of variables $V_{m}$ and $V_{n}$, $V_{m} \in \VPegs$, $V_{n} \in \VPegs$, $V_{m} \neq V_{n}$,
+\begin{align*}
+\Constraints{m}{n}=&\{((0,0),(0,0))\}\cup \\ 
+&\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{m}\times \Domain{n}\mid x_{1} \neq x_{2}   \hspace{1ex} or \hspace{1ex}  y_{1} \neq y_{2}\}
+\end{align*}
 \\\circled{3} piece Yellow1
 \begin{align*}
 \Con{y11}{y12}{y13}=\{&((x_{1},y_{1}),(x_{2},y_{2}),(x_{3},y_{3}))\in \Domain{y11}\times \Domain{y12}\times\Domain{y13}\mid\\
@@ -484,9 +490,8 @@ From constrain 3 to 10, each of them represents the piece. In fact, for each pie
 \\&\{ ((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pr} \times \Domain{r23}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\}\hspace{1ex} \cup 
 \\& \{(0,0)\}
 \end{align*}
-\section{ZIG ZAGPuzzler}
-For the ZIG ZAG puzzler, there are 2 playing modes, which uses the same pieces but different board. Therefore, each mode will correspond to same variables as well as the same constraints but different domains.
-Firstly, I'd like to explain how to calculate the position based on the board.
+\section{ZIG ZAG Puzzler}
+For the ZIG ZAG puzzler, there are 2 playing modes, which uses the same pieces but different board. Therefore, both of them will adopt the same variables as well as the same constraints but different domains. Firstly, the initial state of each piece is defined in Figure 3.5. Similar to 2D rotation, the first variable of each piece will be considered as the origin of coordinate.
 \begin{figure}[htbp]
 \begin{subfigure}[b]{.24\textwidth}
 \centering
