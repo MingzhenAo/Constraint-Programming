@@ -1,109 +1,42 @@
 \chapter{Background}
 \label{cha:background}
 \section{Constraint Satisfaction Problem}
-Constraint Satisfaction Problem(CSP) provides a framework for many various real-life problems in Artificial Intelligence(AI)\cite{r1}\cite{r4}, which is considered as a NP-complete problem. Generally, it consists of 3 parts - Variables (V), Domains (D), and Constraints (C)\cite{r2}\cite{r3}.\\
-$\bullet$ V represents a finite set of variables $v_{1}...v_{n}$.\\
-$\bullet$ D represents the domains of each variable $D_{v_{1}}.....D_{v_{n}}$.\\
-$\bullet$ C is a set of constraints (Here we mainly consider binary constraint:\\ $\{\Constraints{m}{n}\mid v_{m},v_{n}\in v, v_{m}\neq v_{n}\}$ and $\Constraints{m}{n} \in D_{v_{m}} \times D_{v_{n}}$).
-\section{Minizinc}
-MiniZinc is a constraint modeling language, which is developed by the University of Melbourne, Monash University , and Data61 Decision Sciences\cite{r6}. The minizinc IDE provides a function that transfers the minizinc language to flatzinc language which can be understood by massive solvers\cite{r5}. Meanwhile, it provides some build-in functions as well as optimization methods. In general, the optimizations about minizinc are mainly divided into 2 aspects. One is to optimise the model itself, the other is based on the solvers. For the model itself, the highest level of optimization is arc consistency. Meanwhile, various solvers have different features.
-\subsection{Arc Consistency}
-According to \cite{r7}, "A variable V is arc consistency with respect to another variable U if and only if for every $d \in D_{v}$ there is at least one $d'\in D_{u}$ such that (d,d') $\in C_{u,v}$". Accordingly, a CSP is arc consistency if and only if all pairs of variables are arc consistency with each other. Based on arc consistency, the values that break arc consistency in the domains will be removed, which significantly decreases the search nodes, at the same time, there is no solution loss. Therefore, it takes up an vital position in CSP.
-\subsection{Solver}
-As is shown in the figure 1, Flatzinc plays a role of bridge which connects the minizinc with different solvers and correspond interface. A wide range of solvers has supported flatzinc such as Choco, Chuffed, Coin-bc, picatSAT, Gurobi, Jacop, Or-tool, Yuck, Izplus and so on.
-\begin{center}
-\includegraphics[scale=0.45]{figs/flowofminizinc.png}\\
-Fig. 1. The process of solver execute minizinc file
-\end{center}
-Choco: A JAVA CSP solver, which supports many search strategies( DomWDeg, ABS, IBS, first-fail, etc.) and optimization processes( LNS, fast restart).\\
-chuffed: A C++ FD solver using lazy clause generation, which contains a nogood logbook to avoid plenty of duplicate calculation.\\
-Coin-bc: A C++ based Mixed Integer Programming (here the MIP model is the same with CSP model) solver, it adopts the branch and cut optimization.\\
-picatSAT: A CSP solver based on picat which is a rule-based language. And it adopts log encoding\cite{r8}.\\
-Gurobi: A commerical solver support MIP.\\
-Jacop: A JAVA CSP solver.\\
-Or-tool: An open-source solver developed by google, it combines many optimization methods.\\
-Yuck: Based on scala and combines local search with restarting, global constraints, and lexicographic cost functions.\\
-Izplus: Based on iZ-C constraint programming that is developed by NTT DATA SEKISUI SYSTEMS CORPORATION. It combines Randomized restarting, Local search, Variable reordering and NG learning.
-\section{Rotation Matrix}
-Rotation matrix perfectly perform the rotation situations. In this part, we mainly consider the rotations of 90, 180 and 270 degrees for both 2 dimensions and 3 dimensions.
-\subsection{2D Rotation Matrix}
-The figure 2 shows the 2D rotation matrix, which can imply that $x'=x\cos\theta-y\sin\theta$ and $y'=x\sin\theta+y\cos\theta$. Therefore, if we assign the 90, 180 and 270 degrees to these formulas, we get 3 more situations, 90 degrees (x'=-y,y'=x), 180 degrees (x'=-x, y'=-y) and 270 degrees (x'=y, y'=-x). Usually, in the actual block games, there could appear flip rotations, if flip rotate around x axis, we get  (-x,y) from (x,y), And if flip rotate around y axis, we get(x,-y) from (x,y). If we combine the 2D rotation (90, 180 and 270 degrees) and flip rotation, there are totally 8 situations because (-x,y) rotate 180 degree can get (x,-y), which means there are many duplicates. Therefore, we only need to consider one flip rotate, then it can create 3 more situations based on rotation matrix. 
-\begin{center}
-$
-R(\theta)=\begin{bmatrix}
-\cos\theta & -\sin\theta\\
-\sin\theta & \cos\theta\\
-\end{bmatrix}
-$
-$\hspace{40pt}$
-$
-\begin{bmatrix}
-x'\\
-y'\\
-\end{bmatrix}
-=\begin{bmatrix}
-\cos\theta & -\sin\theta\\
-\sin\theta & \cos\theta\\
-\end{bmatrix}
-\begin{bmatrix}
-x\\
-y\\
-\end{bmatrix}
-$
-\end{center}
-\begin{center}
-Fig. 2. 2D rotation matrix
-\end{center}
-\subsection{3D Rotation Matrix}
-Compared to 2D rotation matrix, $R_{z}(\theta)$ (figure 3) is quite similar with 2D rotation matrix. The only difference is that this formula take Z into account. In fact, the general 3D rotation matrix can be decomposed to xy-plane, yz-plane and xz-plane. $R_{z}(\theta)$ is corresponding to xy-plane, that's why it is quite similar with 2D rotation matrix. \\
-\begin{center}
-$
-R_{x}(\theta)=\begin{bmatrix}
-1&          0&          0\\
-0&\cos\theta & -\sin\theta\\
-0&\sin\theta & \cos\theta\\
-\end{bmatrix}
-$
-$\hspace{40pt}$
-$
-R_{y}(\theta)=\begin{bmatrix}
-  \cos\theta&          0&\sin\theta\\
-           0&          1& 0\\
--\sin\theta &          0&\cos\theta\\
-\end{bmatrix}
-$
-$
-R_{z}(\theta)=\begin{bmatrix}
-\cos\theta&-\sin\theta&0\\
-\sin\theta& \cos\theta&0\\
-         0&          0&1\\
-\end{bmatrix}
-$\\
-\end{center}
-\begin{center}
-Fig. 3. Basic 3D rotation matrix
-\end{center}
-Similarly, we only consider 90, 180 and 270 degrees rotation for each plane. Normally, if $R_{x}(\theta)$, $R_{y}(\theta)$ and $R_{z}(\theta)$ are independent, there should be 64 situations because each of them will contains 4 situations. However, according to general rotation matrix (figure 4),
-\begin{align*}
-&x'=x\cos\alpha\cos\beta+y(\cos\alpha\sin\beta\sin\gamma-\sin\alpha\cos\gamma)+z(\cos\alpha\sin\beta\cos\gamma+\sin\alpha\sin\gamma)\\
-&y'=x\sin\alpha\cos\beta+y(\sin\alpha\sin\beta\sin\gamma+\cos\alpha\cos\gamma)+z(\sin\alpha\sin\beta\cos\gamma-\cos\alpha\sin\gamma)\\
-&z'=-x\sin\beta+y\cos\beta\sin\gamma+z\cos\beta\cos\gamma
-\end{align*}
-Obviously, they are not independent. Finally, after eliminate the duplicates, there are total 24 situations.
-\begin{center}
-$R=R_{x}(\alpha)R_{y}(\beta)R_{z}(\gamma)=
-\begin{bmatrix}
-\cos\alpha\cos\beta&\cos\alpha\sin\beta\sin\gamma-\sin\alpha\cos\gamma&\cos\alpha\sin\beta\cos\gamma+\sin\alpha\sin\gamma\\
-\sin\alpha\cos\beta&\sin\alpha\sin\beta\sin\gamma+\cos\alpha\cos\gamma&\sin\alpha\sin\beta\cos\gamma-\cos\alpha\sin\gamma\\
-         -\sin\beta&                               \cos\beta\sin\gamma&\cos\beta\cos\gamma\\
-\end{bmatrix}
-$
-\end{center}
-\begin{center}
-Fig. 4. General 3D rotation matrix
-\end{center}
-
-
+A constraint satisfaction problem (CSP) consists of \cite{r18}:
+\begin{itemize}
+  \item a set of variables $V = \{{v_{1}, v_{2},..., v_{n}}\}$,
+  \item a set of domains $D = \{D_{1}, D_{2},..., D_{n}\}$ such that for each
+variable $v_{i} \in V$ there is a domain $D_{i}$ which is a finite set of objects that can be assigned to $v_{i}$,
+  \item a set of constraints $C = \{C_{1}, C_{2},..., C_{k}\}$ such that the scope of each constraint is a subset of $V$. A constraint can be represented as a pair ($V_{s}$,$A_{s}$), where $V_{s}$ is a set of variables which is called scope and $A_{s}$ is a set of complete assignments for $V_{s}$.
+\end{itemize}
+"A solution to a CSP is a complete instantiation of the variables in $V$ satisfying all the constraints in $C$" \cite{r18}. Such a problem is usually solved by a form of search. However, it is an NP-complete problem which means that there does not exist an algorithm to solve it in polynomial time at the moment. Only if P=NP, there is such an algorithm. Therefore, solving a CSP in a reasonable time requires the combination of optimization methods. In our case, even though different solvers adopt various optimization methods (more details in Chapter 4), arc consistency is commonly used by CSP solvers.\\ 
+"A variable $v$ is arc consistent with respect to another variable $u$ if and only if for every $d \in D_{v}$ there is at least one $d'\in D_{u}$ such that $(d,d')\in C_{v,u}$" \cite{r7}. Accordingly, a CSP is arc consistent if and only if all pairs of variables are arc consistent with each other. Based on arc consistency, the values that break arc consistency in the domains will be removed, which significantly decreases the number of search nodes so that it saves a lot of search time. Therefore, it takes up a vital position in the optimizations of CSP. Furthermore, the most famous algorithm that achieve arc consistency for CSP is AC3 which is proposed for binary constraint networks. The time complexity of AC3 is in $O(ek^{3})$ and space complexity is in $O(e)$, where $e$ means the number of constraints and $k$ means the maximum domain size \cite{r11}.
+\section{Minizinc Language}
+Minizinc \cite{r10} is a simple and readily comprehensible constraint programming (CP) modelling language that aims to become the first standard modelling language for CP problems. The designers hope that Minizinc can be adopted by different solvers so that a modeller can compare different solvers for a problem. It usually appears together with the Minizinc-to-Flatzinc translator which transforms the Minizinc language into the Flatzinc language. Flatzinc \cite{r10} is a low-level solver-input language. Compared with Minizinc that is a high-level language, it is easier to be adapted by an interface, more effective and storage-saving but hard to understand for programmers. If a solver writer wants to support the Minizinc language, he or she just needs to write a simple Flatzinc frond-end to their solver. As is shown in Figure 2.1, it plays the role of a bridge that connects the Minizinc file with respective interfaces for different solvers. 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\linewidth]{figs/flowofMinizinc.png}
+\caption{The process of a solver executing a Minizinc file}
+  \label{fig:process}
+\end{figure}
+A Minizinc problem consists of two parts: the structure of the problem is corresponding to the model and the assignments to parameters for a particular problem are corresponding to the data. In addition, what it mainly supports has been listed below \cite{r10}:\\
+\begin{compactenum}
+  \item Scalar types: Booleans, integers and floats.
+  \item Compound types: sets and arrays.
+  \item Built-in operations: 
+  \begin{compactitem}
+  \item comparisons (e.g. <, ==),
+  \item arithmetic operations (e.g. +, *, sum, min),
+  \item logical operations (e.g. $\vee$, $\wedge$, xor, forall),
+  \item set operations (e.g. union, subset, in, card),
+  \item array operations (e.g. length, index\_set),
+  \item coercions (e.g. round, int2float, bool2int), 
+  \item bounds operations (ub, lb, dom).
+  \end{compactitem}
+  \item Predicates: users can define their own predicates.
+  \item Functions: users can define their own functions.
+  \item Global Constraints: 'globals.mzn' which includes all global constraints.
+\end{compactenum}
+In our case, the '$\vee$', '$\wedge$', 'alldifferent.mzn' from 'globals.mzn', 'set of int' and some functions have been used (more details in Chapter 4).
 
 
   
