@@ -25,7 +25,7 @@ A Minizinc problem consists of two parts: the structure of the problem is corres
   \item Built-in operations: 
   \begin{compactitem}
   \item comparisons (e.g. <, ==),
-  \item arithmetic operations (e.g. +, *, sum, min),
+  \item arithmetic operations (e.g. +, *, sum, min, mod, div),
   \item logical operations (e.g. $\vee$, $\wedge$, xor, forall),
   \item set operations (e.g. union, subset, in, card),
   \item array operations (e.g. length, index\_set),
@@ -36,8 +36,27 @@ A Minizinc problem consists of two parts: the structure of the problem is corres
   \item Functions: users can define their own functions.
   \item Global Constraints: 'globals.mzn' which includes all global constraints.
 \end{compactenum}
-In our case, the '$\vee$', '$\wedge$', 'alldifferent.mzn' from 'globals.mzn', 'set of int' and some functions have been used (more details in Chapter 4).
+In my case, the "$\vee$", "$\wedge$", "mod", "div", "alldifferent.mzn" from "globals.mzn", "set of int" and some functions have been used.\\
+For Figure~\ref{fig:minizincexample1}, the contents in line 1 are notes, which usually start from "\%". They provide more explanations for reader to understand the contents. The contents in line 2 aim to call "alldifferent.mzn", which contains "alldifferent" constraint. The "globals.mzn" can replace "alldifferent.mzn" because it contains all global constraints. Accordingly, in Figure~\ref{fig:minizincexample2}, line 34 call the constraint. From line 3 to line 4, the functions are defined by the user. From line 5 to 18, all variables and corresponding types has been defined. As an example, "var position: Vb11;" means Vb11 is a variable, and the type of Vb11 is position. Therefore, the domain of Vb11 is the elements in position. In addition, for the constraints, they support many operations and the functions can be used. 
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figs/minizincexample1.png}
+\caption{Minizinc code example1}
+  \label{fig:minizincexample1}
+\end{subfigure}
+\begin{subfigure}[b]{.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figs/minizincexample2.png}
+\caption{Minizinc code example2}
+  \label{fig:minizincexample2}
+\end{subfigure}
+\caption{Minizinc examples}
+  \label{fig:minizincexamples}
+\end{figure}
 
+   
 
   
 

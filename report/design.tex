@@ -1,12 +1,12 @@
-\chapter{CSP Models for Puzzler Games}
+\chapter{CSP Models for Puzzle Games}
 \label{cha:design}
-Generally, this chapter mainly discusses 3 parts: the analysis of the rotation matrices, the model of the 2D game (IQ twist) and the two playing modes of models for the 3D game (ZIG ZAG puzzler). The analysis of rotation matrices makes it clear how we create the constraints for each game. The 2D game and 3D game parts introduce their models separately.
+Generally, this chapter mainly discusses 3 parts: the analysis of the rotation matrices, the model of the 2D game (IQ twist) and the two playing modes of models for the 3D game (ZIG ZAG Puzzler). The analysis of rotation matrices makes it clear how we create the constraints for each game. The 2D game and 3D game parts introduce their models separately.
 \section{Rotation Matrix}
 "Rotation is the action of moving or causing to move in a circle round an axis or centre" \cite{r14}. For a vector, the length of the vector will be reserved after rotation. Meanwhile, the process can be represented by matrix operation such as 
 \begin{equation}
 Y=M.X,
 \end{equation}
-where $X$ is the input vector, $M$ is the rotation matrix and $Y$ is the output vector \cite{r15}. Therefore, the rotation matrices can be used to mathematically define rotations that can describe the placements for the pieces of the two games. The 2D rotation matrix is corresponding to IQ twist and the 3D rotation matrix is corresponding to ZIG ZAG puzzler. In our case, only counter-clockwise rotations of 90, 180 and 270 degrees for both 2D (the xy-plane) and 3D (the xy-plane, the yz-plane and the xz-plane) will be considered.
+where $X$ is the input vector, $M$ is the rotation matrix and $Y$ is the output vector \cite{r15}. Therefore, the rotation matrices can be used to mathematically define rotations that can describe the placements for the pieces of the two games. The 2D rotation matrix is corresponding to IQ twist and the 3D rotation matrix is corresponding to ZIG ZAG Puzzler. In our case, only counter-clockwise rotations of 90, 180 and 270 degrees for both 2D (the xy-plane) and 3D (the xy-plane, the yz-plane and the xz-plane) will be considered.
 \subsection{2D Rotation Matrix}
 Tobias and Krantz \cite{r9} mention that 2D rotation can be described by a matrix
 \begin{equation}
@@ -62,17 +62,17 @@ R_{x}(\theta)=\begin{bmatrix}
 1&          0&          0\\
 0&\cos\theta & -\sin\theta\\
 0&\sin\theta & \cos\theta\\
-\end{bmatrix}
-R_{y}(\theta)=\begin{bmatrix}
+\end{bmatrix},
+\\R_{y}(\theta)=\begin{bmatrix}
   \cos\theta&          0&\sin\theta\\
            0&          1& 0\\
 -\sin\theta &          0&\cos\theta\\
 \end{bmatrix},
-R_{z}(\theta)=\begin{bmatrix}
+\\R_{z}(\theta)=\begin{bmatrix}
 \cos\theta&-\sin\theta&0\\
 \sin\theta& \cos\theta&0\\
          0&          0&1\\
-\end{bmatrix}
+\end{bmatrix}.
 \end{aligned}
 \end{equation}
 ,where $R_{x}(\theta)$ is corresponding to the yz-plane, $R_{y}(\theta)$ is corresponding to the xz-plane and $R_{z}(\theta)$ is corresponding to the xy-plane. The other is the combination of the 3 matrices in (3.5), 
@@ -230,7 +230,7 @@ Hence, all combinations among $\beta=0^{\circ}$, $\theta=0^{\circ}$ or $90^{\cir
 \section{IQ Twist}
 In this part, the design of CSP model for IQ twist will be discussed. 
 \subsection{Variables}
-Above all, the initial state of each piece is defined in Figure 3.1. For this method, there are some rules. Firstly, all the variables are corresponding to the initial states. Such as the yellow2, Figure 3.2 shows that the $V_{y21}$ is used to represent the left and bottom unit. For other variables, we name them as $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$, which follows the order from left to right and bottom-up. In addition, there are 7 pegs. Therefore, the variables can be represented as \VUnits and \VPegs.
+Above all, the initial state of each piece is defined in Figure~\ref{fig:allinit}. For this method, there are some rules. Firstly, all the variables are corresponding to the specific units. Such as the yellow2, Figure~\ref{fig:namerules} shows that the $V_{y21}$ is used to represent the left and bottom unit. For other variables, we name them as $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$, which follows the order from left to right and bottom-up. In addition, there are 7 pegs. Therefore, the variables can be represented as \VUnits and \VPegs.
 \begin{figure}[htbp]
 \begin{subfigure}[b]{.24\textwidth}
 \centering
@@ -289,61 +289,63 @@ Above all, the initial state of each piece is defined in Figure 3.1. For this me
     \caption{Name rules for yellow2}
     \label{fig:namerules}
 \end{figure}
-\begin{align*}
+\begin{equation}
+\begin{aligned}
 \VUnits=\{&V_{y11},V_{y12},V_{y13},\\&V_{y21},V_{y22},V_{y23},V_{y24},V_{y25},\\&V_{b11},V_{b12},V_{b13},V_{b14},
 V_{b15},\\&V_{b21},V_{b22},V_{b23},V_{b24},\\&V_{g11},V_{g12},V_{g13},V_{g14},\\&V_{g21},V_{g22},V_{g23},\\&V_{r11},
 V_{r12},V_{r13},V_{r14},\\&V_{r21},V_{r22},V_{r23},V_{r24}\}\\
 \\\VPegs = \{&V_{py1}, V_{py2}, V_{pb1}, V_{pb2}, V_{pg1}, V_{pg2}, V_{pr}\}\\
 \\V = &\VUnits \cup \VPegs.
-\end{align*}
+\end{aligned}
+\end{equation}
 \subsection{Domains}
-For the board, Figure 3.3 shows that the 2D coordinate system is used to represent the positions. In our model, the left and bottom position as (0,0) and the right and top as (8,4). So, all placements will be between them. The pegs are special, they can be put in any places on the board or not on the board.
+For the board, Figure~\ref{fig:coordinate} shows that the 2D coordinate system is used to represent the positions. In our model, the left and bottom position as (0,0) and the right and top as (8,4). So, all placements will be between them. The pegs are special because they can be put in any places on the board or not on the board.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.8\textwidth]{figs/IQtwistboard.jpg}
 \caption{The coordinate system for IQ twist}
     \label{fig:coordinate}
 \end{figure}
-\begin{align*}
-&For \hspace{1ex} all \hspace{1ex} v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=\{(i,j) \in \mathbb{Z} \times \mathbb{Z}	\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}\\
+\begin{equation}
+\begin{aligned}
+&\forall  v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=\{(i,j) \in \mathbb{Z} \times \mathbb{Z}	\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}\\
 \\
-&For \hspace{1ex} all \hspace{1ex} v \in \VPegs \hspace{1ex},\hspace{1ex} D(v)=\{(0,0)\} \hspace{1ex} \cup \hspace{1ex}\{(i,j) \in \mathbb{Z} \times \mathbb{Z}\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}
-\end{align*}
+&\forall  v \in \VPegs \hspace{1ex},\hspace{1ex} D(v)=\{(0,0)\} \hspace{1ex} \cup \hspace{1ex}\{(i,j) \in \mathbb{Z} \times \mathbb{Z}\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}
+\end{aligned}
+\end{equation}
 \subsection{Constrains}
-Firstly, there should be no 2 different unit variables contain the same value. Similarly, there should be no 2 different reg variables contain the same value except both of them are not on the board. In Figure 3.4 , the unit which is corresponding to the first variable (here it is $V_{y21}$) will be considered as a point $(x,y)$. Therefore, the $V_{y21}$, $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$ are respectively represented as $(x,y)$, $(x+1,y)$, $(x+1,x+1)$, $(x+2,y+1)$ and $(x+1,y+2)$, which indicates that all other variables can be connected with the first variables. In addition, all other placements can get from the initial state of the piece by rotations. According to 3.1.1, there are 8 rotation situations. Figure 3.5 points out all placements for yellow2. Furthermore, for the pegs, unless they are not on the board, there must be a hollow unit of pieces which contains the same color with the pegs to match them.
+Firstly, there should be no 2 different unit variables contain the same value
+\begin{equation}
+\begin{aligned}
+&\forall V_{m},V_{n} \in \VUnits,V_{m} \neq V_{n},\\
+&\Constraints{m}{n}=\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{m} \times \Domain{n}\mid x_{1} \neq x_{2}   \hspace{1ex} or \hspace{1ex}  y_{1} \neq y_{2}\}.
+\end{aligned}
+\end{equation}
+Similarly, there should be no 2 different reg variables contain the same value except both of them are not on the board
+\begin{equation}
+\begin{aligned}
+&\forall V_{m},V_{n}\in \VPegs, V_{m} \neq V_{n},\\
+&\Constraints{m}{n}=\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{m}\times \Domain{n}\mid x_{1} \neq x_{2}   \hspace{1ex} or \hspace{1ex}  y_{1} \neq y_{2}\}\hspace{1pt}\cup \\
+&\{((0,0),(0,0))\}.
+\end{aligned}
+\end{equation}
+In Figure~\ref{fig:explanation2D}, the unit which is corresponding to the first variable ($V_{y21}$) will be considered as a point $(x,y)$. Therefore, the $V_{y21}$, $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$ are respectively represented as $(x,y)$, $(x+1,y)$, $(x+1,x+1)$, $(x+2,y+1)$ and $(x+1,y+2)$, which indicates that all other variables are connection with the first variables.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.5\textwidth]{figs/explanation2D.jpg}
 \caption{The explanation of 2D rotation}
     \label{fig:explanation2D}
 \end{figure}
-\begin{figure}
+Therefore, all other placements can get from the initial state of the piece by rotations around the unit of $V_{y21}$. According to Chapter 3.1.1, there are 8 rotation situations.Figure~\ref{fig:Exampleof8} points out all placements for yellow2.
+\begin{figure}[htbp]
 \centering
 \includegraphics[width =\textwidth]{figs/domainexplain.jpg}
     \caption{Example of 8 situations}
     \label{fig:Exampleof8}
-\end{figure} 
-\\\circled{1} 
-For each pair of variables $V_{m}$ and $V_{n}$, $V_{m} \in \VUnits$, $V_{n} \in \VUnits$,$V_{m} \neq V_{n}$,
-\begin{center}
-$\Constraints{m}{n}=\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{m} \times \Domain{n}\mid x_{1} \neq x_{2}   \hspace{1ex} or \hspace{1ex}  y_{1} \neq y_{2}\}$
-\end{center}
-\circled{2} 
-For each pair of variables $V_{m}$ and $V_{n}$, $V_{m} \in \VPegs$, $V_{n} \in \VPegs$, $V_{m} \neq V_{n}$,
-\begin{align*}
-\Constraints{m}{n}=&\{((0,0),(0,0))\}\cup \\ 
-&\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{m}\times \Domain{n}\mid x_{1} \neq x_{2}   \hspace{1ex} or \hspace{1ex}  y_{1} \neq y_{2}\}
-\end{align*}
-\\\circled{3} piece Yellow1
-\begin{align*}
-\Con{y11}{y12}{y13}=\{&((x_{1},y_{1}),(x_{2},y_{2}),(x_{3},y_{3}))\in \Domain{y11}\times \Domain{y12}\times\Domain{y13}\mid\\
-&(x_{2} = x_{1} + 1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1} + 2, \hspace{1ex}y_{3} = y_{1})\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}+1,\hspace{1ex}x_{3} = x_{1}, \hspace{1ex}y_{3} = y_{1}+2)\hspace{1ex} or\\
-&(x_{2} = x_{1}-1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}-2,\hspace{1ex} y_{3} = y_{1})\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}-1,\hspace{1ex}x_{3} = x_{1}, \hspace{1ex}y_{3} = y_{1}-2)\hspace{3ex} \}
-\end{align*} 
-\\\circled{4} piece Yellow2
-\begin{align*}
+\end{figure}
+\\Hence, 
+\begin{equation}
+\begin{aligned}
 \Cons{y21}{y22}{y23}{y24}{y25}=\{&((x_{1},y_{1}),(x_{2},y_{2}),(x_{3},y_{3}),(x_{4},y_{4}),(x_{5},y_{5}))\in \\
 &\Domain {y21} \times \Domain{y22}\times \Domain{y23}\times \Domain{y24}\times \Domain{y25} \mid\\
 &(x_{2} = x_{1} + 1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}+1,\hspace{1ex}y_{3} = y_{1}+1,
@@ -361,219 +363,128 @@ For each pair of variables $V_{m}$ and $V_{n}$, $V_{m} \in \VPegs$, $V_{n} \in \
 &(x_{2} = x_{1}+1 ,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}+1,\hspace{1ex}y_{3} = y_{1}-1,
 \\&x_{4} = x_{1}+2,\hspace{1ex}y_{4} = y_{1}-1,\hspace{1ex}x_{5} = x_{1}+1,\hspace{1ex}y_{5} = y_{1}-2)\hspace{1ex} or \\
 &(x_{2} = x_{1} ,\hspace{1ex}y_{2} = y_{1}+1,\hspace{1ex}x_{3} = x_{1}+1,\hspace{1ex}y_{3} = y_{1}+1,
-\\&x_{4} = x_{1}+1,\hspace{1ex}y_{4} = y_{1}+2,\hspace{1ex}x_{5} = x_{1}+2,\hspace{1ex}y_{5} = y_{1}+1)\hspace{3ex}\}
-\end{align*}  
-\\\circled{5} piece Blue1 
-\begin{align*}
-\Cons{b11}{b12}{b13}{b14}{b15}=\{&((x_{1},y_{1}),(x_{2},y_{2}),(x_{3},y_{3}),(x_{4},y_{4}),(x_{5},y_{5}))\in \\
-&\Domain {b11} \times \Domain{b12}\times \Domain{b13}\times \Domain{b14}\times \Domain{b15} \mid\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}+1,\hspace{1ex}x_{3} = x_{1}+1,\hspace{1ex}y_{3} = y_{1}+1,
-\\&x_{4} = x_{1},\hspace{1ex}y_{4} = y_{1}+2,\hspace{1ex}x_{5} = x_{1}+1,\hspace{1ex}y_{5} = y_{1}+2)\hspace{1ex} or \\
-&(x_{2} = x_{1}-1 ,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}-1,\hspace{1ex}y_{3} = y_{1}+1,
-\\&x_{4} = x_{1}-2,\hspace{1ex}y_{4} = y_{1},\hspace{1ex}x_{5} = x_{1}-2,\hspace{1ex}y_{5} = y_{1}+1)\hspace{1ex} or \\
-&(x_{2} = x_{1} ,\hspace{1ex}y_{2} = y_{1}-1,\hspace{1ex}x_{3} = x_{1}-1,\hspace{1ex}y_{3} = y_{1}-1,
-\\&x_{4} = x_{1},\hspace{1ex}y_{4} = y_{1}-2,\hspace{1ex}x_{5} = x_{1}-1,\hspace{1ex}y_{5} = y_{1}-2)\hspace{1ex} or \\
-&(x_{2} = x_{1}+1 ,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}+1,\hspace{1ex}y_{3} = y_{1}-1,
-\\&x_{4} = x_{1}+2,\hspace{1ex}y_{4} = y_{1},\hspace{1ex}x_{5} = x_{1}+2,\hspace{1ex}y_{5} = y_{1}-1)\hspace{1ex} or \\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}+1,\hspace{1ex}x_{3} = x_{1}-1,\hspace{1ex}y_{3} = y_{1}+1,
-\\&x_{4} = x_{1},\hspace{1ex}y_{4} = y_{1}+2,\hspace{1ex}x_{5} = x_{1}-1,\hspace{1ex}y_{5} = y_{1}+2)\hspace{1ex} or \\
-&(x_{2} = x_{1}-1 ,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}-1,\hspace{1ex}y_{3} = y_{1}-1,
-\\&x_{4} = x_{1}-2,\hspace{1ex}y_{4} = y_{1},\hspace{1ex}x_{5} = x_{1}-2,\hspace{1ex}y_{5} = y_{1}-1)\hspace{1ex} or \\
-&(x_{2} = x_{1} ,\hspace{1ex}y_{2} = y_{1}-1,\hspace{1ex}x_{3} = x_{1}+1,\hspace{1ex}y_{3} = y_{1}-1,
-\\&x_{4} = x_{1},\hspace{1ex}y_{4} = y_{1}-2,\hspace{1ex}x_{5} = x_{1}+1,\hspace{1ex}y_{5} = y_{1}-2)\hspace{1ex} or \\
-&(x_{2} = x_{1}+1 ,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}+1,\hspace{1ex}y_{3} = y_{1}+1,
-\\&x_{4} = x_{1}+2,\hspace{1ex}y_{4} = y_{1},\hspace{1ex}x_{5} = x_{1}+2,\hspace{1ex}y_{5} = y_{1}+1)\hspace{3ex}\}
-\end{align*}  
-\\\circled{6} piece Blue2 
-\begin{align*}
-\Const{b21}{b22}{b23}{b24}=\{&((x_{1},y_{1}),(x_{2},y_{2}),(x_{3},y_{3}),(x_{4},y_{4}))\in \Domain{b21}\times \Domain{b22}\times\Domain{b23}\times\Domain{b24}\mid\\
-&(x_{2} = x_{1} + 1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1} + 2, \hspace{1ex}y_{3} = y_{1},\hspace{1ex}x_{4} = x_{1}+3,\hspace{1ex}y_{4} = y_{1})\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}+1,\hspace{1ex}x_{3} = x_{1}, \hspace{1ex}y_{3} = y_{1}+2,\hspace{1ex}x_{4} = x_{1},\hspace{1ex}y_{4} = y_{1}+3)\hspace{1ex} or\\
-&(x_{2} = x_{1}-1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}-2,\hspace{1ex} y_{3} = y_{1},\hspace{1ex}x_{4} = x_{1}-3,\hspace{1ex}y_{4} = y_{1})\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}-1,\hspace{1ex}x_{3} = x_{1}, \hspace{1ex}y_{3} = y_{1}-2,\hspace{1ex}x_{4} = x_{1},\hspace{1ex}y_{4} = y_{1}-3)\hspace{3ex} \}
-\end{align*}
-\\\circled{7} piece Green1 
-\begin{align*}
-\Const{g11}{g12}{g13}{g14}=\{&((x_{1},y_{1}),(x_{2},y_{2}),(x_{3},y_{3}),(x_{4},y_{4}))\in \Domain{g11}\times \Domain{g12}\times\Domain{g13}\times\Domain{g14}\mid\\
-&(x_{2} = x_{1} + 1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1} + 2, \hspace{1ex}y_{3} = y_{1},\hspace{1ex}x_{4} = x_{1}+1,\hspace{1ex}y_{4} = y_{1}+1)\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}+1,\hspace{1ex}x_{3} = x_{1}, \hspace{1ex}y_{3} = y_{1}+2,\hspace{1ex}x_{4} = x_{1}-1,\hspace{1ex}y_{4} = y_{1}+1)\hspace{1ex} or\\
-&(x_{2} = x_{1}-1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}-2,\hspace{1ex} y_{3} = y_{1},\hspace{1ex}x_{4} = x_{1}-1,\hspace{1ex}y_{4} = y_{1}-1)\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}-1,\hspace{1ex}x_{3} = x_{1}, \hspace{1ex}y_{3} = y_{1}-2,\hspace{1ex}x_{4} = x_{1}+1,\hspace{1ex}y_{4} = y_{1}-1)\hspace{1ex} or\\
-&(x_{2} = x_{1}-1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}-2, \hspace{1ex}y_{3} = y_{1},\hspace{1ex}x_{4} = x_{1}-1,\hspace{1ex}y_{4} = y_{1}-1)\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}-1,\hspace{1ex}x_{3} = x_{1}, \hspace{1ex}y_{3} = y_{1}-2,\hspace{1ex}x_{4} = x_{1}-1,\hspace{1ex}y_{4} = y_{1}-1)\hspace{1ex} or\\
-&(x_{2} = x_{1}+1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}+2, \hspace{1ex}y_{3} = y_{1},\hspace{1ex}x_{4} = x_{1}+1,\hspace{1ex}y_{4} = y_{1}-1)\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}+1,\hspace{1ex}x_{3} = x_{1}, \hspace{1ex}y_{3} = y_{1}+2,\hspace{1ex}x_{4} = x_{1}+1,\hspace{1ex}y_{4} = y_{1}+1)\hspace{3ex} \}
-\end{align*}
-\\\circled{8} piece Green2 
-\begin{align*}
-\Con{g21}{g22}{g23}=\{&((x_{1},y_{1}),(x_{2},y_{2}),(x_{3},y_{3}))\in \Domain{g21}\times \Domain{g22}\times\Domain{g23}\mid\\
-&(x_{2} = x_{1}+1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}+1, \hspace{1ex}y_{3} = y_{1}+1)\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}+1,\hspace{1ex}x_{3} = x_{1}-1, \hspace{1ex}y_{3} = y_{1}+1)\hspace{1ex} or\\
-&(x_{2} = x_{1}-1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}-1,\hspace{1ex} y_{3} = y_{1}-1)\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}-1,\hspace{1ex}x_{3} = x_{1}+1, \hspace{1ex}y_{3} = y_{1}-1)\hspace{1ex} or\\
-&(x_{2} = x_{1}-1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}-1, \hspace{1ex}y_{3} = y_{1}+1)\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}-1,\hspace{1ex}x_{3} = x_{1}-1, \hspace{1ex}y_{3} = y_{1}-1)\hspace{1ex} or\\
-&(x_{2} = x_{1}+1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}+1, \hspace{1ex}y_{3} = y_{1}-1)\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}+1,\hspace{1ex}x_{3} = x_{1}+1, \hspace{1ex}y_{3} = y_{1}+1) \hspace{3ex} \}
-\end{align*}
-\\\circled{9} piece Red1 
-\begin{align*}
-\Const{r11}{r12}{r13}{r14}=\{&((x_{1},y_{1}),(x_{2},y_{2}),(x_{3},y_{3}),(x_{4},y_{4}))\in \Domain{r11}\times \Domain{r12}\times\Domain{r13}\times\Domain{r14}\mid\\
-&(x_{2} = x_{1} + 1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1} + 1, \hspace{1ex}y_{3} = y_{1}+1,\hspace{1ex}x_{4} = x_{1}+2,\hspace{1ex}y_{4} = y_{1}+1)\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}+1,\hspace{1ex}x_{3} = x_{1}-1, \hspace{1ex}y_{3} = y_{1}+1,\hspace{1ex}x_{4} = x_{1}-1,\hspace{1ex}y_{4} = y_{1}+2)\hspace{1ex} or\\
-&(x_{2} = x_{1}-1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}-1,\hspace{1ex} y_{3} = y_{1}-1,\hspace{1ex}x_{4} = x_{1}-2,\hspace{1ex}y_{4} = y_{1}-1)\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}-1,\hspace{1ex}x_{3} = x_{1}+1, \hspace{1ex}y_{3} = y_{1}-1,\hspace{1ex}x_{4} = x_{1}+1,\hspace{1ex}y_{4} = y_{1}-2)\hspace{1ex} or\\
-&(x_{2} = x_{1}-1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}-1, \hspace{1ex}y_{3} = y_{1}+1,\hspace{1ex}x_{4} = x_{1}-2,\hspace{1ex}y_{4} = y_{1}+1)\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}-1,\hspace{1ex}x_{3} = x_{1}-1, \hspace{1ex}y_{3} = y_{1}-1,\hspace{1ex}x_{4} = x_{1}-1,\hspace{1ex}y_{4} = y_{1}-2)\hspace{1ex} or\\
-&(x_{2} = x_{1}+1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}+1, \hspace{1ex}y_{3} = y_{1}-1,\hspace{1ex}x_{4} = x_{1}+2,\hspace{1ex}y_{4} = y_{1}-1)\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}+1,\hspace{1ex}x_{3} = x_{1}+1, \hspace{1ex}y_{3} = y_{1}+1,\hspace{1ex}x_{4} = x_{1}+1,\hspace{1ex}y_{4} = y_{1}+2)\hspace{3ex} \} 
-\end{align*}
-\\\circled{10} piece Red2 
-\begin{align*}
-\Const{r21}{r22}{r23}{r24}=\{&((x_{1},y_{1}),(x_{2},y_{2}),(x_{3},y_{3}),(x_{4},y_{4}))\in \Domain{r21}\times \Domain{r22}\times\Domain{r23}\times\Domain{r24}\mid\\
-&(x_{2} = x_{1} + 1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1} + 2, \hspace{1ex}y_{3} = y_{1},\hspace{1ex}x_{4} = x_{1},\hspace{1ex}y_{4} = y_{1}+1)\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}+1,\hspace{1ex}x_{3} = x_{1}, \hspace{1ex}y_{3} = y_{1}+2,\hspace{1ex}x_{4} = x_{1}-1,\hspace{1ex}y_{4} = y_{1})\hspace{1ex} or\\
-&(x_{2} = x_{1}-1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}-2,\hspace{1ex} y_{3} = y_{1},\hspace{1ex}x_{4} = x_{1},\hspace{1ex}y_{4} = y_{1}-1)\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}-1,\hspace{1ex}x_{3} = x_{1}, \hspace{1ex}y_{3} = y_{1}-2,\hspace{1ex}x_{4} = x_{1}+1,\hspace{1ex}y_{4} = y_{1})\hspace{1ex} or\\
-&(x_{2} = x_{1}-1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}-2, \hspace{1ex}y_{3} = y_{1},\hspace{1ex}x_{4} = x_{1},\hspace{1ex}y_{4} = y_{1}+1)\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}-1,\hspace{1ex}x_{3} = x_{1}, \hspace{1ex}y_{3} = y_{1}-2,\hspace{1ex}x_{4} = x_{1}-1,\hspace{1ex}y_{4} = y_{1})\hspace{1ex} or\\
-&(x_{2} = x_{1}+1,\hspace{1ex}y_{2} = y_{1},\hspace{1ex}x_{3} = x_{1}+2, \hspace{1ex}y_{3} = y_{1},\hspace{1ex}x_{4} = x_{1},\hspace{1ex}y_{4} = y_{1}-1)\hspace{1ex} or\\
-&(x_{2} = x_{1},\hspace{1ex}y_{2} = y_{1}+1,\hspace{1ex}x_{3} = x_{1}, \hspace{1ex}y_{3} = y_{1}+2,\hspace{1ex}x_{4} = x_{1}+1,\hspace{1ex}y_{4} = y_{1})\hspace{3ex} \} 
-\end{align*}
-\\\circled{11} Yellow peg1
-\begin{align*}  
+\\&x_{4} = x_{1}+1,\hspace{1ex}y_{4} = y_{1}+2,\hspace{1ex}x_{5} = x_{1}+2,\hspace{1ex}y_{5} = y_{1}+1)\hspace{3ex}\}.
+\end{aligned}
+\end{equation}
+Similarly, every piece can get the similar constraints (Appendix~\ref{appendix:2Dpieces}).
+. Furthermore, for the pegs, unless they are not on the board, there must be a hollow unit of pieces which contains the same color with the pegs to match them. As an example, for yellow peg1,
+\begin{equation}
+\begin{aligned}  
 \Constraint{py1} = &\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{py1} \times \Domain{y11}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\}\hspace{1ex} \cup  
 \\&\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{py1} \times \Domain{y21}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\}\hspace{1ex} \cup 
 \\&\{ ((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{py1} \times \Domain{y22}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\}\hspace{1ex}\cup 
 \\& \{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{py1} \times \Domain{y24}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex}\cup
-\\& \{(0,0)\}
-\end{align*}
-\circled{12} Yellow peg2 
-\begin{align*}
-\Constraint{py2} = &\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{py2} \times \Domain{y11}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup 
-\\& \{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{py2} \times \Domain{y21}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup 
-\\& \{ ((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{py2} \times \Domain{y22}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup 
-\\&\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{py2} \times \Domain{y24}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex}\cup
-\\& \{(0,0)\}
-\end{align*}
-\circled{13} Blue peg1 
-\begin{align*}
-\Constraint{pb1} = &\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pb1} \times \Domain{b13}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup 
-\\& \{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pb1} \times \Domain{b15}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup 
-\\& \{ ((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pb1} \times \Domain{b23}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup 
-\\& \{(0,0)\}
-\end{align*}
-\\\circled{14} Blue peg2
-\begin{align*}
-\Constraint{pb2} = &\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pb2} \times \Domain{b13}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup \\& \{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pb2} \times \Domain{b15}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup \\& \{ ((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pb2} \times \Domain{b23}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup \\& \{(0,0)\}
-\end{align*}
-\circled{15} Green peg1 
-\begin{align*}
-\Constraint{pg1} = &\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pg1} \times \Domain{g13}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup 
-\\& \{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pg1} \times \Domain{g14}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup 
-\\&\{ ((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pg1} \times \Domain{g22}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\}\hspace{1ex} \cup 
-\\&\{ ((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pg1} \times \Domain{g23}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup 
-\\&\{(0,0)\}
-\end{align*}
-\\\circled{16} Green peg2 
-\begin{align*}
-\Constraint{pg2} = &\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pg2} \times \Domain{g13}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup 
-\\&\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pg2} \times \Domain{g14}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup 
-\\&\{ ((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pg2} \times \Domain{g22}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\}\hspace{1ex} \cup 
-\\&\{ ((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pg2} \times \Domain{g23}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup 
-\\&\{(0,0)\}
-\end{align*}
-\\\circled{17} Red peg 
-\begin{align*}
-\Constraint{pr} = &\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pr} \times \Domain{r12}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup 
-\\&\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pr} \times \Domain{r21}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex} \cup 
-\\&\{ ((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{pr} \times \Domain{r23}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\}\hspace{1ex} \cup 
-\\& \{(0,0)\}
-\end{align*}
+\\& \{(0,0)\},
+\end{aligned}
+\end{equation}
+Similarly, every peg can get the similar constraints (Appendix~\ref{appendix:2Dpegs}).
 \section{ZIG ZAG Puzzler}
-For the ZIG ZAG puzzler, there are 2 playing modes, which uses the same pieces but different board. Therefore, both of them will adopt the same variables as well as the same constraints but different domains. Firstly, the initial state of each piece is defined in Figure 3.5. Similar to 2D rotation, the first variable of each piece will be considered as the origin of coordinate.
+In this part, the designs of CSP models for ZIG ZAG Puzzler will be discussed. For the ZIG ZAG Puzzler, there are 2 playing modes, which uses the same pieces but different boards. On the condition of the two coordinates based on the same system which means both of them adopt right-hand system or left-hand system, both of them will adopt the same variables and the same constraints but different domains.
+\subsection{Variables}
 \begin{figure}[htbp]
-\begin{subfigure}[b]{.24\textwidth}
+\centering
+\begin{subfigure}[b]{0.25\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figs/3Dblue1.jpg}
 \caption{The variable explanation of blue1}
   \label{fig:3Dblue1}
 \end{subfigure}
-\begin{subfigure}[b]{.24\textwidth}
+\begin{subfigure}[b]{0.25\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figs/3Dblue2.jpg}
 \caption{The variable explanation of blue2}
   \label{fig:3Dblue2}
 \end{subfigure}
-\begin{subfigure}[b]{.24\textwidth}
+\begin{subfigure}[b]{0.25\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figs/3Dred1.jpg}
 \caption{The variable explanation of red1}
   \label{fig:3Dred1}
 \end{subfigure}
-\begin{subfigure}[b]{.24\textwidth}
+\begin{subfigure}[b]{0.25\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figs/3Dred2.jpg}
 \caption{The variable explanation of red2}
   \label{fig:3Dred2}
 \end{subfigure}
-\begin{subfigure}[b]{.24\textwidth}
+\begin{subfigure}[b]{0.25\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figs/3Dgreen1.jpg}
 \caption{The variable explanation of green1}
   \label{fig:3Dgreen1}
 \end{subfigure}
-\begin{subfigure}[b]{.24\textwidth}
+\begin{subfigure}[b]{0.25\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figs/3Dgreen2.jpg}
 \caption{The variable explanation of green2}
   \label{fig:3Dgreen2}
 \end{subfigure}
-\begin{subfigure}[b]{.24\textwidth}
+\begin{subfigure}[b]{0.25\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figs/3Dorange.jpg}
 \caption{The variable explanation of orange}
   \label{fig:3Dorange}
 \end{subfigure}
-\begin{subfigure}[b]{.24\textwidth}
+\begin{subfigure}[b]{0.25\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figs/3Dpurple.jpg}
 \caption{The variable explanation of purple}
   \label{fig:3Dpurple}
 \end{subfigure}
-\begin{subfigure}[b]{\textwidth}
+\begin{subfigure}[b]{0.25\textwidth}
 \centering
-\includegraphics[width=0.24\textwidth]{figs/3Dyellow.jpg}\\
+\includegraphics[width=\textwidth]{figs/3Dyellow.jpg}
 \caption{The variable explanation of yellow}
   \label{fig:3Dyellow}
 \end{subfigure}
 \caption{Initial state of each piece}
   \label{fig:all3Dinit}
 \end{figure}
-\subsection{Board for Playing Mode 1}
-\label{sec:playing mode 1}
-\begin{center}
-\includegraphics[scale=0.5]{figs/ZIGZAGmodel1board.jpg} \\
-explanation of ZIG ZAG puzzler model1\\
-\includegraphics[scale=0.2]{figs/ZIGZAGmodel2board.jpg} \\
-explanation of ZIG ZAG puzzler model2
-\end{center}
-\subsection{Variables for Modes 1 and 2}
-\begin{align*}
+Firstly, the initial state of each piece is defined in Figure~\ref{fig:all3Dinit}. Similar to 2D rotation, all the variables are corresponding to the specific units. Therefore, the variables can be defined as
+\begin{equation}
+\begin{aligned}
 \VUnits=\{&V_{y1},V_{y2},V_{y3},V_{y4},\\&V_{b11},V_{b12},V_{b13},V_{b14},
 V_{b15},\\&V_{b21},V_{b22},V_{b23},V_{b24},V_{b25},\\&V_{g11},V_{g12},V_{g13},V_{g14},\\&V_{g21},V_{g22},V_{g23},\\&V_{r11},
-V_{r12},V_{r13},\\&V_{r21},V_{r22},V_{r23},\\&V_{o1},V_{o2},V_{o3},V_{o4},\\&V_{p1},V_{p2},V_{p3},V_{p4}\}
-\end{align*}
-\subsection{Domains for Playing Mode 1}
-\begin{align*}
-For \hspace{1ex} all \hspace{1ex} v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=\{&(x,y,z) \in \mathbb{Z} \times \mathbb{Z}	\times \mathbb{Z} \mid  0<x \leq 5 \hspace{1ex} , \hspace{1ex} 0<y \leq 5,\hspace{1ex} 0<z \leq 5,\\& x+y\leq 6,\hspace{1ex} y+z\leq 6,\hspace{1ex}x+z\leq 6,\hspace{1ex}x+y+z\leq 7\}
-\end{align*}
-\subsection{Domains for Playing Mode 2}
-\begin{align*}
-For \hspace{1ex} all \hspace{1ex} v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=\{&(x,y,z) \in \mathbb{Z} \times \mathbb{Z}	\times \mathbb{Z} \mid  0<x \leq 5 \hspace{1ex} , \hspace{1ex} 0<y \leq 4,\hspace{1ex} 0<z \leq 4,y=z\} \hspace{1ex}\cup\\
-\{&(x,y,z) \in \mathbb{Z} \times \mathbb{Z}	\times \mathbb{Z} \mid  0<x \leq 5 \hspace{1ex} , \hspace{1ex} 0<y \leq 4,\hspace{1ex} 0<z \leq 3,y=z+1\}
-\end{align*}
+V_{r12},V_{r13},\\&V_{r21},V_{r22},V_{r23},\\&V_{o1},V_{o2},V_{o3},V_{o4},\\&V_{p1},V_{p2},V_{p3},V_{p4}\}.
+\end{aligned}
+\end{equation}
+\subsection{Domains for Playing Mode 1 and 2}
+Figure~\ref{fig:boards} shows how to represent the positions of the board.
+\label{sec:playing mode 1}
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{.45\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figs/ZIGZAGmodel1board.jpg}
+\caption{The board of ZIA ZAG Puzzler mode1}
+  \label{fig:3Dmodelboard1}
+\end{subfigure}
+\begin{subfigure}[b]{.45\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figs/ZIGZAGmodel2board.jpg}
+\caption{The board of ZIA ZAG Puzzler mode2}
+  \label{fig:3Dmodelboard2}
+\end{subfigure}
+\caption{The boards of ZIA ZAG Puzzler}
+  \label{fig:boards}
+\end{figure}
+The domain of playing mode1 is
+\begin{equation}
+\begin{aligned}
+&\forall \hspace{1ex} v \in \VUnits,\\
+&D(v)=\{(x,y,z) \in \mathbb{Z} \times \mathbb{Z}	\times \mathbb{Z} \mid  0<x \leq 5, \hspace{1ex} 0<y \leq 5,\hspace{1ex} 0<z \leq 5,\\ &x+y\leq 6,\hspace{1ex} y+z\leq 6,\hspace{1ex}x+z\leq 6,\hspace{1ex}x+y+z\leq 7\}.
+\end{aligned}
+\end{equation}
+and the domain of playing mode2 is:
+\begin{equation}
+\begin{aligned}
+&\forall v \in \VUnits,\\
+&D(v)=\{(x,y,z) \in \mathbb{Z} \times \mathbb{Z}	\times \mathbb{Z} \mid  0<x \leq 5 , \hspace{1ex} 0<y \leq 4,\hspace{1ex} 0<z \leq 4,y=z\} \hspace{1ex}\cup\\
+&\{(x,y,z) \in \mathbb{Z} \times \mathbb{Z}	\times \mathbb{Z} \mid  0<x \leq 5, \hspace{1ex} 0<y \leq 4,\hspace{1ex} 0<z \leq 3,y=z+1\}.
+\end{aligned}
+\end{equation}
 \subsection{Constraints}
+Similar to 2D rotation, the basic idea of 3D rotation is all other units of pieces rotate around the first unit of pieces. 
 \section{Summary}
 Same as the last chapter, summarize what you discussed in this chapter and
 be a bridge to next chapter.
