@@ -593,4 +593,59 @@ Therefore, the domain of playing mode2 is
 \caption{3Dblue1 initial state}
 \label{fig:3Dblue1explanation}
 \end{figure}
-As is shown in Figure~\ref{fig:3Dblue1explanation}, the unit which is corresponding to the first variable ($V_{b11}$) will be considered as a point $(x,y,z)$. Therefore, the $V_{b11}$, $V_{b12}$, $V_{b13}$, $V_{b14}$ and $V_{b15}$ are respectively represented as $(x,y,z)$, $(x-1,y,z)$, $(x-1,y+1,z)$, $(x,y,-z)$ and $(x-1,y,z-1)$, which indicate that all other variables are connection with the first variables. Similar to 2D rotation, the basic idea of 3D rotation is all other units of pieces rotate around the first unit of pieces. According to chapter~\ref{section:3Drotationmatrix}, there are 24 rotation situations.
+As is shown in Figure~\ref{fig:3Dblue1explanation}, the unit which is corresponding to the first variable ($V_{b11}$) will be considered as a point $(x,y,z)$. Therefore, the $V_{b11}$, $V_{b12}$, $V_{b13}$, $V_{b14}$ and $V_{b15}$ are respectively represented as $(x,y,z)$, $(x-1,y,z)$, $(x-1,y+1,z)$, $(x,y,z-1)$ and $(x-1,y,z+1)$, which indicate that all other variables are connection with the first variables. Similar to 2D rotation, the basic idea of 3D rotation is all other units of pieces rotate around the first unit of pieces. According to chapter~\ref{section:3Drotationmatrix}, there are 24 rotation situations. So we get
+\begin{equation}\tiny
+\begin{aligned}
+&\Cons{b11}{b12}{b13}{b14}{b15}=\{((x_{1},y_{1},z_{1}),(x_{2},y_{2},z_{2}),(x_{3},y_{3},z_{3}),(x_{4},y_{4},z_{4}),(x_{5},y_{5},z_{5}))\in \\
+&\Domain {b11} \times \Domain{b12}\times \Domain{b13}\times \Domain{b14}\times \Domain{b15} \mid\\
+&(x_{2}=x_{1}-1,\hspace{1ex} y_{2}=y_{1},\hspace{1ex} z_{2}=z_{1},\hspace{1ex} x_{3}=x_{1}-1,\hspace{1ex} y_{3}=y_{1}+1,\hspace{1ex} z_{3}=z_{1},\hspace{1ex} x_{4}=x_{1},\\
+&\hspace{1ex} y_{4}=y_{1},\hspace{1ex} z_{4}=z_{1}-1,\hspace{1ex} x_{5}=x_{1}-1,\hspace{1ex} y_{5}=y_{1},\hspace{1ex} z_{5}=z_{1}+1)&or\\ 
+&(x_{2}=x_{1},\hspace{1ex} y_{2}=y_{1}+1,\hspace{1ex} z_{2}=z_{1},\hspace{1ex} x_{3}=x_{1},\hspace{1ex} y_{3}=y_{1}+1,\hspace{1ex} z_{3}=z_{1}-1,\hspace{1ex} x_{4}=x_{1}-1,\\
+&\hspace{1ex} y_{4}=y_{1},\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1}+1,\hspace{1ex} y_{5}=y_{1}+1,\hspace{1ex} z_{5}=z_{1})&or\\ 
+&(x_{2}=x_{1},\hspace{1ex} y_{2}=y_{1}+1,\hspace{1ex} z_{2}=z_{1},\hspace{1ex} x_{3}=x_{1},\hspace{1ex} y_{3}=y_{1}+1,\hspace{1ex} z_{3}=z_{1}+1,\hspace{1ex} x_{4}=x_{1}+1,\\
+&\hspace{1ex} y_{4}=y_{1},\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1}-1,\hspace{1ex} y_{5}=y_{1}+1,\hspace{1ex} z_{5}=z_{1})&or\\ 
+&(x_{2}=x_{1},\hspace{1ex} y_{2}=y_{1},\hspace{1ex} z_{2}=z_{1}-1,\hspace{1ex} x_{3}=x_{1}-1,\hspace{1ex} y_{3}=y_{1},\hspace{1ex} z_{3}=z_{1}-1,\hspace{1ex} x_{4}=x_{1},\\
+&\hspace{1ex} y_{4}=y_{1}+1,\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1},\hspace{1ex} y_{5}=y_{1}-1,\hspace{1ex} z_{5}=z_{1}-1)&or\\ 
+&(x_{2}=x_{1}-1,\hspace{1ex} y_{2}=y_{1},\hspace{1ex} z_{2}=z_{1},\hspace{1ex} x_{3}=x_{1}-1,\hspace{1ex} y_{3}=y_{1}-1,\hspace{1ex} z_{3}=z_{1},\hspace{1ex} x_{4}=x_{1},\\
+&\hspace{1ex} y_{4}=y_{1},\hspace{1ex} z_{4}=z_{1}+1,\hspace{1ex} x_{5}=x_{1}-1,\hspace{1ex} y_{5}=y_{1},\hspace{1ex} z_{5}=z_{1}-1)&or\\ 
+&(x_{2}=x_{1}+1,\hspace{1ex} y_{2}=y_{1},\hspace{1ex} z_{2}=z_{1},\hspace{1ex} x_{3}=x_{1}+1,\hspace{1ex} y_{3}=y_{1}-1,\hspace{1ex} z_{3}=z_{1},\hspace{1ex} x_{4}=x_{1},\\
+&\hspace{1ex} y_{4}=y_{1},\hspace{1ex} z_{4}=z_{1}-1,\hspace{1ex} x_{5}=x_{1}+1,\hspace{1ex} y_{5}=y_{1},\hspace{1ex} z_{5}=z_{1}+1)&or\\ 
+&(x_{2}=x_{1},\hspace{1ex} y_{2}=y_{1}-1,\hspace{1ex} z_{2}=z_{1},\hspace{1ex} x_{3}=x_{1},\hspace{1ex} y_{3}=y_{1}-1,\hspace{1ex} z_{3}=z_{1}-1,\hspace{1ex} x_{4}=x_{1}+1,\\
+&\hspace{1ex} y_{4}=y_{1},\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1}-1,\hspace{1ex} y_{5}=y_{1}-1,\hspace{1ex} z_{5}=z_{1})&or\\ 
+&(x_{2}=x_{1},\hspace{1ex} y_{2}=y_{1}-1,\hspace{1ex} z_{2}=z_{1},\hspace{1ex} x_{3}=x_{1},\hspace{1ex} y_{3}=y_{1}-1,\hspace{1ex} z_{3}=z_{1}+1,\hspace{1ex} x_{4}=x_{1}-1,\\
+&\hspace{1ex} y_{4}=y_{1},\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1}+1,\hspace{1ex} y_{5}=y_{1}-1,\hspace{1ex} z_{5}=z_{1})&or\\ 
+&(x_{2}=x_{1},\hspace{1ex} y_{2}=y_{1}+1,\hspace{1ex} z_{2}=z_{1},\hspace{1ex} x_{3}=x_{1}+1,\hspace{1ex} y_{3}=y_{1}+1,\hspace{1ex} z_{3}=z_{1},\hspace{1ex} x_{4}=x_{1},\\
+&\hspace{1ex} y_{4}=y_{1},\hspace{1ex} z_{4}=z_{1}-1,\hspace{1ex} x_{5}=x_{1},\hspace{1ex} y_{5}=y_{1}+1,\hspace{1ex} z_{5}=z_{1}+1)&or\\ 
+&(x_{2}=x_{1},\hspace{1ex} y_{2}=y_{1},\hspace{1ex} z_{2}=z_{1}+1,\hspace{1ex} x_{3}=x_{1},\hspace{1ex} y_{3}=y_{1}-1,\hspace{1ex} z_{3}=z_{1}+1,\hspace{1ex} x_{4}=x_{1}+1,\\
+&\hspace{1ex} y_{4}=y_{1},\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1}-1,\hspace{1ex} y_{5}=y_{1},\hspace{1ex} z_{5}=z_{1}+1)&or\\ 
+&(x_{2}=x_{1},\hspace{1ex} y_{2}=y_{1},\hspace{1ex} z_{2}=z_{1}+1,\hspace{1ex} x_{3}=x_{1}+1,\hspace{1ex} y_{3}=y_{1},\hspace{1ex} z_{3}=z_{1}+1,\hspace{1ex} x_{4}=x_{1},\\
+&\hspace{1ex} y_{4}=y_{1}+1,\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1},\hspace{1ex} y_{5}=y_{1}-1,\hspace{1ex} z_{5}=z_{1}+1)&or\\ 
+&(x_{2}=x_{1},\hspace{1ex} y_{2}=y_{1},\hspace{1ex} z_{2}=z_{1}-1,\hspace{1ex} x_{3}=x_{1},\hspace{1ex} y_{3}=y_{1}+1,\hspace{1ex} z_{3}=z_{1}-1,\hspace{1ex} x_{4}=x_{1}+1,\\
+&\hspace{1ex} y_{4}=y_{1},\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1}-1,\hspace{1ex} y_{5}=y_{1},\hspace{1ex} z_{5}=z_{1}-1)&or\\ 
+&(x_{2}=x_{1},\hspace{1ex} y_{2}=y_{1}-1,\hspace{1ex} z_{2}=z_{1},\hspace{1ex} x_{3}=x_{1}-1,\hspace{1ex} y_{3}=y_{1}-1,\hspace{1ex} z_{3}=z_{1},\hspace{1ex} x_{4}=x_{1},\\
+&\hspace{1ex} y_{4}=y_{1},\hspace{1ex} z_{4}=z_{1}-1,\hspace{1ex} x_{5}=x_{1},\hspace{1ex} y_{5}=y_{1}-1,\hspace{1ex} z_{5}=z_{1}+1)&or\\ 
+&(x_{2}=x_{1}+1,\hspace{1ex} y_{2}=y_{1},\hspace{1ex} z_{2}=z_{1},\hspace{1ex} x_{3}=x_{1}+1,\hspace{1ex} y_{3}=y_{1},\hspace{1ex} z_{3}=z_{1}-1,\hspace{1ex} x_{4}=x_{1},\\
+&\hspace{1ex} y_{4}=y_{1}+1,\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1}+1,\hspace{1ex} y_{5}=y_{1}-1,\hspace{1ex} z_{5}=z_{1})&or\\
+&(x_{2}=x_{1}+1,\hspace{1ex} y_{2}=y_{1},\hspace{1ex} z_{2}=z_{1},\hspace{1ex} x_{3}=x_{1}+1,\hspace{1ex} y_{3}=y_{1}+1,\hspace{1ex} z_{3}=z_{1},\hspace{1ex} x_{4}=x_{1},\\
+&\hspace{1ex} y_{4}=y_{1},\hspace{1ex} z_{4}=z_{1}+1,\hspace{1ex} x_{5}=x_{1}+1,\hspace{1ex} y_{5}=y_{1},\hspace{1ex} z_{5}=z_{1}-1)&or\\ 
+&(x_{2}=x_{1},\hspace{1ex} y_{2}=y_{1},\hspace{1ex} z_{2}=z_{1}-1,\hspace{1ex} x_{3}=x_{1},\hspace{1ex} y_{3}=y_{1}-1,\hspace{1ex} z_{3}=z_{1}-1,\hspace{1ex} x_{4}=x_{1}-1,\\
+&\hspace{1ex} y_{4}=y_{1},\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1}+1,\hspace{1ex} y_{5}=y_{1},\hspace{1ex} z_{5}=z_{1}-1)&or\\ 
+&(x_{2}=x_{1},\hspace{1ex} y_{2}=y_{1},\hspace{1ex} z_{2}=z_{1}+1,\hspace{1ex} x_{3}=x_{1},\hspace{1ex} y_{3}=y_{1}+1,\hspace{1ex} z_{3}=z_{1}+1,\hspace{1ex} x_{4}=x_{1}-1,\\
+&\hspace{1ex} y_{4}=y_{1},\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1}+1,\hspace{1ex} y_{5}=y_{1},\hspace{1ex} z_{5}=z_{1}+1)&or\\ 
+&(x_{2}=x_{1},\hspace{1ex} y_{2}=y_{1},\hspace{1ex} z_{2}=z_{1}-1,\hspace{1ex} x_{3}=x_{1}+1,\hspace{1ex} y_{3}=y_{1},\hspace{1ex} z_{3}=z_{1}-1,\hspace{1ex} x_{4}=x_{1},\\
+&\hspace{1ex} y_{4}=y_{1}-1,\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1},\hspace{1ex} y_{5}=y_{1}+1,\hspace{1ex} z_{5}=z_{1}-1)&or\\ 
+&(x_{2}=x_{1},\hspace{1ex} y_{2}=y_{1}-1,\hspace{1ex} z_{2}=z_{1},\hspace{1ex} x_{3}=x_{1}+1,\hspace{1ex} y_{3}=y_{1}-1,\hspace{1ex} z_{3}=z_{1},\hspace{1ex} x_{4}=x_{1},\\
+&\hspace{1ex} y_{4}=y_{1},\hspace{1ex} z_{4}=z_{1}+1,\hspace{1ex} x_{5}=x_{1},\hspace{1ex} y_{5}=y_{1}-1,\hspace{1ex} z_{5}=z_{1}-1)&or\\ 
+&(x_{2}=x_{1},\hspace{1ex} y_{2}=y_{1}+1,\hspace{1ex} z_{2}=z_{1},\hspace{1ex} x_{3}=x_{1}-1,\hspace{1ex} y_{3}=y_{1}+1,\hspace{1ex} z_{3}=z_{1},\hspace{1ex} x_{4}=x_{1},\\
+&\hspace{1ex} y_{4}=y_{1},\hspace{1ex} z_{4}=z_{1}+1,\hspace{1ex} x_{5}=x_{1},\hspace{1ex} y_{5}=y_{1}+1,\hspace{1ex} z_{5}=z_{1}-1)&or\\ 
+&(x_{2}=x_{1}+1,\hspace{1ex} y_{2}=y_{1},\hspace{1ex} z_{2}=z_{1},\hspace{1ex} x_{3}=x_{1}+1,\hspace{1ex} y_{3}=y_{1},\hspace{1ex} z_{3}=z_{1}+1,\hspace{1ex} x_{4}=x_{1},\\
+&\hspace{1ex} y_{4}=y_{1}-1,\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1}+1,\hspace{1ex} y_{5}=y_{1}+1,\hspace{1ex} z_{5}=z_{1})&or\\ 
+&(x_{2}=x_{1}-1,\hspace{1ex} y_{2}=y_{1},\hspace{1ex} z_{2}=z_{1},\hspace{1ex} x_{3}=x_{1}-1,\hspace{1ex} y_{3}=y_{1},\hspace{1ex} z_{3}=z_{1}+1,\hspace{1ex} x_{4}=x_{1},\\
+&\hspace{1ex} y_{4}=y_{1}+1,\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1}-1,\hspace{1ex} y_{5}=y_{1}-1,\hspace{1ex} z_{5}=z_{1})&or\\ 
+&(x_{2}=x_{1},\hspace{1ex} y_{2}=y_{1},\hspace{1ex} z_{2}=z_{1}+1,\hspace{1ex} x_{3}=x_{1}-1,\hspace{1ex} y_{3}=y_{1},\hspace{1ex} z_{3}=z_{1}+1,\hspace{1ex} x_{4}=x_{1},\\
+&\hspace{1ex} y_{4}=y_{1}-1,\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1},\hspace{1ex} y_{5}=y_{1}+1,\hspace{1ex} z_{5}=z_{1}+1)&or\\ 
+&(x_{2}=x_{1}-1,\hspace{1ex} y_{2}=y_{1},\hspace{1ex} z_{2}=z_{1},\hspace{1ex} x_{3}=x_{1}-1,\hspace{1ex} y_{3}=y_{1},\hspace{1ex} z_{3}=z_{1}-1,\hspace{1ex} x_{4}=x_{1},\\
+&\hspace{1ex} y_{4}=y_{1}-1,\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1}-1,\hspace{1ex} y_{5}=y_{1}+1,\hspace{1ex} z_{5}=z_{1})\}.
+Similarly, we can get the constraints for other pieces.
+\end{aligned}
+\end{equation}
