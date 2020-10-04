@@ -8,6 +8,7 @@ Y=M.X,
 \end{equation}
 where $X$ is the input vector, $M$ is the rotation matrix and $Y$ is the output vector \cite{r15}. Therefore, the rotation matrices can be used to mathematically define rotations that can describe the placements for the pieces of the two games. The 2D rotation matrix is corresponding to IQ twist and the 3D rotation matrix is corresponding to ZIG ZAG Puzzler. In our case, only counter-clockwise rotations of 90, 180 and 270 degrees for both 2D (the xy-plane) and 3D (the xy-plane, the yz-plane and the xz-plane) will be considered.
 \subsection{2D Rotation Matrix}
+\label{section:2Drotationmatrix}
 Tobias and Krantz \cite{r9} mention that 2D rotation can be described by a matrix
 \begin{equation}
 R(\theta)=\begin{bmatrix}
@@ -55,6 +56,7 @@ In IQ twist, there exists mirroring operation, if a point flip over around the y
 \end{itemize}
 Therefore, there should be total 8 situations for each unit of pieces. However, there might be some special situations like x=1, y=1. In such a case, according to the 8 formulas, there are only 4 situations because 4 of them are repeated.
 \subsection{3D Rotation Matrix}
+\label{section:3Drotationmatrix}
 There are two forms to represent 3D rotations \cite{r9}. One is 3 separated matrices,
 \begin{equation}
 \begin{aligned}
@@ -180,7 +182,23 @@ and for $\beta=270^{\circ}$,
 &z'=x.
 \end{aligned}
 \end{equation}
-Because in our case, the domains of both $\alpha$ and $\gamma$ are $0^{\circ}$, $90^{\circ}$, $180^{\circ}$, $270^{\circ}$ and the period of the trigonometric function is $360^{\circ}$. For (3.14), the 4 situations are $\alpha-\gamma$=$0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$. For (3.15), the 4 situations are $\alpha+\gamma$=$0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$. Therefore, these 2 groups of formulas represent that there are only 4 situations for each of them. In other words, the separated $\alpha$ and $\gamma$ are meaningless. What we should consider is $\alpha-\gamma$ for (3.14) and $\alpha+\gamma$ for (3.15).\\ 
+Because in our case, the domains of both $\alpha$ and $\gamma$ are $0^{\circ}$, $90^{\circ}$, $180^{\circ}$, $270^{\circ}$ and the period of the trigonometric function is $360^{\circ}$. For (3.14), the 4 situations are $\alpha-\gamma$=$0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$. For (3.15), the 4 situations are $\alpha+\gamma$=$0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$.
+Therefore, these 2 groups of formulas represent that there are only 4 situations for each of them. In other words, the separated $\alpha$ and $\gamma$ are meaningless. What we should consider is $\alpha-\gamma$ for (3.14) and $\alpha+\gamma$ for (3.15). For (3.14), we assign 0,90,180 and 270 degrees to the $(\alpha-\gamma)$, we get
+\begin{itemize}
+  \item  $x'=-y\sin(0^{\circ})-z\cos(0^{\circ}),\hspace{5pt} y'=y\cos(0^{\circ})+z\sin(0^{\circ}),\hspace{5pt} z'=-x \\\implies x'=-z,\hspace{5pt} y'=y,\hspace{5pt} z'=-x$
+  \item  $x'=-y\sin(90^{\circ})-z\cos(90^{\circ}), \hspace{5pt} y'=y\cos(90^{\circ})+z\sin(90^{\circ}), \hspace{5pt} z'=-x\\\implies x'=-y,\hspace{5pt} y'=z,\hspace{5pt} z'=-x$
+  \item  $x'=-y\sin(180^{\circ})-z\cos(180^{\circ}), \hspace{5pt} y'=y\cos(180^{\circ})+z\sin(180^{\circ}), \hspace{5pt} z'=-x\\\implies x'=z,\hspace{5pt} y'=-y,\hspace{5pt} z'=-x$
+  \item  $x'=-y\sin(270^{\circ})-z\cos(270^{\circ}), \hspace{5pt} y'=y\cos(270^{\circ})+z\sin(270^{\circ}), \hspace{5pt} z'=-x\\\implies x'=y, \hspace{5pt}y'=-z,\hspace{5pt} z'=-x$.
+  \label{3Drotation24situations1}
+\end{itemize}
+For (3.15), we assign 0,90,180 and 270 degrees to the $(\alpha+\gamma)$, we get
+\begin{itemize}
+  \item  $x'=-y\sin(0^{\circ})-z\cos(0^{\circ}),\hspace{5pt} y'=y\cos(0^{\circ})-z\sin(0^{\circ}),\hspace{5pt} z'=-x \\\implies x'=-z,\hspace{5pt} y'=y,\hspace{5pt} z'=x$
+  \item  $x'=-y\sin(90^{\circ})-z\cos(90^{\circ}),\hspace{5pt} y'=y\cos(90^{\circ})-z\sin(90^{\circ}),\hspace{5pt} z'=-x\\\implies x'=-y,\hspace{5pt} y'=-z,\hspace{5pt} z'=x$
+  \item  $x'=-y\sin(180^{\circ})-z\cos(180^{\circ}),\hspace{5pt} y'=y\cos(180^{\circ})-z\sin(180^{\circ}),\hspace{5pt} z'=-x\\\implies x'=z,\hspace{5pt} y'=-y,\hspace{5pt} z'=x$
+  \item  $x'=-y\sin(270^{\circ})-z\cos(270^{\circ}),\hspace{5pt} y'=y\cos(270^{\circ})-z\sin(270^{\circ}),\hspace{5pt} z'=-x\\\implies x'=y, \hspace{5pt}y'=z,\hspace{5pt} z'=x$.
+  \label{3Drotation24situations2}
+\end{itemize}
 Then, we consider  $\beta=0^{\circ}$ and $\beta=180^{\circ}$. Based on (3.6), when $\beta=0^{\circ}$, we get
 \begin{equation}
 R=R_{z}(\alpha)R_{y}(0^{\circ})R_{x}(\gamma)=
@@ -226,11 +244,29 @@ which means that when $\beta=0^{\circ}$, regardless of the number of degrees of 
 &\circled{1},\circled{2}\implies R_{z}(270^{\circ})Ry(0^{\circ})R_{x}(270^{\circ})   = R_{z}(90^{\circ})R_{y}(180^{\circ})R_{x}(90^{\circ}).
 \end{aligned}
 \end{equation}
-Hence, all combinations among $\beta=0^{\circ}$, $\theta=0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$ and $\gamma=0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$ can be obtained from one combination among $\beta=180^{\circ}$, $\theta=0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$ and $\gamma=0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$. So we only need to consider the all situations when $\beta=0^{\circ}$ because the all situations in $\beta=180^{\circ}$ are duplicates. There should be a total of 16 situations (4$\times$4). Finally, consider the all situations in $\beta=90^{\circ}$,$\beta=270^{\circ}$,$\beta=^{\circ}0$ and $\beta=180^{\circ}$. There should be a total of 4+4+16=24 situations.
+Hence, all combinations among $\beta=0^{\circ}$, $\theta=0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$ and $\gamma=0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$ can be obtained from one combination among $\beta=180^{\circ}$, $\theta=0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$ and $\gamma=0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$. So we only need to consider the all situations when $\beta=0^{\circ}$ because the all situations in $\beta=180^{\circ}$ are duplicates. For (3.16) we assign $\theta=0^{\circ},\gamma=0^{\circ}$, $\theta=0^{\circ},\gamma=90^{\circ}$,...,$\theta=270^{\circ},\gamma=180^{\circ}$, $\theta=270^{\circ},\gamma=270^{\circ}$. we get
+\begin{itemize}
+  \item  $x'=x$, $y'=y$, $z'=z$  
+  \item  $x'=x$, $y'=-z$, $z'=y$ 
+  \item  $x'=x$, $y'=-y$, $z'=-z$ 
+  \item  $x'=x$, $y'=z$, $z'=-y$
+  \item  $x'=-y$, $y'=x$, $z'=z$
+  \item  $x'=z$, $y'=x$, $z'=y$
+  \item  $x'=y$, $y'=x$, $z'=-z$
+  \item  $x'=-z$, $y'=x$, $z'=-y$
+  \item  $x'=-x$, $y'=-y$, $z'=z$
+  \item  $x'=-x$, $y'=z$, $z'=y$
+  \item  $x'=-x$, $y'=y$, $z'=-z$
+  \item  $x'=-x$, $y'=-z$, $z'=-y$
+  \item  $x'=y$, $y'=-x$, $z'=z$
+  \item  $x'=-z$, $y'=-x$, $z'=y$
+  \item  $x'=-y$, $y'=-x$, $z'=-z$
+  \item  $x'=z$, $y'=-x$, $z'=-y$.
+  \label{3Drotation24situations3}
+\end{itemize}
+There should be a total of 16 situations (4$\times$4). Finally, consider the all situations in $\beta=90^{\circ}$,$\beta=270^{\circ}$,$\beta=^{\circ}0$ and $\beta=180^{\circ}$. There should be a total of 4+4+16=24 situations.
 \section{IQ Twist}
-In this part, the design of CSP model for IQ twist will be discussed. 
-\subsection{Variables}
-Above all, the initial state of each piece is defined in Figure~\ref{fig:allinit}. For this method, there are some rules. Firstly, all the variables are corresponding to the specific units. Such as the yellow2, Figure~\ref{fig:namerules} shows that the $V_{y21}$ is used to represent the left and bottom unit. For other variables, we name them as $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$, which follows the order from left to right and bottom-up. In addition, there are 7 pegs. Therefore, the variables can be represented as \VUnits and \VPegs.
+In this part, the design of CSP model for IQ twist will be discussed. Above all, the initial state of each piece is defined in Figure~\ref{fig:allinit}.
 \begin{figure}[htbp]
 \begin{subfigure}[b]{.24\textwidth}
 \centering
@@ -283,35 +319,44 @@ Above all, the initial state of each piece is defined in Figure~\ref{fig:allinit
 \caption{Initial state of each piece}
   \label{fig:allinit}
 \end{figure}
+\subsection{Variables}
+ For this model, there are some rules. Firstly, all the variables are corresponding to the specific units. As an example, for piece yellow2, Figure~\ref{fig:namerules} shows that the $V_{y21}$ is used to represent the left and bottom unit. For other variables, we name them as $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$, which follows the order from left to right and bottom-up. In addition, there are 7 pegs. Therefore, the variables can be represented as \VUnits and \VPegs,
+\begin{equation}
+\begin{aligned}
+\VUnits=\{&V_{y11},V_{y12},V_{y13},\\&V_{y21},V_{y22},V_{y23},V_{y24},V_{y25},\\&V_{b11},V_{b12},V_{b13},V_{b14},
+V_{b15},\\&V_{b21},V_{b22},V_{b23},V_{b24},\\&V_{g11},V_{g12},V_{g13},V_{g14},\\&V_{g21},V_{g22},V_{g23},\\&V_{r11},
+V_{r12},V_{r13},V_{r14},\\&V_{r21},V_{r22},V_{r23},V_{r24}\},\\
+\\\VPegs = \{&V_{py1}, V_{py2}, V_{pb1}, V_{pb2}, V_{pg1}, V_{pg2}, V_{pr}\},\\
+\\V = &\VUnits \cup \VPegs.
+\end{aligned}
+\end{equation}
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.3\textwidth]{figs/example.jpg}
     \caption{Name rules for yellow2}
     \label{fig:namerules}
 \end{figure}
-\begin{equation}
-\begin{aligned}
-\VUnits=\{&V_{y11},V_{y12},V_{y13},\\&V_{y21},V_{y22},V_{y23},V_{y24},V_{y25},\\&V_{b11},V_{b12},V_{b13},V_{b14},
-V_{b15},\\&V_{b21},V_{b22},V_{b23},V_{b24},\\&V_{g11},V_{g12},V_{g13},V_{g14},\\&V_{g21},V_{g22},V_{g23},\\&V_{r11},
-V_{r12},V_{r13},V_{r14},\\&V_{r21},V_{r22},V_{r23},V_{r24}\}\\
-\\\VPegs = \{&V_{py1}, V_{py2}, V_{pb1}, V_{pb2}, V_{pg1}, V_{pg2}, V_{pr}\}\\
-\\V = &\VUnits \cup \VPegs.
-\end{aligned}
-\end{equation}
 \subsection{Domains}
-For the board, Figure~\ref{fig:coordinate} shows that the 2D coordinate system is used to represent the positions. In our model, the left and bottom position as (0,0) and the right and top as (8,4). So, all placements will be between them. The pegs are special because they can be put in any places on the board or not on the board.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.8\textwidth]{figs/IQtwistboard.jpg}
 \caption{The coordinate system for IQ twist}
     \label{fig:coordinate}
 \end{figure}
+For the board, Figure~\ref{fig:coordinate} shows that the 2D coordinate system is used to represent the positions. In our model, all positions are represented as tuples and the elements in the tuples are int. And each tuple contains 2 int. The left and bottom position as $(1,1)$ and the right and top as $(8,4)$. So, all placements will be between them. Considering a position $(x_{0},y_{0})$, we get
 \begin{equation}
 \begin{aligned}
-&\forall  v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=\{(i,j) \in \mathbb{Z} \times \mathbb{Z}	\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}\\
-\\
-&\forall  v \in \VPegs \hspace{1ex},\hspace{1ex} D(v)=\{(0,0)\} \hspace{1ex} \cup \hspace{1ex}\{(i,j) \in \mathbb{Z} \times \mathbb{Z}\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}
+&0<x_{0} \leq 8\\
+&0<y_{0} \leq 4.
 \end{aligned}
+\end{equation}
+The placements for each unit of pieces must on the board, therefore, we get
+\begin{equation}
+\forall  v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=\{(i,j) \in \mathbb{Z} \times \mathbb{Z}	\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}.\\
+\end{equation}
+The pegs are special because they can be put in any places on the board or not on the board. So, the domain of pegs is
+\begin{equation}
+\forall  v \in \VPegs \hspace{1ex},\hspace{1ex} D(v)=\{(0,0)\} \hspace{1ex} \cup \hspace{1ex}\{(i,j) \in \mathbb{Z} \times \mathbb{Z}\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}.
 \end{equation}
 \subsection{Constrains}
 Firstly, there should be no 2 different unit variables contain the same value
@@ -329,17 +374,17 @@ Similarly, there should be no 2 different reg variables contain the same value e
 &\{((0,0),(0,0))\}.
 \end{aligned}
 \end{equation}
-In Figure~\ref{fig:explanation2D}, the unit which is corresponding to the first variable ($V_{y21}$) will be considered as a point $(x,y)$. Therefore, the $V_{y21}$, $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$ are respectively represented as $(x,y)$, $(x+1,y)$, $(x+1,x+1)$, $(x+2,y+1)$ and $(x+1,y+2)$, which indicates that all other variables are connection with the first variables.
+In Figure~\ref{fig:explanation2D}, the unit which is corresponding to the first variable ($V_{y21}$) will be considered as a point $(x,y)$. Therefore, the $V_{y21}$, $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$ are respectively represented as $(x,y)$, $(x+1,y)$, $(x+1,x+1)$, $(x+2,y+1)$ and $(x+1,y+2)$, which indicate that all other variables are connection with the first variables.
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.5\textwidth]{figs/explanation2D.jpg}
+\includegraphics[width=0.8\textwidth]{figs/explanation2D.jpg}
 \caption{The explanation of 2D rotation}
     \label{fig:explanation2D}
 \end{figure}
-Therefore, all other placements can get from the initial state of the piece by rotations around the unit of $V_{y21}$. According to Chapter 3.1.1, there are 8 rotation situations.Figure~\ref{fig:Exampleof8} points out all placements for yellow2.
+Therefore, all other placements can get from the initial state of the piece by rotations around the unit of $V_{y21}$. According to Chapter~\ref{section:2Drotationmatrix}, there are 8 rotation situations. Figure~\ref{fig:Exampleof8} points out all placements for yellow2.
 \begin{figure}[htbp]
 \centering
-\includegraphics[width =\textwidth]{figs/domainexplain.jpg}
+\includegraphics[width =0.9\textwidth]{figs/domainexplain.jpg}
     \caption{Example of 8 situations}
     \label{fig:Exampleof8}
 \end{figure}
@@ -366,21 +411,19 @@ Therefore, all other placements can get from the initial state of the piece by r
 \\&x_{4} = x_{1}+1,\hspace{1ex}y_{4} = y_{1}+2,\hspace{1ex}x_{5} = x_{1}+2,\hspace{1ex}y_{5} = y_{1}+1)\hspace{3ex}\}.
 \end{aligned}
 \end{equation}
-Similarly, every piece can get the similar constraints (Appendix~\ref{appendix:2Dpieces}).
-. Furthermore, for the pegs, unless they are not on the board, there must be a hollow unit of pieces which contains the same color with the pegs to match them. As an example, for yellow peg1,
+Similarly, every piece can get the similar constraints (Appendix~\ref{appendix:2Dpieces}). Furthermore, for the pegs, unless they are not on the board, there must be a hollow unit of pieces which contains the same color with the pegs to match them. As an instance, for yellow peg1, there are 4 hollow units of yellow pieces, So,
 \begin{equation}
 \begin{aligned}  
 \Constraint{py1} = &\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{py1} \times \Domain{y11}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\}\hspace{1ex} \cup  
 \\&\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{py1} \times \Domain{y21}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\}\hspace{1ex} \cup 
 \\&\{ ((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{py1} \times \Domain{y22}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\}\hspace{1ex}\cup 
 \\& \{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{py1} \times \Domain{y24}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\} \hspace{1ex}\cup
-\\& \{(0,0)\},
+\\& \{(0,0)\}.
 \end{aligned}
 \end{equation}
 Similarly, every peg can get the similar constraints (Appendix~\ref{appendix:2Dpegs}).
 \section{ZIG ZAG Puzzler}
-In this part, the designs of CSP models for ZIG ZAG Puzzler will be discussed. For the ZIG ZAG Puzzler, there are 2 playing modes, which uses the same pieces but different boards. On the condition of the two coordinates based on the same system which means both of them adopt right-hand system or left-hand system, both of them will adopt the same variables and the same constraints but different domains.
-\subsection{Variables}
+\label{section:3Dgame}
 \begin{figure}[htbp]
 \centering
 \begin{subfigure}[b]{0.25\textwidth}
@@ -440,7 +483,9 @@ In this part, the designs of CSP models for ZIG ZAG Puzzler will be discussed. F
 \caption{Initial state of each piece}
   \label{fig:all3Dinit}
 \end{figure}
-Firstly, the initial state of each piece is defined in Figure~\ref{fig:all3Dinit}. Similar to 2D rotation, all the variables are corresponding to the specific units. Therefore, the variables can be defined as
+In this part, the designs of CSP models for ZIG ZAG Puzzler will be discussed. For the ZIG ZAG Puzzler, there are 2 playing modes, which uses the same pieces but different boards. On the condition of the two coordinates based on the same system which means both of them adopt right-hand system or left-hand system, both of them can adopt the same variables and the same constraints but different domains. In our case, we adopt right-hand system. Firstly, the initial state of each piece is defined in Figure~\ref{fig:all3Dinit}.
+\subsection{Variables}
+Similar to IQ twist, Figure~\ref{fig:all3Dinit} shows all the variables are corresponding to the specific units. Therefore, the variables can be defined as
 \begin{equation}
 \begin{aligned}
 \VUnits=\{&V_{y1},V_{y2},V_{y3},V_{y4},\\&V_{b11},V_{b12},V_{b13},V_{b14},
@@ -449,33 +494,91 @@ V_{r12},V_{r13},\\&V_{r21},V_{r22},V_{r23},\\&V_{o1},V_{o2},V_{o3},V_{o4},\\&V_{
 \end{aligned}
 \end{equation}
 \subsection{Domains for Playing Mode 1 and 2}
-Figure~\ref{fig:boards} shows how to represent the positions of the board.
-\label{sec:playing mode 1}
+\label{sec:3Ddomains}
+Figure~\ref{fig:board1} and Figure~\ref{fig:board2} show how to create the coordinates for both modes to represent the positions of the boards. For both modes, similar to IQ twist, the positions are represented as tuples and the elements in tuples are int. But each tuple will contain 3 int. The unit of piece which is located in the origin of coordinate can be represented as $(1,1,1)$. So Considering one position $(x_{0},y_{0},z_{0})$.
 \begin{figure}[htbp]
 \centering
-\begin{subfigure}[b]{.45\textwidth}
+\begin{subfigure}[b]{.4\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figs/ZIGZAGmodel1board.jpg}
-\caption{The board of ZIA ZAG Puzzler mode1}
-  \label{fig:3Dmodelboard1}
+\caption{}
+\label{figure:mode1A}
 \end{subfigure}
-\begin{subfigure}[b]{.45\textwidth}
+\begin{subfigure}[b]{.4\textwidth}
 \centering
-\includegraphics[width=\textwidth]{figs/ZIGZAGmodel2board.jpg}
-\caption{The board of ZIA ZAG Puzzler mode2}
-  \label{fig:3Dmodelboard2}
+\includegraphics[width=\textwidth]{figs/3Dboard1.jpg}
+\caption{}
+\label{figure:mode1B}
 \end{subfigure}
-\caption{The boards of ZIA ZAG Puzzler}
-  \label{fig:boards}
+\caption{The board of ZIA ZAG Puzzler mode1}
+  \label{fig:board1}
 \end{figure}
-The domain of playing mode1 is
+\\For playing mode1, as is shown in Figure~\ref{fig:board1}, the maximum number for each axis is 5, hence,
+\begin{equation}
+\begin{aligned}
+&0<x_{0}\leq5,\\
+&0<y_{0}\leq5,\\
+&0<z_{0}\leq5.
+\end{aligned}
+\end{equation}
+If it is located in one of the 3 plane. Such as xy-plane $(x_{0},y_{0},1)$, it will satisfy
+\begin{equation}
+x_{0}+y_{0}\leq6.
+\end{equation}
+Accordingly, it will satisfy 
+\begin{equation}
+x_{0}+z_{0}\leq6
+\end{equation}
+in xz-plane and 
+\begin{equation}
+y_{0}+z_{0}\leq6
+\end{equation}
+in yz-plane. In addition, Figure~\ref{figure:mode1B} shows that all the units that are not in the 3 planes are close to one of the three planes, which means it's a unit of distance to one of the three plane. So we get
+\begin{equation}
+x_{0}+y_{0}+z_{0}\leq7.
+\end{equation}
+Because what we discussed above has included all positions, the domain of playing mode1 is
 \begin{equation}
 \begin{aligned}
 &\forall \hspace{1ex} v \in \VUnits,\\
 &D(v)=\{(x,y,z) \in \mathbb{Z} \times \mathbb{Z}	\times \mathbb{Z} \mid  0<x \leq 5, \hspace{1ex} 0<y \leq 5,\hspace{1ex} 0<z \leq 5,\\ &x+y\leq 6,\hspace{1ex} y+z\leq 6,\hspace{1ex}x+z\leq 6,\hspace{1ex}x+y+z\leq 7\}.
 \end{aligned}
 \end{equation}
-and the domain of playing mode2 is:
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{.4\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figs/ZIGZAGmodel2board.jpg}
+\caption{}
+\label{fig:board2A}
+\end{subfigure}
+\begin{subfigure}[b]{.4\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figs/3Dboard2.jpg}
+\caption{}
+\label{fig:board2B}
+\end{subfigure}
+\caption{The boards of ZIA ZAG Puzzler mode2}
+  \label{fig:board2}
+\end{figure}
+For playing mode2, Figure~\ref{fig:board2} shows that the max number for both y-axis and z-axis are 4 and x-axis is 5, which can be represented as 
+\begin{equation}
+\begin{aligned}
+&0<x_{0}\leq5,\\
+&0<y_{0}\leq4,\\
+&0<z_{0}\leq4.
+\end{aligned}
+\end{equation}
+In addition, the board is similar to stairs, so we can get
+\begin{equation}
+y_{0}=z_{0}.
+\end{equation}
+Besides the part that is similar to stairs, the left space satisfy 
+\begin{equation}
+y_{0}=z_{0}+1,
+\end{equation}
+except when z=4.
+Therefore, the domain of playing mode2 is
 \begin{equation}
 \begin{aligned}
 &\forall v \in \VUnits,\\
@@ -484,7 +587,10 @@ and the domain of playing mode2 is:
 \end{aligned}
 \end{equation}
 \subsection{Constraints}
-Similar to 2D rotation, the basic idea of 3D rotation is all other units of pieces rotate around the first unit of pieces. 
-\section{Summary}
-Same as the last chapter, summarize what you discussed in this chapter and
-be a bridge to next chapter.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth]{figs/3Drotateexplain.jpg}
+\caption{3Dblue1 initial state}
+\label{fig:3Dblue1explanation}
+\end{figure}
+As is shown in Figure~\ref{fig:3Dblue1explanation}, the unit which is corresponding to the first variable ($V_{b11}$) will be considered as a point $(x,y,z)$. Therefore, the $V_{b11}$, $V_{b12}$, $V_{b13}$, $V_{b14}$ and $V_{b15}$ are respectively represented as $(x,y,z)$, $(x-1,y,z)$, $(x-1,y+1,z)$, $(x,y,-z)$ and $(x-1,y,z-1)$, which indicate that all other variables are connection with the first variables. Similar to 2D rotation, the basic idea of 3D rotation is all other units of pieces rotate around the first unit of pieces. According to chapter~\ref{section:3Drotationmatrix}, there are 24 rotation situations.
