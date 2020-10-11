@@ -4,6 +4,13 @@ Created on Fri Oct  9 02:09:04 2020
 
 @author: Mingzhen Ao
 """
+from numpy import mean
+def average_time(list_):
+    all_time=[]
+    for element in list_:
+        if element!='none':
+            all_time.append(element)
+    return mean(all_time)
 def get_coverage(list_):
     fail_num=0
     for experiment in list_:
@@ -75,3 +82,14 @@ print("coverage of jacop:"+str(coverage_jacop))
 print("coverage of ortool:"+str(coverage_ortool))
 print("coverage of picat:"+str(coverage_picat))
 print("coverage of yuck:"+str(coverage_yuck))
+print('   ')
+print('   ')
+print("average time of choco:"+str(average_time(start_IQtwist_choco)))
+print("average time of chuffed:"+str(average_time(start_IQtwist_chuffed)))
+print("average time of coinbc:"+str(average_time(start_IQtwist_coinbc)))
+print("average time of gurobi:"+str(average_time(start_IQtwist_gurobi)))
+print("average time of izplus:"+str(average_time(start_IQtwist_izplus)))
+print("average time of jacop:"+str(average_time(start_IQtwist_jacop)))
+print("average time of ortool:"+str(average_time(start_IQtwist_ortool)))
+print("average time of picat:"+str(average_time(start_IQtwist_picat)))
+print("average time of yuck:"+str(average_time(start_IQtwist_yuck)))
