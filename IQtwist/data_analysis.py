@@ -4,7 +4,10 @@ Created on Mon Oct 12 14:23:42 2020
 
 @author: Mingzhen Ao
 """
-
+"""
+The script will print all data information, 
+the number of solved cases, coverage and average time.
+"""
 import data_analysis_function as daf
 print("For the 'start' difficulty:\n")
 daf.get_solvedcases_coverage_and_averagetime("start")

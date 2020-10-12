@@ -8,6 +8,20 @@ from subprocess import STDOUT, check_output
 import time
 solvers=['picat','choco','jacop','Chuffed','Yuck','Or-tool','Coin-bc','Gurobi']
 def run_solvers(difficulty):
+    """
+    This function aims to use the 8 solvers in solvers list 
+    to solver the models for corresponding difficulty and log the results.
+
+    Parameters
+    ----------
+    difficulty : String
+        "start", "junior", "expert", "master" or "wizard"
+
+    Returns
+    -------
+    None.
+
+    """
     n = 1
     while n<25:
        name='model'+str(n)+'.mzn'
@@ -34,6 +48,9 @@ def run_solvers(difficulty):
                except Exception:
                   file.write('timeout-30minutes\n')
        n += 1
+"""
+The below codes aims to solver all models and log corresponding results
+"""
 run_solvers('start')
 run_solvers('junior')
 run_solvers('expert')

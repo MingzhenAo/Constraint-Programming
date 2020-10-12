@@ -6,11 +6,10 @@ Created on Wed Sep 30 22:30:40 2020
 """
 from subprocess import STDOUT, check_output
 import time
-import os
-import win32api
-import win32con
-#script
-difficulties=['wizard']
+"""
+The script aims to use izplus to solver all models, and log the results.
+"""
+difficulties=['start','junior','expert','master','wizard']
 for dif in difficulties:
   for i in range(16,25):
     command='docker exec mycontainer /bin/bash -c "timeout 1805 solver  /test_container/Desktop/project-2020-s2-puzzle-constraints/IQtwist/'+dif+'/model'+str(i)+'/model'+str(i)+'.mzn"'

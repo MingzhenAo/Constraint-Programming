@@ -27,6 +27,21 @@ wizard=[[43,00,51,83,32,00,00],[00,00,31,51,62,00,00],[23,00,31,41,44,63,61],[54
         [42,00,51,82,00,00,00],[22,33,00,00,72,00,00],[00,00,44,00,22,73,00],[53,00,51,00,32,00,72],[00,00,13,82,00,00,74],[51,00,34,00,54,00,31],
         [23,00,71,72,14,63,00],[52,00,62,00,22,00,00],[00,00,63,00,43,00,51],[32,00,00,00,62,00,54],[51,52,43,00,00,00,00],[52,00,54,00,00,00,61]]
 def create_models(difficulty,difficulty_data):
+    """
+    This function aims to create 24 models for the corresponding difficulty. 
+
+    Parameters
+    ----------
+    difficulty : string
+        "start", "junior", "expert", "master" or "wizard"
+    difficulty_data : list
+        The element in the list is a list which stores position information for each model.  
+
+    Returns
+    -------
+    None.
+
+    """
     n = 1
     while n<25:
         k=int(n-1)
@@ -51,6 +66,9 @@ def create_models(difficulty,difficulty_data):
             f1.write(text)
         os.system("minizinc.exe -c --solver org.minizinc.mzn-fzn   "+difficulty+'/model'+str(n)+'/'+name+" --sac" )
         n+=1
+'''
+The below codes aims to create all models
+'''
 create_models("start",start)
 create_models("junior",junior)
 create_models("expert",expert)
