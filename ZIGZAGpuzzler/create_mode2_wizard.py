@@ -5,10 +5,7 @@ Created on Wed Sep  9 15:58:20 2020
 @author: Mingzhen Ao
 """
 
-
-from subprocess import STDOUT, check_output
 import os
-import time
 from os import path
 '''
 There are all the wizard situations
@@ -25,13 +22,14 @@ wizard=[[               (),                   (),                   (),         
         [               (),                   (),(243,233,343,344,133),               (),           (),           (),           (),               (),               ()]]
 correspond=[('Vy1','Vy2','Vy3','Vy4'),('Vb11','Vb12','Vb13','Vb14','Vb15'),('Vb21','Vb22','Vb23','Vb24','Vb25'),('Vg11','Vg12','Vg13','Vg14'),
 ('Vg21','Vg22','Vg23'),('Vr11','Vr12','Vr13'),('Vr21','Vr22','Vr23'),('Vo1','Vo2','Vo3','Vo4'),('Vp1','Vp2','Vp3','Vp4')]
-solvers=['picat','choco','jacop','Chuffed','Yuck','Or-tool','Coin-bc','Gurobi']
 n=1
 while n<9:
     k=int(n-1)
     element=wizard[k]
     f = open('CSPmodelmode2.mzn')
     name='model'+str(n)+'.mzn'
+    if not path.isdir('playingmode2/wizard'):
+        os.mkdir('playingmode2/wizard')
     if not path.isdir('playingmode2/wizard/model'+str(n)):
         os.mkdir('playingmode2/wizard/model'+str(n))
     with open('playingmode2/wizard/model'+str(n)+'/'+name,"w") as f1:
@@ -66,64 +64,42 @@ while n<9:
                    ele_num+=1
                 f1.write(text)
             elif m==0:
-               f=open('Vy.txt')
+               f=open('piececonstraints/Vy.txt')
                for line in f:
                       f1.write(line);
             elif m==1:
-               f=open('Vb1.txt')
+               f=open('piececonstraints/Vb1.txt')
                for line in f:
                       f1.write(line);
             elif m==2:
-               f=open('Vb2.txt')
+               f=open('piececonstraints/Vb2.txt')
                for line in f:
                       f1.write(line);
             elif m==3:
-               f=open('Vg1.txt')
+               f=open('piececonstraints/Vg1.txt')
                for line in f:
                       f1.write(line);
             elif m==4:
-               f=open('Vg2.txt')
+               f=open('piececonstraints/Vg2.txt')
                for line in f:
                       f1.write(line);
             elif m==5:
-               f=open('Vr1.txt')
+               f=open('piececonstraints/Vr1.txt')
                for line in f:
                       f1.write(line);
             elif m==6:
-               f=open('Vr2.txt')
+               f=open('piececonstraints/Vr2.txt')
                for line in f:
                       f1.write(line);
             elif m==7:
-               f=open('Vo.txt')
+               f=open('piececonstraints/Vo.txt')
                for line in f:
                       f1.write(line);
             elif m==8:
-               f=open('VP.txt')
+               f=open('piececonstraints/Vp.txt')
                for line in f:
                       f1.write(line);
             m+=1
     os.system("minizinc.exe -c --solver org.minizinc.mzn-fzn"+'  playingmode2/wizard/model'+str(n)+'/'+name+" --sac" )
-    for solver in solvers:
-            file = open('playingmode2/wizard/model'+str(n)+'/'+'model' + str(n) + solver+'.log', 'w')
-            if solver=='picat':
-                begin=time.time()
-                command ="timeout 1800 picat fzn_picat_sat.pi playingmode2/wizard/model"+str(n)+'/model'+str(n)+".fzn"
-            elif solver=='jacop':
-                begin=time.time()
-                command = "java -cp jacop-4.7.0.jar org.jacop.fz.Fz2jacop playingmode2/wizard/model"+str(n)+'/model'+str(n)+".fzn"
-            elif solver=='choco':
-                begin = time.time()
-                command ="java -cp choco-parsers-4.10.3-jar-with-dependencies.jar org.chocosolver.parser.flatzinc.ChocoFZN playingmode2/wizard/model"+str(n)+'/model'+str(n)+".fzn"
-            else:
-                command = 'timeout 1800 minizinc.exe --solver ' + solver + " " + 'playingmode2/wizard/model'+str(n)+'/'+name + " --output-time --sac"
-            try:
-               text= check_output(command, stderr=STDOUT, timeout=1800,shell=True)
-               text_string = text.decode(encoding='UTF-8')
-               file.write(text_string)
-               if (solver=='jacop') or (solver=='choco') or (solver=='picat'):
-                       end = time.time()
-                       file.write("the excute time:"+str(end-begin))
-            except Exception:
-               file.write('timeout-30minutes\n')
     n+=1
             

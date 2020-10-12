@@ -6,6 +6,19 @@ Created on Mon Oct 12 16:02:08 2020
 """
 import os
 from os import path
+'''
+There are all the configurations for each difficulty.
+Each element in each difficulty list represent the positions of the corresponding peg variable.
+The oder of pegs:blue1,blue2,green1,green2,yellow1,yellow2,red
+For example [12,23,32,00,43,52,63] means peg blue1 in position (1,2), 
+                                         peg blue2 in position (2,3),
+                                         peg green1 in position (3,2),
+                                         peg green 2 not on the board,
+                                         peg yellow1 in postion (4,3),
+                                         peg yellow2 in position (5,3),
+                                         and peg red in position (6,3).
+'''
+
 start=[[12,23,32,00,43,52,63],[74,00,52,53,31,34,71],[41,74,63,64,52,53,42],[22,42,34,43,31,00,23],[84,00,00,00,11,81,14],[22,81,00,00,00,00,00],
       [21,54,32,43,63,72,81],[11,43,42,74,71,00,14],[71,00,51,62,53,00,73],[71,81,74,84,64,00,61],[21,22,23,24,41,51,31],[61,00,43,00,41,63,00],
       [51,61,71,81,31,41,00],[23,34,32,00,33,43,53],[73,74,53,34,33,54,00],[00,00,63,00,62,53,52],[21,23,42,52,32,61,63],[00,00,61,63,62,00,64],
