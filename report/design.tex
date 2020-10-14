@@ -1,11 +1,11 @@
 \chapter{CSP Models for Puzzle Games}
 \label{cha:design}
-Generally, this chapter discusses three parts: the CSP model for 2D game (IQ Twist), the CSP models for the two playing modes of 3D game (ZIG ZAG Puzzler) and the implementations of all models.
+Generally, this chapter discusses two parts: the CSP model and its encodings for the 2D game (IQ Twist), the CSP models and their encodings for the two playing modes of the 3D game (ZIG ZAG Puzzler).
 \section{IQ Twist}
-IQ Twist is a puzzle game which consists of 8 twisted puzzle pieces and 7 coloured pegs (Figure~\ref{fig:IQ_twist_game}). To play the game, the colored pegs should be placed on the board, then fit all the twisted puzzle pieces back into the board. Different units of pieces must match the pegs with the same color and only the hollow units of piece can be used to match pegs. The degree of difficulty can be adjusted by the placements of pegs.
+IQ Twist is a puzzle game that consists of 8 twisted puzzle pieces and 7 coloured pegs (Figure~\ref{fig:IQ_twist_game}). To play the game, the colored pegs should be placed on the board in advance, then fit all the twisted puzzle pieces back into the board. Different units of pieces have to match the pegs with the same color and only the hollow units of piece can be used to match pegs. Moreover, the degree of difficulty can be adjusted by different placements of pegs.
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{figs/IQtwistintroduction.jpg}
+    \includegraphics[width=0.6\textwidth]{figs/IQtwistintroduction.jpg}
     \caption{IQ Twist game, adopted from~\cite{r21}}
     \label{fig:IQ_twist_game}
 \end{figure}
@@ -63,7 +63,14 @@ Above all, the initial state of each piece is defined in Figure~\ref{fig:allinit
 \caption{Initial state of each piece}
   \label{fig:allinit}
 \end{figure}
-For this model, there are some rules. Firstly, all the variables are corresponding to the specific units. As an example, for piece yellow2, Figure~\ref{fig:namerules} shows that the $V_{y21}$ is used to represent the left and bottom unit. For other variables, we name them as $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$, which follows the order from left to right and bottom-up. In addition, there are 7 pegs. Therefore, the variables can be represented as \VUnits and \VPegs,
+For this model, there are some rules. Firstly, all the variables are corresponding to the specific units of pieces. As an example, for piece yellow2, Figure~\ref{fig:namerules} shows that the $V_{y21}$ is used to represent the left and bottom unit. For other units, they are named as $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$, which follows the order from left to right and bottom-up. Similarly, the name rules will be used for other pieces. 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.3\textwidth]{figs/example.jpg}
+    \caption{Name rules for yellow2}
+    \label{fig:namerules}
+\end{figure}
+In addition, there are 7 pegs. Each of them will be assigned a variable, the subscript will represent its color such as $V_{py1}$ that $the _{py1}$ means yellow peg1. Therefore, the variables can be represented as \VUnits and \VPegs,
 \begin{equation}
 \begin{aligned}
 \VUnits=\{&V_{y11},V_{y12},V_{y13},\\&V_{y21},V_{y22},V_{y23},V_{y24},V_{y25},\\&V_{b11},V_{b12},V_{b13},V_{b14},
@@ -73,20 +80,14 @@ V_{r12},V_{r13},V_{r14},\\&V_{r21},V_{r22},V_{r23},V_{r24}\},\\
 \\V = &\VUnits \cup \VPegs.
 \end{aligned}
 \end{equation}
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.3\textwidth]{figs/example.jpg}
-    \caption{Name rules for yellow2}
-    \label{fig:namerules}
-\end{figure}
 \subsection{Domains}
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.8\textwidth]{figs/IQtwistboard.jpg}
+\includegraphics[width=0.6\textwidth]{figs/IQtwistboard.jpg}
 \caption{The coordinate system for IQ Twist, revised from~\cite{r22}}
     \label{fig:coordinate}
 \end{figure}
-For the board, Figure~\ref{fig:coordinate} shows that the 2D coordinate system is used to represent the positions. In our model, all positions are represented as tuples and the elements in the tuples are int. In addition, each tuple contains 2 int. The left and bottom position as $(1,1)$ and the right and top as $(8,4)$. So, all placements will be between them. Considering a position $(x_{0},y_{0})$, we get
+For the board, Figure~\ref{fig:coordinate} shows that the 2D coordinate system is used to represent the positions. In our model, all positions are represented as tuples and each tuple contains 2 elements that are integers. The left and bottom position is $(1,1)$ and the right and top is $(8,4)$. So, the horizontal ordinate for each units of pieces will be from 1 to 8 and the ordinate will be from 1 to 4. Considering a position $(x_{0},y_{0})$, we get
 \begin{equation}
 \begin{aligned}
 &0<x_{0} \leq 8,\\
@@ -103,8 +104,8 @@ The pegs are special because they can be put in any places on the board or not o
 \end{equation}
 \subsection{2D Rotation Matrix}
 \label{section:2Drotationmatrix}
-To clarify how to obtain all configurations for each piece. I'd like to introduce 2D rotation matrix. 
-\\In Figure~\ref{fig:explanation2D}, the unit which is corresponding to the first variable $V_{y21}$ will be considered as a point $(x_{0},y_{0})$. If we assign (0,0) to $(x_{0},y_{0})$, the $V_{y21}$, $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$ can be respectively represented as $(0,0)$, $(1,0)$, $(1,1)$, $(2,1)$ and $(1,2)$, which indicate that all other variables are connection with the first variables. For example, there are relationships
+To clarify how to obtain all configurations for each piece. the 2D rotation matrix will be introduced. 
+\\In Figure~\ref{fig:explanation2D}, the unit which is corresponding to the first variable $V_{y21}$ can be considered as a point $(x_{0},y_{0})$. If we assign (0,0) to $(x_{0},y_{0})$, the $V_{y21}$, $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$ can be respectively represented as $(0,0)$, $(1,0)$, $(1,1)$, $(2,1)$ and $(1,2)$, which indicate that all other variables are connection with the first variables. For example, there are relationships
 \begin{equation}
 \begin{aligned}
 &x_{V_{y21}}+1=x_{V_{y22}},\\
@@ -119,14 +120,14 @@ between $V_{y21}$ and $V_{y22}$.
     \label{fig:explanation2D}
 \end{figure}
 Therefore, all other placements can be obtained from the initial state of the piece by rotations around the unit of piece $V_{y21}$.\\
-Tobias and Krantz \cite{r9} mention that 2D rotation by an angle $\theta$ around the origin of coordinate can be described as a matrix
+Tobias and Krantz~\cite{r9} mention that 2D counterclockwise rotation by an angle $\theta$ around the origin of coordinate can be described as a matrix
 \begin{equation}
 R(\theta)=\begin{bmatrix}
 \cos\theta & -\sin\theta\\
 \sin\theta & \cos\theta\\
 \end{bmatrix}.
 \end{equation}
-If the initial position is (x,y), we can get the position after the rotation by
+If the initial position is (x,y), the position after the rotation can be obtained by
 \begin{equation}
 \label{equation:rotation}
 \begin{bmatrix}
@@ -150,7 +151,7 @@ which implies that
 &y'=x\sin\theta+y\cos\theta.
 \end{aligned}
 \end{equation}
-Therefore, if we assign 0, 90, 180 and 270 degrees to $\theta$, we get four configurations:
+Therefore, if 0, 90, 180 and 270 degrees are assigned to $\theta$, there are four configurations:
 \begin{itemize}
   \item $x'=x\cos0^{\circ} - y\sin0^{\circ}\hspace{20pt},y'=x\sin0^{\circ} + y\cos0^{\circ}\hspace{24pt}\implies x'=x\hspace{10pt}, y'=y$
   \item $x'=x\cos90^{\circ} - y\sin90^{\circ}\hspace{10pt},y'=x\sin90^{\circ} + y\cos90^{\circ}\hspace{12pt}\implies x'=-y, y'=x$
@@ -158,7 +159,7 @@ Therefore, if we assign 0, 90, 180 and 270 degrees to $\theta$, we get four conf
   \item $x'=x\cos270^{\circ} - y\sin270^{\circ}, y'=x\sin270^{\circ} + y\cos270^{\circ} \implies x'=y\hspace{10pt},y'=-x$
   \label{rotation4}
 \end{itemize}
-In IQ Twist, there exists a mirroring operation which corresponds to flpping a piece, if a unit of piece flip over around the y-axis, we get  (-x,y) from (x,y). Similarly, all the four configurations flip over around the y-axis. We get four more configurations: 
+In IQ Twist, there exists a mirroring operation which corresponds to flipping a piece, if a unit of piece flip over around the y-axis, we get  (-x,y) from (x,y). Similarly, all the four configurations flip over around the y-axis. We get four more configurations: 
 \begin{itemize}
   \item  $x'=x\hspace{10pt}, y'=y\hspace{10pt}$    flip over around the y-axis $\implies x''=-x\hspace{8pt},y''=y$
   \item  $x'=-y, y'=x\hspace{10pt}$                flip over around the y-axis $\implies x''=y,y''=x$
@@ -166,7 +167,7 @@ In IQ Twist, there exists a mirroring operation which corresponds to flpping a p
   \item  $x'=y\hspace{10pt},y'=-x$    flip over around the y-axis $\implies x''=-y\hspace{8pt}, y''=-x$
   \label{mirrorrotate4}
 \end{itemize}
-Therefore, there should be a total of eight configurations for each unit of pieces. Similarly, for all units of piece in Figure~\ref{fig:explanation2D}, if we assign $(0,0)$ to $(x_{0},y_{0})$, the process of rotation for each other unit of the piece can be represented by Equation~\ref{equation:rotation}. Accordingly, we get eight possible configurations
+Therefore, there should be a total of eight configurations for each unit of pieces. As an instance, for all units of the piece in Figure~\ref{fig:explanation2D}, if we assign $(0,0)$ to $(x_{0},y_{0})$, the process of rotation for each other unit of the piece can be represented by Equation~\ref{equation:rotation}. Accordingly, we get eight possible configurations
 \begin{itemize}
  \item $V_{y21}=(0,0)$, $V_{y22}=(1,0)$, $V_{y23}=(1,1)$, $V_{y24}=(2,1)$, $V_{y25}=(1,2)$,
  \item $V_{y21}=(0,0)$, $V_{y22}=(0,1)$, $V_{y23}=(-1,1)$, $V_{y24}=(-1,2)$, $V_{y25}=(-2,1)$,
@@ -177,7 +178,7 @@ Therefore, there should be a total of eight configurations for each unit of piec
  \item $V_{y21}=(0,0)$, $V_{y22}=(1,0)$, $V_{y23}=(1,-1)$, $V_{y24}=(2,-1)$, $V_{y25}=(1,-2)$,
  \item $V_{y21}=(0,0)$, $V_{y22}=(-1,0)$, $V_{y23}=(-1,-1)$, $V_{y24}=(-2,-1)$, $V_{y25}=(-1,-2)$.
 \end{itemize}
-In our case, the piece can be moved as long as all units of piece on the board. Both the $x_{0}$ and $y_{0}$ can be variables, hence, we get the general forms
+In our case, the piece can be moved as long as all units of the piece on the board. Both the $x_{0}$ and $y_{0}$ can be variables, hence, we get the general forms
 \begin{itemize}
  \item $V_{y21}=(x_{0},y_{0})$, $V_{y22}=(x_{0}+1,y_{0})$, $V_{y23}=(x_{0}+1,y_{0}+1)$, $V_{y24}=(x_{0}+2,y_{0}+1)$, $V_{y25}=(x_{0}+1,y_{0}+2)$,
  \item $V_{y21}=(x_{0},y_{0})$, $V_{y22}=(x_{0},y_{0}+1)$, $V_{y23}=(x_{0}-1,y_{0}+1)$, $V_{y24}=(x_{0}-1,y_{0}+2)$, $V_{y25}=(x_{0}-2,y_{0}+1)$,
@@ -189,6 +190,7 @@ In our case, the piece can be moved as long as all units of piece on the board. 
  \item $V_{y21}=(x_{0},y_{0})$, $V_{y22}=(x_{0}-1,y_{0})$, $V_{y23}=(x_{0}-1,y_{0}-1)$, $V_{y24}=(x_{0}-2,y_{0}-1)$, $V_{y25}=(x_{0}-1,y_{0}-2)$.
 \end{itemize}
 \subsection{Constrains}
+\label{section:IQtwistconstriant}
 Firstly, there should be no 2 different unit variables contain the same value
 \begin{equation}
 \begin{aligned}
@@ -196,7 +198,7 @@ Firstly, there should be no 2 different unit variables contain the same value
 &\Constraints{m}{n}=\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{m} \times \Domain{n}\mid x_{1} \neq x_{2}   \hspace{1ex} or \hspace{1ex}  y_{1} \neq y_{2}\}.
 \end{aligned}
 \end{equation}
-Similarly, there should be no 2 different reg variables contain the same value except both of them are not on the board
+In the same way, there should be no 2 different reg variables contain the same value except both of them are not on the board
 \begin{equation}
 \begin{aligned}
 &\forall V_{m},V_{n}\in \VPegs, V_{m} \neq V_{n},\\
@@ -204,7 +206,7 @@ Similarly, there should be no 2 different reg variables contain the same value e
 &\{((0,0),(0,0))\}.
 \end{aligned}
 \end{equation}
-As is mentioned in Chapter~\ref{section:2Drotationmatrix}, there should be eight configurations for general pieces. Figure~\ref{fig:Exampleof8} shows the eight configurations for yellow2. Hence,
+As is mentioned in Chapter~\ref{section:2Drotationmatrix}, there should be eight configurations for the general pieces. Figure~\ref{fig:Exampleof8} shows the eight configurations for yellow2. Hence,
 \begin{figure}[htbp]
 \centering
 \includegraphics[width =\textwidth]{figs/domainexplain.jpg}
@@ -233,7 +235,7 @@ As is mentioned in Chapter~\ref{section:2Drotationmatrix}, there should be eight
 \\&x_{4} = x_{1}+1,\hspace{1ex}y_{4} = y_{1}+2,\hspace{1ex}x_{5} = x_{1}+2,\hspace{1ex}y_{5} = y_{1}+1)\hspace{3ex}\}.
 \end{aligned}
 \end{equation}
-Similarly, every piece can get the similar constraints (Appendix~\ref{appendix:2Dpieces}). Furthermore, for the pegs, unless they are not on the board, there must be a hollow unit of pieces which contains the same color with the pegs to match them. As an instance, for yellow peg1, there are 4 hollow units of yellow pieces. Therefore, we can obtain
+Similarly, all pieces can get the constraints in the same way (Appendix~\ref{appendix:2Dpieces}). Furthermore, for the pegs, unless they are not on the board, there must be a hollow unit of pieces which contains the same color with the pegs to match them. As an instance, for yellow peg1, there are four hollow units of yellow pieces. Figure~\ref{fig:2Dyellow2} shows that there are 3 hollow units $V_{y21}$, $V_{y22}$ and $V_{y24}$ in yellow piece2, and Figure~\ref{fig:2Dyellow1} shows that there is one hollow unit $V_{y11}$ in yellow piece1. Therefore, the constraint should be 
 \begin{equation}
 \begin{aligned}  
 \Constraint{py1} = &\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{py1} \times \Domain{y11}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\}\hspace{1ex} \cup  
@@ -243,12 +245,99 @@ Similarly, every piece can get the similar constraints (Appendix~\ref{appendix:2
 \\& \{(0,0)\}.
 \end{aligned}
 \end{equation}
-Accordingly, every peg can get the similar constraints (Appendix~\ref{appendix:2Dpegs}).
-\subsection{Implementation for IQ Twist}
-\label{section:implementation1}
-Based on the general CSP model, the specific model can be encoded in Minizinc. For example, 
+Accordingly, every peg can get the constraints in the same way (Appendix~\ref{appendix:2Dpegs}).
+\subsection{Encodings for IQ Twist}
+\label{section:Encodings1}
+All the models in the IQ Twist booklet are encoded in Minizinc.  Based on the CSP model which is mentioned above, to set a specific model only needs to add the position information for the pegs. 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figs/implementation1.jpg}
+    \caption{The last case in IQ Twist booklet}
+    \label{fig:last_case}
+\end{figure}
+For example, with regard to the model in Figure~\ref{fig:last_case}, it can be encoded in 2 parts, pegs' position information which is different in each model and the general CSP model that is the same in all models.
+\subsubsection{Pegs' Position Information}
+Figure~\ref{fig:last_case} shows there are only 3 pegs on the board. On account of the coordinate system in Figure~\ref{fig:coordinate}, the positions of blue peg, red peg, and green peg are separately placed on (5,2), (6,1) and (5,4). And the other pegs are not on the board. Hence, they could be encoded as
+\begin{lstlisting}[language=minizinc,numbers=none]
+constraint Vpb1=52;
+constraint Vpb2=0;
+constraint Vpg1=54;
+constraint Vpg2=0;
+constraint Vpy1=0;
+constraint Vpy2=0;
+constraint Vpr=61;
+\end{lstlisting}
+.
+\subsubsection{The General Model}
+In this part, all the aspects such as variables, domains and constraints about CSP model will be addressed.
+\\Firstly, all variables in CSP model are represented as the below codes.
+\begin{lstlisting}[language=minizinc,numbers=none]
+var int:Vpr; var int:Vpb1;var int:Vpb2;var int:Vpg1;var int:Vpg2; var int:Vpy1;var int:Vpy2;
+var position: Vb11;var position: Vb12;var position: Vb13;var position: Vb14;var position: Vb15;
+var position: Vb21;var position: Vb22;var position: Vb23;var position: Vb24;
+var position: Vg11;var position: Vg12;var position: Vg13;var position: Vg14;
+var position: Vg21;var position: Vg22;var position: Vg23;
+var position: Vr11;var position: Vr12;var position: Vr13;var position: Vr14; 
+var position: Vr21;var position: Vr22;var position: Vr23;var position: Vr24;
+var position: Vy11;var position: Vy12;var position: Vy13;
+var position: Vy21;var position: Vy22;var position: Vy23;var position: Vy24;var position: Vy25;
+\end{lstlisting}
+Secondly, the domain of \VUnits is defined by "position" that corresponds to the below codes. In such a case, 11 in "position" means the position (1,1), 21 means the position (2,1) and so on. However, the domain of \VPegs is just be set as the set of all integers in the above codes, it does not matter because the specific positions for pegs have been set in pegs' position information.
+\begin{lstlisting}[language=minizinc,numbers=none]
+set of int: position={
+14,24,34,44,54,64,74,84,
+13,23,33,43,53,63,73,83,
+12,22,32,42,52,62,72,82,
+11,21,31,41,51,61,71,81};
+\end{lstlisting}
+Furthermore, the constraints will be separately addressed. 
+\\The codes below represent the first constraint, which means there is no 2 different unit variables contain the same value.
+\begin{lstlisting}[language=minizinc,numbers=none]
+constraint alldifferent([Vy11,Vy12,Vy13,Vy21,Vy22,Vy23,Vy24,Vy25,Vb11,Vb12,Vb13,Vb14,Vb15,Vb21,Vb22,Vb23,Vb24,Vg11,Vg12,Vg13,Vg14,
+Vg21,Vg22,Vg23,Vr11,Vr12,Vr13,Vr14,Vr21,Vr22,Vr23,Vr24]);
+\end{lstlisting}
+With regards to the second constraint, again, because the positions for pegs have been set, the constraint is useless anymore.
+\\For the third constrain, as an example for yellow2, it could be presented as
+\begin{lstlisting}[language=minizinc,numbers=none]
+constraint (g0(Vy22) = g0(Vy21) + 1/\ g1(Vy22) = g1(Vy21)/\ g0(Vy23) = g0(Vy21) + 1/\ g1(Vy23) = g1(Vy21) + 1
+            /\ g0(Vy24) = g0(Vy21) + 2/\ g1(Vy24) = g1(Vy21) + 1/\ g0(Vy25) = g0(Vy21) + 1/\ g1(Vy25) = g1(Vy21) + 2) \/
+            
+           (g0(Vy22) = g0(Vy21)/\ g1(Vy22) = g1(Vy21) + 1/\ g0(Vy23) = g0(Vy21) - 1/\ g1(Vy23) = g1(Vy21) + 1
+            /\ g0(Vy24) = g0(Vy21) - 1/\ g1(Vy24) = g1(Vy21) + 2/\ g0(Vy25) = g0(Vy21) - 2/\ g1(Vy25) = g1(Vy21) + 1) \/
+            
+           (g0(Vy22) = g0(Vy21) - 1/\ g1(Vy22) = g1(Vy21)/\ g0(Vy23) = g0(Vy21) - 1/\ g1(Vy23) = g1(Vy21) - 1
+            /\ g0(Vy24) = g0(Vy21) - 2/\ g1(Vy24) = g1(Vy21) - 1/\ g0(Vy25) = g0(Vy21) - 1/\ g1(Vy25) = g1(Vy21) - 2) \/
+            
+           (g0(Vy22) = g0(Vy21)/\ g1(Vy22) = g1(Vy21) - 1/\ g0(Vy23) = g0(Vy21) + 1/\ g1(Vy23) = g1(Vy21) - 1
+            /\ g0(Vy24) = g0(Vy21) + 1/\ g1(Vy24) = g1(Vy21) - 2/\ g0(Vy25) = g0(Vy21) + 2/\ g1(Vy25) = g1(Vy21) - 1) \/
+            
+           (g0(Vy22) = g0(Vy21) - 1/\ g1(Vy22) = g1(Vy21)/\ g0(Vy23) = g0(Vy21) - 1/\ g1(Vy23) = g1(Vy21) + 1
+            /\ g0(Vy24) = g0(Vy21) - 2/\ g1(Vy24) = g1(Vy21) + 1/\ g0(Vy25) = g0(Vy21) - 1/\ g1(Vy25) = g1(Vy21) + 2) \/
+            
+           (g0(Vy22) = g0(Vy21)/\ g1(Vy22) = g1(Vy21) - 1/\ g0(Vy23) = g0(Vy21) - 1/\ g1(Vy23) = g1(Vy21) - 1
+            /\ g0(Vy24) = g0(Vy21) - 1/\ g1(Vy24) = g1(Vy21) - 2/\ g0(Vy25) = g0(Vy21) - 2/\ g1(Vy25) = g1(Vy21) - 1) \/
+            
+           (g0(Vy22) = g0(Vy21) + 1/\ g1(Vy22) = g1(Vy21)/\ g0(Vy23) = g0(Vy21) + 1/\ g1(Vy23) = g1(Vy21) - 1
+            /\ g0(Vy24) = g0(Vy21) + 2/\ g1(Vy24) = g1(Vy21) - 1/\ g0(Vy25) = g0(Vy21) + 1/\ g1(Vy25) = g1(Vy21) - 2) \/
+            
+           (g0(Vy22) = g0(Vy21)/\ g1(Vy22) = g1(Vy21) + 1/\ g0(Vy23) = g0(Vy21) + 1/\ g1(Vy23) = g1(Vy21) + 1
+            /\ g0(Vy24) = g0(Vy21) + 1/\ g1(Vy24) = g1(Vy21) + 2/\ g0(Vy25) = g0(Vy21) + 2/\ g1(Vy25) = g1(Vy21) + 1);
+\end{lstlisting}
+, where g0 function is used to get the corresponding $x$ value and g1 function is used to get the corresponding $y$ value. The functions are encoded as 
+\begin{lstlisting}[language=minizinc,numbers=none]
+function var int:g0(var int:a)=a mod 10;
+function var int:g1(var int:a)=a div 10;
+\end{lstlisting}
+. Comparably, the other pieces can be encoded.
+\\For the last constraint, as an instance, the yellow peg1 can be encoded as
+\begin{lstlisting}[language=minizinc,numbers=none]
+constraint (Vpy1=00)\/(Vy11=Vpy1)\/(Vy21=Vpy1)\/(Vy22=Vpy1)\/(Vy24=Vpy1);
+\end{lstlisting}
+. In addition, other pegs can be represented in same way.
+\\By this way, the CSP model has been encoded, the complete codes in Appendix~\ref{appendix:finalcaseIQtwist}.
+\\Similarly, all the models can be encoded in this way.
 \section{ZIG ZAG Puzzler}
-Zig Zag Puzzler is a 3D puzzle game with 2 playing modes. Both games aim to place all pieces to full fill the game boards. In addition, for both of them, there are some pieces placed in advance to set the difficulty (Figure~\ref{fig:ZIG_ZAG_Puzzler_playing_modes}). Generally, the fewer pieces are placed in advance, the more difficult to solve the puzzler.
+Zig Zag Puzzler is a 3D puzzle game with two playing modes. Both games aim to place all pieces to full fill the game boards. In addition, for both of them, there are some pieces placed in advance to set the difficulty (Figure~\ref{fig:ZIG_ZAG_Puzzler_playing_modes}). Generally, the fewer pieces are placed in advance, the more difficult to solve the puzzler.
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
@@ -262,7 +351,7 @@ Zig Zag Puzzler is a 3D puzzle game with 2 playing modes. Both games aim to plac
     \caption{ZIG ZAG Puzzler examples, adopted from~\cite{r23}}
     \label{fig:ZIG_ZAG_Puzzler_playing_modes}
 \end{figure}
-\\In this part, the designs of CSP models for Zig Zag Puzzler will be discussed. Generally, there are 2 playing modes, which uses the same pieces but different boards. On the condition of the two coordinates based on the same system which means both of them adopt right-handed coordinate or left-handed coordinate (Figure~\ref{figure:Cartesiancoordinate}), both of them can adopt the same variables and the same constraints but different domains. In our case, we adopt right-handed coordinate. 
+\\In this part, the designs of CSP models for Zig Zag Puzzler will be discussed. The two playing modes use the same pieces but different boards. On the condition of the two coordinates based on the same system, which means both of them adopting the right-handed coordinate or the left-handed coordinate (Figure~\ref{figure:Cartesiancoordinate}), both of them can adopt the same variables and the same constraints but different domains. In our case, we adopt the right-handed coordinate. 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{figs/Cartesian_coordinate_system_handedness}
@@ -341,16 +430,16 @@ V_{r12},V_{r13},\\&V_{r21},V_{r22},V_{r23},\\&V_{o1},V_{o2},V_{o3},V_{o4},\\&V_{
 \end{equation}
 \subsection{Domains for Playing Mode 1 and 2}
 \label{sec:3Ddomains}
-Figure~\ref{fig:board1} and Figure~\ref{fig:board2} show how to create the coordinates for both modes to represent the positions of the boards. For of them, similar to IQ Twist, the positions are represented as tuples and the elements in tuples are int. But each tuple will contain 3 int. The unit of piece which is located in the origin of coordinate can be represented as $(1,1,1)$. So Considering one position $(x_{0},y_{0},z_{0})$.
+Figure~\ref{fig:board1} and Figure~\ref{fig:board2} show how to create the coordinate systems for both modes to represent the positions of the boards. For both of them, similar to IQ Twist, the positions are represented as tuples and each tuple contains three elements which are integers. The unit of piece which is located in the origin of coordinate can be represented as $(1,1,1)$. Now, one position on the board is considered as $(x_{0},y_{0},z_{0})$.
 \begin{figure}[htbp]
 \centering
-\begin{subfigure}[b]{.3\textwidth}
+\begin{subfigure}[b]{.45\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figs/ZIGZAGmodel1board.jpg}
 \caption{}
 \label{figure:mode1A}
 \end{subfigure}
-\begin{subfigure}[b]{.3\textwidth}
+\begin{subfigure}[b]{.45\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figs/3Dboard1.jpg}
 \caption{}
@@ -367,7 +456,7 @@ Figure~\ref{fig:board1} and Figure~\ref{fig:board2} show how to create the coord
 &0<z_{0}\leq5.
 \end{aligned}
 \end{equation}
-If it is located in one of the 3 plane. Such as xy-plane $(x_{0},y_{0},1)$, it will satisfy
+If it is located in one of the three planes. Such as xy-plane which corresponds to the position $(x_{0},y_{0},1)$, it will satisfy
 \begin{equation}
 x_{0}+y_{0}\leq6.
 \end{equation}
@@ -379,11 +468,11 @@ in xz-plane and
 \begin{equation}
 y_{0}+z_{0}\leq6
 \end{equation}
-in yz-plane. In addition, Figure~\ref{figure:mode1B} shows that all the units that are not in the 3 planes are close to one of the three planes, which means it's a unit of distance to one of the three plane. So we get
+in yz-plane. In addition, Figure~\ref{figure:mode1B} shows that although some units that are not on the 3 planes, there is only one unit distance to one of the three planes for each of them. So we get
 \begin{equation}
 x_{0}+y_{0}+z_{0}\leq7.
 \end{equation}
-Because what we discussed above has included all positions, the domain of playing mode1 is
+Because what we discussed above has included all possible positions, the domain of playing mode1 is
 \begin{equation}
 \begin{aligned}
 &\forall \hspace{1ex} v \in \VUnits,\\
@@ -392,13 +481,13 @@ Because what we discussed above has included all positions, the domain of playin
 \end{equation}
 \begin{figure}[htbp]
 \centering
-\begin{subfigure}[b]{.3\textwidth}
+\begin{subfigure}[b]{.45\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figs/ZIGZAGmodel2board.jpg}
 \caption{}
 \label{fig:board2A}
 \end{subfigure}
-\begin{subfigure}[b]{.3\textwidth}
+\begin{subfigure}[b]{.45\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figs/3Dboard2.jpg}
 \caption{}
@@ -434,7 +523,7 @@ Therefore, the domain of playing mode2 is
 \end{equation}
 \subsection{3D Rotation Matrix}
 \label{section:3Drotationmatrix}
-To clarify how to obtain all configurations for each piece.  I’d like to introduce 3D rotation matrix.
+To clarify how to obtain all configurations for each piece. The 3D rotation matrix will be introduced.
 \begin{figure}[htbp]
 \label{figure:3Dblue1}
 \centering
@@ -442,7 +531,7 @@ To clarify how to obtain all configurations for each piece.  I’d like to intro
 \caption{3Dblue1 initial state}
 \label{fig:3Dblue1explanation}
 \end{figure}
-\\As is shown in Figure~\ref{fig:3Dblue1explanation}, the unit which is corresponding to the first variable $V_{b11}$ will be considered as a point $(x_{0},y_{0},z_{0})$. If we assign $(0,0,0)$ to $(x_{0},y_{0},z_{0})$, the $V_{b11}$, $V_{b12}$, $V_{b13}$, $V_{b14}$ and $V_{b15}$ are respectively represented as $(0,0,0)$, $(-1,0,0)$, $(-1,1,0)$, $(0,0,-1)$ and $(-1,0,1)$, which indicate that all other variables are connection with the first variables. For example, there are relationships
+\\As is shown in Figure~\ref{fig:3Dblue1explanation}, the unit which is corresponding to the first variable $V_{b11}$ can be considered as a point $(x_{0},y_{0},z_{0})$. If we assign $(0,0,0)$ to $(x_{0},y_{0},z_{0})$, on account of the coordinate system in Figure~\ref{fig:board1}, the $V_{b11}$, $V_{b12}$, $V_{b13}$, $V_{b14}$ and $V_{b15}$ are respectively represented as $(0,0,0)$, $(-1,0,0)$, $(-1,1,0)$, $(0,0,-1)$ and $(-1,0,1)$, which indicate that all other variables are connection with the first variables. For example, there are relationships
 \begin{equation}
 \begin{aligned}
 &x_{V_{b11}}-1=x_{V_{b12}},\\
@@ -451,7 +540,7 @@ To clarify how to obtain all configurations for each piece.  I’d like to intro
 \end{aligned}
 \end{equation}
 between $V_{b11}$ and $V_{b12}$.
-Similar to the pieces of IQ Twist, the basic idea for the pieces Zig Zag puzzler is all other units of pieces rotate around the first unit of the pieces.
+Similar to IQ Twist, the basic idea to find all configurations for each piece in Zig Zag Puzzler is that all other units of the piece rotate around the first unit of the piece.
 \\Tobias and Krantz \cite{r9} indicate that 3D rotations can be separately represented by rotation around x-axis, y-axis, and z-axis 
 \begin{equation}
 \label{equation:3Dmatrix1}
@@ -473,7 +562,7 @@ R_{x}(\theta_{1})=\begin{bmatrix}
 \end{bmatrix},
 \end{aligned}
 \end{equation}
-where $R_{x}(\theta_{1})$ is corresponding to rotation around x-axis by $\theta_{1}$, $R_{y}(\theta_{2})$ is corresponding to the rotation around y-axis by $\theta_{2}$ and $R_{z}(\theta_{3})$ is corresponding to the rotation around z-axis by $\theta_{3}$. In addition, if a point rotate around x-axis by $\alpha$, y-axis by $\theta$ and z-axis by $\gamma$ at the same time, the combination of the three matrix in Equation~\ref{equation:3Dmatrix1} can be represented as
+where $R_{x}(\theta_{1})$ is corresponding to counterclockwise rotation around x-axis by $\theta_{1}$, $R_{y}(\theta_{2})$ is corresponding to the counterclockwise rotation around y-axis by $\theta_{2}$ and $R_{z}(\theta_{3})$ is corresponding to the counterclockwise rotation around z-axis by $\theta_{3}$. In addition, if a point rotate around x-axis by $\alpha$, y-axis by $\theta$ and z-axis by $\gamma$ at the same time, the combination of the three matrix in Equation~\ref{equation:3Dmatrix1} can be represented as
 \begin{equation}
 \label{equation:3Dmatrix2}
 \begin{aligned}
@@ -507,10 +596,12 @@ z\\
 &z'=y\sin\theta_{1}+z\cos\theta_{1}.
 \end{aligned}
 \end{equation}
-Therefore, if we assign $0^{\circ}, 90^{\circ}, 180^{\circ}, 270^{\circ}$ to $\theta_{1}$ in Equation~\ref{equation:theta1}, we obtain $(x,y,z)$, $(x,-z,y)$, $(x,-y,-z)$ and $(x,z,-y)$.
-Similarly, if a point rotates around the y-axis and the z-axis by $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ and $270^{\circ}$, we can get 4 configurations each. Intuitively, the number of all possible configurations should be 64 because a point can rotate around x-axis by $\theta_{1}$ which is $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ or $270^{\circ}$, rotate around y-axis by $\theta_{2}$ which is $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ or $270^{\circ}$, and rotate around z-axis by $\theta_{3}$ which is $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ or $270^{\circ}$. Therefore, the all possible situations should be the combination of $\theta_{1}$, $\theta_{2}$ and $\theta_{3}$, there should be a total of 64 configurations ($4\times 4 \times 4$). \\However, there are only 24 configurations because of the "singularities" of Euler angles set. Euler angles are three angles that used to represent the direction of rigid body in 3D space~\cite{r24}, which corresponds $\alpha$, $\beta$ and $\gamma$ in Equation~\ref{equation:3Dmatrix2}. Hughes~\cite{r19} highlights that "any set of Euler angles where the second rotation aligns the axes of the first and third rotations causes a singularity". The second rotation axis is y-axis, and the corresponding rotation angles is $\beta$. In addition, the geometric singularities only appear when $\beta=\pm90^{\circ}$ which is called "a repeated
-axis sequence" as well as $\beta=0^{\circ}$ or $180^{\circ}$ which is called non-repeated axis
-sequences~\cite{r17,r19}. How they cause singularities? Firstly, let us consider $\beta=\pm90^{\circ}$. If $\beta=90^{\circ}$, we get 
+Therefore, if $0^{\circ}, 90^{\circ}, 180^{\circ}, 270^{\circ}$ are assigned to $\theta_{1}$ in Equation~\ref{equation:theta1}, we obtain $(x,y,z)$, $(x,-z,y)$, $(x,-y,-z)$ and $(x,z,-y)$.
+Similarly, if a point rotates around the y-axis and the z-axis by $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ and $270^{\circ}$, we can get 4 configurations each. Intuitively, the number of all possible configurations should be 64 because a point can rotate around x-axis by $\theta_{1}$ which is $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ or $270^{\circ}$, rotate around y-axis by $\theta_{2}$ which is $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ or $270^{\circ}$, and rotate around z-axis by $\theta_{3}$ which is $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ or $270^{\circ}$. Therefore, the all possible configurations should be the combination of $\theta_{1}$, $\theta_{2}$ and $\theta_{3}$, there should be a total of $4\times 4 \times 4$ configurations. 
+\\However, there are only 24 configurations because of the "singularities" of Euler angles set. Euler angles are three angles that used to represent the direction of rigid body in 3D space~\cite{r24}, which corresponds $\alpha$, $\beta$ and $\gamma$ in Equation~\ref{equation:3Dmatrix2}. Hughes~\cite{r19} highlights that "any set of Euler angles where the second rotation aligns the axes of the first and third rotations causes a singularity". The second rotation axis is y-axis, and the corresponding rotation angles are $\beta$. In addition, the geometric singularities only appear when $\beta=\pm90^{\circ}$ which is called "a repeated
+axis sequence" and $\beta=0^{\circ}$ or $180^{\circ}$ which is called non-repeated axis
+sequences~\cite{r17,r19}. How they cause singularities? 
+\\Firstly, let us consider $\beta=\pm90^{\circ}$. If $\beta=90^{\circ}$, we get 
 \begin{equation}
 R_{\beta=90}=R_{z}(\alpha)R_{y}(90^{\circ})R_{x}(\gamma)=
 \begin{bmatrix}
@@ -560,8 +651,25 @@ and for $\beta=270^{\circ}$,
 &z'=x.
 \end{aligned}
 \end{equation}
-Because in our case, the domains of both $\alpha$ and $\gamma$ are $0^{\circ}$, $90^{\circ}$, $180^{\circ}$, $270^{\circ}$ and the period of the trigonometric function is $360^{\circ}$. For Equation~\ref{equation:beta=90}, the 4 configurations are $\alpha-\gamma$=$0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$. For Equation~\ref{equation:beta=270}, the 4 configurations are $\alpha+\gamma$=$0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$.
-Therefore, these 2 groups of formulas represent that there are only 4 configurations for each of them. In other words, the separated $\alpha$ and $\gamma$ are meaningless. What we should consider is $\alpha-\gamma$ in Equation~\ref{equation:beta=90} and $\alpha+\gamma$ in Equation~\ref{equation:beta=270}. 
+Because in our case, the possible values for both $\alpha$ and $\gamma$ are $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ and $270^{\circ}$, and the period of the trigonometric function is $360^{\circ}$. For Equation~\ref{equation:beta=90}, the four situations are
+\begin{equation}
+\begin{aligned}
+&\alpha-\gamma=0^{\circ},\\
+&\alpha-\gamma=90^{\circ},\\
+&\alpha-\gamma=180^{\circ},\\
+&\alpha-\gamma=270^{\circ}.
+\end{aligned}
+\end{equation}
+For Equation~\ref{equation:beta=270}, the four situations are 
+\begin{equation}
+\begin{aligned}
+&\alpha+\gamma=0^{\circ},\\
+&\alpha+\gamma=90^{\circ},\\
+&\alpha+\gamma=180^{\circ},\\
+&\alpha+\gamma=270^{\circ}.
+\end{aligned}
+\end{equation}
+Therefore, these two groups of formulas represent that there are only four possible situations for each of them. In other words, the separated $\alpha$ and $\gamma$ are meaningless. What we should consider is $(\alpha-\gamma)$ in Equation~\ref{equation:beta=90} and $(\alpha+\gamma)$ in Equation~\ref{equation:beta=270}. 
 \\In Equation~\ref{equation:beta=90}, we assign 0,90,180 and 270 degrees to the $(\alpha-\gamma)$, we get four configurations:
 \begin{itemize}
   \item  $x'=-y\sin(0^{\circ})-z\cos(0^{\circ}),\hspace{5pt} y'=y\cos(0^{\circ})+z\sin(0^{\circ}),\hspace{5pt} z'=-x \\\implies x'=-z,\hspace{5pt} y'=y,\hspace{5pt} z'=-x$
@@ -598,7 +706,7 @@ R=R_{z}(\alpha)R_{y}(180^{\circ})R_{x}(\gamma)=
 0&                               -\sin\gamma&-\cos\gamma\\
 \end{bmatrix}.
 \end{equation}
-In Equation~\ref{equation:beta=0}, we assign $\alpha=\alpha+180^{\circ}$ and $\gamma=\gamma+180^{\circ}$, then it change to
+In Equation~\ref{equation:beta=180}, we assign $(\alpha+180^{\circ})$ to $\alpha$ and $(\gamma+180^{\circ})$ to $\gamma$, then it change to
 \begin{equation}
 \label{equation:alphaandgamma}
 \begin{aligned}
@@ -619,14 +727,31 @@ Therefore, based on Equation~\ref{equation:beta=0} and Equation~\ref{equation:al
 \begin{equation}
 R_{z}(\alpha)R_{y}(0^{\circ})R_{x}(\gamma)=R_{z}(\alpha+180^{\circ})R_{y}(180^{\circ})R_{x}(\gamma+180^{\circ}),
 \end{equation}
-which means that when $\beta=0^{\circ}$, regardless of the number of degrees of $\alpha$ and the number of degrees of $\gamma$, there are always corresponding $\alpha+180^{\circ}$, $\gamma+180^{\circ}$ when $\beta=180^{\circ}$. Even though the number of degrees of $\alpha+180^{\circ}$ or $\gamma+180^{\circ}$ may be more than $360^{\circ}$, it can always find a corresponding from $0^{\circ}$ to $360^{\circ}$ according to the periodicity of trigonometric function. For example, \begin{equation}
+which means that when $\beta=0^{\circ}$, regardless of the number of degrees of $\alpha$ and the number of degrees of $\gamma$, there are always corresponding $\alpha+180^{\circ}$, $\gamma+180^{\circ}$ when $\beta=180^{\circ}$. Even though the number of degrees of $\alpha+180^{\circ}$ or $\gamma+180^{\circ}$ may be more than $360^{\circ}$, it can always find a corresponding from $0^{\circ}$ to $360^{\circ}$ according to the periodicity of trigonometric function. For example, 
+\begin{equation}
 \begin{aligned}
-&\circled{1}R_{z}(270^{\circ})Ry(0^{\circ})R_{x}(270^{\circ}) = R_{z}(450^{\circ})R_{y}(180^{\circ})R_{x}(450^{\circ})\\ 
-&\circled{2}R_{z}(450^{\circ})Ry(180^{\circ})R_{x}(450^{\circ}) = R_{z}(90^{\circ})R_{y}(180^{\circ})R_{x}(90^{\circ})\\
+&\circled{1}R_{z}(270^{\circ})Ry(0^{\circ})R_{x}(270^{\circ}) = R_{z}(450^{\circ})R_{y}(180^{\circ})R_{x}(450^{\circ}),\\ 
+&\circled{2}R_{z}(450^{\circ})Ry(180^{\circ})R_{x}(450^{\circ}) = R_{z}(90^{\circ})R_{y}(180^{\circ})R_{x}(90^{\circ}),\\
 &\circled{1},\circled{2}\implies R_{z}(270^{\circ})Ry(0^{\circ})R_{x}(270^{\circ})   = R_{z}(90^{\circ})R_{y}(180^{\circ})R_{x}(90^{\circ}).
 \end{aligned}
 \end{equation}
-Hence, all combinations among $\beta=0^{\circ}$, $\theta=0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$ and $\gamma=0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$ can be obtained from one combination among $\beta=180^{\circ}$, $\theta=0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$ and $\gamma=0^{\circ}$ or $90^{\circ}$ or $180^{\circ}$ or $270^{\circ}$. So we only need to consider the all configurations when $\beta=0^{\circ}$ because the all configurations in $\beta=180^{\circ}$ are duplicates. For Equation~\ref{equation:beta=0}, we assign $\theta=0^{\circ},\gamma=0^{\circ}$; $\theta=0^{\circ},\gamma=90^{\circ}$;...;$\theta=270^{\circ},\gamma=180^{\circ}$; $\theta=270^{\circ},\gamma=270^{\circ}$. we get
+Hence, all combinations among 
+\begin{equation}
+\begin{aligned}
+&\beta=0^{\circ};\\
+&\theta=0^{\circ}, 90^{\circ}, 180^{\circ}, 270^{\circ};\\
+&\gamma=0^{\circ}, 90^{\circ}, 180^{\circ}, 270^{\circ};
+\end{aligned}
+\end{equation}
+can be obtained from one combination among 
+\begin{equation}
+\begin{aligned}
+\beta=180^{\circ};
+\theta=0^{\circ}, 90^{\circ}, 180^{\circ}, 270^{\circ};
+\gamma=0^{\circ}, 90^{\circ}, 180^{\circ}, 270^{\circ}.
+\end{aligned}
+\end{equation}
+So we only need to consider the all configurations when $\beta=0^{\circ}$ because the all possible configurations in $\beta=180^{\circ}$ are duplicates. For Equation~\ref{equation:beta=0}, we assign $\theta=0^{\circ},\gamma=0^{\circ}$; $\theta=0^{\circ},\gamma=90^{\circ}$;...;$\theta=270^{\circ},\gamma=180^{\circ}$; $\theta=270^{\circ},\gamma=270^{\circ}$. we get
 \begin{itemize}
   \item  $x'=x$,   $y'=y$,    $z'=z$,
   \item  $x'=x$,   $y'=-z$,   $z'=y$, 
@@ -647,7 +772,7 @@ Hence, all combinations among $\beta=0^{\circ}$, $\theta=0^{\circ}$ or $90^{\cir
   \label{3Drotation24situations3}
 \end{itemize}
 There should be a total of 16 configurations (4$\times$4). Finally, consider the all configurations in $\beta=90^{\circ}$, $\beta=270^{\circ}$, $\beta=^{\circ}0$ and $\beta=180^{\circ}$. There should be a total of 4+4+16=24 configurations.
-Therefore, if we assign $(0,0,0)$ to $Vb11$ in Figure~\ref{fig:3Dblue1explanation}, accordingly, we can get the initial state for $Vb12$, $Vb13$, $Vb14$ and $Vb15$, which corresponds as (-1,0,0), (-1,-1,0), (0,0,-1) and (-1,0,1). Based on the initial state, if all other units of piece rotate around Vb11, there should be 24 configurations. In our case, the piece can be moved as long as all units of piece on the board. Hence, on the condition of all units of piece on the board, we can assign variables $(x_{0},y_{0},z_{0})$ to $Vb11$, accordingly, we can get other units of piece's positions. Therefore, the constrains can be represented by the relationships between each other units of piece with the first unit of piece $Vb11$.
+Therefore, if we assign $(0,0,0)$ to $Vb11$ in Figure~\ref{fig:3Dblue1explanation}, accordingly, we can get the initial states for $Vb12$, $Vb13$, $Vb14$ and $Vb15$. They separately correspond as (-1,0,0), (-1,-1,0), (0,0,-1) and (-1,0,1). All of them make up the initial state of Blue piece1. Based on the initial state of Blue piece1, if all other units of the piece rotate around Vb11, there should be 24 configurations. In our case, the piece can be moved as long as all units of piece on the board. Hence, on the condition of all units of piece on the board, we can assign variables $(x_{0},y_{0},z_{0})$ to $Vb11$, accordingly, we can get other units of piece's positions. Therefore, the constrains can be represented by the relationships between each other units of piece with the first unit of piece $Vb11$.
 \subsection{Constraints}
 According to chapter~\ref{section:3Drotationmatrix}, there are 24 rotation configurations. So we get
 \begin{align*}
@@ -703,4 +828,193 @@ According to chapter~\ref{section:3Drotationmatrix}, there are 24 rotation confi
 &\hspace{1ex} y_{4}=y_{1}-1,\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1}-1,\hspace{1ex} y_{5}=y_{1}+1,\hspace{1ex} z_{5}=z_{1})\}.
 \end{align*}
 Similarly, we can get the constraints for other pieces.
-\subsection{Implementation}
+\subsection{Encodings for Zig Zag Puzzler}
+All models in the Zig Zag Puzzler booklet are encoded in Minizinc. For both playing mode1 and playing mode2, some pieces will be set on the board in advance. Therefore, all the models can be considered as two parts, one is the placed pieces which is different in each model, the other is the general CSP model which is the same in all models. 
+\subsubsection{Placed Pieces}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figs/mode1.jpg}
+    \caption{The last case in Zig Zag Puzzler playing mode1}
+    \label{fig:game2mode1}
+    \end{subfigure}
+     \begin{subfigure}[b]{.45\textwidth}
+     \centering
+      \includegraphics[width=\textwidth]{figs/mode2.jpg}
+    \caption{The last case in Zig Zag Puzzler playing mode2}
+    \label{fig:game2mode2}
+     \end{subfigure}
+     \caption{The examples in Zig Zag Puzzler}
+     \label{fig:exampleszigzag}
+\end{figure}
+Figure~\ref{fig:game2mode1} shows the last case in Zig Zag Puzzler playing mode1. According to the board in Figure~\ref{fig:board1} and the pieces in Figure~\ref{fig:3Dblue1} and Figure~\ref{fig:3Dorange}, the positions of the units of blue piece $Vb11$, $Vb12$, $Vb13$, $Vb14$ and $Vb15$ are $(1,4,2)$, $(1,4,1)$, $(2,4,1)$, $(1,3,2)$ and $(1,5,1)$, which are encoded as 
+\begin{lstlisting}[language=minizinc,numbers=none]
+constraint Vb11 = 142;
+constraint Vb12 = 141;
+constraint Vb13 = 241;
+constraint Vb14 = 132;
+constraint Vb15 = 151;
+\end{lstlisting}
+, and the positions of the units of orange piece $Vo1$, $Vo2$, $Vo3$ and $Vo4$ are $(3,2,1)$, $(3,3,1)$, $(2,2,1)$ and $(3,2,2)$, which are encoded as 
+\begin{lstlisting}[language=minizinc,numbers=none]
+constraint Vo1 = 321;
+constraint Vo2 = 331;
+constraint Vo3 = 221;
+constraint Vo4 = 322;
+\end{lstlisting}
+. Figure~\ref{fig:game2mode2} shows the last case in Zig Zag Puzzler playing mode2. Based on the board in Figure~\ref{fig:board2} and the pieces in Figure~\ref{fig:3Dblue1}, the position of the units of blue piece Vb21, Vb22, Vb23, Vb24 and Vb25 are (2,4,3), (2,3,3), (3,4,3), (3,4,4) and (1,3,3), which are encoded as
+\begin{lstlisting}[language=minizinc,numbers=none]
+constraint Vb21 = 243;
+constraint Vb22 = 233;
+constraint Vb23 = 343;
+constraint Vb24 = 344;
+constraint Vb25 = 133;
+\end{lstlisting}
+. In addition, for the playing mode2, there might be some special cases.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figs/specialcase.jpg}
+    \caption{The special case in Zig Zag Puzzler playing mode2}
+    \label{fig:specialcase}
+\end{figure}
+For instance, in Figure~\ref{fig:specialcase}, it's hard to judge where are the exact positions of units of red piece. In such a case, the red piece1 (although red piece1 and red piece2 are exactly the same shape, we assume it is red piece1 here) can be encoded as 
+\begin{lstlisting}
+constraint (Vr11=422 \/  Vr12=422);
+\end{lstlisting}
+, which means that we need to consider all possible situations.
+\subsubsection{The General Model}
+In this part, all the aspects about CSP model will be addressed.
+\\Firstly, for both playing modes, the variables are encoded as 
+\begin{lstlisting}[language=minizinc,numbers=none]
+var position: Vy1;var position: Vy2;var position: Vy3;var position: Vy4;
+var position: Vb11;var position: Vb12;var position: Vb13;var position: Vb14;var position: Vb15;
+var position: Vb21;var position: Vb22;var position: Vb23;var position: Vb24;var position: Vb25;
+var position: Vg11;var position: Vg12;var position: Vg13;var position: Vg14;
+var position: Vg21;var position: Vg22;var position: Vg23;
+var position: Vr11;var position: Vr12;var position: Vr13;
+var position: Vr21;var position: Vr22;var position: Vr23;
+var position: Vo1;var position: Vo2;var position: Vo3;var position: Vo4;
+var position: Vp1;var position: Vp2;var position: Vp3;var position: Vp4;
+\end{lstlisting}
+. 
+\\Secondly, the domains of playing mode1 and playing mode2 are different. For playing mode1, the domain is related to Figure~\ref{fig:board1}, which are encoded as
+\begin{lstlisting}[language=minizinc,numbers=none]
+set of int: position={
+511,
+411,412,421,
+311,312,313,321,322,331,
+211,212,213,214,221,222,223,231,232,241,
+111,112,113,114,115,121,122,123,124,131,132,133,141,142,151};
+\end{lstlisting}
+, while the domain for playing mode2 is related to Figure~\ref{fig:board2}, which are encoded as
+\begin{lstlisting}[language=minizinc,numbers=none]
+set of int: position={
+144,244,344,444,544,
+133,233,333,433,533,143,243,343,443,543,
+122,222,322,422,522,132,232,332,432,532,
+111,211,311,411,511,121,221,321,421,521};
+\end{lstlisting}
+In addition, the constraints for both playing mode1 and playing mode2 are exactly the same. For example, the 3Dblue piece1 which is shown in Figure~\ref{fig:3Dblue1} are encoded as  
+\begin{lstlisting}[language=minizinc,numbers=none]
+constraint ( 
+(g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)+1/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)/\ g1(Vb13)=g1(Vb11)+1/\ g2(Vb13)=g2(Vb11)-1/\ g0(Vb14)=g0(Vb11)-1/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)+1/\ g1(Vb15)=g1(Vb11)+1/\ g2(Vb15)=g2(Vb11))\/ 
+
+(g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)+1/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)/\ g1(Vb13)=g1(Vb11)+1/\ g2(Vb13)=g2(Vb11)+1/\ g0(Vb14)=g0(Vb11)+1/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)-1/\ g1(Vb15)=g1(Vb11)+1/\ g2(Vb15)=g2(Vb11))\/ 
+
+(g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)-1/\ g0(Vb13)=g0(Vb11)-1/\ g1(Vb13)=g1(Vb11)/\ g2(Vb13)=g2(Vb11)-1/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)+1/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)/\ g1(Vb15)=g1(Vb11)-1/\ g2(Vb15)=g2(Vb11)-1)\/ 
+
+(g0(Vb12)=g0(Vb11)-1/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)-1/\ g1(Vb13)=g1(Vb11)+1/\ g2(Vb13)=g2(Vb11)/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)-1/\ g0(Vb15)=g0(Vb11)-1/\ g1(Vb15)=g1(Vb11)/\ g2(Vb15)=g2(Vb11)+1)\/ 
+
+(g0(Vb12)=g0(Vb11)-1/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)-1/\ g1(Vb13)=g1(Vb11)-1/\ g2(Vb13)=g2(Vb11)/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)+1/\ g0(Vb15)=g0(Vb11)-1/\ g1(Vb15)=g1(Vb11)/\ g2(Vb15)=g2(Vb11)-1)\/ 
+
+(g0(Vb12)=g0(Vb11)+1/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)+1/\ g1(Vb13)=g1(Vb11)-1/\ g2(Vb13)=g2(Vb11)/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)-1/\ g0(Vb15)=g0(Vb11)+1/\ g1(Vb15)=g1(Vb11)/\ g2(Vb15)=g2(Vb11)+1)\/ 
+
+(g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)-1/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)/\ g1(Vb13)=g1(Vb11)-1/\ g2(Vb13)=g2(Vb11)-1/\ g0(Vb14)=g0(Vb11)+1/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)-1/\ g1(Vb15)=g1(Vb11)-1/\ g2(Vb15)=g2(Vb11))\/ 
+
+(g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)-1/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)/\ g1(Vb13)=g1(Vb11)-1/\ g2(Vb13)=g2(Vb11)+1/\ g0(Vb14)=g0(Vb11)-1/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)+1/\ g1(Vb15)=g1(Vb11)-1/\ g2(Vb15)=g2(Vb11))\/ 
+
+(g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)+1/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)+1/\ g1(Vb13)=g1(Vb11)+1/\ g2(Vb13)=g2(Vb11)/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)-1/\ g0(Vb15)=g0(Vb11)/\ g1(Vb15)=g1(Vb11)+1/\ g2(Vb15)=g2(Vb11)+1)\/ 
+
+(g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)+1/\ g0(Vb13)=g0(Vb11)/\ g1(Vb13)=g1(Vb11)-1/\ g2(Vb13)=g2(Vb11)+1/\ g0(Vb14)=g0(Vb11)+1/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)-1/\ g1(Vb15)=g1(Vb11)/\ g2(Vb15)=g2(Vb11)+1)\/ 
+
+(g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)+1/\ g0(Vb13)=g0(Vb11)+1/\ g1(Vb13)=g1(Vb11)/\ g2(Vb13)=g2(Vb11)+1/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)+1/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)/\ g1(Vb15)=g1(Vb11)-1/\ g2(Vb15)=g2(Vb11)+1)\/ 
+
+(g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)-1/\ g0(Vb13)=g0(Vb11)/\ g1(Vb13)=g1(Vb11)+1/\ g2(Vb13)=g2(Vb11)-1/\ g0(Vb14)=g0(Vb11)+1/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)-1/\ g1(Vb15)=g1(Vb11)/\ g2(Vb15)=g2(Vb11)-1)\/ 
+
+(g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)-1/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)-1/\ g1(Vb13)=g1(Vb11)-1/\ g2(Vb13)=g2(Vb11)/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)-1/\ g0(Vb15)=g0(Vb11)/\ g1(Vb15)=g1(Vb11)-1/\ g2(Vb15)=g2(Vb11)+1)\/ 
+
+(g0(Vb12)=g0(Vb11)+1/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)+1/\ g1(Vb13)=g1(Vb11)/\ g2(Vb13)=g2(Vb11)-1/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)+1/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)+1/\ g1(Vb15)=g1(Vb11)-1/\ g2(Vb15)=g2(Vb11))\/ 
+
+(g0(Vb12)=g0(Vb11)+1/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)+1/\ g1(Vb13)=g1(Vb11)+1/\ g2(Vb13)=g2(Vb11)/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)+1/\ g0(Vb15)=g0(Vb11)+1/\ g1(Vb15)=g1(Vb11)/\ g2(Vb15)=g2(Vb11)-1)\/ 
+
+(g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)-1/\ g0(Vb13)=g0(Vb11)/\ g1(Vb13)=g1(Vb11)-1/\ g2(Vb13)=g2(Vb11)-1/\ g0(Vb14)=g0(Vb11)-1/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)+1/\ g1(Vb15)=g1(Vb11)/\ g2(Vb15)=g2(Vb11)-1)\/ 
+
+(g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)+1/\ g0(Vb13)=g0(Vb11)/\ g1(Vb13)=g1(Vb11)+1/\ g2(Vb13)=g2(Vb11)+1/\ g0(Vb14)=g0(Vb11)-1/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)+1/\ g1(Vb15)=g1(Vb11)/\ g2(Vb15)=g2(Vb11)+1)\/ 
+
+(g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)-1/\ g0(Vb13)=g0(Vb11)+1/\ g1(Vb13)=g1(Vb11)/\ g2(Vb13)=g2(Vb11)-1/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)-1/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)/\ g1(Vb15)=g1(Vb11)+1/\ g2(Vb15)=g2(Vb11)-1)\/ 
+
+(g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)-1/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)+1/\ g1(Vb13)=g1(Vb11)-1/\ g2(Vb13)=g2(Vb11)/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)+1/\ g0(Vb15)=g0(Vb11)/\ g1(Vb15)=g1(Vb11)-1/\ g2(Vb15)=g2(Vb11)-1)\/ 
+
+(g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)+1/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)-1/\ g1(Vb13)=g1(Vb11)+1/\ g2(Vb13)=g2(Vb11)/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)+1/\ g0(Vb15)=g0(Vb11)/\ g1(Vb15)=g1(Vb11)+1/\ g2(Vb15)=g2(Vb11)-1)\/ 
+
+(g0(Vb12)=g0(Vb11)+1/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)+1/\ g1(Vb13)=g1(Vb11)/\ g2(Vb13)=g2(Vb11)+1/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)-1/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)+1/\ g1(Vb15)=g1(Vb11)+1/\ g2(Vb15)=g2(Vb11))\/ 
+
+(g0(Vb12)=g0(Vb11)-1/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)-1/\ g1(Vb13)=g1(Vb11)/\ g2(Vb13)=g2(Vb11)+1/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)+1/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)-1/\ g1(Vb15)=g1(Vb11)-1/\ g2(Vb15)=g2(Vb11))\/ 
+
+(g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)+1/\ g0(Vb13)=g0(Vb11)-1/\ g1(Vb13)=g1(Vb11)/\ g2(Vb13)=g2(Vb11)+1/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)-1/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)/\ g1(Vb15)=g1(Vb11)+1/\ g2(Vb15)=g2(Vb11)+1)\/ 
+
+(g0(Vb12)=g0(Vb11)-1/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)-1/\ g1(Vb13)=g1(Vb11)/\ g2(Vb13)=g2(Vb11)-1/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)-1/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)-1/\ g1(Vb15)=g1(Vb11)+1/\ g2(Vb15)=g2(Vb11)));
+%Vb2
+constraint(
+(g0(Vb22)=g0(Vb21)-1/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)-1/\ g0(Vb24)=g0(Vb21)/\ g1(Vb24)=g1(Vb21)-1/\ g2(Vb24)=g2(Vb21)-1/\ g0(Vb25)=g0(Vb21)-1/\ g1(Vb25)=g1(Vb21)/\ g2(Vb25)=g2(Vb21)+1)\/ 
+
+(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)+1/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)+1/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)-1/\ g1(Vb24)=g1(Vb21)+1/\ g2(Vb24)=g2(Vb21)/\ g0(Vb25)=g0(Vb21)/\ g1(Vb25)=g1(Vb21)-1/\ g2(Vb25)=g2(Vb21)+1)\/ 
+
+(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)+1/\ g0(Vb23)=g0(Vb21)-1/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)-1/\ g1(Vb24)=g1(Vb21)-1/\ g2(Vb24)=g2(Vb21)/\ g0(Vb25)=g0(Vb21)+1/\ g1(Vb25)=g1(Vb21)/\ g2(Vb25)=g2(Vb21)+1)\/ 
+
+(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)+1/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)-1/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)-1/\ g1(Vb24)=g1(Vb21)/\ g2(Vb24)=g2(Vb21)+1/\ g0(Vb25)=g0(Vb21)+1/\ g1(Vb25)=g1(Vb21)+1/\ g2(Vb25)=g2(Vb21))\/ 
+
+(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)-1/\ g0(Vb23)=g0(Vb21)+1/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)+1/\ g1(Vb24)=g1(Vb21)-1/\ g2(Vb24)=g2(Vb21)/\ g0(Vb25)=g0(Vb21)-1/\ g1(Vb25)=g1(Vb21)/\ g2(Vb25)=g2(Vb21)-1)\/ 
+
+(g0(Vb22)=g0(Vb21)-1/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)-1/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)/\ g1(Vb24)=g1(Vb21)-1/\ g2(Vb24)=g2(Vb21)+1/\ g0(Vb25)=g0(Vb21)-1/\ g1(Vb25)=g1(Vb21)+1/\ g2(Vb25)=g2(Vb21))\/ 
+
+(g0(Vb22)=g0(Vb21)+1/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)-1/\ g0(Vb24)=g0(Vb21)/\ g1(Vb24)=g1(Vb21)+1/\ g2(Vb24)=g2(Vb21)-1/\ g0(Vb25)=g0(Vb21)+1/\ g1(Vb25)=g1(Vb21)/\ g2(Vb25)=g2(Vb21)+1)\/ 
+
+(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)+1/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)-1/\ g0(Vb24)=g0(Vb21)-1/\ g1(Vb24)=g1(Vb21)/\ g2(Vb24)=g2(Vb21)-1/\ g0(Vb25)=g0(Vb21)/\ g1(Vb25)=g1(Vb21)+1/\ g2(Vb25)=g2(Vb21)+1)\/ 
+
+(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)-1/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)-1/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)-1/\ g1(Vb24)=g1(Vb21)-1/\ g2(Vb24)=g2(Vb21)/\ g0(Vb25)=g0(Vb21)/\ g1(Vb25)=g1(Vb21)+1/\ g2(Vb25)=g2(Vb21)-1)\/ 
+
+(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)-1/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)-1/\ g0(Vb24)=g0(Vb21)+1/\ g1(Vb24)=g1(Vb21)/\ g2(Vb24)=g2(Vb21)-1/\ g0(Vb25)=g0(Vb21)/\ g1(Vb25)=g1(Vb21)-1/\ g2(Vb25)=g2(Vb21)+1)\/ 
+
+(g0(Vb22)=g0(Vb21)+1/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)-1/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)/\ g1(Vb24)=g1(Vb21)-1/\ g2(Vb24)=g2(Vb21)-1/\ g0(Vb25)=g0(Vb21)+1/\ g1(Vb25)=g1(Vb21)+1/\ g2(Vb25)=g2(Vb21))\/ 
+
+(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)+1/\ g0(Vb23)=g0(Vb21)+1/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)+1/\ g1(Vb24)=g1(Vb21)+1/\ g2(Vb24)=g2(Vb21)/\ g0(Vb25)=g0(Vb21)-1/\ g1(Vb25)=g1(Vb21)/\ g2(Vb25)=g2(Vb21)+1)\/ 
+
+(g0(Vb22)=g0(Vb21)+1/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)+1/\ g0(Vb24)=g0(Vb21)/\ g1(Vb24)=g1(Vb21)-1/\ g2(Vb24)=g2(Vb21)+1/\ g0(Vb25)=g0(Vb21)+1/\ g1(Vb25)=g1(Vb21)/\ g2(Vb25)=g2(Vb21)-1)\/ 
+
+(g0(Vb22)=g0(Vb21)-1/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)+1/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)/\ g1(Vb24)=g1(Vb21)+1/\ g2(Vb24)=g2(Vb21)-1/\ g0(Vb25)=g0(Vb21)-1/\ g1(Vb25)=g1(Vb21)-1/\ g2(Vb25)=g2(Vb21))\/ 
+
+(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)-1/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)+1/\ g0(Vb24)=g0(Vb21)-1/\ g1(Vb24)=g1(Vb21)/\ g2(Vb24)=g2(Vb21)+1/\ g0(Vb25)=g0(Vb21)/\ g1(Vb25)=g1(Vb21)-1/\ g2(Vb25)=g2(Vb21)-1)\/ 
+
+(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)-1/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)+1/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)+1/\ g1(Vb24)=g1(Vb21)+1/\ g2(Vb24)=g2(Vb21)/\ g0(Vb25)=g0(Vb21)/\ g1(Vb25)=g1(Vb21)-1/\ g2(Vb25)=g2(Vb21)-1)\/ 
+
+(g0(Vb22)=g0(Vb21)-1/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)+1/\ g0(Vb24)=g0(Vb21)/\ g1(Vb24)=g1(Vb21)+1/\ g2(Vb24)=g2(Vb21)+1/\ g0(Vb25)=g0(Vb21)-1/\ g1(Vb25)=g1(Vb21)/\ g2(Vb25)=g2(Vb21)-1)\/ 
+
+(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)+1/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)+1/\ g0(Vb24)=g0(Vb21)+1/\ g1(Vb24)=g1(Vb21)/\ g2(Vb24)=g2(Vb21)+1/\ g0(Vb25)=g0(Vb21)/\ g1(Vb25)=g1(Vb21)+1/\ g2(Vb25)=g2(Vb21)-1)\/ 
+
+(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)-1/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)+1/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)+1/\ g1(Vb24)=g1(Vb21)/\ g2(Vb24)=g2(Vb21)+1/\ g0(Vb25)=g0(Vb21)-1/\ g1(Vb25)=g1(Vb21)-1/\ g2(Vb25)=g2(Vb21))\/ 
+
+(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)+1/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)-1/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)+1/\ g1(Vb24)=g1(Vb21)-1/\ g2(Vb24)=g2(Vb21)/\ g0(Vb25)=g0(Vb21)/\ g1(Vb25)=g1(Vb21)+1/\ g2(Vb25)=g2(Vb21)+1)\/ 
+
+(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)-1/\ g0(Vb23)=g0(Vb21)-1/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)-1/\ g1(Vb24)=g1(Vb21)+1/\ g2(Vb24)=g2(Vb21)/\ g0(Vb25)=g0(Vb21)+1/\ g1(Vb25)=g1(Vb21)/\ g2(Vb25)=g2(Vb21)-1)\/ 
+
+(g0(Vb22)=g0(Vb21)+1/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)+1/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)/\ g1(Vb24)=g1(Vb21)+1/\ g2(Vb24)=g2(Vb21)+1/\ g0(Vb25)=g0(Vb21)+1/\ g1(Vb25)=g1(Vb21)-1/\ g2(Vb25)=g2(Vb21))\/ 
+
+(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)+1/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)+1/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)+1/\ g1(Vb24)=g1(Vb21)/\ g2(Vb24)=g2(Vb21)-1/\ g0(Vb25)=g0(Vb21)-1/\ g1(Vb25)=g1(Vb21)+1/\ g2(Vb25)=g2(Vb21))\/ 
+
+(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)-1/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)-1/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)-1/\ g1(Vb24)=g1(Vb21)/\ g2(Vb24)=g2(Vb21)-1/\ g0(Vb25)=g0(Vb21)+1/\ g1(Vb25)=g1(Vb21)-1/\ g2(Vb25)=g2(Vb21)));
+\end{lstlisting}
+. The constraints for other pieces can be obtained in the same way. 
+\\In addition, in the final codes, if the positions of the units of piece has been placed before the game start, the constraint does not need to appear again. As an example, for the last case in Zig Zag Puzzler, the orange piece and blue piece1 have been set on the board, hence, the constraints about these two pieces will not appear in the final codes.
+\\The complete codes for the last case in Zig Zag Puzzler playing mode1 are in Appendix~\ref{appendix:lastcaseinmode1}, and the complete codes for the last case in Zia Zag Puzzler playing mode2 are in Appendix~\ref{appendix:lastcaseinmode2}. 

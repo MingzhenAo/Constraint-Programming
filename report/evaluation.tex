@@ -3,7 +3,7 @@
 \section{Experiment Environment}
 \subsection{Compiler}
 \label{section:compiler}
-Minizinc IDE is a compiler which allows users to edit and run their models, which is developed by the University of Melbourne, Monash University, and Data61 Decision Sciences~\cite{r6}. It provides some build-in functions as well as optimization methods. In our models, the build-in Minizinc-to-Flatzinc translator and AC3 has been applied. In addition, A wide range of solvers has been tested~\cite{r6}.
+Minizinc IDE is a compiler which allows users to edit and run their models, which is developed by the University of Melbourne, Monash University, and Data61 Decision Sciences~\cite{r6}. It provides some build-in functions as well as optimization methods. In our models, the build-in Minizinc-to-Flatzinc translator and AC3 have been applied. In addition, A wide range of solvers has been tested~\cite{r6}.
 \begin{itemize}
     \item Choco: A JAVA CSP solver, which supports many search strategies (DomWDeg, ABS, IBS, first-fail, etc.) and optimization processes (LNS, fast restart).
     \item Chuffed: A C++ FD solver using lazy clause generation, which contains a nogood logbook to avoid plenty of duplicate calculation.
@@ -15,13 +15,13 @@ Minizinc IDE is a compiler which allows users to edit and run their models, whic
     \item PicatSAT: A CSP solver based on picat which is a rule-based language. And it adopts log encoding~\cite{r8}.
     \item Yuck: Based on scala and combines local search with restarting, global constraints, and lexicographic cost functions.
 \end{itemize}
-\subsection{Software Platform}
+\subsection{Software Platform and Hardware Platform}
 \label{sec:softplat}
-Most of experiments based on the Windows subsystem for Linux 2 (WSL2) which allows the developer run a Linux environment on Windows 10. Only the experiments related to izplus based on docker that is a lightweight virtual machine which applied container virtualization technology~\cite{r25}. Table~\ref{tab:Ubuntu} shows the version of the WSL2.
+Most of experiments based on the Windows subsystem for Linux 2 (WSL2) which allows the developer run a Linux environment on Windows 10. Only the experiments related to izplus based on docker that is a lightweight virtual machine which applied container virtualization technology~\cite{r25}. The docker provides a Linux environment as well. Table~\ref{tab:Ubuntu} shows the version of the WSL2.
 \begin{table*}[htbp]
   \centering
 
-  \caption{The version of Windows subsystem for Linux}
+  \caption{The version of Windows subsystem for Linux 2}
   
   \label{tab:Ubuntu}
   \input table/Ubuntuversion.tex
@@ -46,9 +46,7 @@ Furthermore, as mentioned in Chapter~\ref{section:compiler}, there are nine solv
   \input table/solver3.tex
   \end{subtable}
 \end{table}
-\subsection{Hardware Platform}
-\label{sec:hardplat}
-
+\\In addition, Table~\ref{tab:machines} introduce the configurations of the hardware platform.
 \begin{table*}[htbp]
   \centering
 
@@ -61,13 +59,15 @@ Furthermore, as mentioned in Chapter~\ref{section:compiler}, there are nine solv
 
 \section{Result}
 \label{sec:Result}
-In this section, both the results of IQ Twist experiments and the results of Zig Zag Puzzler experiments will be discussed. Generally, all the cases in both games' booklets have been tested by the nine solvers. For each game, there are five difficulties 'start', 'junior', 'expert', 'master' and 'wizard'. Each difficulty consists of some cases. The time limit for running each case is 30 minutes, which is represented as 1800 seconds. If the solver can get the result in 1800 seconds, the time will be logged, otherwise, we treat it as a unsolved case. 
-\\Above all, the discussions for the result will mainly include two parts, the coverage rates and the average time of each solver. For the coverage rates, it can be calculated by 
+In this section, both the results of IQ Twist's experiments and the results of Zig Zag Puzzler's experiments will be discussed. Generally, all the cases in both games' booklets have been tested by the nine solvers. For each game, there are five difficulties 'start', 'junior', 'expert', 'master' and 'wizard'. Each difficulty consists of some cases. The time limit for running each case is 30 minutes, which is represented as 1800 seconds. If the solver can get the result in 1800 seconds, the time will be logged, otherwise, we treat it as an unsolved case. 
+\\Above all, the discussions for the result will mainly include two parts, the coverage rates and the average execution time of each solver. 
+\\For the coverage rates, it can be calculated by 
 \begin{equation}
 \label{equation:coverage}
    C= N1/N2\times 100\% ,
 \end{equation}
-where $C$ means the coverage rates, $N1$ means the number of solved cases and $N2$ means the number of total cases. And for the average time, it can be calculated by 
+where $C$ means the coverage rates, $N1$ means the number of solved cases and $N2$ means the number of total cases. 
+\\And for the average execution time, it can be calculated by 
 \begin{equation}
 \label{equation:averagetime}
 \overline{t}=\frac{\sum\limits_{i=1}^n t_{i}}{n},
@@ -102,10 +102,10 @@ where $\overline{t}$ is the average execution time, $\sum\limits_{i=1}^n t_{i}$ 
     \caption{Coverage rates and the number of solved cases in IQ Twist}
     \label{fig:comparisonIQtwist}
 \end{figure}
-In IQ twist booklet, there is a total of 120 cases, every 24 cases make up a difficulty.
-Firstly, for each solver, we can calculate the coverage rates by the Equation~\ref{equation:coverage}.
-Figure~\ref{eva1} shows the overall solved cases for each solver. Based on the data in Figure~\ref{eva1}, Figure~\ref{eva2} shows the overall coverage rates for different solvers, which indicates that there are only 3 solvers' overall coverage rates are 100 percentage. In addition, Figure~\ref{eva3} separately shows the solved cases of different difficulties for each solver. Accordingly, Figure~\ref{eva4} illustrates the change of coverage rates as the increasing of difficulty. It seems like that the other solvers are not stable in different difficulties except there are 3 solvers which always keep 100 percentages. Therefore, compared with other solvers, picatSAT, ortool and chuffed take advantages in coverage rates.
-\\In addition, based on the solved cases, we calculate the average execution time for each solver by Equation~\ref{equation:averagetime}.
+In the IQ twist booklet, there is a total of 120 cases, every 24 cases make up a difficulty. There is a total of five difficulties. 
+\\Firstly, for each solver, we can calculate the coverage rates by the Equation~\ref{equation:coverage}.
+Figure~\ref{eva1} shows the overall solved cases for each solver. Based on the data in Figure~\ref{eva1}, Figure~\ref{eva2} shows the overall coverage rates for different solvers, which indicates that there are only 3 solvers' overall coverage rates are 100 percent. In addition, Figure~\ref{eva3} separately shows the solved cases of different difficulties for each solver. Accordingly, Figure~\ref{eva4} illustrates the change of coverage rates as the increasing of difficulty. It seems like the other solvers are not stable in different difficulties except there are 3 solvers which always keep 100 percent. Therefore, compared with other solvers, picatSAT, ortool and chuffed take advantage in coverage rates.
+\\Secondly, based on the solved cases, we calculate the average execution time for each solver by Equation~\ref{equation:averagetime}.
 \begin{figure}[htbp]
 \centering
 \begin{subfigure}{0.48\textwidth}
@@ -161,7 +161,7 @@ In Zig Zag Puzzler booklet, there is a total of 80 cases, 40 of them belong to p
     \caption{Coverage rates and the number of solved cases in Zig Zag Puzzler playing mode1}
     \label{fig:comparisonmode1}
 \end{figure}
-Firstly, for each solver, we can calculate the coverage rates by the Equation~\ref{equation:coverage}. According to the data in Figure~\ref{fig:mode1eva1}, Figure~\ref{fig:mode1eva2} indicates that there are 4 solvers keep 100 percentages in the overall coverage. In addition, Figure~\ref{fig:mode1eva4} reveals that the other 5 solvers' separated coverage are decreased as the difficulty increase. 
+Firstly, for each solver, we can calculate the coverage rates by the Equation~\ref{equation:coverage}. According to the data in Figure~\ref{fig:mode1eva1}, Figure~\ref{fig:mode1eva2} indicates that there are 4 solvers keep 100 percent in the overall coverage. In addition, Figure~\ref{fig:mode1eva4} reveals that the other 5 solvers' separated coverage is decreased as the difficulty increase. 
 \begin{figure}[htbp]
 \centering
 \begin{subfigure}{0.48\textwidth}
@@ -177,7 +177,7 @@ Firstly, for each solver, we can calculate the coverage rates by the Equation~\r
 \caption{The average execution time of solved cases}
 \label{fig:mode1averagetime}
 \end{figure}
-For the average execution time, Figure~\ref{fig:mode1eva2} and Figure~\ref{fig:mode1averagetime1} illustrate that except Choco, the other 3 solvers which contain 100 percentages overall coverage rates need shorter overall average execution time too. For Choco, even though it solves every case in 30 minutes, its performance in overall average execution time is poor. And Figure~\ref{fig:compare} reveals that although the start point is very close, the growth rate of slopes for chuffed is much solver than ortool and picatSAT. Meanwhile, Figure~\ref{fig:mode1averagetime2} reveals a obvious positive correlation between the average execution time of different solvers and the difficulties except the curve of izplus. Based on Figure~\ref{fig:compare} and Figure~\ref{fig:mode1averagetime2}, chuffed has the optimal performance because of the lowest growth rate of slopes. 
+For the average execution time, Figure~\ref{fig:mode1eva2} and Figure~\ref{fig:mode1averagetime1} illustrate that except Choco, the other 3 solvers which contain 100 percent overall coverage rates need shorter overall average execution time too. For Choco, even though it solves every case in 30 minutes, its performance in overall average execution time is poor. And Figure~\ref{fig:compare} reveals that although the start point is very close, the growth rate of slopes for chuffed is much solver than ortool and picatSAT. Meanwhile, Figure~\ref{fig:mode1averagetime2} reveals an obvious positive correlation between the average execution time of different solvers and the difficulties except for the curve of izplus. Based on Figure~\ref{fig:compare} and Figure~\ref{fig:mode1averagetime2}, chuffed has the optimal performance because of the lowest growth rate of slopes. 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.6\textwidth]{figs/mode1solverscomparison.png}
@@ -213,8 +213,8 @@ Overall, combine coverage and average execution time, chuffed possess the best p
     \caption{Coverage rates and the number of solved cases in Zig Zag Puzzler playing mode2}
     \label{fig:comparisonmode2}
 \end{figure}
-As is shown in Figure~\ref{fig:comparisonmode2}, the result of coverage is quite similar with the result of coverage in playing mode 1. Chuffed, picatSAT and ortool solve each cases in 30 minutes. Meanwhile, Figure~\ref{fig:mode2eva4} the other 6 solvers' separated coverage are decreased as the difficulty increase.
-For the average execution time, except yuck, all the other solvers' average execution times are positive correlation with the difficulties. Again, chuffed achieve the optimal performance. 
+As is shown in Figure~\ref{fig:comparisonmode2}, the result of coverage is quite similar to the result of coverage in playing mode 1. Chuffed, picatSAT and ortool solve each case in 30 minutes. Meanwhile, Figure~\ref{fig:mode2eva4} the other 6 solvers' separated coverage is decreased as the difficulty increase.
+For the average execution time, except yuck, all the other solvers' average execution times are a positive correlation with the difficulties. Again, chuffed achieves optimal performance. 
 Similarly, Figure~\ref{fig:mode2averagetime} 
 \begin{figure}[htbp]
 \centering
@@ -231,7 +231,6 @@ Similarly, Figure~\ref{fig:mode2averagetime}
 \caption{The average execution time of solved cases}
 \label{fig:mode2averagetime}
 \end{figure}
-
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.6\textwidth]{figs/Threecomparison2.png}
