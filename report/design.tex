@@ -252,26 +252,26 @@ All the models in the IQ Twist booklet are encoded in Minizinc.  Based on the CS
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.6\textwidth]{figs/implementation1.jpg}
-    \caption{The last case in IQ Twist booklet}
+    \caption{The last problem in IQ Twist booklet}
     \label{fig:last_case}
 \end{figure}
 For example, with regard to the model in Figure~\ref{fig:last_case}, it can be encoded in 2 parts, pegs' position information which is different in each model and the general CSP model that is the same in all models.
 \subsubsection{Pegs' Position Information}
-Figure~\ref{fig:last_case} shows there are only 3 pegs on the board. On account of the coordinate system in Figure~\ref{fig:coordinate}, the positions of blue peg, red peg, and green peg are separately placed on (5,2), (6,1) and (5,4). And the other pegs are not on the board. Hence, they could be encoded as
-\begin{lstlisting}[language=minizinc,numbers=none]
+Figure~\ref{fig:last_case} shows there are only 3 pegs on the board. On account of the coordinate system in Figure~\ref{fig:coordinate}, the positions of blue peg, red peg, and green peg are separately placed on (5,2), (6,1) and (5,4). And the other pegs are not on the board. Hence, they could be encoded in Listing~\ref{lst:pegs' positions}.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for pegs' positions},label={lst:pegs' positions}]
 constraint Vpb1=52;
-constraint Vpb2=0;
+constraint Vpb2=0;  
 constraint Vpg1=54;
 constraint Vpg2=0;
 constraint Vpy1=0;
 constraint Vpy2=0;
 constraint Vpr=61;
 \end{lstlisting}
-.
+\bigskip
 \subsubsection{The General Model}
 In this part, all the aspects such as variables, domains and constraints about CSP model will be addressed.
-\\Firstly, all variables in CSP model are represented as the below codes.
-\begin{lstlisting}[language=minizinc,numbers=none]
+\\Firstly, all variables in CSP model are represented in Listing~\ref{lst:IQ Twist variables}.
+\begin{lstlisting}[caption={Encoding for variables},label={lst:IQ Twist variables},language=minizinc,numbers=none]
 var int:Vpr; var int:Vpb1;var int:Vpb2;var int:Vpg1;var int:Vpg2; var int:Vpy1;var int:Vpy2;
 var position: Vb11;var position: Vb12;var position: Vb13;var position: Vb14;var position: Vb15;
 var position: Vb21;var position: Vb22;var position: Vb23;var position: Vb24;
@@ -282,23 +282,25 @@ var position: Vr21;var position: Vr22;var position: Vr23;var position: Vr24;
 var position: Vy11;var position: Vy12;var position: Vy13;
 var position: Vy21;var position: Vy22;var position: Vy23;var position: Vy24;var position: Vy25;
 \end{lstlisting}
-Secondly, the domain of \VUnits is defined by "position" that corresponds to the below codes. In such a case, 11 in "position" means the position (1,1), 21 means the position (2,1) and so on. However, the domain of \VPegs is just be set as the set of all integers in the above codes, it does not matter because the specific positions for pegs have been set in pegs' position information.
-\begin{lstlisting}[language=minizinc,numbers=none]
+\bigskip
+Secondly, the domain of \VUnits is defined by "position" that corresponds to Listing~\ref{lst:IQ Twist domain}. In such a case, 11 in "position" means the position (1,1), 21 means the position (2,1) and so on. However, the domain of \VPegs is just be set as the set of all integers in Listing~\ref{lst:IQ Twist domain}, it does not matter because the specific positions for pegs have been set in Listing~\ref{lst:pegs' positions}.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for pieces' domain},label={lst:IQ Twist domain}]
 set of int: position={
 14,24,34,44,54,64,74,84,
 13,23,33,43,53,63,73,83,
 12,22,32,42,52,62,72,82,
 11,21,31,41,51,61,71,81};
 \end{lstlisting}
-Furthermore, the constraints will be separately addressed. 
-\\The codes below represent the first constraint, which means there is no 2 different unit variables contain the same value.
-\begin{lstlisting}[language=minizinc,numbers=none]
+\bigskip
+Furthermore, the constraints will be separately addressed. The codes in Listing~\ref{lst:IQ Twist constraint1} represent the first constraint, which means there is no 2 different unit variables contain the same value.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for constraint one},label={lst:IQ Twist constraint1}]
 constraint alldifferent([Vy11,Vy12,Vy13,Vy21,Vy22,Vy23,Vy24,Vy25,Vb11,Vb12,Vb13,Vb14,Vb15,Vb21,Vb22,Vb23,Vb24,Vg11,Vg12,Vg13,Vg14,
 Vg21,Vg22,Vg23,Vr11,Vr12,Vr13,Vr14,Vr21,Vr22,Vr23,Vr24]);
 \end{lstlisting}
+\bigskip
 With regards to the second constraint, again, because the positions for pegs have been set, the constraint is useless anymore.
-\\For the third constrain, as an example for yellow2, it could be presented as
-\begin{lstlisting}[language=minizinc,numbers=none]
+\\For the third constraint, as an example for yellow2, it could be encoded in Listing~\ref{lst:IQ Twist constraint3}.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for constraint three},label={lst:IQ Twist constraint3}]
 constraint (g0(Vy22) = g0(Vy21) + 1/\ g1(Vy22) = g1(Vy21)/\ g0(Vy23) = g0(Vy21) + 1/\ g1(Vy23) = g1(Vy21) + 1
             /\ g0(Vy24) = g0(Vy21) + 2/\ g1(Vy24) = g1(Vy21) + 1/\ g0(Vy25) = g0(Vy21) + 1/\ g1(Vy25) = g1(Vy21) + 2) \/
             
@@ -323,19 +325,20 @@ constraint (g0(Vy22) = g0(Vy21) + 1/\ g1(Vy22) = g1(Vy21)/\ g0(Vy23) = g0(Vy21) 
            (g0(Vy22) = g0(Vy21)/\ g1(Vy22) = g1(Vy21) + 1/\ g0(Vy23) = g0(Vy21) + 1/\ g1(Vy23) = g1(Vy21) + 1
             /\ g0(Vy24) = g0(Vy21) + 1/\ g1(Vy24) = g1(Vy21) + 2/\ g0(Vy25) = g0(Vy21) + 2/\ g1(Vy25) = g1(Vy21) + 1);
 \end{lstlisting}
-, where g0 function is used to get the corresponding $x$ value and g1 function is used to get the corresponding $y$ value. The functions are encoded as 
-\begin{lstlisting}[language=minizinc,numbers=none]
+\bigskip
+In this constraint, g0 function is used to get the corresponding $x$ value and g1 function is used to get the corresponding $y$ value. Accordingly, the functions represented in Listing~\ref{lst:IQ Twist functions}.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for functions},label={lst:IQ Twist functions}]
 function var int:g0(var int:a)=a mod 10;
 function var int:g1(var int:a)=a div 10;
 \end{lstlisting}
-. Comparably, the other pieces can be encoded.
-\\For the last constraint, as an instance, the yellow peg1 can be encoded as
-\begin{lstlisting}[language=minizinc,numbers=none]
+\bigskip
+Comparably, the other pieces can be encoded. For the last constraint, as an instance, the yellow peg1 can be encoded as below.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for constraint four},label={lst:IQ Twist constraint4}]
 constraint (Vpy1=00)\/(Vy11=Vpy1)\/(Vy21=Vpy1)\/(Vy22=Vpy1)\/(Vy24=Vpy1);
 \end{lstlisting}
-. In addition, other pegs can be represented in same way.
-\\By this way, the CSP model has been encoded, the complete codes in Appendix~\ref{appendix:finalcaseIQtwist}.
-\\Similarly, all the models can be encoded in this way.
+\bigskip
+In addition, other pegs can be represented in the same way.
+\\By this way, the complete codes for the problem for Figure~\ref{fig:last_case} in Appendix~\ref{appendix:finalcaseIQtwist}. Similarly, all the models can be encoded in this way.
 \section{ZIG ZAG Puzzler}
 Zig Zag Puzzler is a 3D puzzle game with two playing modes. Both games aim to place all pieces to full fill the game boards. In addition, for both of them, there are some pieces placed in advance to set the difficulty (Figure~\ref{fig:ZIG_ZAG_Puzzler_playing_modes}). Generally, the fewer pieces are placed in advance, the more difficult to solve the puzzler.
 \begin{figure}[htbp]
@@ -836,57 +839,61 @@ All models in the Zig Zag Puzzler booklet are encoded in Minizinc. For both play
     \begin{subfigure}[b]{.45\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figs/mode1.jpg}
-    \caption{The last case in Zig Zag Puzzler playing mode1}
+    \caption{The last problem in Zig Zag Puzzler playing mode1}
     \label{fig:game2mode1}
     \end{subfigure}
      \begin{subfigure}[b]{.45\textwidth}
      \centering
       \includegraphics[width=\textwidth]{figs/mode2.jpg}
-    \caption{The last case in Zig Zag Puzzler playing mode2}
+    \caption{The last problem in Zig Zag Puzzler playing mode2}
     \label{fig:game2mode2}
      \end{subfigure}
      \caption{The examples in Zig Zag Puzzler}
      \label{fig:exampleszigzag}
 \end{figure}
-Figure~\ref{fig:game2mode1} shows the last case in Zig Zag Puzzler playing mode1. According to the board in Figure~\ref{fig:board1} and the pieces in Figure~\ref{fig:3Dblue1} and Figure~\ref{fig:3Dorange}, the positions of the units of blue piece $Vb11$, $Vb12$, $Vb13$, $Vb14$ and $Vb15$ are $(1,4,2)$, $(1,4,1)$, $(2,4,1)$, $(1,3,2)$ and $(1,5,1)$, which are encoded as 
-\begin{lstlisting}[language=minizinc,numbers=none]
+Figure~\ref{fig:game2mode1} shows the last problem in Zig Zag Puzzler playing mode1. According to the board in Figure~\ref{fig:board1} and the pieces in Figure~\ref{fig:3Dblue1} and Figure~\ref{fig:3Dorange}, the positions of the units of blue piece1 $Vb11$, $Vb12$, $Vb13$, $Vb14$ and $Vb15$ are $(1,4,2)$, $(1,4,1)$, $(2,4,1)$, $(1,3,2)$ and $(1,5,1)$, which are encoded as Listing~\ref{lst:Bluepiece1}.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for blue piece1's position of last problem in playing mode1},label={lst:Bluepiece1}]
 constraint Vb11 = 142;
 constraint Vb12 = 141;
 constraint Vb13 = 241;
 constraint Vb14 = 132;
 constraint Vb15 = 151;
 \end{lstlisting}
-, and the positions of the units of orange piece $Vo1$, $Vo2$, $Vo3$ and $Vo4$ are $(3,2,1)$, $(3,3,1)$, $(2,2,1)$ and $(3,2,2)$, which are encoded as 
-\begin{lstlisting}[language=minizinc,numbers=none]
+\bigskip
+And the positions of the units of orange piece $Vo1$, $Vo2$, $Vo3$ and $Vo4$ are $(3,2,1)$, $(3,3,1)$, $(2,2,1)$ and $(3,2,2)$, which are encoded as Listing~\ref{lst:Orangepiece}.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for orange piece's position of last problem in playing mode1},label={lst:Orangepiece}]
 constraint Vo1 = 321;
 constraint Vo2 = 331;
 constraint Vo3 = 221;
 constraint Vo4 = 322;
 \end{lstlisting}
-. Figure~\ref{fig:game2mode2} shows the last case in Zig Zag Puzzler playing mode2. Based on the board in Figure~\ref{fig:board2} and the pieces in Figure~\ref{fig:3Dblue1}, the position of the units of blue piece Vb21, Vb22, Vb23, Vb24 and Vb25 are (2,4,3), (2,3,3), (3,4,3), (3,4,4) and (1,3,3), which are encoded as
-\begin{lstlisting}[language=minizinc,numbers=none]
+\bigskip
+Figure~\ref{fig:game2mode2} shows the last problem in Zig Zag Puzzler playing mode2. Based on the board in Figure~\ref{fig:board2} and the pieces in Figure~\ref{fig:3Dblue1}, the position of the units of blue piece Vb21, Vb22, Vb23, Vb24 and Vb25 are (2,4,3), (2,3,3), (3,4,3), (3,4,4) and (1,3,3), which are encoded as Listing~\ref{lst:Orangepiece}.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for blue piece2's position of last problem in playing mode2},label={lst:Orangepiece}]
 constraint Vb21 = 243;
 constraint Vb22 = 233;
 constraint Vb23 = 343;
 constraint Vb24 = 344;
 constraint Vb25 = 133;
 \end{lstlisting}
-. In addition, for the playing mode2, there might be some special cases.
+\bigskip
+In addition, for the playing mode2, there might be some special problems.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{figs/specialcase.jpg}
-    \caption{The special case in Zig Zag Puzzler playing mode2}
+    \caption{The special problem in Zig Zag Puzzler playing mode2}
     \label{fig:specialcase}
 \end{figure}
-For instance, in Figure~\ref{fig:specialcase}, it's hard to judge where are the exact positions of units of red piece. In such a case, the red piece1 (although red piece1 and red piece2 are exactly the same shape, we assume it is red piece1 here) can be encoded as 
-\begin{lstlisting}
+For instance, in Figure~\ref{fig:specialcase}, it's hard to judge where are the exact positions of units of red piece. In such a case, the red piece1 (although red piece1 and red piece2 are exactly the same shape, we assume it is red piece1 here) can be encoded as Listing~\ref{lst:red1}
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for red piece1 of special problem},label={lst:red1}]
 constraint (Vr11=422 \/  Vr12=422);
 \end{lstlisting}
-, which means that we need to consider all possible situations.
+\bigskip
+It means that we need to consider all possible situations.
 \subsubsection{The General Model}
 In this part, all the aspects about CSP model will be addressed.
-\\Firstly, for both playing modes, the variables are encoded as 
-\begin{lstlisting}[language=minizinc,numbers=none]
+\\Firstly, for both playing modes, the variables are encoded as Listing~\ref{lst:variables}.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for variables},label={lst:variables}]
 var position: Vy1;var position: Vy2;var position: Vy3;var position: Vy4;
 var position: Vb11;var position: Vb12;var position: Vb13;var position: Vb14;var position: Vb15;
 var position: Vb21;var position: Vb22;var position: Vb23;var position: Vb24;var position: Vb25;
@@ -897,9 +904,9 @@ var position: Vr21;var position: Vr22;var position: Vr23;
 var position: Vo1;var position: Vo2;var position: Vo3;var position: Vo4;
 var position: Vp1;var position: Vp2;var position: Vp3;var position: Vp4;
 \end{lstlisting}
-. 
-\\Secondly, the domains of playing mode1 and playing mode2 are different. For playing mode1, the domain is related to Figure~\ref{fig:board1}, which are encoded as
-\begin{lstlisting}[language=minizinc,numbers=none]
+\bigskip
+Secondly, the domains of playing mode1 and playing mode2 are different. For playing mode1, the domain is related to Figure~\ref{fig:board1}, which are encoded as Listing~\ref{lst:domian1}.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for the domain of playing mode1},label={lst:domian1}]
 set of int: position={
 511,
 411,412,421,
@@ -907,16 +914,18 @@ set of int: position={
 211,212,213,214,221,222,223,231,232,241,
 111,112,113,114,115,121,122,123,124,131,132,133,141,142,151};
 \end{lstlisting}
-, while the domain for playing mode2 is related to Figure~\ref{fig:board2}, which are encoded as
-\begin{lstlisting}[language=minizinc,numbers=none]
+\bigskip
+And the domain for playing mode2 is related to Figure~\ref{fig:board2}, which are encoded as Listing~\ref{lst:domian2}.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for the domain of playing mode2},label={lst:domian2}]
 set of int: position={
 144,244,344,444,544,
 133,233,333,433,533,143,243,343,443,543,
 122,222,322,422,522,132,232,332,432,532,
 111,211,311,411,511,121,221,321,421,521};
 \end{lstlisting}
-In addition, the constraints for both playing mode1 and playing mode2 are exactly the same. For example, the 3Dblue piece1 which is shown in Figure~\ref{fig:3Dblue1} are encoded as  
-\begin{lstlisting}[language=minizinc,numbers=none]
+\bigskip
+In addition, the constraints for both playing mode1 and playing mode2 are exactly the same. For example, the 3Dblue piece1 which is shown in Figure~\ref{fig:3Dblue1} are encoded as Listing~\ref{lst:constraint}.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for 3Dblue piece1},label={lst:constraint}]
 constraint ( 
 (g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)+1/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)/\ g1(Vb13)=g1(Vb11)+1/\ g2(Vb13)=g2(Vb11)-1/\ g0(Vb14)=g0(Vb11)-1/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)+1/\ g1(Vb15)=g1(Vb11)+1/\ g2(Vb15)=g2(Vb11))\/ 
 
@@ -965,56 +974,8 @@ constraint (
 (g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)+1/\ g0(Vb13)=g0(Vb11)-1/\ g1(Vb13)=g1(Vb11)/\ g2(Vb13)=g2(Vb11)+1/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)-1/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)/\ g1(Vb15)=g1(Vb11)+1/\ g2(Vb15)=g2(Vb11)+1)\/ 
 
 (g0(Vb12)=g0(Vb11)-1/\ g1(Vb12)=g1(Vb11)/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)-1/\ g1(Vb13)=g1(Vb11)/\ g2(Vb13)=g2(Vb11)-1/\ g0(Vb14)=g0(Vb11)/\ g1(Vb14)=g1(Vb11)-1/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)-1/\ g1(Vb15)=g1(Vb11)+1/\ g2(Vb15)=g2(Vb11)));
-%Vb2
-constraint(
-(g0(Vb22)=g0(Vb21)-1/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)-1/\ g0(Vb24)=g0(Vb21)/\ g1(Vb24)=g1(Vb21)-1/\ g2(Vb24)=g2(Vb21)-1/\ g0(Vb25)=g0(Vb21)-1/\ g1(Vb25)=g1(Vb21)/\ g2(Vb25)=g2(Vb21)+1)\/ 
-
-(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)+1/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)+1/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)-1/\ g1(Vb24)=g1(Vb21)+1/\ g2(Vb24)=g2(Vb21)/\ g0(Vb25)=g0(Vb21)/\ g1(Vb25)=g1(Vb21)-1/\ g2(Vb25)=g2(Vb21)+1)\/ 
-
-(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)+1/\ g0(Vb23)=g0(Vb21)-1/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)-1/\ g1(Vb24)=g1(Vb21)-1/\ g2(Vb24)=g2(Vb21)/\ g0(Vb25)=g0(Vb21)+1/\ g1(Vb25)=g1(Vb21)/\ g2(Vb25)=g2(Vb21)+1)\/ 
-
-(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)+1/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)-1/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)-1/\ g1(Vb24)=g1(Vb21)/\ g2(Vb24)=g2(Vb21)+1/\ g0(Vb25)=g0(Vb21)+1/\ g1(Vb25)=g1(Vb21)+1/\ g2(Vb25)=g2(Vb21))\/ 
-
-(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)-1/\ g0(Vb23)=g0(Vb21)+1/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)+1/\ g1(Vb24)=g1(Vb21)-1/\ g2(Vb24)=g2(Vb21)/\ g0(Vb25)=g0(Vb21)-1/\ g1(Vb25)=g1(Vb21)/\ g2(Vb25)=g2(Vb21)-1)\/ 
-
-(g0(Vb22)=g0(Vb21)-1/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)-1/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)/\ g1(Vb24)=g1(Vb21)-1/\ g2(Vb24)=g2(Vb21)+1/\ g0(Vb25)=g0(Vb21)-1/\ g1(Vb25)=g1(Vb21)+1/\ g2(Vb25)=g2(Vb21))\/ 
-
-(g0(Vb22)=g0(Vb21)+1/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)-1/\ g0(Vb24)=g0(Vb21)/\ g1(Vb24)=g1(Vb21)+1/\ g2(Vb24)=g2(Vb21)-1/\ g0(Vb25)=g0(Vb21)+1/\ g1(Vb25)=g1(Vb21)/\ g2(Vb25)=g2(Vb21)+1)\/ 
-
-(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)+1/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)-1/\ g0(Vb24)=g0(Vb21)-1/\ g1(Vb24)=g1(Vb21)/\ g2(Vb24)=g2(Vb21)-1/\ g0(Vb25)=g0(Vb21)/\ g1(Vb25)=g1(Vb21)+1/\ g2(Vb25)=g2(Vb21)+1)\/ 
-
-(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)-1/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)-1/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)-1/\ g1(Vb24)=g1(Vb21)-1/\ g2(Vb24)=g2(Vb21)/\ g0(Vb25)=g0(Vb21)/\ g1(Vb25)=g1(Vb21)+1/\ g2(Vb25)=g2(Vb21)-1)\/ 
-
-(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)-1/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)-1/\ g0(Vb24)=g0(Vb21)+1/\ g1(Vb24)=g1(Vb21)/\ g2(Vb24)=g2(Vb21)-1/\ g0(Vb25)=g0(Vb21)/\ g1(Vb25)=g1(Vb21)-1/\ g2(Vb25)=g2(Vb21)+1)\/ 
-
-(g0(Vb22)=g0(Vb21)+1/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)-1/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)/\ g1(Vb24)=g1(Vb21)-1/\ g2(Vb24)=g2(Vb21)-1/\ g0(Vb25)=g0(Vb21)+1/\ g1(Vb25)=g1(Vb21)+1/\ g2(Vb25)=g2(Vb21))\/ 
-
-(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)+1/\ g0(Vb23)=g0(Vb21)+1/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)+1/\ g1(Vb24)=g1(Vb21)+1/\ g2(Vb24)=g2(Vb21)/\ g0(Vb25)=g0(Vb21)-1/\ g1(Vb25)=g1(Vb21)/\ g2(Vb25)=g2(Vb21)+1)\/ 
-
-(g0(Vb22)=g0(Vb21)+1/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)+1/\ g0(Vb24)=g0(Vb21)/\ g1(Vb24)=g1(Vb21)-1/\ g2(Vb24)=g2(Vb21)+1/\ g0(Vb25)=g0(Vb21)+1/\ g1(Vb25)=g1(Vb21)/\ g2(Vb25)=g2(Vb21)-1)\/ 
-
-(g0(Vb22)=g0(Vb21)-1/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)+1/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)/\ g1(Vb24)=g1(Vb21)+1/\ g2(Vb24)=g2(Vb21)-1/\ g0(Vb25)=g0(Vb21)-1/\ g1(Vb25)=g1(Vb21)-1/\ g2(Vb25)=g2(Vb21))\/ 
-
-(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)-1/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)+1/\ g0(Vb24)=g0(Vb21)-1/\ g1(Vb24)=g1(Vb21)/\ g2(Vb24)=g2(Vb21)+1/\ g0(Vb25)=g0(Vb21)/\ g1(Vb25)=g1(Vb21)-1/\ g2(Vb25)=g2(Vb21)-1)\/ 
-
-(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)-1/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)+1/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)+1/\ g1(Vb24)=g1(Vb21)+1/\ g2(Vb24)=g2(Vb21)/\ g0(Vb25)=g0(Vb21)/\ g1(Vb25)=g1(Vb21)-1/\ g2(Vb25)=g2(Vb21)-1)\/ 
-
-(g0(Vb22)=g0(Vb21)-1/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)+1/\ g0(Vb24)=g0(Vb21)/\ g1(Vb24)=g1(Vb21)+1/\ g2(Vb24)=g2(Vb21)+1/\ g0(Vb25)=g0(Vb21)-1/\ g1(Vb25)=g1(Vb21)/\ g2(Vb25)=g2(Vb21)-1)\/ 
-
-(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)+1/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)+1/\ g0(Vb24)=g0(Vb21)+1/\ g1(Vb24)=g1(Vb21)/\ g2(Vb24)=g2(Vb21)+1/\ g0(Vb25)=g0(Vb21)/\ g1(Vb25)=g1(Vb21)+1/\ g2(Vb25)=g2(Vb21)-1)\/ 
-
-(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)-1/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)+1/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)+1/\ g1(Vb24)=g1(Vb21)/\ g2(Vb24)=g2(Vb21)+1/\ g0(Vb25)=g0(Vb21)-1/\ g1(Vb25)=g1(Vb21)-1/\ g2(Vb25)=g2(Vb21))\/ 
-
-(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)+1/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)-1/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)+1/\ g1(Vb24)=g1(Vb21)-1/\ g2(Vb24)=g2(Vb21)/\ g0(Vb25)=g0(Vb21)/\ g1(Vb25)=g1(Vb21)+1/\ g2(Vb25)=g2(Vb21)+1)\/ 
-
-(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)-1/\ g0(Vb23)=g0(Vb21)-1/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)-1/\ g1(Vb24)=g1(Vb21)+1/\ g2(Vb24)=g2(Vb21)/\ g0(Vb25)=g0(Vb21)+1/\ g1(Vb25)=g1(Vb21)/\ g2(Vb25)=g2(Vb21)-1)\/ 
-
-(g0(Vb22)=g0(Vb21)+1/\ g1(Vb22)=g1(Vb21)/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)/\ g1(Vb23)=g1(Vb21)+1/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)/\ g1(Vb24)=g1(Vb21)+1/\ g2(Vb24)=g2(Vb21)+1/\ g0(Vb25)=g0(Vb21)+1/\ g1(Vb25)=g1(Vb21)-1/\ g2(Vb25)=g2(Vb21))\/ 
-
-(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)+1/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)+1/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)+1/\ g1(Vb24)=g1(Vb21)/\ g2(Vb24)=g2(Vb21)-1/\ g0(Vb25)=g0(Vb21)-1/\ g1(Vb25)=g1(Vb21)+1/\ g2(Vb25)=g2(Vb21))\/ 
-
-(g0(Vb22)=g0(Vb21)/\ g1(Vb22)=g1(Vb21)-1/\ g2(Vb22)=g2(Vb21)/\ g0(Vb23)=g0(Vb21)-1/\ g1(Vb23)=g1(Vb21)/\ g2(Vb23)=g2(Vb21)/\ g0(Vb24)=g0(Vb21)-1/\ g1(Vb24)=g1(Vb21)/\ g2(Vb24)=g2(Vb21)-1/\ g0(Vb25)=g0(Vb21)+1/\ g1(Vb25)=g1(Vb21)-1/\ g2(Vb25)=g2(Vb21)));
 \end{lstlisting}
-. The constraints for other pieces can be obtained in the same way. 
-\\In addition, in the final codes, if the positions of the units of piece has been placed before the game start, the constraint does not need to appear again. As an example, for the last case in Zig Zag Puzzler, the orange piece and blue piece1 have been set on the board, hence, the constraints about these two pieces will not appear in the final codes.
-\\The complete codes for the last case in Zig Zag Puzzler playing mode1 are in Appendix~\ref{appendix:lastcaseinmode1}, and the complete codes for the last case in Zia Zag Puzzler playing mode2 are in Appendix~\ref{appendix:lastcaseinmode2}. 
+\bigskip
+The constraints for other pieces can be obtained in the same way. 
+\\In addition, in the final codes, if the positions of the units of piece has been placed before the game start, the constraint does not need to appear again. As an example, for the last problem in Zig Zag Puzzler, the orange piece and blue piece1 have been set on the board, hence, the constraints about these two pieces will not appear in the final codes.
+\\The complete codes for the last problem in Zig Zag Puzzler playing mode1 are in Appendix~\ref{appendix:lastcaseinmode1}, and the complete codes for the last problem in Zia Zag Puzzler playing mode2 are in Appendix~\ref{appendix:lastcaseinmode2}. 

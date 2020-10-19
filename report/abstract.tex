@@ -1,7 +1,7 @@
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 \vspace{-1em}
-
+The constraint satisfaction problem (CSP) models are created to solve all problems of two puzzle games. For CSP models of both games, the variables, domains, and constraints are discussed. Meanwhile, in the process of discussing constraints, the 2D rotation matrix are introduced to clarify the pieces' configurations for the 2D game (IQ Twist), and the 3D rotation matrix are introduced to clarify the pieces' configurations for the 3D game (Zig Zag Puzzler). After that, these models are encoded by Minizinc which is a constraint modeling language. Through Minizinc IDE, the Minizinc files are transferred to Flatzinc, a solver input language that is understood by a wide range of solvers. Therefore, nine solvers that supports Flatzinc are used to execute these problems. Finally, there are three solvers chuffed, ortool and picatSAT solve each problem in thirty minutes, furthermore, chuffed achieve the optimal performance in most problems. All problems can be solved in 20 seconds by chuffed.
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "paper"

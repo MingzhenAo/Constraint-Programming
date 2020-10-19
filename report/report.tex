@@ -1,9 +1,11 @@
 \documentclass[11pt, a4paper]{book}
 \usepackage{graphicx} 
+\usepackage{}
 \usepackage[toc,page]{appendix}
 \usepackage[square,sort,comma,numbers]{natbib}
 \usepackage[pdftex,usenames,dvipsnames]{color}
 \usepackage{paralist}
+\usepackage{tabularx}
 \newcommand{\VUnits} {\ensuremath{V_{units}}}
 \newcommand{\VPegs} {\ensuremath{V_{pegs}}}
 \newcommand{\Constraints}[2] {\ensuremath{C_{v_{#1},v_{#2}}}}
@@ -17,6 +19,7 @@
 \input{config}
 \input{macros}
 \definecolor{ForestGreen}{RGB}{34,106,46}
+
 \lstdefinelanguage{minizinc}{
     morekeywords={
         %% MiniZinc keywords
