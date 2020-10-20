@@ -1,8 +1,10 @@
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 \vspace{-1em}
-The constraint satisfaction problem (CSP) models are created to solve all problems of two puzzle games. For CSP models of both games, the variables, domains, and constraints are discussed. Meanwhile, in the process of discussing constraints, the 2D rotation matrix are introduced to clarify the pieces' configurations for the 2D game (IQ Twist), and the 3D rotation matrix are introduced to clarify the pieces' configurations for the 3D game (Zig Zag Puzzler). After that, these models are encoded by Minizinc which is a constraint modeling language. Through Minizinc IDE, the Minizinc files are transferred to Flatzinc, a solver input language that is understood by a wide range of solvers. Therefore, nine solvers that supports Flatzinc are used to execute these problems. Finally, there are three solvers chuffed, ortool and picatSAT solve each problem in thirty minutes, furthermore, chuffed achieve the optimal performance in most problems. All problems can be solved in 20 seconds by chuffed.
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: "paper"
-%%% End: 
+The constraint satisfaction problems (CSPs) are created to model two puzzle games IQ Twist and Zig Zag Puzzler. Both of them have "start", "junior", "expert", "master" and "wizard" difficulties. With regard to CSPs for both games, the variables, domains, and constraints are mainly discussed. Meanwhile, in the process of discussing constraints, the 2D rotation matrix is introduced to clarify the pieces' configurations for the 2D game (IQ Twist), and the 3D rotation matrix is introduced to clarify the pieces' configurations for the 3D game (Zig Zag Puzzler). After that, these models are encoded by Minizinc which is a constraint modeling language. Through Minizinc IDE, the Minizinc is transferred to Flatzinc, a solver input language that is understood by a wide range of solvers. Therefore, nine solvers are used to execute these problems by different interfaces, which create the bridges between each solver and the Flatzinc file. For IQ Twist, the solvers' performances are not strongly related to the difficulties, while there is an obvious negative correlation between the performance and difficulties in Zig Zag Puzzler. Finally, there are three solvers Chuffed, OR-Tools and PicatSAT, which perform the 100 percent coverage. In other words,  they solve each problem in thirty minutes. More specifically, Chuffed achieve the optimal performance in most problems because it solves each problem in 20 seconds, while the other two need more time.
+\\
+\\
+\\
+\\\textbf{Keywords:} CSPs, IQ Twist, Zig Zag Puzzler, rotation matrix, Minizinc, Flatzinc, Chuffed, OR-Tools, PicatSAT.
+
+
