@@ -1,13 +1,13 @@
 \chapter{Conclusion}
 \label{cha:conc}
-In conclusion, based on the CSP models of IQ Twist (the 2D game) and Zig Zag Puzzler (the 3D game). There are 120 problems created for IQ Twist, and 80 problems created for Zig Zag Puzzler through Minizinc. All of these problems come from the game booklets. After the creations of these problems, the nine solvers that are based on different languages are used to solve each problem. Finally, the execution times and coverage of each solver have been discussed, which indicates that the chuffed, picatSAT and ortool can cover all the problems, meanwhile, they need shorter execution time for most problems. In addition, the Chuffed achieve the optimal performance because even for the highest difficulty, it solves each problem in 20 seconds for both games. In comparison, the other two solvers need more execution times.
+In conclusion, based on the CSP models of IQ Twist (the 2D game) and Zig Zag Puzzler (the 3D game). There are 120 problems created for IQ Twist, and 80 problems created for Zig Zag Puzzler through Minizinc. All of these problems come from the game booklets. After the creations of these problems, the nine solvers that are based on different languages are used to solve each problem. Finally, the execution times and coverage of each solver have been discussed, which indicates that the Chuffed, PicatSAT and OR-Tools can cover all the problems, meanwhile, they need shorter execution time for solving most problems. In addition, the Chuffed achieve the optimal performance because even for the highest difficulty, it solves each problem in 20 seconds for both games. In comparison, the other two solvers need more execution times.
 \section{Future Work}
 \label{sec:future}
-In the future, I would like to figure out why chuffed, picatSAT and ortool can cover all the problems in a short time. Some of their features have been mentioned in Chapter~\ref{section:compiler}. 
-For chuffed,  chuffed is a C++ solver using lazy clause generation and contains a nogood logbook. Why lazy clause generation and nogood logbook can achieve such an optimal performance in our case might be interesting. 
-For ortool, what are the combination optimization methods of ortool and why they can achieve good performance are worth considering.
-For picatSAT, the picat language and what is the advantages of log encoding might worth learning.
-Of course, except for the features that I mentioned, there might be other special parts for each solver. After figures out their advantages, I may try to create another solver that combines their advantages to achieve better performance.
+In the future, I would like to figure out why Chuffed, PicatSAT and OR-Tools can cover all the problems in a short time. Some of their features have been mentioned in Chapter~\ref{section:compiler}. 
+For Chuffed,  Chuffed is a C++ solver using lazy clause generation and contains a nogood logbook. I am wondering why lazy clause generation and nogood logbook can achieve such an optimal performance in our case might be interesting. 
+For OR-Tools, what are the combination optimization methods of OR-Tools and why they can achieve good performance are worth considering?
+For PicatSAT, the Picat language and what is the advantages of log encoding might worth learning.
+Of course, except for the features that I mentioned, there might be other special parts for each solver worth to discover. After figures out their advantages, I may try to create another solver that combines their advantages to achieve better performance.
 
 
 
