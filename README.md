@@ -1,4 +1,5 @@
 ![Alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSlbXjHJPamG7Q1LInMcuNnWYJkXEJ7Xs3k5w&usqp=CAU?raw=true "IQ Twist")
+![Alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQfuPwVDrV6tFrbeuZ8gnU9y2uvRKw0iwrqPQ&usqp=CAU?raw=true "Zig Zag Puzzler playing mode1")
 # Solving Puzzle Games with CSP solvers
 The goal of this project is to model two puzzle games based on CSPs and compare the performances of different solvers.
 The git repository mainly consists of five parts, IQ Twist, Zig Zag Puzzler, Formalities, Literature, Report and Further Information
