@@ -1,5 +1,5 @@
-![](https://www.rainbowfun.com.au/assets/full/LL1630.jpg?20191026165205 "IQ Twist")
-![](https://cdn.shopify.com/s/files/1/0075/3523/1012/products/SmartGames-ZigZagPuzzler-3_1024x1024.jpg?v=1595315047 "Zig Zag Puzzler")
+![Alt text](https://www.rainbowfun.com.au/assets/full/LL1630.jpg?20191026165205 "IQ Twist")
+![Alt text](https://cdn.shopify.com/s/files/1/0075/3523/1012/products/SmartGames-ZigZagPuzzler-3_1024x1024.jpg?v=1595315047 "Zig Zag Puzzler")
 # Solving Puzzle Games with CSP solvers
 The goal of this project is to model two puzzle games based on CSPs and compare the performances of different solvers.
 The git repository mainly consists of five parts, IQ Twist, Zig Zag Puzzler, Formalities, Literature, Report and Further Information
