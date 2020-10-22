@@ -1,3 +1,4 @@
+![Alt text](https://www.rainbowfun.com.au/smartgames-iq-twist "IQ Twist")
 # Solving Puzzle Games with CSP solvers
 The goal of this project is to model two puzzle games based on CSPs and compare the performances of different solvers.
 
