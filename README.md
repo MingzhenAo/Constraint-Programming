@@ -1,6 +1,14 @@
-The git repository mainly consists of five parts.
-Firstly, in the "IQ Twist", all the experiments and corresponding scripts about IQ Twist has been stored in it.
-Secondly, in the "Zig Zag Puzzler", all the experiments and corresponding scripts about IQ Twist has been stored in it.
-Thirdly, "formalities" save the contracts, which describe the learning objective, project description and assessment.
+## Solving Puzzle with CSP solvers
+The goal of this project is to model two puzzle games based on CSPs and compare the performances of different solvers.
+
+The git repository mainly consists of five parts, IQ Twist, Zig Zag Puzzler, formalities, literature, report 
+### IQ Twist
+All the experiments and corresponding scripts about IQ Twist has been stored in it.
+### Zig Zag Puzzler
+All the experiments and corresponding scripts about IQ Twist has been stored in it.
+### Formalities
+This file mainly save the contracts, which describe the learning objective, project description and assessment.
+### literature
 In addition, many papers that I have used or might be used has been saved in the "literature".
-Finally, "report" saves my report which can be compiled by latex.
+### report
+This part saves my report which can be compiled by latex.
