@@ -2,7 +2,7 @@
 \label{cha:design}
 Generally, this chapter discusses two parts: the CSP model and its encodings for the 2D game (IQ Twist), the CSP models and their encodings for the two playing modes of the 3D game (ZIG ZAG Puzzler).
 \section{IQ Twist}
-IQ Twist is a puzzle game that consists of 8 twisted puzzle pieces and 7 coloured pegs (Figure~\ref{fig:IQ_twist_game}). To play the game, the colored pegs should be placed on the board in advance, then fit all the twisted puzzle pieces back into the board. Different units of pieces have to match the pegs with the same color and only the hollow units of piece can be used to match pegs. Moreover, the degree of difficulty can be adjusted by different placements of pegs.
+IQ Twist is a puzzle game that consists of 8 twisted puzzle pieces and 7 coloured pegs (Figure~\ref{fig:IQ_twist_game}). To play the game, the colored pegs should be placed on the board in advance, then fit all the twisted puzzle pieces back into the board. Different unit of piece have to match the pegs with the same color and only the hollow units of a piece can be used to match pegs. Moreover, the difficulty of a single game depends on the pegs' placement given at the beginning.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.6\textwidth]{figs/IQtwistintroduction.jpg}
@@ -10,7 +10,7 @@ IQ Twist is a puzzle game that consists of 8 twisted puzzle pieces and 7 coloure
     \label{fig:IQ_twist_game}
 \end{figure}
 \subsection{Variable}
-Above all, the initial state of each piece is defined in Figure~\ref{fig:allinit}.
+First of all, the initial state of each piece is defined in Figure~\ref{fig:allinit}.
 \begin{figure}[htbp]
 \begin{subfigure}[b]{.24\textwidth}
 \centering
@@ -63,14 +63,14 @@ Above all, the initial state of each piece is defined in Figure~\ref{fig:allinit
 \caption{Initial state of each piece}
   \label{fig:allinit}
 \end{figure}
-There are some name rules. Firstly, all the variables are corresponding to the specific units of pieces. As an example, for piece yellow2, Figure~\ref{fig:namerules} shows that the first variable $V_{y21}$ is used to represent the left and bottom unit. For other units, they are named as $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$, which follows the order from left to right and bottom-up. Similarly, the name rules will be used for other pieces. 
+There are some name rules. Firstly, all the variables are corresponding to the specific unit of piece. As an example, for piece yellow2, Figure~\ref{fig:namerules} shows that the first variable $V_{y21}$ is used to represent the left-most bottom unit. For other units, they are named as $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$, which follows the order from left to right and bottom-up. Similarly, the name rules will be used for other pieces. 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.3\textwidth]{figs/example.jpg}
     \caption{Name rules of yellow2}
     \label{fig:namerules}
 \end{figure}
-In addition, there are 7 pegs. Each of them is assigned a variable, the subscript represents its color such as $V_{py1}$ that $_{py1}$ means yellow peg1. Therefore, the variables can be represented as \VUnits and \VPegs,
+In addition, there are seven pegs. Each of them is assigned a variable, the subscript represents its color such as $V_{py1}$ that $_{py1}$ stands for yellow peg1. Therefore, the variables can be represented as $\VUnits$ and $\VPegs$,
 \begin{equation}
 \begin{aligned}
 \VUnits=\{&V_{y11},V_{y12},V_{y13},\\&V_{y21},V_{y22},V_{y23},V_{y24},V_{y25},\\&V_{b11},V_{b12},V_{b13},V_{b14},
@@ -87,7 +87,7 @@ V_{r12},V_{r13},V_{r14},\\&V_{r21},V_{r22},V_{r23},V_{r24}\},\\
 \caption{The coordinate system for IQ Twist, revised from~\cite{r22}}
     \label{fig:coordinate}
 \end{figure}
-For the board, Figure~\ref{fig:coordinate} shows that the 2D coordinate system is used to describe the positions. In our model, all positions are represented as tuples and each tuple contains 2 elements that are integers. The left and bottom position is $(1,1)$ and the right and top is $(8,4)$. So, the horizontal ordinate for each units of pieces will be from 1 to 8 and the ordinate will be from 1 to 4. Considering a position $(x_{0},y_{0})$, we get
+For the board, Figure~\ref{fig:coordinate} shows that the 2D coordinate system is used to describe the positions. In our model, all positions are represented as tuples and each tuple consists of 2 elements that are integers. The left-most bottom position is $(1,1)$ and the right and top is $(8,4)$. So, the abscissa for each unit of piece will be from 1 to 8 and the ordinate will be from 1 to 4. Considering a position $(x_{0},y_{0})$, we get
 \begin{equation}
 \begin{aligned}
 &0<x_{0} \leq 8,\\
@@ -96,16 +96,16 @@ For the board, Figure~\ref{fig:coordinate} shows that the 2D coordinate system i
 \end{equation}
 The placements for each unit of pieces must on the board, therefore, we get
 \begin{equation}
-\forall  v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=\{(i,j) \in \mathbb{Z} \times \mathbb{Z}	\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}.\\
+\forall  v \in \VUnits \hspace{1ex},\hspace{1ex} D(v)=\{(i,j) \in \mathbb{N} \times \mathbb{N}	\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}.\\
 \end{equation}
 The pegs are special because they can be put in any places on the board or not on the board. So, the domain of pegs is
 \begin{equation}
-\forall  v \in \VPegs \hspace{1ex},\hspace{1ex} D(v)=\{(0,0)\} \hspace{1ex} \cup \hspace{1ex}\{(i,j) \in \mathbb{Z} \times \mathbb{Z}\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}.
+\forall  v \in \VPegs \hspace{1ex},\hspace{1ex} D(v)=\{(0,0)\} \hspace{1ex} \cup \hspace{1ex}\{(i,j) \in \mathbb{N} \times \mathbb{N}\mid  0<i \leq 8 \hspace{1ex} , \hspace{1ex} 0<j \leq 4\}.
 \end{equation}
 \subsection{2D Rotation Matrix}
 \label{section:2Drotationmatrix}
-To clarify how to obtain all configurations for each piece. the 2D rotation matrix will be introduced. 
-\\In Figure~\ref{fig:explanation2D}, the unit which is corresponding to the first variable $V_{y21}$ can be considered as a point $(x_{0},y_{0})$. If we assign (0,0) to $(x_{0},y_{0})$, the $V_{y21}$, $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$ can be respectively represented as $(0,0)$, $(1,0)$, $(1,1)$, $(2,1)$ and $(1,2)$, which indicate that all other variables are connection with the first variables. For example, there are relationships
+To clarify how to obtain all configurations for each piece, the 2D rotation matrix will be introduced. 
+\\In Figure~\ref{fig:explanation2D}, the unit which is corresponding to the first variable $V_{y21}$ can be considered as a point $(x_{0},y_{0})$. For a general case without the domain of IQ Twist, if we assign (0,0) to $(x_{0},y_{0})$, the $V_{y21}$, $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$ can be respectively represented as $(0,0)$, $(1,0)$, $(1,1)$, $(2,1)$ and $(1,2)$, which indicate that all other variables are connected with the first variables. For example, if $x_{V}$ corresponds to the $x$ position of unit piece $V$ and $y_{V}$ corresponds to the $y$ position of unit piece $V$, there are relationships
 \begin{equation}
 \begin{aligned}
 &x_{V_{y21}}+1=x_{V_{y22}},\\
@@ -120,7 +120,7 @@ between $V_{y21}$ and $V_{y22}$.
     \label{fig:explanation2D}
 \end{figure}
 Therefore, all other placements can be obtained from the initial state of the piece by rotations around the unit of piece $V_{y21}$.\\
-Tobias and Krantz~\cite{r9} mention that 2D counterclockwise rotation by an angle $\theta$ around the origin of coordinate can be described as a matrix
+Tobias and Krantz~\cite{r9} mention that 2D counterclockwise rotation by an angle $\theta$ around the origin of a coordinate can be described as a matrix
 \begin{equation}
 R(\theta)=\begin{bmatrix}
 \cos\theta & -\sin\theta\\
@@ -159,7 +159,7 @@ Therefore, if 0, 90, 180 and 270 degrees are assigned to $\theta$, there are fou
   \item $x'=x\cos270^{\circ} - y\sin270^{\circ}, y'=x\sin270^{\circ} + y\cos270^{\circ} \implies x'=y\hspace{10pt},y'=-x$
   \label{rotation4}
 \end{enumerate}
-In IQ Twist, there exists a mirroring operation which corresponds to flipping a piece, if a unit of piece flip over around the y-axis, we get  (-x,y) from (x,y). Similarly, all the four configurations flip over around the y-axis. We get four more configurations: 
+In IQ Twist, there exists a mirroring operation which corresponds to flipping a piece, if a unit of piece flips over around the y-axis, we get  (-x,y) from (x,y). Similarly, all the four configurations flip over around the y-axis. We get four more configurations: 
 \begin{enumerate}
 \setcounter{enumi}{4}
   \item  $x'=x\hspace{10pt}, y'=y\hspace{10pt}$    flip over around the y-axis $\implies x''=-x\hspace{8pt},y''=y$
@@ -168,7 +168,7 @@ In IQ Twist, there exists a mirroring operation which corresponds to flipping a 
   \item  $x'=y\hspace{10pt},y'=-x$    flip over around the y-axis $\implies x''=-y\hspace{8pt}, y''=-x$
   \label{mirrorrotate4}
 \end{enumerate}
-Therefore, there should be a total of eight configurations for each unit of pieces. As an instance, for all units of the piece in Figure~\ref{fig:explanation2D}, if we assign $(0,0)$ to $(x_{0},y_{0})$, the process of rotation for each other unit of the piece can be represented by Equation~\ref{equation:rotation}. Accordingly, we get eight possible configurations
+Therefore, there should be a total of eight configurations for each unit of pieces. As an instance, for all units of the piece in Figure~\ref{fig:explanation2D}, considering a general case without the domain of IQ Twist, if we assign $(0,0)$ to $(x_{0},y_{0})$, the process of rotation for each other unit of the piece can be represented by Equation~\ref{equation:rotation}. Accordingly, we get eight possible configurations
 \begin{enumerate}
  \item $V_{y21}=(0,0)$, $V_{y22}=(1,0)$, $V_{y23}=(1,1)$, $V_{y24}=(2,1)$, $V_{y25}=(1,2)$,
  \item $V_{y21}=(0,0)$, $V_{y22}=(0,1)$, $V_{y23}=(-1,1)$, $V_{y24}=(-1,2)$, $V_{y25}=(-2,1)$,
@@ -179,7 +179,7 @@ Therefore, there should be a total of eight configurations for each unit of piec
  \item $V_{y21}=(0,0)$, $V_{y22}=(1,0)$, $V_{y23}=(1,-1)$, $V_{y24}=(2,-1)$, $V_{y25}=(1,-2)$,
  \item $V_{y21}=(0,0)$, $V_{y22}=(-1,0)$, $V_{y23}=(-1,-1)$, $V_{y24}=(-2,-1)$, $V_{y25}=(-1,-2)$.
 \end{enumerate}
-In our case, the piece can be moved as long as all units of the piece on the board. Both the $x_{0}$ and $y_{0}$ can be variables, hence, we get the general forms
+In our case, the piece can be moved as long as all units of the piece are on the board. Both $x_{0}$ and $y_{0}$ can be variables, hence we get the general forms
 \begin{enumerate}
  \item $V_{y21}=(x_{0},y_{0})$, $V_{y22}=(x_{0}+1,y_{0})$, $V_{y23}=(x_{0}+1,y_{0}+1)$, $V_{y24}=(x_{0}+2,y_{0}+1)$, $V_{y25}=(x_{0}+1,y_{0}+2)$,
  \item $V_{y21}=(x_{0},y_{0})$, $V_{y22}=(x_{0},y_{0}+1)$, $V_{y23}=(x_{0}-1,y_{0}+1)$, $V_{y24}=(x_{0}-1,y_{0}+2)$, $V_{y25}=(x_{0}-2,y_{0}+1)$,
@@ -190,19 +190,19 @@ In our case, the piece can be moved as long as all units of the piece on the boa
  \item $V_{y21}=(x_{0},y_{0})$, $V_{y22}=(x_{0}+1,y_{0})$, $V_{y23}=(x_{0}+1,y_{0}-1)$, $V_{y24}=(x_{0}+2,y_{0}-1)$, $V_{y25}=(x_{0}+1,y_{0}-2)$,
  \item $V_{y21}=(x_{0},y_{0})$, $V_{y22}=(x_{0}-1,y_{0})$, $V_{y23}=(x_{0}-1,y_{0}-1)$, $V_{y24}=(x_{0}-2,y_{0}-1)$, $V_{y25}=(x_{0}-1,y_{0}-2)$.
 \end{enumerate}
-\subsection{Constrain}
+\subsection{Constraints}
 \label{section:IQtwistconstriant}
-Firstly, there should be no 2 different unit variables contain the same value
+Firstly, there should be no two different units of piece take up the same position
 \begin{equation}
 \begin{aligned}
-&\forall V_{m},V_{n} \in \VUnits,V_{m} \neq V_{n},\\
+&\forall v_{m},v_{n} \in \VUnits\quad \text{where} \quad v_{m} \neq v_{n}:\\
 &\Constraints{m}{n}=\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{m} \times \Domain{n}\mid x_{1} \neq x_{2}   \hspace{1ex} or \hspace{1ex}  y_{1} \neq y_{2}\}.
 \end{aligned}
 \end{equation}
-Secondly, there should be no 2 different reg variables contain the same value except both of them are not on the board
+Secondly, there should be no two different pegs take up the same position except both of them are not on the board
 \begin{equation}
 \begin{aligned}
-&\forall V_{m},V_{n}\in \VPegs, V_{m} \neq V_{n},\\
+&\forall v_{m},v_{n}\in \VPegs \quad \text{where} \quad v_{m} \neq v_{n}:\\
 &\Constraints{m}{n}=\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{m}\times \Domain{n}\mid x_{1} \neq x_{2}   \hspace{1ex} or \hspace{1ex}  y_{1} \neq y_{2}\}\hspace{1pt}\cup \\
 &\{((0,0),(0,0))\}.
 \end{aligned}
@@ -236,7 +236,7 @@ As is mentioned in Chapter~\ref{section:2Drotationmatrix}, there should be eight
 \\&x_{4} = x_{1}+1,\hspace{1ex}y_{4} = y_{1}+2,\hspace{1ex}x_{5} = x_{1}+2,\hspace{1ex}y_{5} = y_{1}+1)\hspace{3ex}\}.
 \end{aligned}
 \end{equation}
-Similarly, all pieces can get the constraints in the same way (Appendix~\ref{appendix:2Dpieces}). Furthermore, for the pegs, unless they are not on the board, there must be a hollow unit of pieces which contains the same color with the pegs to match them. As an instance, for yellow peg1, there are four hollow units of yellow pieces. Figure~\ref{fig:2Dyellow2} shows that there are 3 hollow units $V_{y21}$, $V_{y22}$ and $V_{y24}$ in yellow piece2, and Figure~\ref{fig:2Dyellow1} shows that there is one hollow unit $V_{y11}$ in yellow piece1. Therefore, the constraint should be 
+Similarly, all pieces can get the constraints in the same way (Appendix~\ref{appendix:2Dpieces}). Furthermore, for the pegs, unless they are not on the board, there must be a hollow unit of piece which contains the same color as the pegs to match them. As an instance, for yellow peg1, there are four hollow units of yellow pieces. Figure~\ref{fig:2Dyellow2} shows that there are 3 hollow units $V_{y21}$, $V_{y22}$ and $V_{y24}$ in yellow piece2, and Figure~\ref{fig:2Dyellow1} shows that there is one hollow unit $V_{y11}$ in yellow piece1. Therefore, the constraint should be 
 \begin{equation}
 \begin{aligned}  
 \Constraint{py1} = &\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{py1} \times \Domain{y11}\mid x_{2} = x_{1} \hspace{1ex} , \hspace{1ex}  y_{2} = y_{1}\}\hspace{1ex} \cup  
@@ -246,19 +246,19 @@ Similarly, all pieces can get the constraints in the same way (Appendix~\ref{app
 \\& \{(0,0)\}.
 \end{aligned}
 \end{equation}
-Accordingly, every peg can get the constraints in the same way (Appendix~\ref{appendix:2Dpegs}).
+Accordingly, The constraints of the remaining pegs are constructed in a similar fashion(Appendix~\ref{appendix:2Dpegs}).
 \subsection{Encodings for IQ Twist}
 \label{section:Encodings1}
-All the problems in the IQ Twist booklet are encoded in Minizinc.  Based on the CSP model which is mentioned above, to set a specific model only needs to add the position information for the pegs. 
+All the problems in the IQ Twist booklet are encoded in Minizinc. Based on the CSP model which is mentioned above, to set a specific model one only needs to add the position information for the pegs. 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.6\textwidth]{figs/implementation1.jpg}
     \caption{The last problem in IQ Twist booklet}
     \label{fig:last_case}
 \end{figure}
-For example, with regard to the problem in Figure~\ref{fig:last_case}, it can be encoded by 2 parts, pegs' position information which is different in each problem and the general CSP model that is the same in all problems.
+For example, with regard to the problem in Figure~\ref{fig:last_case}, it can be encoded by two parts, the position of the pegs, which is different for each problem, and the general CSP model introduced above, which is unique for all problems.
 \subsubsection{Pegs' Position Information}
-Figure~\ref{fig:last_case} shows there are only 3 pegs on the board. On account of the coordinate system in Figure~\ref{fig:coordinate}, the positions of blue peg, red peg, and green peg are separately placed on (5,2), (6,1) and (5,4). And the other pegs are not on the board. Hence, they could be encoded in Listing~\ref{lst:pegs' positions}.
+Figure~\ref{fig:last_case} shows there are only three pegs on the board. On account of the coordinate system in Figure~\ref{fig:coordinate}, the positions of blue peg, red peg, and green peg are separately placed on (5,2), (6,1) and (5,4). And the other pegs are not on the board. Hence, they could be encoded in Listing~\ref{lst:pegs' positions}.
 \begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for pegs' positions},label={lst:pegs' positions}]
 constraint Vpb1=52;
 constraint Vpb2=0;  
@@ -284,7 +284,7 @@ var position: Vy11;var position: Vy12;var position: Vy13;
 var position: Vy21;var position: Vy22;var position: Vy23;var position: Vy24;var position: Vy25;
 \end{lstlisting}
 \bigskip
-Secondly, the domain of \VUnits is defined by "position" that corresponds to Listing~\ref{lst:IQ Twist domain}. In such a case, 11 in "position" means the position (1,1), 21 means the position (2,1) and so on. However, the domain of \VPegs is all integers, it does not matter because the specific positions for pegs have been set in Listing~\ref{lst:pegs' positions}.
+Secondly, the domain of $\VUnits$ is defined by "position" that corresponds to Listing~\ref{lst:IQ Twist domain}. In such a case, 11 in "position" means the position (1,1), 21 means the position (2,1) and so on. However, the domain of $\VPegs$ is all integers, it does not matter because the specific positions for pegs have been set in Listing~\ref{lst:pegs' positions}.
 \begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for pieces' domain},label={lst:IQ Twist domain}]
 set of int: position={
 14,24,34,44,54,64,74,84,
@@ -293,14 +293,14 @@ set of int: position={
 11,21,31,41,51,61,71,81};
 \end{lstlisting}
 \bigskip
-Furthermore, the constraints will be separately addressed. The codes in Listing~\ref{lst:IQ Twist constraint1} represent the first constraint, which means there is no 2 different unit variables contain the same value.
+Furthermore, the constraints will be separately addressed. The code in Listing~\ref{lst:IQ Twist constraint1} represents the first constraint, which means there are no two different units of piece in the same position.
 \begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for constraint one},label={lst:IQ Twist constraint1}]
 constraint alldifferent([Vy11,Vy12,Vy13,Vy21,Vy22,Vy23,Vy24,Vy25,Vb11,Vb12,Vb13,Vb14,Vb15,Vb21,Vb22,Vb23,Vb24,Vg11,Vg12,Vg13,Vg14,
 Vg21,Vg22,Vg23,Vr11,Vr12,Vr13,Vr14,Vr21,Vr22,Vr23,Vr24]);
 \end{lstlisting}
 \bigskip
 With regards to the second constraint, again, because the positions for pegs have been set, the constraint is useless anymore.
-\\For the third constraint, as an example for yellow2, it could be encoded in Listing~\ref{lst:IQ Twist constraint3}.
+\\For the third constraint, as an example for yellow2, it is encoded in Listing~\ref{lst:IQ Twist constraint3}.
 \begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for constraint three},label={lst:IQ Twist constraint3}]
 constraint (g0(Vy22) = g0(Vy21) + 1/\ g1(Vy22) = g1(Vy21)/\ g0(Vy23) = g0(Vy21) + 1/\ g1(Vy23) = g1(Vy21) + 1
             /\ g0(Vy24) = g0(Vy21) + 2/\ g1(Vy24) = g1(Vy21) + 1/\ g0(Vy25) = g0(Vy21) + 1/\ g1(Vy25) = g1(Vy21) + 2) \/
@@ -327,7 +327,7 @@ constraint (g0(Vy22) = g0(Vy21) + 1/\ g1(Vy22) = g1(Vy21)/\ g0(Vy23) = g0(Vy21) 
             /\ g0(Vy24) = g0(Vy21) + 1/\ g1(Vy24) = g1(Vy21) + 2/\ g0(Vy25) = g0(Vy21) + 2/\ g1(Vy25) = g1(Vy21) + 1);
 \end{lstlisting}
 \bigskip
-In this constraint, g0 function is used to get the corresponding $x$ value and g1 function is used to get the corresponding $y$ value. Accordingly, the functions are represented in Listing~\ref{lst:IQ Twist functions}.
+In this constraint, because the positions are encoded as integers such as $(1,1)$ to 11. The g0 function is used to get the corresponding $x$ value and g1 function is used to get the corresponding $y$ value. Accordingly, the functions are represented in Listing~\ref{lst:IQ Twist functions}.
 \begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for functions},label={lst:IQ Twist functions}]
 function var int:g0(var int:a)=a mod 10;
 function var int:g1(var int:a)=a div 10;
@@ -480,7 +480,7 @@ Because what we discussed above has included all possible positions, the domain 
 \begin{equation}
 \begin{aligned}
 &\forall \hspace{1ex} v \in \VUnits,\\
-&D(v)=\{(x,y,z) \in \mathbb{Z} \times \mathbb{Z}	\times \mathbb{Z} \mid  0<x \leq 5, \hspace{1ex} 0<y \leq 5,\hspace{1ex} 0<z \leq 5,\\ &x+y\leq 6,\hspace{1ex} y+z\leq 6,\hspace{1ex}x+z\leq 6,\hspace{1ex}x+y+z\leq 7\}.
+&D(v)=\{(x,y,z) \in \mathbb{N} \times \mathbb{N}	\times \mathbb{N} \mid  0<x \leq 5, \hspace{1ex} 0<y \leq 5,\hspace{1ex} 0<z \leq 5,\\ &x+y\leq 6,\hspace{1ex} y+z\leq 6,\hspace{1ex}x+z\leq 6,\hspace{1ex}x+y+z\leq 7\}.
 \end{aligned}
 \end{equation}
 \begin{figure}[htbp]
@@ -521,8 +521,8 @@ Therefore, the domain of playing mode2 is
 \begin{equation}
 \begin{aligned}
 &\forall v \in \VUnits,\\
-&D(v)=\{(x,y,z) \in \mathbb{Z} \times \mathbb{Z}	\times \mathbb{Z} \mid  0<x \leq 5 , \hspace{1ex} 0<y \leq 4,\hspace{1ex} 0<z \leq 4,y=z\} \hspace{1ex}\cup\\
-&\{(x,y,z) \in \mathbb{Z} \times \mathbb{Z}	\times \mathbb{Z} \mid  0<x \leq 5, \hspace{1ex} 0<y \leq 4,\hspace{1ex} 0<z \leq 3,y=z+1\}.
+&D(v)=\{(x,y,z) \in \mathbb{N} \times \mathbb{N}	\times \mathbb{N} \mid  0<x \leq 5 , \hspace{1ex} 0<y \leq 4,\hspace{1ex} 0<z \leq 4,y=z\} \hspace{1ex}\cup\\
+&\{(x,y,z) \in \mathbb{N} \times \mathbb{N}	\times \mathbb{N} \mid  0<x \leq 5, \hspace{1ex} 0<y \leq 4,\hspace{1ex} 0<z \leq 3,y=z+1\}.
 \end{aligned}
 \end{equation}
 \subsection{3D Rotation Matrix}
@@ -779,7 +779,7 @@ So we only need to consider the all configurations when $\beta=0^{\circ}$ becaus
 \end{enumerate}
 There should be a total of 16 configurations (4$\times$4). Finally, consider the all configurations in $\beta=90^{\circ}$, $\beta=270^{\circ}$, $\beta=^{\circ}0$ and $\beta=180^{\circ}$. There should be a total of 4+4+16=24 configurations.
 Therefore, if we assign $(0,0,0)$ to $Vb11$ in Figure~\ref{fig:3Dblue1explanation}, accordingly, we can get the initial states for $Vb12$, $Vb13$, $Vb14$ and $Vb15$. They separately correspond as (-1,0,0), (-1,-1,0), (0,0,-1) and (-1,0,1). All of them make up the initial state of Blue piece1. Based on the initial state of Blue piece1, if all other units of the piece rotate around Vb11, there should be 24 configurations. In our case, the piece can be moved as long as all units of piece on the board. Hence, on the condition of all units of piece on the board, we can assign variables $(x_{0},y_{0},z_{0})$ to $Vb11$, accordingly, we can get other units of piece's positions. Therefore, the constrains can be represented by the relationships between each other units of piece with the first unit of piece $Vb11$.
-\subsection{Constraint}
+\subsection{Constraints}
 According to chapter~\ref{section:3Drotationmatrix}, there are 24 rotation configurations. So we get
 \begin{align*}
 &\Cons{b11}{b12}{b13}{b14}{b15}=\{((x_{1},y_{1},z_{1}),(x_{2},y_{2},z_{2}),(x_{3},y_{3},z_{3}),(x_{4},y_{4},z_{4}),(x_{5},y_{5},z_{5}))\in \\
