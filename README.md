@@ -1,5 +1,5 @@
-<img src="https://www.rainbowfun.com.au/assets/full/LL1630.jpg?20191026165205" width="500">
-<img src="https://cdn.shopify.com/s/files/1/0075/3523/1012/products/SmartGames-ZigZagPuzzler-3_1024x1024.jpg?v=1595315047" width="500">
+<img src="https://www.rainbowfun.com.au/assets/full/LL1630.jpg?20191026165205" width="400">
+<img src="https://cdn.shopify.com/s/files/1/0075/3523/1012/products/SmartGames-ZigZagPuzzler-3_1024x1024.jpg?v=1595315047" width="400">
 
 # Solving Puzzle Games with CSP solvers
 The goal of this project is to model two puzzle games based on CSPs and compare the performances of different solvers.
