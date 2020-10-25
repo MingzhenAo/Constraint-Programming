@@ -6,28 +6,9 @@ Created on Mon Oct 12 13:34:01 2020
 """
 
 from numpy import mean
+import xlsxwriter 
 
-def average_time(list_):
-    """
-    This  function aims to get the average number of the numbers in list_.
-    
-    Parameters
-    ----------
-    list_ : list
-        A list contains float number and 'none'
 
-    Returns
-    -------
-    average_time : float
-        the mean of all the float number in the list_ 
-
-    """
-    all_time=[]
-    for element in list_:
-        if element!='none':
-            all_time.append(element)
-    average_time=mean(all_time)
-    return average_time
 
 def cal_solved_case(list_):
     """
@@ -46,7 +27,7 @@ def cal_solved_case(list_):
     """
     fail_num=0
     for experiment in list_:
-        if experiment=='none':
+        if experiment==1800:
             fail_num+=1
     solved_case=(len(list_)-fail_num)
     return solved_case
@@ -93,7 +74,7 @@ def solver_get_time(logfile,solver_list1):
          time=line.split(':')[1]
          solver_list1.append(float(time))
       elif "timeout-30minutes" in line:
-         solver_list1.append("none")
+         solver_list1.append(1800)
       elif "time elapsed:" in line:
          time=line.split(':')[1]
          time=time.split('s')[0]
@@ -102,7 +83,7 @@ def solver_get_time(logfile,solver_list1):
     solver_list2=solver_list1
     return solver_list2
 
-def get_solvedcases_coverage_and_averagetime(difficulty):
+def get_solvedcases_coverage(difficulty):
     """
     This function aims to print the number of solved cases for 
     each solver, coverage, and Overall average time in the corresponding difficulty,
@@ -167,22 +148,19 @@ def get_solvedcases_coverage_and_averagetime(difficulty):
     print("Coverage of ortool in "+difficulty+": "+str(get_coverage(IQ_twist_ortool)))
     print("Coverage of picat in "+difficulty+": "+str(get_coverage(IQ_twist_picat)))
     print("Coverage of yuck in "+difficulty+": "+str(get_coverage(IQ_twist_yuck)))
-    print("Average time of choco in "+difficulty+": "+str(average_time(IQ_twist_choco)))
-    print("Average time of chuffed in "+difficulty+": "+str(average_time(IQ_twist_chuffed)))
-    print("Average time of coinbc in "+difficulty+": "+str(average_time(IQ_twist_coinbc)))
-    print("Average time of gurobi in "+difficulty+": "+str(average_time(IQ_twist_gurobi)))
-    print("Average time of izplus in "+difficulty+": "+str(average_time(IQ_twist_izplus)))
-    print("Average time of jacop in "+difficulty+": "+str(average_time(IQ_twist_jacop)))
-    print("Average time of ortool in "+difficulty+": "+str(average_time(IQ_twist_ortool)))
-    print("Average time of picat in "+difficulty+": "+str(average_time(IQ_twist_picat)))
-    print("Average time of yuck in "+difficulty+": "+str(average_time(IQ_twist_yuck)))
+ 
     
-def get_overall_solvedcases_coverage_and_averagetime():
+def get_overall_solvedcases_coverage_createfile():
     """
-    This function aims to print the overall number of solved cases for 
+    The function has two goals.
+    one aims to print the overall number of solved cases for 
     each solver, overallcoverage, and overallOverall average time.
+    The other aims to create a file called data_analysis.xlsx which stores all the time points for all solvers.
+    
     Parameters
-
+    ----------
+    None
+    
     Returns
     -------
     None.
@@ -241,12 +219,33 @@ def get_overall_solvedcases_coverage_and_averagetime():
     print("Overall coverage of ortool:"+str(get_coverage(IQ_twist_ortool)))
     print("Overall coverage of picat:"+str(get_coverage(IQ_twist_picat)))
     print("Overall coverage of yuck:"+str(get_coverage(IQ_twist_yuck)))
-    print("Overall average time of choco:"+str(average_time(IQ_twist_choco)))
-    print("Overall average time of chuffed:"+str(average_time(IQ_twist_chuffed)))
-    print("Overall average time of coinbc:"+str(average_time(IQ_twist_coinbc)))
-    print("Overall average time of gurobi:"+str(average_time(IQ_twist_gurobi)))
-    print("Overall average time of izplus:"+str(average_time(IQ_twist_izplus)))
-    print("Overall average time of jacop:"+str(average_time(IQ_twist_jacop)))
-    print("Overall average time of ortool:"+str(average_time(IQ_twist_ortool)))
-    print("Overall average time of picat:"+str(average_time(IQ_twist_picat)))
-    print("Overall average time of yuck:"+str(average_time(IQ_twist_yuck)))
+    map_saveall={}
+    map_saveall['Choco']=IQ_twist_choco
+    map_saveall['Chuffed']=IQ_twist_chuffed
+    map_saveall['Coinbc']=IQ_twist_coinbc
+    map_saveall['Gurobi']=IQ_twist_gurobi
+    map_saveall['Izplus']=IQ_twist_izplus
+    map_saveall['Jacop']=IQ_twist_jacop
+    map_saveall['OR-Tools']=IQ_twist_ortool
+    map_saveall['Picat']=IQ_twist_picat
+    map_saveall['Yuck']=IQ_twist_yuck
+    workbook = xlsxwriter.Workbook('data_analysis.xlsx') 
+    worksheet = workbook.add_worksheet() 
+    column = 1
+    for key,values in map_saveall.items():
+        row = 1
+        count=1
+        worksheet.write(row, column, key)
+        row+=1
+        for value in values:
+            worksheet.write(row, column, value)
+            worksheet.write(row, 0, count)
+            count+=1
+            row+=1
+        column+=1
+    workbook.close() 
+
+        
+        
+    
+ 

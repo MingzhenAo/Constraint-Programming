@@ -6,28 +6,8 @@ Created on Mon Oct 12 14:40:24 2020
 """
 
 from numpy import mean
+import xlsxwriter 
 
-def average_time(list_):
-    """
-    This  function aims to get the average number of the numbers in list_.
-    
-    Parameters
-    ----------
-    list_ : list
-        A list contains float number and 'none'
-
-    Returns
-    -------
-    average_time : float
-        the mean of all the float number in the list_ 
-
-    """
-    all_time=[]
-    for element in list_:
-        if element!='none':
-            all_time.append(element)
-    average_time=mean(all_time)
-    return average_time
 
 def cal_solved_case(list_):
     """
@@ -46,7 +26,7 @@ def cal_solved_case(list_):
     """
     fail_num=0
     for experiment in list_:
-        if experiment=='none':
+        if experiment==1800:
             fail_num+=1
     solved_case=(len(list_)-fail_num)
     return solved_case
@@ -93,7 +73,7 @@ def solver_get_time(logfile,solver_list1):
          time=line.split(':')[1]
          solver_list1.append(float(time))
       elif "timeout-30minutes" in line:
-         solver_list1.append("none")
+         solver_list1.append(1800)
       elif "time elapsed:" in line:
          time=line.split(':')[1]
          time=time.split('s')[0]
@@ -167,15 +147,7 @@ def get_solvedcases_coverage_and_averagetime(difficulty):
     print("Coverage of ortool in "+difficulty+": "+str(get_coverage(ZigZag_Playingmode1_ortool)))
     print("Coverage of picat in "+difficulty+": "+str(get_coverage(ZigZag_Playingmode1_picat)))
     print("Coverage of yuck in "+difficulty+": "+str(get_coverage(ZigZag_Playingmode1_yuck)))
-    print("Average time of choco in "+difficulty+": "+str(average_time(ZigZag_Playingmode1_choco)))
-    print("Average time of chuffed in "+difficulty+": "+str(average_time(ZigZag_Playingmode1_chuffed)))
-    print("Average time of coinbc in "+difficulty+": "+str(average_time(ZigZag_Playingmode1_coinbc)))
-    print("Average time of gurobi in "+difficulty+": "+str(average_time(ZigZag_Playingmode1_gurobi)))
-    print("Average time of izplus in "+difficulty+": "+str(average_time(ZigZag_Playingmode1_izplus)))
-    print("Average time of jacop in "+difficulty+": "+str(average_time(ZigZag_Playingmode1_jacop)))
-    print("Average time of ortool in "+difficulty+": "+str(average_time(ZigZag_Playingmode1_ortool)))
-    print("Average time of picat in "+difficulty+": "+str(average_time(ZigZag_Playingmode1_picat)))
-    print("Average time of yuck in "+difficulty+": "+str(average_time(ZigZag_Playingmode1_yuck)))
+
 def get_overall_solvedcases_coverage_and_averagetime():
     """
     This function aims to print the overall number of solved cases for 
@@ -240,12 +212,28 @@ def get_overall_solvedcases_coverage_and_averagetime():
     print("Overall coverage of ortool:"+str(get_coverage(ZigZag_Playingmode1_ortool)))
     print("Overall coverage of picat:"+str(get_coverage(ZigZag_Playingmode1_picat)))
     print("Overall coverage of yuck:"+str(get_coverage(ZigZag_Playingmode1_yuck)))
-    print("Overall average time of choco:"+str(average_time(ZigZag_Playingmode1_choco)))
-    print("Overall average time of chuffed:"+str(average_time(ZigZag_Playingmode1_chuffed)))
-    print("Overall average time of coinbc:"+str(average_time(ZigZag_Playingmode1_coinbc)))
-    print("Overall average time of gurobi:"+str(average_time(ZigZag_Playingmode1_gurobi)))
-    print("Overall average time of izplus:"+str(average_time(ZigZag_Playingmode1_izplus)))
-    print("Overall average time of jacop:"+str(average_time(ZigZag_Playingmode1_jacop)))
-    print("Overall average time of ortool:"+str(average_time(ZigZag_Playingmode1_ortool)))
-    print("Overall average time of picat:"+str(average_time(ZigZag_Playingmode1_picat)))
-    print("Overall average time of yuck:"+str(average_time(ZigZag_Playingmode1_yuck)))
+    map_saveall={}
+    map_saveall['Choco']=ZigZag_Playingmode1_choco
+    map_saveall['Chuffed']=ZigZag_Playingmode1_chuffed
+    map_saveall['Coinbc']=ZigZag_Playingmode1_coinbc
+    map_saveall['Gurobi']=ZigZag_Playingmode1_gurobi
+    map_saveall['Izplus']=ZigZag_Playingmode1_izplus
+    map_saveall['Jacop']=ZigZag_Playingmode1_jacop
+    map_saveall['OR-Tools']=ZigZag_Playingmode1_ortool
+    map_saveall['Picat']=ZigZag_Playingmode1_picat
+    map_saveall['Yuck']=ZigZag_Playingmode1_yuck
+    workbook = xlsxwriter.Workbook('data_analysismode1.xlsx') 
+    worksheet = workbook.add_worksheet() 
+    column = 1
+    for key,values in map_saveall.items():
+        row = 1
+        count=1
+        worksheet.write(row, column, key)
+        row+=1
+        for value in values:
+            worksheet.write(row, column, value)
+            worksheet.write(row, 0, count)
+            count+=1
+            row+=1
+        column+=1
+    workbook.close() 
