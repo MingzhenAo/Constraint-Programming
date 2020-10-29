@@ -10,9 +10,9 @@ The git repository mainly consists of five parts, IQ Twist, Zig Zag Puzzler, For
 [[_TOC_]]
 ## IQ Twist
 All the experiments and corresponding scripts about IQ Twist has been stored in it.
-1. CSPmodel.mzn
+* CSPmodel.mzn
 The general model, which used to combine the pegs' position information in create_models.py
-2. create_models.py
+* create_models.py
 This is a python script that save all the pegs' position information. Meanwhile, based on these information and the general model in CSPmodel.mzn, all the models created by this script.
 ## Zig Zag Puzzler
 All the experiments and corresponding scripts about IQ Twist has been stored in it.
