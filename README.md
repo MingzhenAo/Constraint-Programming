@@ -5,7 +5,7 @@
 The goal of this project is to model two puzzle games based on CSPs and compare the performances of different solvers. 
 
 The git repository is used to store some important files such as Minizinc files, contracts, report and so on.
-The git repository mainly consists of five parts, IQ Twist, Zig Zag Puzzler, Formalities, Literature, Report and Further Information
+The git repository mainly consists of five parts, IQ Twist, Zig Zag Puzzler, Formalities, Literature and Report. In addition, there is further Information to support the user get more online information that related to our project. 
 
 [[_TOC_]]
 ## IQ Twist
