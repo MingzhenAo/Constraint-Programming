@@ -4,7 +4,7 @@
 # Solving Puzzle Games with CSP solvers
 The goal of this project is to model two puzzle games based on CSPs and compare the performances of different solvers. 
 
-The git repository is used to store some important files such as Minizinc files, contract, report and so on.
+The git repository is used to store some important files such as Minizinc files, contracts, report and so on.
 The git repository mainly consists of five parts, IQ Twist, Zig Zag Puzzler, Formalities, Literature, Report and Further Information
 
 [[_TOC_]]
@@ -12,11 +12,26 @@ The git repository mainly consists of five parts, IQ Twist, Zig Zag Puzzler, For
 All the experiments and corresponding scripts about IQ Twist has been stored in it.
 * CSPmodel.mzn
 
-  The general model, which is unique for all problems. Here, it is used to combine the pegs' position information that is different for each problem in create_models.py
+  The general model, which used to combine the pegs' position information in create_models.py
 * create_models.py
 
-  This is a python script that save all the pegs' positions information. Meanwhile, based on these information and the general model in CSPmodel.mzn, all the models created by this script.
+  This is a python script that saves all the pegs' position information. Meanwhile, based on the information of pegs' positions and the general model in CSPmodel.mzn, all the models were created by this script.
+* data_analysis.py
 
+  This function aims to call the functions in data_analysis_function.py to get all the data information that I have used in the thesis.
+
+* data_analysis_function.py
+
+  The python file is used to save the functions that achieve the goals of my evaluation part.
+* data_analysis.xlsx
+
+  An excel file that stores all the data and corresponding figures that I may use in the evaluation part of my thesis.
+* run_izplus.py
+
+  A script is used to run the izplus solver for all models. I separatedly create a script for it because izplus is based on docker hub.
+* run_sovlers.py
+
+  A script is used to run all other eight solvers except izplus for all models. 
 ## Zig Zag Puzzler
 All the experiments and corresponding scripts about IQ Twist has been stored in it.
 ## Formalities
