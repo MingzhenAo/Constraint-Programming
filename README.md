@@ -15,7 +15,8 @@ All the experiments and corresponding scripts about IQ Twist has been stored in 
   The general model, which used to combine the pegs' position information in create_models.py
 * create_models.py
 
-  This is a python script that saves all the pegs' position information. Meanwhile, based on the information of pegs' positions and the general model in CSPmodel.mzn, all the models were created by this script.
+  This is a python script that saves all the pegs' position information. 
+  Meanwhile, based on the information of pegs' positions and the general model in CSPmodel.mzn, all the models were created by this script.
 * data_analysis.py
 
   This function aims to call the functions in data_analysis_function.py to get all the data information that I have used in the thesis.
@@ -37,8 +38,9 @@ All the experiments and corresponding scripts about IQ Twist has been stored in 
 
   A file save some interfaces that will be used for some solvers.
 * start, junior, expert, master and wizard
- 
-  The names represent different difficulties. Each of them contains 24 files that name as model1, model2 and so on. For each of these file, there are correspondings Minizinc (.mzn) file, Flatzinc (.fzn) file, .ozn file. And other 9 log files to log the result of each solver.  
+
+  The names represent different difficulties. Each of them contains 24 files that name as model1, model2 and so on. 
+  For each of these file, there are correspondings Minizinc (.mzn) file, Flatzinc (.fzn) file, .ozn file. And other 9 log files to log the result of each solver.  
 
 ## Zig Zag Puzzler
 All the experiments and corresponding scripts about IQ Twist has been stored in it.
