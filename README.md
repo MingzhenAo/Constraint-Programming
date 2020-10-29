@@ -10,20 +10,24 @@ The git repository mainly consists of five parts, IQ Twist, Zig Zag Puzzler, For
 [[_TOC_]]
 ## IQ Twist
 All the experiments and corresponding scripts about IQ Twist has been stored in it.
+* start, junior, expert, master and wizard
+
+  The names represent different difficulties. Each of them contains 24 files that name as model1, model2 and so on. 
+  For each of these files, there are correspondings Minizinc (.mzn) file, Flatzinc (.fzn) file, (.ozn) file and other 9 log files to log the result of each solver.
+  The Flatzinc file is a bridge for the Minizinc to connect with other solvers. And the (.ozn) file is a byproduct in the process of transferring Minizinc file to Flatzinc file, it can be deleted after Flatzinc has been created.
 * CSPmodel.mzn
 
-  The general model, which used to combine the pegs' position information in create_models.py
+  Encoding for the general model, which is used to combine the encoding of pegs' position information in create_models.py to make up each problem in the booklet.
 * create_models.py
 
   This is a python script that saves all the pegs' position information. 
-  Meanwhile, based on the information of pegs' positions and the general model in CSPmodel.mzn, all the models were created by this script.
+  Meanwhile, based on the encoding of pegs' positions and the general model in CSPmodel.mzn, all the problems were created by this script.
 * data_analysis.py
 
-  This function aims to call the functions in data_analysis_function.py to get all the data information that I have used in the thesis.
-
+  This function aims to call the functions in data_analysis_function.py to get all the data information that I will use in evaluation part of my thesis.
 * data_analysis_function.py
 
-  The python file is used to save the functions that achieve the goals of my evaluation part.
+  The python file is used to save the functions that achieve the goals in my evaluation part of my thesis.
 * data_analysis.xlsx
 
   An excel file that stores all the data and corresponding figures that I may use in the evaluation part of my thesis.
@@ -37,12 +41,6 @@ All the experiments and corresponding scripts about IQ Twist has been stored in 
 * interface 
 
   A file save some interfaces that will be used for some solvers.
-* start, junior, expert, master and wizard
-
-  The names represent different difficulties. Each of them contains 24 files that name as model1, model2 and so on. 
-  For each of these files, there are correspondings Minizinc (.mzn) file, Flatzinc (.fzn) file, (.ozn) file and other 9 log files to log the result of each solver.
-  The Flatzinc file is a bridge for the Minizinc to connect with other solvers. And the (.ozn) file is a byproduct in the process of transferring Minizinc file to Flatzinc file, it can be deleted after Flatzinc has been created.
-
 ## Zig Zag Puzzler
 All the experiments and corresponding scripts about Zig Zag Puzzler has been stored in it.
 ## Formalities
