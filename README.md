@@ -40,10 +40,11 @@ All the experiments and corresponding scripts about IQ Twist has been stored in 
 * start, junior, expert, master and wizard
 
   The names represent different difficulties. Each of them contains 24 files that name as model1, model2 and so on. 
-  For each of these file, there are correspondings Minizinc (.mzn) file, Flatzinc (.fzn) file, .ozn file. And other 9 log files to log the result of each solver.  
+  For each of these files, there are correspondings Minizinc (.mzn) file, Flatzinc (.fzn) file, (.ozn) file and other 9 log files to log the result of each solver.
+  The Flatzinc file is a bridge for the Minizinc to connect with other solvers. And the (.ozn) file is a byproduct in the process of transferring Minizinc file to Flatzinc file, it can be deleted after Flatzinc has been created.
 
 ## Zig Zag Puzzler
-All the experiments and corresponding scripts about IQ Twist has been stored in it.
+All the experiments and corresponding scripts about Zig Zag Puzzler has been stored in it.
 ## Formalities
 This file mainly save the contracts, which describe the learning objective, project description and assessment.
 ## Literature
