@@ -32,6 +32,14 @@ All the experiments and corresponding scripts about IQ Twist has been stored in 
 * run_sovlers.py
 
   A script is used to run all other eight solvers except izplus for all models. 
+
+* interface 
+
+  A file save some interfaces that will be used for some solvers.
+* start, junior, expert, master and wizard
+ 
+  The names represent different difficulties. Each of them contains 24 files that name as model1, model2 and so on. For each of these file, there are correspondings Minizinc (.mzn) file, Flatzinc (.fzn) file, .ozn file. And other 9 log files to log the result of each solver.  
+
 ## Zig Zag Puzzler
 All the experiments and corresponding scripts about IQ Twist has been stored in it.
 ## Formalities
