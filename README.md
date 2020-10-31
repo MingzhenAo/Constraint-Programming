@@ -108,5 +108,5 @@ This file mainly saves the contracts, which describe the learning objective, pro
 ## Literature
 In addition, many papers that I have used or might be used has been saved in the "literature".
 ## Report
-This part saves my report which can be compiled by latex.
+This part saves my report.
 
