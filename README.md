@@ -34,7 +34,7 @@ All the models are created by Minizinc Language. So Minizinc IDE is necessary.
   <br />Similar to Windows, if a user wants to run the model1 in the start level of IQ Twist by the solver Chuffed, he or she can inputs "minizinc --solver chuffed .../project-2020-s2-puzzle-constraints/IQTwist/start/model1/model1.mzn" in terminal.
 
 In my case, for the model1 in the start level of IQ Twist, if I use the Chuffed again, the command should be "timeout 1800 minizinc --solver Chuffed  ../project-2020-s2-puzzle-constraints/IQTwist/start/model1/model1.mzn --output-time --sac". 
-The "timeout 1800" is used to set the time limit as 1800 seconds. The "--output-time" is used to print the runtime. And the "--sac" means that achieve arc consistency for the model. Comparably, other models and solvers are executed by the same way.
+The "timeout 1800" is used to set the time limit as 1800 seconds. The "--output-time" is used to print the runtime. And the "--sac" means that achieve singleton arc consistency for the model. Comparably, other models and solvers are executed by the same way.
 
 ## IQ Twist
 All the experiments and corresponding scripts about IQ Twist has been stored in it.
