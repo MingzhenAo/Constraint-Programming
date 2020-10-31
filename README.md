@@ -14,7 +14,11 @@ Firstly, I'd like to introduce how to run different models. Secondly, five parts
 
 All the models are created by Minizinc Language. So the Minizinc IDE is necessary.
 
-For Windows, the Minizinc IDE can be dowmloaded in https://www.minizinc.org/. After download the Minizinc IDE, users just need to open the Minizinc file and run it.
+For Windows, the Minizinc IDE can be dowmloaded in https://www.minizinc.org/. After Minizinc IDE has been downloaded successfully, there are two ways to run the models.
+* users just need to open the Minizinc file and run it. 
+       For example, 
+                         ![Imgur](https://i.imgur.com/1jFROET.png)
+
 
 
 
