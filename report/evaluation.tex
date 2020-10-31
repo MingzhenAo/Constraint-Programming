@@ -3,7 +3,7 @@
 \section{Experiment Environment}
 \subsection{Compiler}
 \label{section:compiler}
-Minizinc IDE is a compiler which allows users to edit and run their models, which is developed by the University of Melbourne, Monash University, and Data61 Decision Sciences~\cite{r6}. It provides some built-in functions as well as optimization methods. In our models, the built-in Minizinc-to-Flatzinc translator and AC3 have been applied. In addition, a wide range of solvers has been tested~\cite{r6}. Because CSPs can be considered as mixed-integer programming (MIP) problems too, there are some MIP solvers.
+Minizinc IDE is a compiler which allows users to edit and run their models, which is developed by the University of Melbourne, Monash University, and Data61 Decision Sciences~\cite{r6}. It provides some built-in functions as well as optimization methods. In our models, the build-in algorithm that aims to achieve singleton arc consistent and the built-in Minizinc-to-Flatzinc translator have been applied. In addition, a wide range of solvers has been tested~\cite{r6}. In our case, because the CSPs can be considered as mixed-integer programming (MIP) problems too, there are some MIP solvers.
 \begin{itemize}
     \item \emph{Choco}: A Java CSP solver, which supports many search strategies (DomWDeg, ABS, IBS, first-fail, etc.) and optimization processes (LNS, fast restart).
     \item \emph{Chuffed}: A C++ finite domain solver using lazy clause generation, which contains a nogood logbook to avoid plenty of duplicate calculation.
@@ -17,7 +17,7 @@ Minizinc IDE is a compiler which allows users to edit and run their models, whic
 \end{itemize}
 \subsection{Software Platform and Hardware Platform}
 \label{sec:softplat}
-Most of the experiments are based on the Windows subsystem for Linux 2 (WSL2) \footnote{https://docs.microsoft.com/en-us/windows/wsl/about} which allows the developer run a Linux environment on Windows 10. Only the experiments related to izplus based on docker. Docker is a lightweight virtual machine that applied container virtualization technology~\cite{r25}. Docker provides a Linux environment as well. Table~\ref{tab:Ubuntu} shows the version of WSL2.
+Most of the experiments are based on the Windows subsystem for Linux 2 (WSL2) \footnote{https://docs.microsoft.com/en-us/windows/wsl/about} which allows the developer to run a Linux environment on Windows 10. Only the experiments related to izplus based on docker. Docker is a lightweight virtual machine that applied container virtualization technology~\cite{r25}. Docker provides a Linux environment as well. Table~\ref{tab:Ubuntu} shows the version of WSL2.
 \begin{table*}[htbp]
   \centering
 
@@ -50,7 +50,7 @@ Furthermore, as mentioned in Chapter~\ref{section:compiler}, there are nine solv
 \begin{table}[H]
   \centering
 
-  \caption{Processors used in our evaluation}
+  \caption{Processor used in our evaluation}
   
   \label{tab:machines}
   \input table/machines.tex
@@ -124,7 +124,7 @@ Yuck    &13	  &6  &2  &7  &8\\
 \hline
 \end{tabular}
 \end{table}
-Accordingly, Figure~\ref{fig:comparisonIQtwist} illustrates the change of coverage rates as the increasing of difficulty. It seems like the other solvers are not stable in different difficulties except there are 3 solvers which always keep 100 percent. In other words, there is no obvious relationship between the coverage and difficulty. Because the method to set the difficulty of IQ Twist is a change of the pegs' positions, and the number of placed pegs has no relationship with difficulty, the change of the number of search nodes is tiny. 
+Accordingly, Figure~\ref{fig:comparisonIQtwist} illustrates the change of coverage rates as the increase of difficulty. It seems like the other solvers are not stable in different difficulties except there are 3 solvers which always keep 100 percent. In other words, there is no obvious relationship between the coverage and difficulty. Because the method to set the difficulty of IQ Twist is a change of the pegs' positions, and the number of placed pegs has no relationship with difficulty, the change of the number of search nodes is tiny. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figs/separated coverage.png}
@@ -184,7 +184,7 @@ According to the data in Table~\ref{tab:solvedproblem1}, Figure~\ref{fig:mode1ev
     \caption{Overall coverage rates of each solver for playing mode1}
     \label{fig:mode1eva2}
 \end{figure}
-In addition, on account of Table~\ref{tab:solvedproblemforeach difficulty1}, Figure~\ref{fig:mode1eva4} reveals that except the four solvers that always keep 100 percent coverage, the other five solvers' separated coverage is decreased as the difficulty increase.
+In addition, on account of Table~\ref{tab:solvedproblemforeach difficulty1}, Figure~\ref{fig:mode1eva4} reveals that except for the four solvers that always keep 100 percent coverage, the other five solvers' separated coverage is decreased as the difficulty increase.
 \begin{table}[H]
 \centering
 \caption{Solved problems for each difficulty in playing mode1 (a total of 8 problems for each difficulty)}
@@ -227,7 +227,7 @@ For execution times, Figure~\ref{fig:mode1time1} illustrates that except Choco w
 \caption{All execution times of all solvers for playing mode1}
 \label{fig:mode1time1}
 \end{figure}
-Moreover, Figure~\ref{fig:time1three} reveals that for the problems in "wizard" difficulty, OR-Tools and PicatSAT spend more time for more problems compared with Chuffed. Accordingly, in Figure~\ref{fig:time1threeslope}, although the start point is very close, the growth rate of slopes for Chuffed is much slower than OR-Tools and PicatSAT. Meanwhile, Figure~\ref{fig:mode1time1} reveals an obvious positive correlation between the execution time of different solvers and the difficulties due to the increased number of search nodes. Therefore, Chuffed has the optimal performance in execution time because of the lowest growth rate of slopes. 
+Moreover, Figure~\ref{fig:time1three} reveals that for the problems in "wizard" difficulty, OR-Tools and PicatSAT spend more time on more problems compared with Chuffed. Accordingly, in Figure~\ref{fig:time1threeslope}, although the start point is very close, the growth rate of slopes for Chuffed is much slower than OR-Tools and PicatSAT. Meanwhile, Figure~\ref{fig:mode1time1} reveals an obvious positive correlation between the execution time of different solvers and the difficulties due to the increased number of search nodes. Therefore, Chuffed has the optimal performance in execution time because of the lowest growth rate of slopes. 
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
