@@ -24,14 +24,14 @@ All the models are created by Minizinc Language. So Minizinc IDE is necessary.
    * Users can run the model by command prompt. The usage of the command is "minizinc [<option>] [-I <include path>]  <model>.mzn [<data>.dzn ...] or just <flat>.fzn".
      For example, if the user want to execute the same model above, he or she can inputs "minizinc --solver chuffed ...\project-2020-s2-puzzle-constraints\IQTwist\start\model1\model1.mzn" in command prompt.
 
-* For Linux, Minizinc IDE can be installed by inputing the commands below in terminal
+* For Linux, Minizinc IDE can be installed by inputing the commands below in terminal.
 
          sudo apt update
          sudo apt install snapd
          sudo snap install minizinc --classic
 
   Then users can run the model by terminal. The usage of the command is "minizinc [<option>] [-I <include path>]  <model>.mzn [<data>.dzn ...] or just <flat>.fzn".
-  Similar to Windows, if a user wants to run the model1 in the start level of IQ Twist, he or she can inputs "minizinc --solver chuffed ...\project-2020-s2-puzzle-constraints\IQTwist\start\model1\model1.mzn" in terminal.
+  <br />Similar to Windows, if a user wants to run the model1 in the start level of IQ Twist, he or she can inputs "minizinc --solver chuffed ...\project-2020-s2-puzzle-constraints\IQTwist\start\model1\model1.mzn" in terminal.
 
 ## IQ Twist
 All the experiments and corresponding scripts about IQ Twist has been stored in it.
