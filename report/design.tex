@@ -793,7 +793,7 @@ There should be a total of 16 configurations (4$\times$4). Finally, consider the
 Therefore, if we assign $(0,0,0)$ to $Vb11$ in Figure~\ref{fig:3Dblue1explanation}, accordingly, we can get the initial states for $Vb12$, $Vb13$, $Vb14$ and $Vb15$. They separately correspond to (-1,0,0), (-1,-1,0), (0,0,-1) and (-1,0,1). 
 All of them make up the initial state of Blue piece1. Based on the initial state of Blue piece1, if all other units of the piece rotate around $Vb11$, there should be 24 configurations. Considering the domains of Zig Zag Puzzler again, the piece can be moved as long as all units of piece on the board. Hence, on the condition of all units of piece on the board, we can assign variables $(x_{0},y_{0},z_{0})$ to $Vb11$, accordingly, we can get other units of piece's positions. Therefore, the constrains can be represented by the relationships between each other unit of piece with the first unit of piece $Vb11$. The specific constraint is shown below.
 \subsection{Constraints}
-According to chapter~\ref{section:3Drotationmatrix}, there are 24 rotation configurations. So we get
+Firstly, according to chapter~\ref{section:3Drotationmatrix}, there are 24 rotation configurations. So we get
 \begin{align*}
 &\Cons{b11}{b12}{b13}{b14}{b15}=\{((x_{1},y_{1},z_{1}),(x_{2},y_{2},z_{2}),(x_{3},y_{3},z_{3}),(x_{4},y_{4},z_{4}),(x_{5},y_{5},z_{5}))\in \\
 &\Domain {b11} \times \Domain{b12}\times \Domain{b13}\times \Domain{b14}\times \Domain{b15} \mid\\
@@ -847,6 +847,14 @@ According to chapter~\ref{section:3Drotationmatrix}, there are 24 rotation confi
 &\hspace{1ex} y_{4}=y_{1}-1,\hspace{1ex} z_{4}=z_{1},\hspace{1ex} x_{5}=x_{1}-1,\hspace{1ex} y_{5}=y_{1}+1,\hspace{1ex} z_{5}=z_{1})\}.
 \end{align*}
 Similarly, we can get the constraints for other pieces.
+\\Secondly, there should be no two different units of piece take up the same position
+\begin{equation}
+\label{equ:3Dfirstconstrain}
+\begin{aligned}
+&\forall v_{m},v_{n} \in \VUnits\quad \text{where} \quad v_{m} \neq v_{n}:\\
+&\Constraints{m}{n}=\{((x_{1},y_{1},z_{1}),(x_{2},y_{2},z_{2}))\in \Domain{m} \times \Domain{n}\mid x_{1} \neq x_{2}   \hspace{1ex} or \hspace{1ex}  y_{1} \neq y_{2} \hspace{1ex} or \hspace{1ex}  z_{1} \neq z_{2}\}.
+\end{aligned}
+\end{equation}
 \subsection{Encodings for Zig Zag Puzzler}
 All problems in the Zig Zag Puzzler booklet are encoded in Minizinc. For both playing mode1 and playing mode2, some pieces will be set on the board in advance. Therefore, each problem can be considered as two parts, one is the placed pieces which is different for each problem, the other is the general CSP model which is unique for all problems. 
 \subsubsection{Placed Pieces}
@@ -1008,6 +1016,11 @@ function var int:g0(var int:a)=a div 100;
 \end{lstlisting}
 \bigskip
 \smallbreak
-The constraints of other pieces can be obtained in the same way. 
-\\In addition, in the Minizinc file, if the positions of the units of some pieces have been set before the game start, the corresponding constraints for the pieces do not need to appear again. As an example, for the last problem in Zig Zag Puzzler playing mode1, Figure~\ref{fig:game2mode1} shows that the orange piece and blue piece1 have been set on the board, hence, the general constraints about these two pieces will not appear in the final codes.
+The constraints of other pieces can be obtained in the same way. With regard to the constraint in Equation~\ref{equ:3Dfirstconstrain}, it can be encoded as below.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for constraint two},label={lst:3Dalldifferent}]
+constraint alldifferent([Vy1,Vy2,Vy3,Vy4,Vb11,Vb12,Vb13,Vb14,Vb15,Vb21,Vb22,Vb23,Vb24,Vb25,Vg11,Vg12,Vg13,Vg14,Vg21,Vg22,Vg23,Vr11,Vr12,Vr13,Vr21,Vr22,Vr23,Vo1,Vo2,Vo3,Vo4,Vp1,Vp2,Vp3,Vp4]);
+\end{lstlisting}
+\bigskip
+\smallbreak
+In addition, in the Minizinc file, if the positions of the units of some pieces have been set before the game start, the corresponding constraints for the pieces do not need to appear again. As an example, for the last problem in Zig Zag Puzzler playing mode1, Figure~\ref{fig:game2mode1} shows that the orange piece and blue piece1 have been set on the board, hence, the general constraints about these two pieces will not appear in the final codes.
 \\The completion codes for the last problem in Zig Zag Puzzler playing mode1 are in Appendix~\ref{appendix:lastcaseinmode1}, and the completion codes for the last problem in Zia Zag Puzzler playing mode2 are in Appendix~\ref{appendix:lastcaseinmode2}. 
