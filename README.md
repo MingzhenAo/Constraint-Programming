@@ -17,7 +17,7 @@ All the models are created by Minizinc Language. So Minizinc IDE is necessary.
 For Windows, Minizinc IDE can be dowmloaded in https://www.minizinc.org/. After Minizinc IDE has been downloaded successfully, there are two ways to run the models.
 * users just need to open the Minizinc file and run it. 
        For example, 
-                  <img src="https://www.facebook.com/photo?fbid=1153300311737817&set=a.1153300401737808" width="300">
+                  <img src="https://www.facebook.com/MagicJohnson/photos/a.1044244585589760/4054641241216731/" width="300">
                         
 
 
