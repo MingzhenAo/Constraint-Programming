@@ -24,26 +24,14 @@ For Windows, Minizinc IDE can be downloaded in https://www.minizinc.org/. After 
 2. Users can run the model by command prompt. The usage of the command is "minizinc [<option>] [-I <include path>]  <model>.mzn [<data>.dzn ...] or just <flat>.fzn".
 <br />For example, if the user want to execute the same model in 1, he or she can inputs "minizinc --solver chuffed ...\project-2020-s2-puzzle-constraints\IQTwist\start\model1\model1.mzn" in command prompt.
         
-                        
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## IQ Twist
 All the experiments and corresponding scripts about IQ Twist has been stored in it.
 * start, junior, expert, master and wizard
 
-  The names represent different difficulties. Each of them contains 24 files that name as model1, model2 and so on. 
-  For each of these files, there are correspondings Minizinc (.mzn) file, Flatzinc (.fzn) file, (.ozn) file and other 9 log files to log the result of each solver.
+  The names represent different difficulties. Each of them contains 24 folders that name as model1, model2 and so on. 
+  There is a total of 120 folders that represent the 120 problems in IQ Twist booklet. 
+  For each folder, there is corresponding Minizinc file (.mzn), Flatzinc file (.fzn), (.ozn) and other 9 log files that log the result of each solver.
   The Flatzinc file is a bridge for the Minizinc to connect with other solvers. And the (.ozn) file is a byproduct in the process of transferring Minizinc file to Flatzinc file, it can be deleted after Flatzinc has been created.
 * CSPmodel.mzn
 
@@ -73,6 +61,37 @@ All the experiments and corresponding scripts about IQ Twist has been stored in 
   A file saves some interfaces that will be used for some solvers.
 ## Zig Zag Puzzler
 All the experiments and corresponding scripts about Zig Zag Puzzler has been stored in it.
+* playingmode1 and playingmode2
+
+  They corresponds to two playing mode2. Each of them consists of 5 folders: start, junior, expert, master and wizard.Each folder has 8 folders that are named as model1, model2 and so on. 
+  There is a total of 80 folders that represent 80 problems in Zig Zag Puzzler booklet.
+  For each folder, there is corresponding Minizinc file (.mzn), Flatzinc file (.fzn), (.ozn) and other 9 log files that log the result of each solver.
+  The Flatzinc file is a bridge for the Minizinc to connect with other solvers. And the (.ozn) file is a byproduct in the process of transferring Minizinc file to Flatzinc file, it can be deleted after Flatzinc has been created.
+* piececonstraints
+
+  This file saves general constraints for each piece.
+
+* CSPmodel.mzn and CSPmodelmode2.mzn
+
+  Encoding for the general models of playing mode1 and 2.
+  CSPmodel.mzn is used to combine the encoding of placed pieces' information in create_mode1_models.py to make up each problem in the playing mode1 booklet.
+  CSPmodelmode2.mzn is used to combine the encoding of placed pieces' information in create_mode2_start.py, create_mode2_junior, create_mode2_expert, create_mode2_master and create_mode2_wizard to make up each problem in the playing mode1 booklet.
+* playingmode1_data_analysis.py, playingmode1_data_analysis_function, playingmode2_data_analysis and playingmode2_data_analysis_function
+
+  All of them are used to analyse data for both playing mode1 and 2.
+
+* data_analysismode1.xlsx and data_analysismode2.xlsx
+
+  Each of them saves all the figures and data information that are used or may used in my thesis.
+* run_izplus.py
+
+  A script is used to run the izplus solver for all models. I separately create a script for it because izplus is based on docker.
+* run_sovlers.py
+
+  A script is used to run all other eight solvers except izplus for all models. 
+* interface
+
+  A file saves some interfaces that will be used for some solvers. 
 ## Formalities
 This file mainly saves the contracts, which describe the learning objective, project description and assessment.
 ## Literature
