@@ -12,9 +12,9 @@ Firstly, I'd like to introduce how to run different models. Secondly, five parts
 
 ## How to compile the models?
 
-All the models are created by Minizinc Language. So the Minizinc IDE is necessary.
+All the models are created by Minizinc Language. So Minizinc IDE is necessary.
 
-For Windows, the Minizinc IDE can be dowmloaded in https://www.minizinc.org/. After Minizinc IDE has been downloaded successfully, there are two ways to run the models.
+For Windows, Minizinc IDE can be dowmloaded in https://www.minizinc.org/. After Minizinc IDE has been downloaded successfully, there are two ways to run the models.
 * users just need to open the Minizinc file and run it. 
        For example, 
                         
