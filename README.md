@@ -74,9 +74,9 @@ All the experiments and corresponding scripts about IQ Twist has been stored in 
 All the experiments and corresponding scripts about Zig Zag Puzzler has been stored in it.
 * playingmode1 and playingmode2
 
-  They corresponds to two playing mode2. Each of them consists of 5 folders: start, junior, expert, master and wizard.Each folder has 8 folders that are named as model1, model2 and so on. 
+  They correspond to two playing mode2. Each of them consists of 5 folders: start, junior, expert, master and wizard. Each folder has 8 folders that are named as model1, model2 and so on. 
   There is a total of 80 folders that represent 80 problems in Zig Zag Puzzler booklet.
-  For each folder, there is corresponding Minizinc file (.mzn), Flatzinc file (.fzn), (.ozn) and other 9 log files that log the result of each solver.
+  For each folder, there are corresponding Minizinc file (.mzn), Flatzinc file (.fzn), (.ozn) and other 9 log files that log the result of each solver.
   The Flatzinc file is a bridge for the Minizinc to connect with other solvers. And the (.ozn) file is a byproduct in the process of transferring Minizinc file to Flatzinc file, it can be deleted after Flatzinc has been created.
 * piececonstraints
 
@@ -93,7 +93,7 @@ All the experiments and corresponding scripts about Zig Zag Puzzler has been sto
 
 * data_analysismode1.xlsx and data_analysismode2.xlsx
 
-  Each of them saves all the figures and data information that are used or may used in my thesis.
+  Each of them saves all the figures and data information that are used or may be used in my thesis.
 * run_izplus.py
 
   A script is used to run the izplus solver for all models. I separately create a script for it because izplus is based on docker.
