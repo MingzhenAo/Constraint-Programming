@@ -14,7 +14,7 @@ Firstly, I'd like to introduce how to run different models. Secondly, five parts
 
 All the models are created by Minizinc Language. So Minizinc IDE is necessary.
 
-For Windows, Minizinc IDE can be downloaded in https://www.minizinc.org/. After Minizinc IDE has been downloaded successfully, there are two ways to run the models.
+* For Windows, Minizinc IDE can be downloaded in https://www.minizinc.org/. After Minizinc IDE has been downloaded successfully, there are two ways to run the models.
 1. Users just need to open the Minizinc file and run it. 
 <br />For example, if the user want to run the model1 in the start level of IQ Twist, open the folder project-2020-s2-puzzle-constraints\IQtwist\start\model1, then open the "model1.mzn" file.
 <img src="https://scontent.fcbr1-1.fna.fbcdn.net/v/t1.0-9/122960098_1153314758403039_1749945961259741318_n.jpg?_nc_cat=100&ccb=2&_nc_sid=730e14&_nc_ohc=Qk3tP7zb2CMAX9ibU6X&_nc_ht=scontent.fcbr1-1.fna&oh=f72389009adc09b64a4c2543a323c0f6&oe=5FC26C67" width="400" >
@@ -23,7 +23,14 @@ For Windows, Minizinc IDE can be downloaded in https://www.minizinc.org/. After 
 
 2. Users can run the model by command prompt. The usage of the command is "minizinc [<option>] [-I <include path>]  <model>.mzn [<data>.dzn ...] or just <flat>.fzn".
 <br />For example, if the user want to execute the same model in 1, he or she can inputs "minizinc --solver chuffed ...\project-2020-s2-puzzle-constraints\IQTwist\start\model1\model1.mzn" in command prompt.
-        
+
+* For Linux, Minizinc IDE can be downloaded by inputing some commands in terminal as below
+
+     sudo apt update
+     sudo apt install snapd
+     sudo snap install minizinc --classic
+
+Then users can run the model by terminal. The usage of the command is "minizinc [<option>] [-I <include path>]  <model>.mzn [<data>.dzn ...] or just <flat>.fzn".
 
 ## IQ Twist
 All the experiments and corresponding scripts about IQ Twist has been stored in it.
