@@ -2,7 +2,7 @@
 <img src="https://cdn.shopify.com/s/files/1/0075/3523/1012/products/SmartGames-ZigZagPuzzler-3_1024x1024.jpg?v=1595315047" width="400">
 
 # Solving Puzzle Games with CSP solvers
-The goal of this project is to model two puzzle games based on CSPs and compare the performances of different solvers. 
+The goal of this project is to model two puzzle games by building their constraint satisfaction problems (CSPs) and then compare the performances of different solvers to these CSPs.
 
 The git repository is used to store some important files such as Minizinc files, contracts, report and so on.
 
@@ -12,9 +12,11 @@ Firstly, I'd like to introduce how to run different models. Secondly, five parts
 
 ## How to compile the models?
 
-All the models are created by Minizinc. So the Minizinc IDE is necessary.
+All the models are created by Minizinc Language. So the Minizinc IDE is necessary.
 
-For Windows, the Minizinc can be dowmloaded in https://www.minizinc.org/
+For Windows, the Minizinc IDE can be dowmloaded in https://www.minizinc.org/. After download the Minizinc IDE, users just need to open the Minizinc file and run it.
+
+
 
 
 
