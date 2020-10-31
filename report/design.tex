@@ -9,7 +9,7 @@ IQ Twist is a puzzle game that consists of 8 twisted puzzle pieces and 7 coloure
     \caption{IQ Twist game, adopted from~\cite{r21}}
     \label{fig:IQ_twist_game}
 \end{figure}
-\subsection{Variable}
+\subsection{Variables}
 First of all, the initial state of each piece is defined in Figure~\ref{fig:allinit}.
 \begin{figure}[htbp]
 \begin{subfigure}[b]{.24\textwidth}
@@ -116,7 +116,7 @@ between $V_{y21}$ and $V_{y22}$.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.5\textwidth]{figs/explanation2D.jpg}
-\caption{The explanation of 2D rotation}
+\caption{Explanation of 2D rotation}
     \label{fig:explanation2D}
 \end{figure}
 Therefore, all other placements can be obtained from the initial state of the piece by rotations around the unit of piece $V_{y21}$.\\
@@ -356,31 +356,88 @@ constraint (Vpy1=00)\/(Vy11=Vpy1)\/(Vy21=Vpy1)\/(Vy22=Vpy1)\/(Vy24=Vpy1);
 \smallbreak
 In addition, other pegs can be represented in the same way.
 \\By this way, the complete codes for the problem for Figure~\ref{fig:last_case} in Appendix~\ref{appendix:finalcaseIQtwist}. Similarly, all the models can be encoded in this way.
-\section{ZIG ZAG Puzzler}
-Zig Zag Puzzler is a 3D puzzle game with two playing modes. Both games aim to place all pieces to full fill the game boards. In addition, for both of them, there are some pieces placed in advance to set the difficulty (Figure~\ref{fig:ZIG_ZAG_Puzzler_playing_modes}). Generally, the fewer pieces are placed in advance, the more difficult to solve the puzzler.
+\section{Zig Zag Puzzler}
+Zig Zag Puzzler is a 3D puzzle game with two playing modes. It consists of nine pieces. Figure~\ref{fig:ZIG_ZAG_Puzzler_playing_modes} show that there are two boards, which correspond to different playing modes. Both modes use the same pieces and they aim to place all pieces to fully fill the game boards. In addition, there are some pieces placed in advance to set the difficulty in each mode. The colored parts in Figure~\ref{fig:ZIG_ZAG_Puzzler_playing_modes} are the pieces that are placed in advance. Generally, the fewer pieces are placed in advance, the more difficult to solve the puzzle.
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.4\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
+    \includegraphics[width=\textwidth]{figs/zigzagdescription.jpg}
+    \caption{Zig Zag Puzzler game}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.32\textwidth}
     \includegraphics[width=\textwidth]{figs/zig_zag_mode1.jpg}
-    \caption{One example of ZIG ZAG Puzzler playing mode1}
+    \caption{One example of playing mode1}
     \end{subfigure}
-    \begin{subfigure}[b]{0.4\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
     \includegraphics[width=\textwidth]{figs/zig_zag_mode2.jpg}
-    \caption{One example of ZIG ZAG Puzzler playing mode2}
+    \caption{One example of playing mode2}
     \end{subfigure}
-    \caption{ZIG ZAG Puzzler examples, adopted from~\cite{r23}}
+    \caption{Zig Zag Puzzler examples, adopted from~\cite{r23}}
     \label{fig:ZIG_ZAG_Puzzler_playing_modes}
 \end{figure}
-\\In this part, the designs of CSP models for Zig Zag Puzzler will be discussed. The two playing modes use the same pieces but different boards. Therefore, on the condition of the two coordinates basing on the same system, which means both of them adopting the right-handed coordinate or the left-handed coordinate (Figure~\ref{figure:Cartesiancoordinate}), they can adopt the same variables and the same constraints but different domains. In our case, we adopt the right-handed coordinate.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figs/Cartesian_coordinate_system_handedness}
-    \caption{Left-handed (left) coordinate and right-handed coordinate (right), adopted from~\cite{r20}}
-    \label{figure:Cartesiancoordinate}
+In this part, the design of CSP models for Zig Zag Puzzler will be discussed. The two playing modes use the same pieces but different boards. Therefore, both playing modes will be based on the same coordinate system so that they can adopt the same variables and the same constraints but different domains. 
+\subsection{Variables}
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{0.25\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figs/3Dblue1.jpg}
+\caption{Piece of variable $V_{b1}$}
+  \label{fig:3Dblue1}
+\end{subfigure}
+\begin{subfigure}[b]{0.25\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figs/3Dblue2.jpg}
+\caption{Piece of variable $V_{b2}$}
+  \label{fig:3Dblue2}
+\end{subfigure}
+\begin{subfigure}[b]{0.25\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figs/3Dred1.jpg}
+\caption{Piece of variable $V_{r1}$}
+  \label{fig:3Dred1}
+\end{subfigure}
+\begin{subfigure}[b]{0.25\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figs/3Dred2.jpg}
+\caption{Piece of variable $V_{r2}$}
+  \label{fig:3Dred2}
+\end{subfigure}
+\begin{subfigure}[b]{0.25\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figs/3Dgreen1.jpg}
+\caption{Piece of variable $V_{g1}$}
+  \label{fig:3Dgreen1}
+\end{subfigure}
+\begin{subfigure}[b]{0.25\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figs/3Dgreen2.jpg}
+\caption{Piece of variable $V_{g2}$}
+  \label{fig:3Dgreen2}
+\end{subfigure}
+\begin{subfigure}[b]{0.25\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figs/3Dorange.jpg}
+\caption{Piece of variable $V_{o}$}
+  \label{fig:3Dorange}
+\end{subfigure}
+\begin{subfigure}[b]{0.25\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figs/3Dpurple.jpg}
+\caption{Piece of variable $V_{p}$}
+  \label{fig:3Dpurple}
+\end{subfigure}
+\begin{subfigure}[b]{0.25\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figs/3Dyellow.jpg}
+\caption{Piece of variable $V_{y}$}
+  \label{fig:3Dyellow}
+\end{subfigure}
+\caption{Initial state of each piece}
+  \label{fig:all3Dinit}
 \end{figure}
-\subsection{Variable}
 Firstly, the initial state of each piece is defined in Figure~\ref{fig:all3Dinit}.
-It shows all the variables are corresponding to the specific units. Therefore, the variables can be defined as
+It shows all the variables that are corresponding to the specific units. Therefore, the variables can be defined as
 \begin{equation}
 \begin{aligned}
 \VUnits=\{&V_{y1},V_{y2},V_{y3},V_{y4},\\&V_{b11},V_{b12},V_{b13},V_{b14},
@@ -388,69 +445,9 @@ V_{b15},\\&V_{b21},V_{b22},V_{b23},V_{b24},V_{b25},\\&V_{g11},V_{g12},V_{g13},V_
 V_{r12},V_{r13},\\&V_{r21},V_{r22},V_{r23},\\&V_{o1},V_{o2},V_{o3},V_{o4},\\&V_{p1},V_{p2},V_{p3},V_{p4}\}.
 \end{aligned}
 \end{equation}
-\label{section:3Dgame}
-\begin{figure}[H]
-\centering
-\begin{subfigure}[b]{0.25\textwidth}
-\centering
-\includegraphics[width=\textwidth]{figs/3Dblue1.jpg}
-\caption{The variable explanation of blue1}
-  \label{fig:3Dblue1}
-\end{subfigure}
-\begin{subfigure}[b]{0.25\textwidth}
-\centering
-\includegraphics[width=\textwidth]{figs/3Dblue2.jpg}
-\caption{The variable explanation of blue2}
-  \label{fig:3Dblue2}
-\end{subfigure}
-\begin{subfigure}[b]{0.25\textwidth}
-\centering
-\includegraphics[width=\textwidth]{figs/3Dred1.jpg}
-\caption{The variable explanation of red1}
-  \label{fig:3Dred1}
-\end{subfigure}
-\begin{subfigure}[b]{0.25\textwidth}
-\centering
-\includegraphics[width=\textwidth]{figs/3Dred2.jpg}
-\caption{The variable explanation of red2}
-  \label{fig:3Dred2}
-\end{subfigure}
-\begin{subfigure}[b]{0.25\textwidth}
-\centering
-\includegraphics[width=\textwidth]{figs/3Dgreen1.jpg}
-\caption{The variable explanation of green1}
-  \label{fig:3Dgreen1}
-\end{subfigure}
-\begin{subfigure}[b]{0.25\textwidth}
-\centering
-\includegraphics[width=\textwidth]{figs/3Dgreen2.jpg}
-\caption{The variable explanation of green2}
-  \label{fig:3Dgreen2}
-\end{subfigure}
-\begin{subfigure}[b]{0.25\textwidth}
-\centering
-\includegraphics[width=\textwidth]{figs/3Dorange.jpg}
-\caption{The variable explanation of orange}
-  \label{fig:3Dorange}
-\end{subfigure}
-\begin{subfigure}[b]{0.25\textwidth}
-\centering
-\includegraphics[width=\textwidth]{figs/3Dpurple.jpg}
-\caption{The variable explanation of purple}
-  \label{fig:3Dpurple}
-\end{subfigure}
-\begin{subfigure}[b]{0.25\textwidth}
-\centering
-\includegraphics[width=\textwidth]{figs/3Dyellow.jpg}
-\caption{The variable explanation of yellow}
-  \label{fig:3Dyellow}
-\end{subfigure}
-\caption{Initial state of each piece}
-  \label{fig:all3Dinit}
-\end{figure}
 \subsection{Domains for Playing Mode 1 and 2}
 \label{sec:3Ddomains}
-Figure~\ref{fig:board1} and Figure~\ref{fig:board2} show how to create the coordinate systems for both modes to represent the positions on the boards. For both of them, similar to IQ Twist, the positions are represented as tuples and each tuple contains three elements which are integers. The position of origin of coordinate can be represented as $(1,1,1)$. Now, one position on the board is considered as $(x_{0},y_{0},z_{0})$.
+Figure~\ref{fig:board1} and Figure~\ref{fig:board2} show how to create the coordinate systems for both modes to represent the positions on the boards. In each Figure, there are two different visual angles to see the coordinate systems, which aims to explain the coordinate system more clear. For both of them, similar to IQ Twist, the positions are represented as tuples and each tuple consists of three elements which are integers. The position of origin of coordinate can be represented as $(1,1,1)$. Now, one position on the board is considered as $(x_{0},y_{0},z_{0})$.
 \begin{figure}[htbp]
 \centering
 \begin{subfigure}[b]{.45\textwidth}
@@ -465,7 +462,7 @@ Figure~\ref{fig:board1} and Figure~\ref{fig:board2} show how to create the coord
 \caption{}
 \label{figure:mode1B}
 \end{subfigure}
-\caption{The board of ZIA ZAG Puzzler mode1}
+\caption{The board of Zig Zag Puzzler mode1}
   \label{fig:board1}
 \end{figure}
 \\For playing mode1, as is shown in Figure~\ref{fig:board1}, the maximum number for each axis is 5, hence,
@@ -476,7 +473,7 @@ Figure~\ref{fig:board1} and Figure~\ref{fig:board2} show how to create the coord
 &0<z_{0}\leq5.
 \end{aligned}
 \end{equation}
-If $(x_{0},y_{0},z_{0})$ is located in one of the three planes. Such as xy-plane which corresponds to the position $(x_{0},y_{0},1)$, it will satisfy
+According to the structure of the cube in Figure~\ref{fig:board1}, if $(x_{0},y_{0},z_{0})$ is located in one of the three planes such as xy-plane which corresponds to the position $(x_{0},y_{0},1)$, it will satisfy
 \begin{equation}
 x_{0}+y_{0}\leq6.
 \end{equation}
@@ -513,10 +510,10 @@ Because what we discussed above has included all possible positions, the domain 
 \caption{}
 \label{fig:board2B}
 \end{subfigure}
-\caption{The board of ZIA ZAG Puzzler mode2}
+\caption{The board of Zig Zag Puzzler mode2}
   \label{fig:board2}
 \end{figure}
-For playing mode2, Figure~\ref{fig:board2} shows that the max number for both y-axis and z-axis are 4 and x-axis is 5, hence, 
+For playing mode2, Figure~\ref{fig:board2} shows that the maximum number for both y-axis and z-axis are 4 and x-axis is 5, hence, 
 \begin{equation}
 \begin{aligned}
 &0<x_{0}\leq5,\\
@@ -551,7 +548,7 @@ To clarify how to obtain all configurations for each piece. The 3D rotation matr
 \caption{3Dblue1 initial state}
 \label{fig:3Dblue1explanation}
 \end{figure}
-\\As is shown in Figure~\ref{fig:3Dblue1explanation}, the unit which is corresponding to the first variable $V_{b11}$ can be considered as a point $(x_{0},y_{0},z_{0})$. Considering a general case where a coordinate system includes negative values, if we assign $(0,0,0)$ to $(x_{0},y_{0},z_{0})$, on account of the coordinate system in Figure~\ref{fig:board1}, the $V_{b11}$, $V_{b12}$, $V_{b13}$, $V_{b14}$ and $V_{b15}$ are respectively represented as $(0,0,0)$, $(-1,0,0)$, $(-1,1,0)$, $(0,0,-1)$ and $(-1,0,1)$, which indicate that all other variables are connection with the first variables. For example, there are relationships
+\\As is shown in Figure~\ref{fig:3Dblue1explanation}, the unit which is corresponding to the first variable $V_{b11}$ can be considered as a point $(x_{0},y_{0},z_{0})$. Considering a general case where a coordinate system includes negative values, if we assign $(0,0,0)$ to $(x_{0},y_{0},z_{0})$, on account of the coordinate system in Figure~\ref{fig:board1}, the $V_{b11}$, $V_{b12}$, $V_{b13}$, $V_{b14}$ and $V_{b15}$ are respectively represented as $(0,0,0)$, $(-1,0,0)$, $(-1,1,0)$, $(0,0,-1)$ and $(-1,0,1)$, which indicate that all other variables are connected with the first variables. For example, there are relationships
 \begin{equation}
 \begin{aligned}
 &x_{V_{b11}}-1=x_{V_{b12}},\\
@@ -582,7 +579,7 @@ R_{x}(\theta_{1})=\begin{bmatrix}
 \end{bmatrix},
 \end{aligned}
 \end{equation}
-where $R_{x}(\theta_{1})$ is corresponding to counterclockwise rotation around x-axis by $\theta_{1}$, $R_{y}(\theta_{2})$ is corresponding to the counterclockwise rotation around y-axis by $\theta_{2}$ and $R_{z}(\theta_{3})$ is corresponding to the counterclockwise rotation around z-axis by $\theta_{3}$. In addition, if a point rotate around x-axis by $\alpha$, y-axis by $\theta$ and z-axis by $\gamma$ at the same time, the combination of the three matrix in Equation~\ref{equation:3Dmatrix1} can be represented as
+where $R_{x}(\theta_{1})$ is corresponding to counterclockwise rotation around x-axis by $\theta_{1}$, $R_{y}(\theta_{2})$ is corresponding to the counterclockwise rotation around y-axis by $\theta_{2}$ and $R_{z}(\theta_{3})$ is corresponding to the counterclockwise rotation around z-axis by $\theta_{3}$. In addition, if a point rotates around x-axis by $\alpha$, y-axis by $\theta$ and z-axis by $\gamma$ at the same time, the combination of the three matrices in Equation~\ref{equation:3Dmatrix1} can be represented as
 \begin{equation}
 \label{equation:3Dmatrix2}
 \begin{aligned}
@@ -617,10 +614,9 @@ z\\
 \end{aligned}
 \end{equation}
 Therefore, if $0^{\circ}, 90^{\circ}, 180^{\circ}, 270^{\circ}$ are assigned to $\theta_{1}$ in Equation~\ref{equation:theta1}, we obtain $(x,y,z)$, $(x,-z,y)$, $(x,-y,-z)$ and $(x,z,-y)$.
-Similarly, if a point rotates around the y-axis and the z-axis by $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ and $270^{\circ}$, we can get 4 configurations each. Intuitively, the number of all possible configurations should be 64 because a point can rotate around x-axis by $\theta_{1}$ which is $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ or $270^{\circ}$, rotate around y-axis by $\theta_{2}$ which is $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ or $270^{\circ}$, and rotate around z-axis by $\theta_{3}$ which is $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ or $270^{\circ}$. Therefore, the all possible configurations should be the combination of $\theta_{1}$, $\theta_{2}$ and $\theta_{3}$, there should be a total of $4\times 4 \times 4$ configurations. 
-\\However, there are only 24 configurations because of the "singularities" of Euler angles set. Euler angles are three angles that used to represent the direction of rigid body in 3D space~\cite{r24}, which corresponds $\alpha$, $\beta$ and $\gamma$ in Equation~\ref{equation:3Dmatrix2}. Hughes~\cite{r19} highlights that "any set of Euler angles where the second rotation aligns the axes of the first and third rotations causes a singularity". The second rotation axis is y-axis, and the corresponding rotation angles are $\beta$. In addition, the geometric singularities only appear when $\beta=\pm90^{\circ}$ which is called "a repeated
-axis sequence" and $\beta=0^{\circ}$ or $180^{\circ}$ which is called non-repeated axis
-sequences~\cite{r17,r19}. How they cause singularities? 
+Similarly, if a point rotates around the y-axis and the z-axis by $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ and $270^{\circ}$, we can get four configurations each. Intuitively, the number of all possible configurations should be 64 because a point can rotate around x-axis by $\theta_{1}$ which is $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ or $270^{\circ}$, rotate around y-axis by $\theta_{2}$ which is $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ or $270^{\circ}$, and rotate around z-axis by $\theta_{3}$ which is $0^{\circ}$, $90^{\circ}$, $180^{\circ}$ or $270^{\circ}$. Therefore, all possible configurations should be the combination of $\theta_{1}$, $\theta_{2}$ and $\theta_{3}$, there should be a total of $4\times 4 \times 4$ configurations. 
+\\However, there are only 24 configurations because of the "singularities" of Euler angles set. "A problem arises when using three-angle sequences and particular values of the middle angle leads to a condition called a singularity"~\cite{r29}. Euler angles are three angles that are used to represent the direction of rigid body in 3D space~\cite{r24}, which corresponds to $\alpha$, $\beta$ and $\gamma$ in Equation~\ref{equation:3Dmatrix2}. Hughes~\cite{r19} highlights that "any set of Euler angles where the second rotation aligns the axes of the first and third rotations causes a singularity". The second rotation axis is y-axis, and the corresponding rotation angles are $\beta$. In addition, the geometric singularities only appear when
+$\beta=0^{\circ}$ and $180^{\circ}$ which is called "a repeated axis sequence" because the first and third axes are the same, and $\beta=\pm90^{\circ}$ which is called "non-repeated axis sequences"~\cite{r17,r19}. How do they cause singularities? 
 \\Firstly, let us consider $\beta=\pm90^{\circ}$. If $\beta=90^{\circ}$, we get 
 \begin{equation}
 R_{\beta=90}=R_{z}(\alpha)R_{y}(90^{\circ})R_{x}(\gamma)=
@@ -689,7 +685,7 @@ For Equation~\ref{equation:beta=270}, the four situations are
 &\alpha+\gamma=270^{\circ}.
 \end{aligned}
 \end{equation}
-Therefore, these two groups of formulas represent that there are only four possible situations for each of them. In other words, the separated $\alpha$ and $\gamma$ are meaningless. What we should consider is $(\alpha-\gamma)$ in Equation~\ref{equation:beta=90} and $(\alpha+\gamma)$ in Equation~\ref{equation:beta=270}. 
+Therefore, these two groups of formulas represent that there are only four possible situations for each of them. What we should consider is $(\alpha-\gamma)$ in Equation~\ref{equation:beta=90} and $(\alpha+\gamma)$ in Equation~\ref{equation:beta=270}. 
 \\In Equation~\ref{equation:beta=90}, we assign 0,90,180 and 270 degrees to the $(\alpha-\gamma)$, we get four configurations:
 \begin{enumerate}
   \item  $x'=-y\sin(0^{\circ})-z\cos(0^{\circ}),\hspace{5pt} y'=y\cos(0^{\circ})+z\sin(0^{\circ}),\hspace{5pt} z'=-x \\\implies x'=-z,\hspace{5pt} y'=y,\hspace{5pt} z'=-x$
@@ -727,7 +723,7 @@ R=R_{z}(\alpha)R_{y}(180^{\circ})R_{x}(\gamma)=
 0&                               -\sin\gamma&-\cos\gamma\\
 \end{bmatrix}.
 \end{equation}
-In Equation~\ref{equation:beta=180}, we assign $(\alpha+180^{\circ})$ to $\alpha$ and $(\gamma+180^{\circ})$ to $\gamma$, then it change to
+With regards to Equation~\ref{equation:beta=0} and Equation~\ref{equation:beta=180}, they are quite similar, the only difference is that Equation~\ref{equation:beta=180} contains more negative signs. Do they have any relationships? In Equation~\ref{equation:beta=180}, we assign $(\alpha+180^{\circ})$ to $\alpha$ and $(\gamma+180^{\circ})$ to $\gamma$, then it change to
 \begin{equation}
 \label{equation:alphaandgamma}
 \begin{aligned}
@@ -748,7 +744,7 @@ Therefore, based on Equation~\ref{equation:beta=0} and Equation~\ref{equation:al
 \begin{equation}
 R_{z}(\alpha)R_{y}(0^{\circ})R_{x}(\gamma)=R_{z}(\alpha+180^{\circ})R_{y}(180^{\circ})R_{x}(\gamma+180^{\circ}),
 \end{equation}
-which means that when $\beta=0^{\circ}$, regardless of the number of degrees of $\alpha$ and the number of degrees of $\gamma$, there are always corresponding $\alpha+180^{\circ}$, $\gamma+180^{\circ}$ when $\beta=180^{\circ}$. Even though the number of degrees of $\alpha+180^{\circ}$ or $\gamma+180^{\circ}$ may be more than $360^{\circ}$, it can always find a corresponding from $0^{\circ}$ to $360^{\circ}$ according to the periodicity of trigonometric function. For example, 
+which means that for every configuration of $\alpha$ and $\gamma$ when $\beta=0^{\circ}$, there is an equivalent configuration at $\alpha+180$ and $\gamma+180$ when $\beta=180^{\circ}$. Even though the number of degrees of $\alpha+180^{\circ}$ or $\gamma+180^{\circ}$ may be more than $360^{\circ}$, it can always find a corresponding from $0^{\circ}$ to $360^{\circ}$ according to the periodicity of trigonometric function. For example, 
 \begin{equation}
 \begin{aligned}
 &\circled{1}R_{z}(270^{\circ})Ry(0^{\circ})R_{x}(270^{\circ}) = R_{z}(450^{\circ})R_{y}(180^{\circ})R_{x}(450^{\circ}),\\ 
@@ -764,7 +760,7 @@ Hence, each combination among
 &\gamma=0^{\circ}, 90^{\circ}, 180^{\circ}, 270^{\circ};
 \end{aligned}
 \end{equation}
-always corresponds one combination among 
+always corresponds to one combination among 
 \begin{equation}
 \begin{aligned}
 &\beta=180^{\circ};\\
@@ -772,7 +768,7 @@ always corresponds one combination among
 &\gamma=0^{\circ}, 90^{\circ}, 180^{\circ}, 270^{\circ}.
 \end{aligned}
 \end{equation}
-So we only need to consider the all configurations when $\beta=0^{\circ}$ because the all possible configurations in $\beta=180^{\circ}$ are duplicates. For Equation~\ref{equation:beta=0}, we assign $\theta=0^{\circ},\gamma=0^{\circ}$; $\theta=0^{\circ},\gamma=90^{\circ}$;...;$\theta=270^{\circ},\gamma=180^{\circ}$; $\theta=270^{\circ},\gamma=270^{\circ}$. we get
+So we only need to consider all configurations when $\beta=0^{\circ}$ because the all possible configurations in $\beta=180^{\circ}$ are duplicates. For Equation~\ref{equation:beta=0}, we assign $\theta=0^{\circ},\gamma=0^{\circ}$; $\theta=0^{\circ},\gamma=90^{\circ}$;...;$\theta=270^{\circ},\gamma=180^{\circ}$; $\theta=270^{\circ},\gamma=270^{\circ}$. we get
 \begin{enumerate}
   \setcounter{enumi}{8}
   \item  $x'=x$,   $y'=y$,    $z'=z$,
@@ -794,7 +790,7 @@ So we only need to consider the all configurations when $\beta=0^{\circ}$ becaus
   \label{3Drotation24situations3}
 \end{enumerate}
 There should be a total of 16 configurations (4$\times$4). Finally, consider the all configurations in $\beta=90^{\circ}$, $\beta=270^{\circ}$, $\beta=^{\circ}0$ and $\beta=180^{\circ}$. There should be a total of 4+4+16=24 configurations.
-Therefore, if we assign $(0,0,0)$ to $Vb11$ in Figure~\ref{fig:3Dblue1explanation}, accordingly, we can get the initial states for $Vb12$, $Vb13$, $Vb14$ and $Vb15$. They separately correspond as (-1,0,0), (-1,-1,0), (0,0,-1) and (-1,0,1). 
+Therefore, if we assign $(0,0,0)$ to $Vb11$ in Figure~\ref{fig:3Dblue1explanation}, accordingly, we can get the initial states for $Vb12$, $Vb13$, $Vb14$ and $Vb15$. They separately correspond to (-1,0,0), (-1,-1,0), (0,0,-1) and (-1,0,1). 
 All of them make up the initial state of Blue piece1. Based on the initial state of Blue piece1, if all other units of the piece rotate around $Vb11$, there should be 24 configurations. Considering the domains of Zig Zag Puzzler again, the piece can be moved as long as all units of piece on the board. Hence, on the condition of all units of piece on the board, we can assign variables $(x_{0},y_{0},z_{0})$ to $Vb11$, accordingly, we can get other units of piece's positions. Therefore, the constrains can be represented by the relationships between each other unit of piece with the first unit of piece $Vb11$. The specific constraint is shown below.
 \subsection{Constraints}
 According to chapter~\ref{section:3Drotationmatrix}, there are 24 rotation configurations. So we get
@@ -852,7 +848,7 @@ According to chapter~\ref{section:3Drotationmatrix}, there are 24 rotation confi
 \end{align*}
 Similarly, we can get the constraints for other pieces.
 \subsection{Encodings for Zig Zag Puzzler}
-All problems in the Zig Zag Puzzler booklet are encoded in Minizinc. For both playing mode1 and playing mode2, some pieces will be set on the board in advance. Therefore, each problem can be considered as two parts, one is the placed pieces which is different in each problem, the other is the general CSP model which is unique for all problems. 
+All problems in the Zig Zag Puzzler booklet are encoded in Minizinc. For both playing mode1 and playing mode2, some pieces will be set on the board in advance. Therefore, each problem can be considered as two parts, one is the placed pieces which is different for each problem, the other is the general CSP model which is unique for all problems. 
 \subsubsection{Placed Pieces}
 \begin{figure}[htbp]
     \centering

@@ -3,21 +3,21 @@
 \section{Experiment Environment}
 \subsection{Compiler}
 \label{section:compiler}
-Minizinc IDE is a compiler which allows users to edit and run their models, which is developed by the University of Melbourne, Monash University, and Data61 Decision Sciences~\cite{r6}. It provides some built-in functions as well as optimization methods. In our models, the built-in Minizinc-to-Flatzinc translator and AC3 have been applied. In addition, a wide range of solvers has been tested~\cite{r6}.
+Minizinc IDE is a compiler which allows users to edit and run their models, which is developed by the University of Melbourne, Monash University, and Data61 Decision Sciences~\cite{r6}. It provides some built-in functions as well as optimization methods. In our models, the built-in Minizinc-to-Flatzinc translator and AC3 have been applied. In addition, a wide range of solvers has been tested~\cite{r6}. Because CSPs can be considered as mixed-integer programming (MIP) problems too, there are some MIP solvers.
 \begin{itemize}
-    \item Choco: A JAVA CSP solver, which supports many search strategies (DomWDeg, ABS, IBS, first-fail, etc.) and optimization processes (LNS, fast restart).
-    \item Chuffed: A C++ FD solver using lazy clause generation, which contains a nogood logbook to avoid plenty of duplicate calculation.
-    \item Coin-bc: A C++ based Mixed Integer Programming (in our case, the MIP model is the same with CSP model) solver, it adopts the branch and cut optimization.
-    \item Gurobi: A commercial solver support MIP.
-    \item Izplus: Based on iZ-C constraint programming that is developed by NTT DATA SEKISUI SYSTEMS CORPORATION. It combines Randomized restarting, Local search, Variable reordering and NG learning.
-    \item Jacop: A JAVA CSP solver.
-    \item OR-Tools: An open-source solver developed by google, it combines many optimization methods.
-    \item PicatSAT: A CSP solver based on picat which is a rule-based language. And it adopts log encoding~\cite{r8}.
-    \item Yuck: Based on scala and combines local search with restarting, global constraints, and lexicographic cost functions.
+    \item \emph{Choco}: A Java CSP solver, which supports many search strategies (DomWDeg, ABS, IBS, first-fail, etc.) and optimization processes (LNS, fast restart).
+    \item \emph{Chuffed}: A C++ finite domain solver using lazy clause generation, which contains a nogood logbook to avoid plenty of duplicate calculation.
+    \item \emph{Coin-bc}: A C++ based mixed-integer programming (MIP) solver, it adopts the branch and cut optimization.
+    \item \emph{Gurobi}: A commercial solver supports MIP.
+    \item \emph{Izplus}: Based on iZ-C constraint programming that is developed by NTT DATA SEKISUI SYSTEMS CORPORATION. It combines Randomized restarting, Local search, Variable reordering and nogood learning.
+    \item \emph{Jacop}: A Java CSP solver.
+    \item \emph{OR-Tools}: An open-source solver developed by google, it combines many optimization methods.
+    \item \emph{PicatSAT}: A CSP solver based on picat which is a rule-based language. And it adopts log encoding~\cite{r8}.
+    \item \emph{Yuck}: Based on Scala and combines local search with restarting, global constraints, and lexicographic cost functions.
 \end{itemize}
 \subsection{Software Platform and Hardware Platform}
 \label{sec:softplat}
-Most of experiments based on the Windows subsystem for Linux 2 (WSL2) which allows the developer run a Linux environment on Windows 10. Only the experiments related to izplus based on docker that is a lightweight virtual machine which applied container virtualization technology~\cite{r25}. The docker provides a Linux environment as well. Table~\ref{tab:Ubuntu} shows the version of the WSL2.
+Most of the experiments are based on the Windows subsystem for Linux 2 (WSL2) \footnote{https://docs.microsoft.com/en-us/windows/wsl/about} which allows the developer run a Linux environment on Windows 10. Only the experiments related to izplus based on docker. Docker is a lightweight virtual machine that applied container virtualization technology~\cite{r25}. Docker provides a Linux environment as well. Table~\ref{tab:Ubuntu} shows the version of WSL2.
 \begin{table*}[htbp]
   \centering
 
@@ -26,11 +26,11 @@ Most of experiments based on the Windows subsystem for Linux 2 (WSL2) which allo
   \label{tab:Ubuntu}
   \input table/Ubuntuversion.tex
 \end{table*}
-Furthermore, as mentioned in Chapter~\ref{section:compiler}, there are nine solvers has been applied in our experiment, Table~\ref{tab:solvers} indicates the version of each solver.
+Furthermore, as mentioned in Chapter~\ref{section:compiler}, there are nine solvers that have been applied in our experiment, Table~\ref{tab:solvers} indicates the version of each solver.
 \begin{table}[htbp]
   \centering
 
-  \caption{The solvers and corresponding versions}
+  \caption{The deployed solvers and corresponding versions}
   
   \label{tab:solvers}
   	\begin{subtable}[b]{\textwidth}
@@ -46,37 +46,37 @@ Furthermore, as mentioned in Chapter~\ref{section:compiler}, there are nine solv
   \input table/solver3.tex
   \end{subtable}
 \end{table}
-\\In addition, Table~\ref{tab:machines} introduce the configurations of the hardware platform.
-\begin{table*}[htbp]
+\\In addition, Table~\ref{tab:machines} introduces the configurations of the hardware platform.
+\begin{table}[H]
   \centering
 
   \caption{Processors used in our evaluation}
   
   \label{tab:machines}
   \input table/machines.tex
-\end{table*}
-\section{Result}
+\end{table}
+\section{Results}
 \label{sec:Result}
 In this section, both the results of IQ Twist's experiments and the results of Zig Zag Puzzler's experiments will be discussed. Generally, all the problems in both games' booklets have been tested by the nine solvers that are mentioned in Table~\ref{tab:solvers}. For each game, there are five difficulties 'start', 'junior', 'expert', 'master' and 'wizard'. Each difficulty consists of some problems. The time limit for running each problem is 30 minutes, which is represented as 1800 seconds. If the solver can get the result in 1800 seconds, the time will be logged, otherwise, it will be treated as an unsolved problem, and the execution time will be logged as 1800 seconds. 
 \\Above all, the discussions for the result will mainly include two parts, the coverage rates and the execution time of each solver. 
 \\For the coverage rates, it can be calculated by 
 \begin{equation}
 \label{equation:coverage}
-   C= N1/N2\times 100\% ,
+   C= N1/N2,
 \end{equation}
 where $C$ means the coverage rates, $N1$ means the number of solved problems and $N2$ means the number of total problems, in our case, the overall coverage and separated coverage that corresponds to different difficulties will be discussed.
-\\And for the execution time, except the all execution time points, the average execution time will be considered as well. It can be calculated by 
+\\And for the logged execution time, except for all the logged execution time points, the average execution time will be considered as well. It can be calculated by 
 \begin{equation}
 \label{equation:averagetime}
 \overline{t}=\frac{\sum\limits_{i=1}^n t_{i}}{n},
 \end{equation}
-where $\overline{t}$ is the average execution time, $\sum\limits_{i=1}^n t_{i}$ is the sum of execution times for each problem and $n$ is the number of problems.
+where $\overline{t}$ is the average execution time, $\sum\limits_{i=1}^n t_{i}$ is the sum of logged execution times for each problem and $n$ is the number of problems.
 \subsection{IQ Twist Result}
-\label{sec:IQtwistresult}
+\label{sec:IQtwistresults}
 In the IQ twist booklet, there is a total of 120 problems with 5 difficulties, every 24 problems make up a difficulty. 
 \begin{table}[htbp]
 \centering
-\caption{Overall solved problems for each solver (A total of 120 problems)}
+\caption{Overall solved problems for each solver (a total of 120 problems)}
 \label{tab:solvedproblem}
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 \hline
@@ -89,16 +89,16 @@ Choco & Chuffed & Coinbc& Gurobi & Izplus&Jacop& OR-Tools& PicatSAT&Yuck \\
 \\Firstly, for each solver, we can calculate the coverage rates by the Equation~\ref{equation:coverage}.
 \begin{figure}[H]
      \centering
-    \includegraphics[width=0.6\textwidth]{figs/coverage.png}
+    \includegraphics[width=0.8\textwidth]{figs/coverage.png}
     \caption{Overall coverage rates of each solver}
     \label{eva2}
 \end{figure}
 Table~\ref{tab:solvedproblem} shows the solved problems for each solver. Based on the data in Table~\ref{tab:solvedproblem},
-Figure~\ref{eva2} shows the overall coverage rates for different solvers, which indicates that there are only 3 solvers' overall coverage rates are 100 percent.
+Figure~\ref{eva2} shows the overall coverage rates for different solvers, which indicates that there are only 3 solvers with an overall coverage rate of 100 percent.
 In addition, Table~\ref{tab:solvedproblemforeach difficulty} separately shows the solved problems of different difficulties for each solver. 
 \begin{table}[htbp]
 \centering
-\caption{Solved problems of each difficulty (A total of 24 problems for each difficulty)}
+\caption{Solved problems of each difficulty (a total of 24 problems for each difficulty)}
 \label{tab:solvedproblemforeach difficulty}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
@@ -124,22 +124,22 @@ Yuck    &13	  &6  &2  &7  &8\\
 \hline
 \end{tabular}
 \end{table}
-Accordingly, Figure~\ref{fig:comparisonIQtwist} illustrates the change of coverage rates as the increasing of difficulty. It seems like the other solvers are not stable in different difficulties except there are 3 solvers which always keep 100 percent. In other words, there is no obvious relationship between the coverage and difficulty. Because the method to set the difficulty of IQ Twist is change the pegs positions, and the number of placed pegs has no relationship with difficulty, the change of the number of search nodes is tiny.
+Accordingly, Figure~\ref{fig:comparisonIQtwist} illustrates the change of coverage rates as the increasing of difficulty. It seems like the other solvers are not stable in different difficulties except there are 3 solvers which always keep 100 percent. In other words, there is no obvious relationship between the coverage and difficulty. Because the method to set the difficulty of IQ Twist is a change of the pegs' positions, and the number of placed pegs has no relationship with difficulty, the change of the number of search nodes is tiny. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{figs/separated coverage.png}
+    \includegraphics[width=0.8\textwidth]{figs/separated coverage.png}
     \caption{Coverage rates of each difficulty}
     \label{fig:comparisonIQtwist}
 \end{figure}
 Therefore, compared with other solvers, PicatSAT, OR-Tools and Chuffed take advantage in coverage rates.
-\\Secondly, all the execution times has been shown in Figure~\ref{fig:execution times}.
+\\Secondly, all the execution times have been shown in Figure~\ref{fig:execution times}.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{figs/all_point_IQtwist.png}
+    \includegraphics[width=0.8\textwidth]{figs/all_point_IQtwist.png}
     \caption{All execution times of all solvers}
     \label{fig:execution times}
 \end{figure}
-Figure~\ref{fig:execution times} indicates that Chuffed, PicatSAT and OR-Tools takes huge advantages compared with other solvers because the three solvers can solve each problem in 200 seconds.
+Figure~\ref{fig:execution times} indicates that Chuffed, PicatSAT and OR-Tools take huge advantages compared with other solvers because the three solvers can solve each problem in only 200 seconds.
 \begin{figure}[H]
 \centering
 \begin{subfigure}[b]{.48\textwidth}
@@ -157,17 +157,17 @@ Figure~\ref{fig:execution times} indicates that Chuffed, PicatSAT and OR-Tools t
 \caption{Comparisons between Chuffed, PicatSAT and OR-Tools}
 \label{fig:3comparisonsssss}
 \end{figure}
-Therefore, the three solvers are worth to do more comparisons. Specifically, according to Figure~\ref{fig:3solvers1}, most of the execution times of Chuffed and PicatSAT are close, and they are usually better than OR-Tools.
-Furthermore, Figure~\ref{fig:3comparison} indicates that the Chuffed spends less time than PicatSAT except in the "junior" difficulty.
-\\In short, although all of Chuffed, PicatSAT and OR-Tools can get the result for each problem in 30 minutes, the Chuffed possesses the best performance in IQ Twist.
-\subsection{Zig Zag Puzzler Result}
+Therefore, it is worth to compare the three solvers more closely. Specifically, according to Figure~\ref{fig:3solvers1}, most of the execution times of Chuffed and PicatSAT are close, and they are usually better than OR-Tools.
+Furthermore, Figure~\ref{fig:3comparison} indicates that Chuffed spends less time than PicatSAT except in the "junior" difficulty.
+\\In short, although all of Chuffed, PicatSAT and OR-Tools can get the result for each problem in 30 minutes, the solver Chuffed possesses the best performance in IQ Twist.
+\subsection{Zig Zag Puzzler Results}
 \label{sec:Zig Zag Puzzlerresult}
-In Zig Zag Puzzler booklet, there is a total of 80 problems, 40 of them belong to playing mode1, and the other 40 belong to playing mode2. For each playing mode, every 8 problems make up a difficulty. 
+In the Zig Zag Puzzler booklet, there is a total of 80 problems, 40 of them belong to playing mode1, and the other 40 belong to playing mode2. For each playing mode, every 8 problems make up a difficulty level. 
 \subsubsection{Playing Mode1}
-Firstly, for each solver, we can calculate the coverage rates by the Equation~\ref{equation:coverage}.
+Firstly, for each solver, we can calculate the coverage rates by Equation~\ref{equation:coverage}.
 \begin{table}[htbp]
 \centering
-\caption{Overall solved problems of each solver for playing mode1 (A total of 40 problems)}
+\caption{Overall solved problems of each solver for playing mode1 (a total of 40 problems)}
 \label{tab:solvedproblem1}
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 \hline
@@ -177,17 +177,17 @@ Choco & Chuffed & Coinbc& Gurobi & Izplus&Jacop& OR-Tools& PicatSAT&Yuck \\
 \hline
 \end{tabular}
 \end{table}
-According to the data in Table~\ref{tab:solvedproblem1}, Figure~\ref{fig:mode1eva2} indicates that there are 4 solvers keep 100 percent in the overall coverage.
+According to the data in Table~\ref{tab:solvedproblem1}, Figure~\ref{fig:mode1eva2} indicates that there are 4 solvers that keep 100 percent in the overall coverage.
 \begin{figure}[H]
      \centering
-    \includegraphics[width=0.6\textwidth]{figs/mode1coverage.png}
+    \includegraphics[width=0.8\textwidth]{figs/mode1coverage.png}
     \caption{Overall coverage rates of each solver for playing mode1}
     \label{fig:mode1eva2}
 \end{figure}
-In addition, on account of Table~\ref{tab:solvedproblemforeach difficulty1}, 
+In addition, on account of Table~\ref{tab:solvedproblemforeach difficulty1}, Figure~\ref{fig:mode1eva4} reveals that except the four solvers that always keep 100 percent coverage, the other five solvers' separated coverage is decreased as the difficulty increase.
 \begin{table}[H]
 \centering
-\caption{Solved problems for each difficulty in playing mode1 (A total of 8 problems for each difficulty)}
+\caption{Solved problems for each difficulty in playing mode1 (a total of 8 problems for each difficulty)}
 \label{tab:solvedproblemforeach difficulty1}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
@@ -213,21 +213,21 @@ Yuck	&8	&8	&4	&0	&0\\
 \hline
 \end{tabular}
 \end{table}
-Figure~\ref{fig:mode1eva4} reveals that except the four solvers always keep 100 percent coverage, the other five solvers' separated coverage is decreased as the difficulty increase. That is quite reasonable because the higher difficulty the fewer placed pieces in this playing mode. The fewer placed pieces means the more search nodes, which causes the solver need more time to find the solution.
+That is quite reasonable because the higher difficulty the fewer placed pieces in this playing mode. The fewer placed pieces means the more search nodes, which causes the solver need more time to find the solution.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{figs/mode1seperatedcoverage.png}
+    \includegraphics[width=0.8\textwidth]{figs/mode1seperatedcoverage.png}
     \caption{Coverage rates of each difficulty for playing mode1}
     \label{fig:mode1eva4}
 \end{figure}
-For execution times, Figure~\ref{fig:mode1time1} illustrates that except Choco which spends a lot of time on some problems in  "wizard" difficulty, the other 3 solvers that contain 100 percent overall coverage rates only need very short time to solve each problem. 
+For execution times, Figure~\ref{fig:mode1time1} illustrates that except Choco which spends a lot of time on some problems in  "wizard" difficulty, the other 3 solvers that contain 100 percent overall coverage rates only need a very short time to solve each problem. 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.6\textwidth]{figs/time1all.png}
+\includegraphics[width=0.8\textwidth]{figs/time1all.png}
 \caption{All execution times of all solvers for playing mode1}
 \label{fig:mode1time1}
 \end{figure}
-Moreover, Figure~\ref{fig:time1three} reveals that for the problems in "wizard" difficulty, OR-Tools and PicatSAT spend more time for more problems compared with Chuffed. Accordingly, in Figure~\ref{fig:time1threeslope}, although the start point is very close, the growth rate of slopes for Chuffed is much solver than OR-Tools and PicatSAT. Meanwhile, Figure~\ref{fig:mode1time1} reveals an obvious positive correlation between the execution time of different solvers and the difficulties due to the increased number of search nodes. Therefore, Chuffed has the optimal performance in execution time because of the lowest growth rate of slopes. 
+Moreover, Figure~\ref{fig:time1three} reveals that for the problems in "wizard" difficulty, OR-Tools and PicatSAT spend more time for more problems compared with Chuffed. Accordingly, in Figure~\ref{fig:time1threeslope}, although the start point is very close, the growth rate of slopes for Chuffed is much slower than OR-Tools and PicatSAT. Meanwhile, Figure~\ref{fig:mode1time1} reveals an obvious positive correlation between the execution time of different solvers and the difficulties due to the increased number of search nodes. Therefore, Chuffed has the optimal performance in execution time because of the lowest growth rate of slopes. 
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
@@ -242,11 +242,11 @@ Moreover, Figure~\ref{fig:time1three} reveals that for the problems in "wizard" 
     \end{subfigure}
     \caption{Comparisons between Chuffed, PicatSAT and OR-Tools for playing mode1}
 \end{figure}
-Overall, combine coverage and execution times, Chuffed possess the best performance in Zig Zag Puzzler playing mode1.
+Overall, combine coverage and execution times, Chuffed possesses the best performance in Zig Zag Puzzler playing mode1.
 \subsubsection{Playing Mode2}
 \begin{table}[H]
 \centering
-\caption{Overall solved problems of each solver for playing mode2 (A total of 40 problems)}
+\caption{Overall solved problems of each solver for playing mode2 (a total of 40 problems)}
 \label{tab:solvedproblem2}
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 \hline
@@ -256,17 +256,17 @@ Choco & Chuffed & Coinbc& Gurobi & Izplus&Jacop& OR-Tools& PicatSAT&Yuck \\
 \hline
 \end{tabular}
 \end{table}
-Based on Table~\ref{tab:solvedproblem2}, as is shown in Figure~\ref{fig:mode2eva2}, the result of coverage rates is quite similar to the result of coverage rates in playing mode 1 because the rule of playing mode2 is quite similar with playing mode1. Both of them set fewer pieces as the increase of difficulty.
+Based on Table~\ref{tab:solvedproblem2}, as is shown in Figure~\ref{fig:mode2eva2}, the result of coverage rates is quite similar to the result of coverage rates in playing mode 1 because the rule of playing mode2 is quite similar with playing mode1. Both of them set fewer pieces as difficulty increases.
 \begin{figure}[H]
      \centering
-    \includegraphics[width=0.6\textwidth]{figs/mode2coverage.png}
+    \includegraphics[width=0.8\textwidth]{figs/mode2coverage.png}
     \caption{Overall coverage rates of each solver for playing mode2}
     \label{fig:mode2eva2}
 \end{figure}
 Again, Chuffed, PicatSAT and OR-Tools solve each problem in 30 minutes. 
 \begin{table}[H]
 \centering
-\caption{Solved problems of each difficulty for playing mode2 (A total of 8 problems for each difficulty)}
+\caption{Solved problems of each difficulty for playing mode2 (a total of 8 problems for each difficulty)}
 \label{tab:solvedproblemforeach difficulty2}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
@@ -292,17 +292,17 @@ Yuck	&8	&8	&4	&2	&0\\
 \hline
 \end{tabular}
 \end{table}
-Meanwhile, according to the data in Table~\ref{tab:solvedproblemforeach difficulty2}, Figure~\ref{fig:mode2eva4} indicates that the other 6 solvers' separated coverage is decreased as the difficulty increase, which is also very similar with playing mode1.
+Meanwhile, according to the data in Table~\ref{tab:solvedproblemforeach difficulty2}, Figure~\ref{fig:mode2eva4} indicates that the other 6 solvers' separated coverage is decreased as the difficulty increases, which is also very similar with playing mode1.
  \begin{figure}[H]
    \centering
-    \includegraphics[width=0.6\textwidth]{figs/mode2seperatedcoverage.png}
+    \includegraphics[width=0.8\textwidth]{figs/mode2seperatedcoverage.png}
     \caption{Coverage rates of each difficulty in playing mode2}
     \label{fig:mode2eva4}
 \end{figure}
 For the execution times, as is shown in Figure~\ref{fig:mode2time2}, almost all the solvers' execution times are a positive correlation with the difficulties. Again, Chuffed, PicatSAT and OR-Tools spend less time to solve most problems. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{figs/time2all.png}
+    \includegraphics[width=0.8\textwidth]{figs/time2all.png}
     \caption{All execution times of all solvers for playing mode2}
     \label{fig:mode2time2}
 \end{figure}
@@ -325,5 +325,5 @@ Similarly, on account of Figure~\ref{fig:comparisonlast}, Chuffed achieves optim
 \end{figure}
 \subsection{Summary}
 \label{sec:Summary}
-The difficulty setting in IQ Twist and Zig Zag Puzzler are quite different, which causes the relationship between solvers' performance and difficulty are very different. However, for Zig Zag Puzzler, because both playing modes set fewer pieces as the increase of difficulty, the relationships between solvers' performance and difficulty are very similar. In addition, for all the problems in both IQ Twist and Zig Zag Puzzler, Chuffed, PicatSAT and OR-Tools can solve each of them in 30 minutes. Meanwhile, their performances are more stable and the average execution times for all problems are only a few seconds. To sum up, compared with other solvers, Chuffed, PicatSAT and OR-Tools have obvious advantages in such problems, moreover, the Chuffed cost the shortest time in most problems. 
+The difficulty setting in IQ Twist and Zig Zag Puzzler are quite different, which causes the relationship between solvers' performance and difficulty are very different. However, for Zig Zag Puzzler, because both playing modes set fewer pieces as the increase of difficulty, the relationships between solvers' performance and the games' difficulty level are very similar. In addition, for all the problems in both IQ Twist and Zig Zag Puzzler, Chuffed, PicatSAT and OR-Tools can solve each of them in 30 minutes. Meanwhile, their performances are more stable and the average execution times for all problems are only a few seconds. To sum up, compared with other solvers, Chuffed, PicatSAT and OR-Tools have obvious advantages in such problems, moreover, Chuffed cost the shortest time in most problems. 
  
