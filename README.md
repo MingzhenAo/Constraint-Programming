@@ -54,7 +54,7 @@ All the experiments and corresponding scripts about IQ Twist has been stored in 
   Meanwhile, based on the encoding of pegs' positions and the general model in CSPmodel.mzn, all the problems were created by this script.
 * data_analysis.py
 
-  This function aims to call the functions in data_analysis_function.py to get all the data information that I will use in evaluation part of my thesis.
+  This function aims to call the functions in data_analysis_function.py to get all the data information that I will use in the evaluation part of my thesis.
 * data_analysis_function.py
 
   The python file is used to save the functions that achieve the goals in my evaluation part of my thesis.
@@ -63,18 +63,18 @@ All the experiments and corresponding scripts about IQ Twist has been stored in 
   An excel file that stores all the data and corresponding figures that I may use in the evaluation part of my thesis.
 * run_izplus.py
 
-  A script is used to run the izplus solver for all models. I separatedly create a script for it because izplus is based on docker hub.
+  A script is used to run the izplus solver for all models. I separately create a script for it because izplus is based on docker.
 * run_sovlers.py
 
   A script is used to run all other eight solvers except izplus for all models. 
 
 * interface 
 
-  A file save some interfaces that will be used for some solvers.
+  A file saves some interfaces that will be used for some solvers.
 ## Zig Zag Puzzler
 All the experiments and corresponding scripts about Zig Zag Puzzler has been stored in it.
 ## Formalities
-This file mainly save the contracts, which describe the learning objective, project description and assessment.
+This file mainly saves the contracts, which describe the learning objective, project description and assessment.
 ## Literature
 In addition, many papers that I have used or might be used has been saved in the "literature".
 ## Report
