@@ -12,7 +12,9 @@ Firstly, I'd like to introduce how to run different models. Secondly, five parts
 
 ## How to compile the models?
 
-All the models are created by Minizinc. So the Minizinc IDE is necessary. 
+All the models are created by Minizinc. So the Minizinc IDE is necessary.
+
+For Windows, the Minizinc can be dowmloaded in https://www.minizinc.org/
 
 
 
