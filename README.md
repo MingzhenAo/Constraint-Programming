@@ -14,7 +14,7 @@ Firstly, I'd like to introduce how to run different models. Secondly, five parts
 
 All the models are created by Minizinc Language. So Minizinc IDE is necessary.
 
-For Windows, Minizinc IDE can be dowmloaded in https://www.minizinc.org/. After Minizinc IDE has been downloaded successfully, there are two ways to run the models.
+For Windows, Minizinc IDE can be downloaded in https://www.minizinc.org/. After Minizinc IDE has been downloaded successfully, there are two ways to run the models.
 1. Users just need to open the Minizinc file and run it. 
 <br />For example, if the user want to run the model1 in the start level of IQ Twist, open the folder project-2020-s2-puzzle-constraints\IQtwist\start\model1, then open the "model1.mzn" file.
 <img src="https://scontent.fcbr1-1.fna.fbcdn.net/v/t1.0-9/122960098_1153314758403039_1749945961259741318_n.jpg?_nc_cat=100&ccb=2&_nc_sid=730e14&_nc_ohc=Qk3tP7zb2CMAX9ibU6X&_nc_ht=scontent.fcbr1-1.fna&oh=f72389009adc09b64a4c2543a323c0f6&oe=5FC26C67" width="400" >
