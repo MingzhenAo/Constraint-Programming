@@ -6,8 +6,11 @@ The goal of this project is to model two puzzle games based on CSPs and compare 
 
 The git repository is used to store some important files such as Minizinc files, contracts, report and so on.
 
+Firstly, I'd like to introduce how to run different models. Secondly, five parts of the git repository (IQ Twist, Zig Zag Puzzler, Formalities, Literature and Report) will be introduced.
+[[_TOC_]]
 ## How to compile the models?
 
+All the models are created by Minizinc. So the Minizinc IDE is necessary. 
 
 
 
@@ -18,9 +21,6 @@ The git repository is used to store some important files such as Minizinc files,
 
 
 
-The git repository mainly consists of five parts, IQ Twist, Zig Zag Puzzler, Formalities, Literature and Report. In addition, there is further Information to support the user get more online information that related to our project. 
-
-[[_TOC_]]
 ## IQ Twist
 All the experiments and corresponding scripts about IQ Twist has been stored in it.
 * start, junior, expert, master and wizard
