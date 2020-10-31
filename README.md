@@ -7,7 +7,9 @@ The goal of this project is to model two puzzle games based on CSPs and compare 
 The git repository is used to store some important files such as Minizinc files, contracts, report and so on.
 
 Firstly, I'd like to introduce how to run different models. Secondly, five parts of the git repository (IQ Twist, Zig Zag Puzzler, Formalities, Literature and Report) will be introduced.
+
 [[_TOC_]]
+
 ## How to compile the models?
 
 All the models are created by Minizinc. So the Minizinc IDE is necessary. 
