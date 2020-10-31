@@ -22,7 +22,7 @@ For Windows, Minizinc IDE can be downloaded in https://www.minizinc.org/. After 
 <br />After open the "model1.mzn", there is a button to run the model. On the right of the button, users can choose different solvers.
 
 2. Users can run the model by command prompt. The usage of the command is "minizinc [<option>] [-I <include path>]  <model>.mzn [<data>.dzn ...] or just <flat>.fzn".
-<br />For example, if the user want to execute the same model in 1., he or she can inputs "minizinc --solver chuffed ...\project-2020-s2-puzzle-constraints\IQTwist\start\model1\model1.mzn" in command prompt.
+<br />For example, if the user want to execute the same model in 1, he or she can inputs "minizinc --solver chuffed ...\project-2020-s2-puzzle-constraints\IQTwist\start\model1\model1.mzn" in command prompt.
         
                         
 
