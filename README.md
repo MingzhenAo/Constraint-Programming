@@ -26,9 +26,9 @@ All the models are created by Minizinc Language. So Minizinc IDE is necessary.
 
 * For Linux, Minizinc IDE can be downloaded by inputing some commands in terminal as below
 
-     sudo apt update
-     sudo apt install snapd
-     sudo snap install minizinc --classic
+         sudo apt update
+         sudo apt install snapd
+         sudo snap install minizinc --classic
 
 Then users can run the model by terminal. The usage of the command is "minizinc [<option>] [-I <include path>]  <model>.mzn [<data>.dzn ...] or just <flat>.fzn".
 
