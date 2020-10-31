@@ -1,0 +1,39 @@
+% [junior/model22/model22.fzn]
+% simple solver
+% parse instance...
+ANTLR Tool version 4.5 used for code generation does not match the current runtime version 4.8ANTLR Tool version 4.5 used for code generation does not match the current runtime version 4.8% solve instance...
+% Model[model22.fzn_1], 432 variables, 784 constraints, building time: 2.189s, w/o user-defined search strategy, w/o complementary search strategy
+Vb11 = 83;
+Vb12 = 82;
+Vb13 = 72;
+Vb14 = 81;
+Vb15 = 71;
+Vb21 = 14;
+Vb22 = 13;
+Vb23 = 12;
+Vb24 = 11;
+Vg11 = 64;
+Vg12 = 74;
+Vg13 = 84;
+Vg14 = 73;
+Vg21 = 62;
+Vg22 = 61;
+Vg23 = 51;
+Vr11 = 63;
+Vr12 = 53;
+Vr13 = 54;
+Vr14 = 44;
+Vr21 = 34;
+Vr22 = 33;
+Vr23 = 32;
+Vr24 = 24;
+Vy11 = 23;
+Vy12 = 22;
+Vy13 = 21;
+Vy21 = 31;
+Vy22 = 41;
+Vy23 = 42;
+Vy24 = 52;
+Vy25 = 43;
+----------
+the excute time:50.16862773895264

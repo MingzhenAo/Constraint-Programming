@@ -1,0 +1,16 @@
+% solving(playingmode1/junior/model1/model1.fzn)
+% loading playingmode1/junior/model1/model1.fzn
+Vb11 = 122;
+Vb12 = 112;
+Vb13 = 212;
+Vb14 = 123;
+Vb15 = 111;
+Vg11 = 131;
+Vg12 = 121;
+Vg13 = 221;
+Vg14 = 211;
+Vg21 = 313;
+Vg22 = 312;
+Vg23 = 311;
+----------
+the excute time:0.2960329055786133

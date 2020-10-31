@@ -1,0 +1,7 @@
+% solving(playingmode1/start/model1/model1.fzn)
+% loading playingmode1/start/model1/model1.fzn
+Vo2 = 111;
+Vo3 = 212;
+Vo4 = 221;
+----------
+the excute time:0.09695935249328613

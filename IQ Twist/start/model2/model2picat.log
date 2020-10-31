@@ -1,0 +1,36 @@
+% solving(start/model2/model2.fzn)
+% loading start/model2/model2.fzn
+Vb11 = 11;
+Vb12 = 12;
+Vb13 = 22;
+Vb14 = 13;
+Vb15 = 23;
+Vb21 = 54;
+Vb22 = 64;
+Vb23 = 74;
+Vb24 = 84;
+Vg11 = 61;
+Vg12 = 51;
+Vg13 = 41;
+Vg14 = 52;
+Vg21 = 44;
+Vg22 = 43;
+Vg23 = 53;
+Vr11 = 81;
+Vr12 = 71;
+Vr13 = 72;
+Vr14 = 62;
+Vr21 = 83;
+Vr22 = 73;
+Vr23 = 63;
+Vr24 = 82;
+Vy11 = 34;
+Vy12 = 24;
+Vy13 = 14;
+Vy21 = 21;
+Vy22 = 31;
+Vy23 = 32;
+Vy24 = 42;
+Vy25 = 33;
+----------
+the excute time:1.0565848350524902

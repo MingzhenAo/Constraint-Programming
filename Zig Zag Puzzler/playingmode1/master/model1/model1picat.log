@@ -1,0 +1,26 @@
+% solving(playingmode1/master/model1/model1.fzn)
+% loading playingmode1/master/model1/model1.fzn
+Vy1 = 511;
+Vy2 = 411;
+Vy3 = 311;
+Vy4 = 412;
+Vb21 = 221;
+Vb22 = 121;
+Vb23 = 211;
+Vb24 = 212;
+Vb25 = 131;
+Vg11 = 132;
+Vg12 = 142;
+Vg13 = 141;
+Vg14 = 151;
+Vg21 = 111;
+Vg22 = 112;
+Vg23 = 113;
+Vr11 = 114;
+Vr12 = 115;
+Vr13 = 124;
+Vr21 = 321;
+Vr22 = 322;
+Vr23 = 421;
+----------
+the excute time:3.1222000122070312

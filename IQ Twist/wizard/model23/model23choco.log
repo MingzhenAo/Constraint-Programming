@@ -1,0 +1,39 @@
+% [wizard/model23/model23.fzn]
+% simple solver
+% parse instance...
+ANTLR Tool version 4.5 used for code generation does not match the current runtime version 4.8ANTLR Tool version 4.5 used for code generation does not match the current runtime version 4.8% solve instance...
+% Model[model23.fzn_1], 426 variables, 778 constraints, building time: 0.576s, w/o user-defined search strategy, w/o complementary search strategy
+Vb11 = 64;
+Vb12 = 63;
+Vb13 = 53;
+Vb14 = 62;
+Vb15 = 52;
+Vb21 = 71;
+Vb22 = 61;
+Vb23 = 51;
+Vb24 = 41;
+Vg11 = 54;
+Vg12 = 44;
+Vg13 = 34;
+Vg14 = 43;
+Vg21 = 74;
+Vg22 = 84;
+Vg23 = 83;
+Vr11 = 73;
+Vr12 = 72;
+Vr13 = 82;
+Vr14 = 81;
+Vr21 = 24;
+Vr22 = 23;
+Vr23 = 22;
+Vr24 = 14;
+Vy11 = 11;
+Vy12 = 12;
+Vy13 = 13;
+Vy21 = 21;
+Vy22 = 31;
+Vy23 = 32;
+Vy24 = 42;
+Vy25 = 33;
+----------
+the excute time:105.31904435157776

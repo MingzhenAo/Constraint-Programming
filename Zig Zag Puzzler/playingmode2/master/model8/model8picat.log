@@ -1,0 +1,29 @@
+% solving(playingmode2/master/model8/model8.fzn)
+% loading playingmode2/master/model8/model8.fzn
+Vy1 = 211;
+Vy2 = 311;
+Vy3 = 411;
+Vy4 = 321;
+Vb11 = 422;
+Vb12 = 432;
+Vb13 = 532;
+Vb14 = 421;
+Vb15 = 433;
+Vb21 = 122;
+Vb22 = 121;
+Vb23 = 132;
+Vb24 = 232;
+Vb25 = 111;
+Vg11 = 443;
+Vg12 = 343;
+Vg13 = 333;
+Vg14 = 233;
+Vg21 = 244;
+Vg22 = 344;
+Vg23 = 444;
+Vp1 = 322;
+Vp2 = 222;
+Vp3 = 221;
+Vp4 = 332;
+----------
+the excute time:10.34382700920105

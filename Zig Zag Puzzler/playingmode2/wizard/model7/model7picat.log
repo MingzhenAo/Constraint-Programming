@@ -1,0 +1,34 @@
+% solving(playingmode2/wizard/model7/model7.fzn)
+% loading playingmode2/wizard/model7/model7.fzn
+Vy1 = 121;
+Vy2 = 221;
+Vy3 = 321;
+Vy4 = 222;
+Vb21 = 243;
+Vb22 = 233;
+Vb23 = 244;
+Vb24 = 144;
+Vb25 = 232;
+Vg11 = 143;
+Vg12 = 133;
+Vg13 = 132;
+Vg14 = 122;
+Vg21 = 111;
+Vg22 = 211;
+Vg23 = 311;
+Vr11 = 533;
+Vr12 = 543;
+Vr13 = 532;
+Vr21 = 444;
+Vr22 = 544;
+Vr23 = 443;
+Vo1 = 422;
+Vo2 = 421;
+Vo3 = 322;
+Vo4 = 432;
+Vp1 = 521;
+Vp2 = 511;
+Vp3 = 411;
+Vp4 = 522;
+----------
+the excute time:32.307127237319946

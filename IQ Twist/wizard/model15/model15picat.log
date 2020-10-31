@@ -1,0 +1,36 @@
+% solving(wizard/model15/model15.fzn)
+% loading wizard/model15/model15.fzn
+Vb11 = 42;
+Vb12 = 52;
+Vb13 = 51;
+Vb14 = 62;
+Vb15 = 61;
+Vb21 = 84;
+Vb22 = 83;
+Vb23 = 82;
+Vb24 = 81;
+Vg11 = 14;
+Vg12 = 24;
+Vg13 = 34;
+Vg14 = 23;
+Vg21 = 54;
+Vg22 = 44;
+Vg23 = 43;
+Vr11 = 74;
+Vr12 = 64;
+Vr13 = 63;
+Vr14 = 53;
+Vr21 = 11;
+Vr22 = 12;
+Vr23 = 13;
+Vr24 = 21;
+Vy11 = 73;
+Vy12 = 72;
+Vy13 = 71;
+Vy21 = 41;
+Vy22 = 31;
+Vy23 = 32;
+Vy24 = 22;
+Vy25 = 33;
+----------
+the excute time:3.0501632690429688

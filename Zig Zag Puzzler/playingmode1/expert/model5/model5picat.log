@@ -1,0 +1,23 @@
+% solving(playingmode1/expert/model5/model5.fzn)
+% loading playingmode1/expert/model5/model5.fzn
+Vy1 = 133;
+Vy2 = 123;
+Vy3 = 113;
+Vy4 = 124;
+Vg11 = 111;
+Vg12 = 121;
+Vg13 = 122;
+Vg14 = 132;
+Vg21 = 131;
+Vg22 = 231;
+Vg23 = 331;
+Vo1 = 141;
+Vo2 = 151;
+Vo3 = 142;
+Vo4 = 241;
+Vp1 = 311;
+Vp2 = 211;
+Vp3 = 221;
+Vp4 = 312;
+----------
+the excute time:1.8421647548675537

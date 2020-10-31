@@ -1,0 +1,36 @@
+% solving(expert/model20/model20.fzn)
+% loading expert/model20/model20.fzn
+Vb11 = 53;
+Vb12 = 63;
+Vb13 = 62;
+Vb14 = 73;
+Vb15 = 72;
+Vb21 = 84;
+Vb22 = 74;
+Vb23 = 64;
+Vb24 = 54;
+Vg11 = 44;
+Vg12 = 34;
+Vg13 = 24;
+Vg14 = 33;
+Vg21 = 21;
+Vg22 = 11;
+Vg23 = 12;
+Vr11 = 22;
+Vr12 = 23;
+Vr13 = 13;
+Vr14 = 14;
+Vr21 = 81;
+Vr22 = 82;
+Vr23 = 83;
+Vr24 = 71;
+Vy11 = 61;
+Vy12 = 51;
+Vy13 = 41;
+Vy21 = 31;
+Vy22 = 32;
+Vy23 = 42;
+Vy24 = 43;
+Vy25 = 52;
+----------
+the excute time:0.6943092346191406

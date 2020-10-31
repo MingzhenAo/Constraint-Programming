@@ -1,0 +1,36 @@
+% solving(junior/model21/model21.fzn)
+% loading junior/model21/model21.fzn
+Vb11 = 82;
+Vb12 = 83;
+Vb13 = 73;
+Vb14 = 84;
+Vb15 = 74;
+Vb21 = 34;
+Vb22 = 44;
+Vb23 = 54;
+Vb24 = 64;
+Vg11 = 43;
+Vg12 = 53;
+Vg13 = 63;
+Vg14 = 52;
+Vg21 = 22;
+Vg22 = 21;
+Vg23 = 11;
+Vr11 = 81;
+Vr12 = 71;
+Vr13 = 72;
+Vr14 = 62;
+Vr21 = 14;
+Vr22 = 13;
+Vr23 = 12;
+Vr24 = 24;
+Vy11 = 61;
+Vy12 = 51;
+Vy13 = 41;
+Vy21 = 23;
+Vy22 = 33;
+Vy23 = 32;
+Vy24 = 42;
+Vy25 = 31;
+----------
+the excute time:1.5714430809020996
