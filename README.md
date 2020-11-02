@@ -22,7 +22,7 @@ All the models are created by Minizinc Language. So Minizinc IDE is necessary.
    <br />For example, if a user wants to run the model1 in the start level of IQ Twist, the user needs to open the folder "...\project-2020-s2-puzzle-constraints\IQtwist\start\model1", then the user can open the "model1.mzn" file.
    <br /><img src="https://scontent.fcbr1-1.fna.fbcdn.net/v/t1.0-9/122960098_1153314758403039_1749945961259741318_n.jpg?_nc_cat=100&ccb=2&_nc_sid=730e14&_nc_ohc=Qk3tP7zb2CMAX9ibU6X&_nc_ht=scontent.fcbr1-1.fna&oh=f72389009adc09b64a4c2543a323c0f6&oe=5FC26C67" width="400" >
          <img src="https://scontent.fcbr1-1.fna.fbcdn.net/v/t1.0-9/123167070_1153314791736369_984035643482497166_n.jpg?_nc_cat=104&ccb=2&_nc_sid=730e14&_nc_ohc=i1cTc-TGk8cAX-k1QHa&_nc_ht=scontent.fcbr1-1.fna&oh=27009a734a4b950ada572cba973c7380&oe=5FC2D25C" width="400" ><br />
-         After the user open the "model1.mzn", there is a button to run the model. On the right of the button, the user can choose different solvers.
+         After the user opens the "model1.mzn", there is a button to run the model. On the right of the button, the user can choose different solvers.
 
    * Users can run the model by command prompt. The usage of the command is 
  
