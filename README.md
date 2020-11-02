@@ -25,7 +25,7 @@ All the models are created by Minizinc Language. So Minizinc IDE is necessary.
  
          minizinc [<option>] [-I <include path>]  <model>.mzn [<data>.dzn ...] or just <flat>.fzn
 
-     For example, if the user wants to execute the same model above, he or she can inputs 
+     For example, if the user wants to execute the same model above, he or she can input 
      
          minizinc --solver chuffed .../project-2020-s2-puzzle-constraints/IQTwist/start/model1/model1.mzn
          
