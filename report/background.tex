@@ -9,9 +9,9 @@ variable $v_{i} \in V$ there is a domain $D_{i}$ which is a finite set of object
   \item a finite set of constraints $C = \{C_{1}, C_{2},..., C_{k}\}$ such that the scope of each constraint is a subset of $V$. A constraint can be represented as a pair ($V_{s}$,$A_{s}$), where $V_{s}$ is a set of variables which is called scope and $A_{s}$ is a set of complete assignments for $V_{s}$.
 \end{itemize}
 "A solution to a \emph{CSP} is a complete instantiation of the variables in $V$ satisfying all the constraints in $C$"~\cite{r18}. Such a problem is usually solved by a form of search. However, it is an NP-complete problem which means that there does not exist an algorithm to solve it in polynomial time at the moment. Only if P=NP, there is such an algorithm. Therefore, solving a CSP in a reasonable time requires the combination of optimization methods. In our case, even though different solvers adopt various optimization methods (more details in Chapter 4), singleton arc consistency is commonly used by CSP solvers. "A variable $v$ is \emph{arc consistent} with respect to another variable $u$ if and only if for every $d \in D_{v}$ there is at least one $d'\in D_{u}$ such that $(d,d')\in C_{v,u}$"~\cite{r7}. Accordingly, a CSP is \emph{arc consistent} if and only if all pairs of variables are arc consistent with each other. Furthermore, "The value $a$ of the variable $v_{i}$ is \emph{singleton arc consistent} if and only if the problem restricted to $v_{i}=a$ (i.e., $D_{i}=\{a\})$ is arc consistent. The CSP is \emph{singleton arc consistent} if and only if every value of every variable is singleton arc consistent"~\cite{r30}.
-Based on singleton arc consistency, the values that break singleton arc consistency in the domains will be removed, which significantly decreases the number of search nodes so that it saves a lot of search time. Therefore, it takes up a vital position in the optimizations of CSPs. 
+Based on singleton arc consistency, the values that violate singleton arc consistency in the domains will be removed, which significantly decreases the number of search nodes so that it saves a lot of search time. Therefore, it takes up a vital position in the optimizations of CSPs. 
 \section{Rotation Matrix}
-Rotation matrices are used to perform rotations. "\emph{Rotation} is the action of moving or causing to move in a circle round an axis or centre" and "\emph{Vector} is a quantity having direction as well as magnitude, especially as determining the position of one point in space relative to another" \cite{r14}. After the rotation of a vector, the magnitude which is the length of the vector will be preserved, only the direction of the vector will be changed. The process can be represented by a matrix operation such as 
+Rotation matrices are used to perform rotations in Euclidean space. "\emph{Rotation} is the action of moving or causing to move in a circle round an axis or centre" and "\emph{Vector} is a quantity having direction as well as magnitude, especially as determining the position of one point in space relative to another" \cite{r14}. After the rotation of a vector, the magnitude which is the length of the vector will be preserved, only the direction of the vector will be changed. The process can be represented by a matrix operation such as 
 \begin{equation}
 V'=M.V,
 \end{equation}
@@ -53,7 +53,6 @@ The contents in line 1 are notes, which must start with a "\%". They provide exp
 constraint alldifferent([Vy11,Vy12,Vy13,Vy21,Vy22,Vy23,Vy24,Vy25,Vb11,Vb12,Vb13,Vb14,Vb15,Vb21,Vb22,Vb23,Vb24,Vg11,Vg12,Vg13,Vg14,Vg21,Vg22,Vg23,Vr11,Vr12,Vr13,Vr14,Vr21,Vr22,Vr23,Vr24]);
 \end{lstlisting}
 Accordingly, the contents in line 4 call the "alldifferent" constraint, which makes that there are no two variables equal to the same value. 
-In line 5, the position has been defined, it is a set of int, and the numbers from line 6 to 9 represent the values in the set.
 \begin{lstlisting}[language=minizinc,firstnumber=5]
 set of int: position={
 14,24,34,44,54,64,74,84,
@@ -61,17 +60,17 @@ set of int: position={
 12,22,32,42,52,62,72,82,
 11,21,31,41,51,61,71,81};
 \end{lstlisting}
-From line 10 to 11, some variables and corresponding types have been defined. As an example, "var position: Vb11;" means Vb11 is a variable, and the type of Vb11 is "position". Therefore, the domain of Vb11 is the set of elements in position.
+In line 5, the position has been defined, it is a set of int, and the numbers from line 6 to 9 represent the values in the set.
 \begin{lstlisting}[language=minizinc,firstnumber=10]
 var int:Vpr; var int:Vpb1;var int:Vpb2;var int:Vpg1;var int:Vpg2; var int:Vpy1;var int:Vpy2;
 var position: Vb11;var position: Vb12;var position: Vb13;var position: Vb14;var position: Vb15;
 \end{lstlisting}
-Moreover, from line 12 to line 13, the functions are defined by the user. The g0(a) will return the result of "a" mod 10, and g1(a) will return the result of "a" div 10.
+From line 10 to 11, some variables and corresponding types have been defined. As an example, "var position: Vb11;" means Vb11 is a variable, and the type of Vb11 is "position". Therefore, the domain of Vb11 is the set of elements in position.
 \begin{lstlisting}[language=minizinc,firstnumber=12]
 function var int:g0(var int:a)=a mod 10;
 function var int:g1(var int:a)=a div 10;
 \end{lstlisting}
-Accordingly, from line 15 to line 18, the functions have been used in the constraint, where the constraint from the CSP model of IQ Twist.
+Moreover, from line 12 to line 13, the functions are defined by the user. The g0(a) will return the result of "a" mod 10, and g1(a) will return the result of "a" div 10.
 \begin{lstlisting}[language=minizinc,firstnumber=14]
 %blue piece2 
 constraint (g0(Vb22) = g0(Vb21) + 1/\ g1(Vb22) = g1(Vb21)/\ g0(Vb23) = g0(Vb21) + 2/\ g1(Vb23) = g1(Vb21)/\ g0(Vb24) = g0(Vb21) + 3/\ g1(Vb24) = g1(Vb21)) \/
@@ -79,4 +78,5 @@ constraint (g0(Vb22) = g0(Vb21) + 1/\ g1(Vb22) = g1(Vb21)/\ g0(Vb23) = g0(Vb21) 
            (g0(Vb22) = g0(Vb21) - 1/\ g1(Vb22) = g1(Vb21)/\ g0(Vb23) = g0(Vb21) - 2/\ g1(Vb23) = g1(Vb21)/\ g0(Vb24) = g0(Vb21) - 3/\ g1(Vb24) = g1(Vb21)) \/
            (g0(Vb22) = g0(Vb21)/\ g1(Vb22) = g1(Vb21) - 1/\ g0(Vb23) = g0(Vb21)/\ g1(Vb23) = g1(Vb21) - 2/\ g0(Vb24) = g0(Vb21)/\ g1(Vb24) = g1(Vb21) - 3);
 \end{lstlisting}
-
+Accordingly, from line 15 to line 18, the functions have been used in the constraint. 
+\\In addition, all codes above from the CSP model of IQ Twist.

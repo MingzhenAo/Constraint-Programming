@@ -3,7 +3,7 @@
 \section{Experiment Environment}
 \subsection{Compiler}
 \label{section:compiler}
-Minizinc IDE is a compiler which allows users to edit and run their models, which is developed by the University of Melbourne, Monash University, and Data61 Decision Sciences~\cite{r6}. It provides some built-in functions as well as optimization methods. In our models, the build-in algorithm that aims to achieve singleton arc consistent and the built-in Minizinc-to-Flatzinc translator have been applied. In addition, a wide range of solvers has been tested~\cite{r6}. In our case, because the CSPs can be considered as mixed-integer programming (MIP) problems too, there are some MIP solvers.
+Minizinc IDE~\footnote{\url{https://www.minizinc.org/}}, developed by the University of Melbourne, Monash University, and Data61 Decision Sciences, is a compiler which allows users to edit and run their models~\cite{r6}. It provides some built-in functions as well as optimization methods. In our models, the build-in algorithm that aims to achieve singleton arc consistent and the built-in Minizinc-to-Flatzinc translator have been applied. In addition, a wide range of solvers has been tested~\cite{r6}. In our case, because the CSPs can be considered as mixed-integer programming (MIP) problems too, some MIP solvers are used to evaluate.
 \begin{itemize}
     \item \emph{Choco}: A Java CSP solver, which supports many search strategies (DomWDeg, ABS, IBS, first-fail, etc.) and optimization processes (LNS, fast restart).
     \item \emph{Chuffed}: A C++ finite domain solver using lazy clause generation, which contains a nogood logbook to avoid plenty of duplicate calculation.
@@ -17,7 +17,7 @@ Minizinc IDE is a compiler which allows users to edit and run their models, whic
 \end{itemize}
 \subsection{Software Platform and Hardware Platform}
 \label{sec:softplat}
-Most of the experiments are based on the Windows subsystem for Linux 2 (WSL2)~\footnote{https://docs.microsoft.com/en-us/windows/wsl/about} which allows the developer to run a Linux environment on Windows 10. Only the experiments related to izplus based on docker. Docker is a lightweight virtual machine that applied container virtualization technology~\cite{r25}. Docker provides a Linux environment as well. Table~\ref{tab:Ubuntu} shows the version of WSL2.
+Most of the experiments are based on the Windows subsystem for Linux 2 (WSL2)~\footnote{\url{https://docs.microsoft.com/en-us/windows/wsl/about}} which allows the developer to run a Linux environment on Windows 10. Only the experiments related to izplus based on docker. Docker is a lightweight virtual machine that applied container virtualization technology~\cite{r25}. Docker provides a Linux environment as well. Table~\ref{tab:Ubuntu} shows the version of WSL2.
 \begin{table*}[htbp]
   \centering
 
@@ -55,6 +55,7 @@ Furthermore, as mentioned in Chapter~\ref{section:compiler}, there are nine solv
   \label{tab:machines}
   \input table/machines.tex
 \end{table}
+Moreover, based on the experiment environment, all experiment results and corresponding codes are available at~\footnote{\url{https://gitlab.cecs.anu.edu.au/u1092535/project-2020-s2-puzzle-constraints}}.
 \section{Results}
 \label{sec:Result}
 In this section, both the results of IQ Twist's experiments and the results of Zig Zag Puzzler's experiments will be discussed. Generally, all the problems in both games' booklets have been tested by the nine solvers that are mentioned in Table~\ref{tab:solvers}. For each game, there are five difficulties 'start', 'junior', 'expert', 'master' and 'wizard'. Each difficulty consists of some problems. The time limit for running each problem is 30 minutes, which is represented as 1800 seconds. If the solver can get the result in 1800 seconds, the time will be logged, otherwise, it will be treated as an unsolved problem, and the execution time will be logged as 1800 seconds. 
@@ -70,7 +71,7 @@ where $C$ means the coverage rates, $N1$ means the number of solved problems and
 \label{equation:averagetime}
 \overline{t}=\frac{\sum\limits_{i=1}^n t_{i}}{n},
 \end{equation}
-where $\overline{t}$ is the average execution time, $\sum\limits_{i=1}^n t_{i}$ is the sum of logged execution times for each problem and $n$ is the number of problems.
+where $\overline{t}$ is the average execution time, $\sum\limits_{i=1}^n t_{i}$ is the sum of logged execution time for each problem and $n$ is the number of problems.
 \subsection{IQ Twist Result}
 \label{sec:IQtwistresults}
 In the IQ twist booklet, there is a total of 120 problems with 5 difficulties, every 24 problems make up a difficulty. 
@@ -132,32 +133,32 @@ Accordingly, Figure~\ref{fig:comparisonIQtwist} illustrates the change of covera
     \label{fig:comparisonIQtwist}
 \end{figure}
 Therefore, compared with other solvers, PicatSAT, OR-Tools and Chuffed take advantage in coverage rates.
-\\Secondly, all the execution times have been shown in Figure~\ref{fig:execution times}.
+\\Secondly, all the execution time have been shown in Figure~\ref{fig:execution time}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figs/all_point_IQtwist.png}
-    \caption{All execution times of all solvers}
-    \label{fig:execution times}
+    \caption{All execution time of all solvers}
+    \label{fig:execution time}
 \end{figure}
-Figure~\ref{fig:execution times} indicates that Chuffed, PicatSAT and OR-Tools take huge advantages compared with other solvers because the three solvers can solve each problem in only 200 seconds.
+Figure~\ref{fig:execution time} indicates that Chuffed, PicatSAT and OR-Tools take huge advantages compared with other solvers because the three solvers can solve each problem in only 200 seconds.
 \begin{figure}[H]
 \centering
 \begin{subfigure}[b]{.48\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figs/threesolverpoints.png}
-\caption{Execution times for Chuffed, PicatSAT and OR-Tools}
+\caption{Execution time for Chuffed, PicatSAT and OR-Tools}
 \label{fig:3solvers1}
 \end{subfigure}
 \begin{subfigure}[b]{.48\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figs/Three comparison.png}
-\caption{Average execution times for Chuffed, PicatSAT and OR-Tools}
+\caption{Average execution time for Chuffed, PicatSAT and OR-Tools}
 \label{fig:3comparison}
 \end{subfigure}
 \caption{Comparisons between Chuffed, PicatSAT and OR-Tools}
 \label{fig:3comparisonsssss}
 \end{figure}
-Therefore, it is worth to compare the three solvers more closely. Specifically, according to Figure~\ref{fig:3solvers1}, most of the execution times of Chuffed and PicatSAT are close, and they are usually better than OR-Tools.
+Therefore, it is worth to compare the three solvers more closely. Specifically, according to Figure~\ref{fig:3solvers1}, most of the execution time of Chuffed and PicatSAT are close, and they are usually better than OR-Tools.
 Furthermore, Figure~\ref{fig:3comparison} indicates that Chuffed spends less time than PicatSAT except in the "junior" difficulty.
 \\In short, although all of Chuffed, PicatSAT and OR-Tools can get the result for each problem in 30 minutes, the solver Chuffed possesses the best performance in IQ Twist.
 \subsection{Zig Zag Puzzler Results}
@@ -220,11 +221,11 @@ That is quite reasonable because the higher difficulty the fewer placed pieces i
     \caption{Coverage rates of each difficulty for playing mode1}
     \label{fig:mode1eva4}
 \end{figure}
-For execution times, Figure~\ref{fig:mode1time1} illustrates that except Choco which spends a lot of time on some problems in  "wizard" difficulty, the other 3 solvers that contain 100 percent overall coverage rates only need a very short time to solve each problem. 
+For execution time, Figure~\ref{fig:mode1time1} illustrates that except Choco which spends a lot of time on some problems in  "wizard" difficulty, the other 3 solvers that contain 100 percent overall coverage rates only need a very short time to solve each problem. 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.8\textwidth]{figs/time1all.png}
-\caption{All execution times of all solvers for playing mode1}
+\caption{All execution time of all solvers for playing mode1}
 \label{fig:mode1time1}
 \end{figure}
 Moreover, Figure~\ref{fig:time1three} reveals that for the problems in "wizard" difficulty, OR-Tools and PicatSAT spend more time on more problems compared with Chuffed. Accordingly, in Figure~\ref{fig:time1threeslope}, although the start point is very close, the growth rate of slopes for Chuffed is much slower than OR-Tools and PicatSAT. Meanwhile, Figure~\ref{fig:mode1time1} reveals an obvious positive correlation between the execution time of different solvers and the difficulties due to the increased number of search nodes. Therefore, Chuffed has the optimal performance in execution time because of the lowest growth rate of slopes. 
@@ -232,7 +233,7 @@ Moreover, Figure~\ref{fig:time1three} reveals that for the problems in "wizard" 
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
      \includegraphics[width=\textwidth]{figs/time1three.png}
-    \caption{Execution times for Chuffed, PicatSAT and OR-Tools}
+    \caption{Execution time for Chuffed, PicatSAT and OR-Tools}
     \label{fig:time1three}
     \end{subfigure}
     \begin{subfigure}[b]{0.48\textwidth}
@@ -242,7 +243,7 @@ Moreover, Figure~\ref{fig:time1three} reveals that for the problems in "wizard" 
     \end{subfigure}
     \caption{Comparisons between Chuffed, PicatSAT and OR-Tools for playing mode1}
 \end{figure}
-Overall, combine coverage and execution times, Chuffed possesses the best performance in Zig Zag Puzzler playing mode1.
+Overall, combine coverage and execution time, Chuffed possesses the best performance in Zig Zag Puzzler playing mode1.
 \subsubsection{Playing Mode2}
 \begin{table}[H]
 \centering
@@ -299,11 +300,11 @@ Meanwhile, according to the data in Table~\ref{tab:solvedproblemforeach difficul
     \caption{Coverage rates of each difficulty in playing mode2}
     \label{fig:mode2eva4}
 \end{figure}
-For the execution times, as is shown in Figure~\ref{fig:mode2time2}, almost all the solvers' execution times are a positive correlation with the difficulties. Again, Chuffed, PicatSAT and OR-Tools spend less time to solve most problems. 
+For the execution time, as is shown in Figure~\ref{fig:mode2time2}, almost all the solvers' execution time are a positive correlation with the difficulties. Again, Chuffed, PicatSAT and OR-Tools spend less time to solve most problems. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figs/time2all.png}
-    \caption{All execution times of all solvers for playing mode2}
+    \caption{All execution time of all solvers for playing mode2}
     \label{fig:mode2time2}
 \end{figure}
 Similarly, on account of Figure~\ref{fig:comparisonlast}, Chuffed achieves optimal performance. 
@@ -311,13 +312,13 @@ Similarly, on account of Figure~\ref{fig:comparisonlast}, Chuffed achieves optim
 \begin{subfigure}[b]{0.48\textwidth}
   \centering
     \includegraphics[width=\textwidth]{figs/time2three.png}
-    \caption{Execution times for Chuffed, PicatSAT and OR-Tools}
+    \caption{Execution time for Chuffed, PicatSAT and OR-Tools}
     \label{fig:compare}
 \end{subfigure}
 \begin{subfigure}[b]{0.48\textwidth}
  \centering
     \includegraphics[width=\textwidth]{figs/Threecomparison2.png}
-    \caption{Average execution times for Chuffed, PicatSAT and OR-Tools}
+    \caption{Average execution time for Chuffed, PicatSAT and OR-Tools}
     \label{fig:compare}
 \end{subfigure}
 \caption{Comparisons between Chuffed, PicatSAT and OR-Tools for playing mode2}
@@ -325,5 +326,5 @@ Similarly, on account of Figure~\ref{fig:comparisonlast}, Chuffed achieves optim
 \end{figure}
 \subsection{Summary}
 \label{sec:Summary}
-The different difficulty settings in IQ Twist and Zig Zag Puzzler cause the different relationships between solvers' performance and difficulty in each game. However, for Zig Zag Puzzler, because both playing modes set fewer pieces as the increase of difficulty, the relationships between solvers' performance and the games' difficulty level are very similar. In addition, for all the problems in both IQ Twist and Zig Zag Puzzler, Chuffed, PicatSAT and OR-Tools can solve each of them in 30 minutes. Meanwhile, their performances are more stable and the average execution times for all problems are only a few seconds. To sum up, compared with other solvers, Chuffed, PicatSAT and OR-Tools have obvious advantages in such problems, moreover, Chuffed cost the shortest time in most problems. 
+The different difficulty settings in IQ Twist and Zig Zag Puzzler cause the different relationships between solvers' performance and difficulty in each game. However, for Zig Zag Puzzler, because both playing modes set fewer pieces as the increase of difficulty, the relationships between solvers' performance and the games' difficulty level are very similar. In addition, for all the problems in both IQ Twist and Zig Zag Puzzler, Chuffed, PicatSAT and OR-Tools can solve each of them in 30 minutes. Meanwhile, their performances are more stable and the average execution time for all problems are only a few seconds. To sum up, compared with other solvers, Chuffed, PicatSAT and OR-Tools have obvious advantages in such problems, moreover, Chuffed cost the shortest time in most problems. 
  
