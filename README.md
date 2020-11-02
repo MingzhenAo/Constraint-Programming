@@ -41,7 +41,9 @@ All the models are created by Minizinc Language. So Minizinc IDE is necessary.
   
          minizinc [<option>] [-I <include path>]  <model>.mzn [<data>.dzn ...] or just <flat>.fzn
          
-  <br />Similar to Windows, if a user wants to run the model1 in the start level of IQ Twist by the solver Chuffed, he or she can inputs "minizinc --solver chuffed .../project-2020-s2-puzzle-constraints/IQTwist/start/model1/model1.mzn" in terminal.
+  <br />Similar to Windows, if a user wants to run the model1 in the start level of IQ Twist by the solver Chuffed, he or she can inputs 
+  
+         minizinc --solver chuffed .../project-2020-s2-puzzle-constraints/IQTwist/start/model1/model1.mzn" in terminal.
 
 In my case, for the model1 in the start level of IQ Twist, if I use the Chuffed again, the command should be 
 
