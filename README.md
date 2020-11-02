@@ -80,10 +80,10 @@ All the experiments and corresponding scripts about IQ Twist has been stored in 
   An excel file that stores all the data and corresponding figures that I may use in the evaluation part of my thesis.
 * run_izplus.py
 
-  A script is used to run the izplus solver for all models. I separately create a script for it because izplus is based on docker.
+  A script is used to run the izplus solver for each model and log the corresponding execution time. I separately create a script for it because izplus is based on docker.
 * run_sovlers.py
 
-  A script is used to run all other eight solvers except izplus for all models. 
+  A script is used to run eight solvers for each model and log the corresponding execution times. 
 
 * interface 
 
@@ -114,17 +114,17 @@ All the experiments and corresponding scripts about Zig Zag Puzzler has been sto
   Each of them saves all the figures and data information that are used or may be used in my thesis.
 * run_izplus.py
 
-  A script is used to run the izplus solver for all models. I separately create a script for it because izplus is based on docker.
+  A script is used to run the izplus solver for each model in the two playing modes and log the corresponding execution time. I separately create a script for it because izplus is based on docker.
 * run_sovlers.py
 
-  A script is used to run all other eight solvers except izplus for all models. 
+  A script is used to run eight solvers for each model in the two playing modes and log the corresponding execution times
 * interface
 
   A file saves some interfaces that will be used for some solvers. 
-## Formalities
+## formalities
 This file mainly saves the contracts, which describe the learning objective, project description and assessment.
-## Literature
+## literature
 In addition, many papers that I have used or might be used has been saved in the "literature".
-## Report
-This part saves my report.
+## report
+This file saves my report.
 
