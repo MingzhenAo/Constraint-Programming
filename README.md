@@ -34,7 +34,7 @@ All the models are created by Minizinc Language. So Minizinc IDE is necessary.
          
      in command prompt.
 
-* For Linux, Minizinc IDE can be installed by inputing the commands below in terminal.
+* For Linux, Minizinc IDE can be installed by inputting the commands below in terminal.
 
          sudo apt update
          sudo apt install snapd
