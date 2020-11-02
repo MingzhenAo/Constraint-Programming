@@ -3,7 +3,9 @@
 
 # Solving Puzzle Games with CSP solvers
 > Author: Mingzhen Ao
+
 > Supervisors: Pascal Bercher and Florian Geißer
+
 The goal of this project is to model two puzzle games by building their constraint satisfaction problems (CSPs) and then compare the performances of different solvers to these CSPs.
 
 The git repository is used to store some important files such as Minizinc files, contracts, report and so on.
