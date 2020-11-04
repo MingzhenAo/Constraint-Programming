@@ -2,7 +2,7 @@
 \label{cha:design}
 Generally, this chapter discusses two parts: the CSP model and its encodings for the 2D game (IQ Twist), the CSP models and their encodings for the two playing modes of the 3D game (ZIG ZAG Puzzler).
 \section{IQ Twist}
-IQ Twist is a puzzle game that consists of 8 twisted puzzle pieces and 7 coloured pegs (Figure~\ref{fig:IQ_twist_game}). To play the game, the colored pegs should be placed on the board in advance, then fit all the twisted puzzle pieces back into the board. Different units of piece have to match the pegs with the same color and only the hollow units of a piece can be used to match pegs. Moreover, the difficulty of a single game depends on the pegs' placements given at the beginning.
+IQ Twist is a puzzle game that consists of 8 twisted puzzle pieces and 7 coloured pegs (Figure~\ref{fig:IQ_twist_game}). To play the game, the colored pegs should be placed on the board in advance, then one has to fit all the twisted puzzle pieces back into the board. Different units of piece have to match the pegs with the same color and only the hollow units of a piece can be used to match pegs. Moreover, the difficulty of a single game depends on the pegs' placements given at the beginning.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.6\textwidth]{figs/IQtwistintroduction.jpg}
@@ -63,7 +63,7 @@ First of all, the initial state of each piece is defined in Figure~\ref{fig:alli
 \caption{Initial state of each piece}
   \label{fig:allinit}
 \end{figure}
-There are some name rules. Firstly, all the variables are corresponding to the specific unit of piece. As an example, for piece yellow2, Figure~\ref{fig:namerules} shows that the first variable $V_{y21}$ is used to represent the left-most bottom unit. For other units, they are named as $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$, which follows the order from left to right and bottom-up. Similarly, the name rules will be used for other pieces. 
+There are some name rules. Firstly, all the variables are corresponding to the specific unit of a piece. As an example, for piece yellow2, Figure~\ref{fig:namerules} shows that the first variable $V_{y21}$ is used to represent the left-most bottom unit. For other units, they are named as $V_{y22}$, $V_{y23}$, $V_{y24}$ and $V_{y25}$, which follows the order from left to right and bottom-up. Similarly, the name rules will be used for other pieces. 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.3\textwidth]{figs/example.jpg}
@@ -203,7 +203,7 @@ Considering the domain of IQ Twist again, the piece can be moved as long as all 
 where the abscissa of each variable is from 1 to 8 and the ordinate of each variable is from 1 to 4.  
 \subsection{Constraints}
 \label{section:IQtwistconstriant}
-Firstly, there should be no two different units of piece take up the same position
+Firstly, there should be no two different units of a piece take up the same position
 \begin{equation}
 \label{equ:firstconstrain}
 \begin{aligned}
@@ -211,7 +211,7 @@ Firstly, there should be no two different units of piece take up the same positi
 &\Constraints{m}{n}=\{((x_{1},y_{1}),(x_{2},y_{2}))\in \Domain{m} \times \Domain{n}\mid x_{1} \neq x_{2}   \hspace{1ex} or \hspace{1ex}  y_{1} \neq y_{2}\}.
 \end{aligned}
 \end{equation}
-Secondly, there should be no two different pegs take up the same position except both of them are not on the board
+Secondly, there should be no two different pegs that take up the same position except both of them are not on the board
 \begin{equation}
 \label{equ:secondconstrain}
 \begin{aligned}
@@ -280,8 +280,8 @@ constraint Vpr=61;
 \bigskip
 \smallbreak
 \subsubsection{The General Model}
-In this part, all the aspects such as variables, domains and constraints about CSP model will be addressed.
-\\Firstly, all variables in CSP model are represented in Listing~\ref{lst:IQ Twist variables}.
+In this part, all the aspects such as variables, domains and constraints about the CSP model will be addressed.
+\\Firstly, all variables in the CSP model are represented in Listing~\ref{lst:IQ Twist variables}.
 \begin{lstlisting}[caption={Encoding for variables},label={lst:IQ Twist variables},language=minizinc,numbers=none]
 var int:Vpr; var int:Vpb1;var int:Vpb2;var int:Vpg1;var int:Vpg2; var int:Vpy1;var int:Vpy2;
 var position: Vb11;var position: Vb12;var position: Vb13;var position: Vb14;var position: Vb15;
@@ -312,7 +312,7 @@ Vg21,Vg22,Vg23,Vr11,Vr12,Vr13,Vr14,Vr21,Vr22,Vr23,Vr24]);
 \end{lstlisting}
 \bigskip
 \smallbreak
-With regards to the second constraint in Equation~\ref{equ:secondconstrain}, because the positions for pegs have been set, the constraint is useless anymore.
+With regards to the second constraint in Equation~\ref{equ:secondconstrain}, because the positions for pegs have been set, the constraint is useless now.
 \\For the third constraint in Equation~\ref{equ:thirdconstrain}, as an example for yellow2, it is encoded in Listing~\ref{lst:IQ Twist constraint3}.
 \begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for constraint three},label={lst:IQ Twist constraint3}]
 constraint (g0(Vy22) = g0(Vy21) + 1/\ g1(Vy22) = g1(Vy21)/\ g0(Vy23) = g0(Vy21) + 1/\ g1(Vy23) = g1(Vy21) + 1
@@ -355,9 +355,9 @@ constraint (Vpy1=00)\/(Vy11=Vpy1)\/(Vy21=Vpy1)\/(Vy22=Vpy1)\/(Vy24=Vpy1);
 \bigskip
 \smallbreak
 In addition, other pegs can be represented in the same way.
-\\By this way, the complete codes for the problem for Figure~\ref{fig:last_case} in Appendix~\ref{appendix:finalcaseIQtwist}. Similarly, all the models can be encoded in this way.
+\\By this way, the complete codes for the problem for Figure~\ref{fig:last_case} in Appendix~\ref{appendix:finalcaseIQtwist}. Similarly, all the other problems can be encoded in this way.
 \section{Zig Zag Puzzler}
-Zig Zag Puzzler is a 3D puzzle game with two playing modes. It consists of nine pieces. Figure~\ref{fig:ZIG_ZAG_Puzzler_playing_modes} show that there are two boards, which correspond to different playing modes. Both modes use the same pieces and they aim to place all pieces to fully fill the game boards. In addition, there are some pieces placed in advance to set the difficulty in each mode. The colored parts in Figure~\ref{fig:ZIG_ZAG_Puzzler_playing_modes} are the pieces that are placed in advance. Generally, the fewer pieces are placed in advance, the more difficult to solve the puzzle.
+Zig Zag Puzzler is a 3D puzzle game with two playing modes. It consists of nine pieces. Figure~\ref{fig:ZIG_ZAG_Puzzler_playing_modes} shows that there are two boards, which correspond to different playing modes. Both modes use the same pieces and they aim to place all pieces to fully fill the game board. In addition, there are some pieces placed in advance to set the difficulty in each mode. The colored parts in Figure~\ref{fig:ZIG_ZAG_Puzzler_playing_modes} are the pieces that are placed in advance. Generally, the fewer pieces are placed in advance, the more difficult to solve the puzzle.
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.32\textwidth}
@@ -366,11 +366,11 @@ Zig Zag Puzzler is a 3D puzzle game with two playing modes. It consists of nine 
     \end{subfigure}
     \begin{subfigure}[b]{0.32\textwidth}
     \includegraphics[width=\textwidth]{figs/zig_zag_mode1.jpg}
-    \caption{One example of playing mode1}
+    \caption{One example of playing mode 1}
     \end{subfigure}
     \begin{subfigure}[b]{0.32\textwidth}
     \includegraphics[width=\textwidth]{figs/zig_zag_mode2.jpg}
-    \caption{One example of playing mode2}
+    \caption{One example of playing mode 2}
     \end{subfigure}
     \caption{Zig Zag Puzzler examples, adopted from~\cite{r23}}
     \label{fig:ZIG_ZAG_Puzzler_playing_modes}
@@ -447,7 +447,7 @@ V_{r12},V_{r13},\\&V_{r21},V_{r22},V_{r23},\\&V_{o1},V_{o2},V_{o3},V_{o4},\\&V_{
 \end{equation}
 \subsection{Domains for Playing Mode 1 and 2}
 \label{sec:3Ddomains}
-Figure~\ref{fig:board1} and Figure~\ref{fig:board2} show how to create the coordinate systems for both modes to represent the positions on the boards. In each Figure, there are two different visual angles to see the coordinate systems, which aims to explain the coordinate system more clear. For both of them, similar to IQ Twist, the positions are represented as tuples and each tuple consists of three elements which are integers. The position of origin of coordinate can be represented as $(1,1,1)$. Now, one position on the board is considered as $(x_{0},y_{0},z_{0})$.
+Figure~\ref{fig:board1} and Figure~\ref{fig:board2} show how to create the coordinate systems for both modes to represent the positions on the boards. In each Figure, there are two different visual angles to see the coordinate systems, which aims to explain the coordinate system more clearly. For both of them, similar to IQ Twist, the positions are represented as tuples and each tuple consists of three elements which are integers. The position of origin of coordinate can be represented as $(1,1,1)$. Now, one position on the board is considered as $(x_{0},y_{0},z_{0})$.
 \begin{figure}[htbp]
 \centering
 \begin{subfigure}[b]{.45\textwidth}
@@ -465,7 +465,7 @@ Figure~\ref{fig:board1} and Figure~\ref{fig:board2} show how to create the coord
 \caption{The board of Zig Zag Puzzler mode1}
   \label{fig:board1}
 \end{figure}
-\\For playing mode1, as is shown in Figure~\ref{fig:board1}, the maximum number for each axis is 5, hence,
+\\For playing mode 1, as is shown in Figure~\ref{fig:board1}, the maximum number for each axis is 5, hence,
 \begin{equation}
 \begin{aligned}
 &0<x_{0}\leq5,\\
@@ -489,7 +489,7 @@ in yz-plane. In addition, Figure~\ref{figure:mode1B} shows that although some un
 \begin{equation}
 x_{0}+y_{0}+z_{0}\leq7.
 \end{equation}
-Because what we discussed above has included all possible positions, the domain of playing mode1 is
+Because what we discussed above has included all possible positions, the domain of playing mode 1 is
 \begin{equation}
 \begin{aligned}
 &\forall \hspace{1ex} v \in \VUnits,\\
@@ -513,7 +513,7 @@ Because what we discussed above has included all possible positions, the domain 
 \caption{The board of Zig Zag Puzzler mode2}
   \label{fig:board2}
 \end{figure}
-For playing mode2, Figure~\ref{fig:board2} shows that the maximum number for both y-axis and z-axis are 4 and x-axis is 5, hence, 
+For playing mode 2, Figure~\ref{fig:board2} shows that the maximum number for both y-axis and z-axis are 4 and x-axis is 5, hence, 
 \begin{equation}
 \begin{aligned}
 &0<x_{0}\leq5,\\
@@ -530,7 +530,7 @@ Besides the positions that is similar to stairs, the left space satisfy
 y_{0}=z_{0}+1,
 \end{equation}
 except when $z_{0}=4$.
-Therefore, the domain of playing mode2 is
+Therefore, the domain of playing mode 2 is
 \begin{equation}
 \begin{aligned}
 &\forall v \in \VUnits,\\
@@ -540,7 +540,7 @@ Therefore, the domain of playing mode2 is
 \end{equation}
 \subsection{3D Rotation Matrix}
 \label{section:3Drotationmatrix}
-To clarify how to obtain all configurations for each piece. The 3D rotation matrix will be introduced.
+To clarify how to obtain all configurations for each piece, the 3D rotation matrix will be introduced.
 \begin{figure}[htbp]
 \label{figure:3Dblue1}
 \centering
@@ -856,27 +856,27 @@ Similarly, we can get the constraints for other pieces.
 \end{aligned}
 \end{equation}
 \subsection{Encodings for Zig Zag Puzzler}
-All problems in the Zig Zag Puzzler booklet are encoded in Minizinc. For both playing mode1 and playing mode2, some pieces will be set on the board in advance. Therefore, each problem can be considered as two parts, one is the placed pieces which is different for each problem, the other is the general CSP model which is unique for all problems. 
+All problems in the Zig Zag Puzzler booklet are encoded in Minizinc. For both playing mode 1 and playing mode 2, some pieces will be set on the board in advance. Therefore, each problem can be considered as two parts, one is the placed pieces which is different for each problem, the other is the general CSP model which is unique for all problems. 
 \subsubsection{Placed Pieces}
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{.45\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figs/mode1.jpg}
-    \caption{The last problem in Zig Zag Puzzler playing mode1}
+    \caption{The last problem in Zig Zag Puzzler playing mode 1}
     \label{fig:game2mode1}
     \end{subfigure}
      \begin{subfigure}[b]{.45\textwidth}
      \centering
       \includegraphics[width=\textwidth]{figs/mode2.jpg}
-    \caption{The last problem in Zig Zag Puzzler playing mode2}
+    \caption{The last problem in Zig Zag Puzzler playing mode 2}
     \label{fig:game2mode2}
      \end{subfigure}
      \caption{The examples in Zig Zag Puzzler}
      \label{fig:exampleszigzag}
 \end{figure}
-Figure~\ref{fig:game2mode1} shows the last problem in Zig Zag Puzzler playing mode1. According to the board in Figure~\ref{fig:board1} and the pieces in Figure~\ref{fig:3Dblue1} and Figure~\ref{fig:3Dorange}, the positions of the units of blue piece1 $Vb11$, $Vb12$, $Vb13$, $Vb14$ and $Vb15$ are $(1,4,2)$, $(1,4,1)$, $(2,4,1)$, $(1,3,2)$ and $(1,5,1)$, which are encoded as Listing~\ref{lst:Bluepiece1}.
-\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for blue piece1's position of last problem in playing mode1},label={lst:Bluepiece1}]
+Figure~\ref{fig:game2mode1} shows the last problem in Zig Zag Puzzler playing mode 1. According to the board in Figure~\ref{fig:board1} and the pieces in Figure~\ref{fig:3Dblue1} and Figure~\ref{fig:3Dorange}, the positions of the units of blue piece1 $Vb11$, $Vb12$, $Vb13$, $Vb14$ and $Vb15$ are $(1,4,2)$, $(1,4,1)$, $(2,4,1)$, $(1,3,2)$ and $(1,5,1)$, which are encoded as Listing~\ref{lst:Bluepiece1}.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for blue piece1's position of last problem in playing mode 1},label={lst:Bluepiece1}]
 constraint Vb11 = 142;
 constraint Vb12 = 141;
 constraint Vb13 = 241;
@@ -886,7 +886,7 @@ constraint Vb15 = 151;
 \bigskip
 \smallbreak
 And the positions of the units of orange piece $Vo1$, $Vo2$, $Vo3$ and $Vo4$ are $(3,2,1)$, $(3,3,1)$, $(2,2,1)$ and $(3,2,2)$, which are encoded as Listing~\ref{lst:Orangepiece}.
-\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for orange piece's position of last problem in playing mode1},label={lst:Orangepiece}]
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for orange piece's position of last problem in playing mode 1},label={lst:Orangepiece}]
 constraint Vo1 = 321;
 constraint Vo2 = 331;
 constraint Vo3 = 221;
@@ -894,8 +894,8 @@ constraint Vo4 = 322;
 \end{lstlisting}
 \bigskip
 \smallbreak
-Figure~\ref{fig:game2mode2} shows the last problem in Zig Zag Puzzler playing mode2. Based on the board in Figure~\ref{fig:board2} and the pieces in Figure~\ref{fig:3Dblue1}, the position of the units of blue piece Vb21, Vb22, Vb23, Vb24 and Vb25 are $(2,4,3)$, $(2,3,3)$, $(3,4,3)$, $(3,4,4)$ and $(1,3,3)$, which are encoded as Listing~\ref{lst:Orangepiece}.
-\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for blue piece2's position of last problem in playing mode2},label={lst:Orangepiece}]
+Figure~\ref{fig:game2mode2} shows the last problem in Zig Zag Puzzler playing mode 2. Based on the board in Figure~\ref{fig:board2} and the pieces in Figure~\ref{fig:3Dblue1}, the position of the units of blue piece Vb21, Vb22, Vb23, Vb24 and Vb25 are $(2,4,3)$, $(2,3,3)$, $(3,4,3)$, $(3,4,4)$ and $(1,3,3)$, which are encoded as Listing~\ref{lst:Blue2piece}.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for blue piece2's position of last problem in playing mode 2},label={lst:Blue2piece}]
 constraint Vb21 = 243;
 constraint Vb22 = 233;
 constraint Vb23 = 343;
@@ -904,11 +904,11 @@ constraint Vb25 = 133;
 \end{lstlisting}
 \bigskip
 \smallbreak
-In addition, for the playing mode2, there might be some special problems.
+In addition, for the playing mode 2, there might be some special problems.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{figs/specialcase.jpg}
-    \caption{The special problem in Zig Zag Puzzler playing mode2}
+    \caption{The special problem in Zig Zag Puzzler playing mode 2}
     \label{fig:specialcase}
 \end{figure}
 For instance, in Figure~\ref{fig:specialcase}, it's hard to judge where are the exact positions of units of red piece. In such a case, the red piece1 (although red piece1 and red piece2 are exactly the same shape, we assume it is red piece1 here) can be encoded as Listing~\ref{lst:red1}.
@@ -934,8 +934,8 @@ var position: Vp1;var position: Vp2;var position: Vp3;var position: Vp4;
 \end{lstlisting}
 \bigskip
 \smallbreak
-Secondly, the domains of playing mode1 and playing mode2 are different. For playing mode1, the domain is related to Figure~\ref{fig:board1}, which are encoded as Listing~\ref{lst:domian1}.
-\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for the domain of playing mode1},label={lst:domian1}]
+Secondly, the domains of playing mode 1 and playing mode 2 are different. For playing mode 1, the domain is related to Figure~\ref{fig:board1}, which are encoded as Listing~\ref{lst:domian1}.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for the domain of playing mode 1},label={lst:domian1}]
 set of int: position={
 511,
 411,412,421,
@@ -945,8 +945,8 @@ set of int: position={
 \end{lstlisting}
 \bigskip
 \smallbreak
-And the domain for playing mode2 is related to Figure~\ref{fig:board2}, which are encoded as Listing~\ref{lst:domian2}.
-\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for the domain of playing mode2},label={lst:domian2}]
+And the domain for playing mode 2 is related to Figure~\ref{fig:board2}, which are encoded as Listing~\ref{lst:domian2}.
+\begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for the domain of playing mode 2},label={lst:domian2}]
 set of int: position={
 144,244,344,444,544,
 133,233,333,433,533,143,243,343,443,543,
@@ -955,7 +955,7 @@ set of int: position={
 \end{lstlisting}
 \bigskip
 \smallbreak
-In addition, the constraints for both playing mode1 and playing mode2 are exactly the same. For example, the 3Dblue piece1 which is shown in Figure~\ref{fig:3Dblue1} are encoded as Listing~\ref{lst:constraint}.
+In addition, the constraints for both playing mode 1 and playing mode 2 are exactly the same. For example, the 3Dblue piece1 which is shown in Figure~\ref{fig:3Dblue1} are encoded as Listing~\ref{lst:constraint}.
 \begin{lstlisting}[language=minizinc,numbers=none,caption={Encoding for 3Dblue piece1},label={lst:constraint}]
 constraint ( 
 (g0(Vb12)=g0(Vb11)/\ g1(Vb12)=g1(Vb11)+1/\ g2(Vb12)=g2(Vb11)/\ g0(Vb13)=g0(Vb11)/\ g1(Vb13)=g1(Vb11)+1/\ g2(Vb13)=g2(Vb11)-1/\ g0(Vb14)=g0(Vb11)-1/\ g1(Vb14)=g1(Vb11)/\ g2(Vb14)=g2(Vb11)/\ g0(Vb15)=g0(Vb11)+1/\ g1(Vb15)=g1(Vb11)+1/\ g2(Vb15)=g2(Vb11))\/ 
@@ -1022,5 +1022,5 @@ constraint alldifferent([Vy1,Vy2,Vy3,Vy4,Vb11,Vb12,Vb13,Vb14,Vb15,Vb21,Vb22,Vb23
 \end{lstlisting}
 \bigskip
 \smallbreak
-In addition, in the Minizinc file, if the positions of the units of some pieces have been set before the game start, the corresponding constraints for the pieces do not need to appear again. As an example, for the last problem in Zig Zag Puzzler playing mode1, Figure~\ref{fig:game2mode1} shows that the orange piece and blue piece1 have been set on the board, hence, the general constraints about these two pieces will not appear in the final codes.
-\\The completion codes for the last problem in Zig Zag Puzzler playing mode1 are in Appendix~\ref{appendix:lastcaseinmode1}, and the completion codes for the last problem in Zia Zag Puzzler playing mode2 are in Appendix~\ref{appendix:lastcaseinmode2}. 
+In addition, in the Minizinc file, if the positions of the units of some pieces have been set before the game start, the corresponding constraints for the pieces do not need to appear again. As an example, for the last problem in Zig Zag Puzzler playing mode 1, Figure~\ref{fig:game2mode1} shows that the orange piece and blue piece1 have been set on the board, hence, the general constraints about these two pieces will not appear in the final codes.
+\\The completion codes for the last problem in Zig Zag Puzzler playing mode 1 are in Appendix~\ref{appendix:lastcaseinmode1}, and the completion codes for the last problem in Zia Zag Puzzler playing mode 2 are in Appendix~\ref{appendix:lastcaseinmode2}. 

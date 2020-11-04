@@ -1,4 +1,9 @@
 \begin{appendices}
+\renewcommand\thechapter{}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thefigure{\arabic{figure}}
+\renewcommand\thetable{\arabic{table}}
 \section{IQtwist pieces' constraints}
 \label{appendix:2Dpieces}
 \begin{itemize}
@@ -7,7 +12,6 @@
     \centering
     \includegraphics[width=0.3\textwidth]{figs/yellow1.jpg}
     \caption{piece Yellow1}
-    \label{fig:namerules}
 \end{figure}
   \begin{align*}
 &\Con{y11}{y12}{y13}=\\
@@ -22,7 +26,6 @@
     \centering
     \includegraphics[width=0.2\textwidth]{figs/blue1.jpg}
     \caption{piece Blue1}
-    \label{fig:namerules}
 \end{figure}
   \begin{align*}
 &\Cons{b11}{b12}{b13}{b14}{b15}=
@@ -50,7 +53,6 @@
     \centering
     \includegraphics[width=0.4\textwidth]{figs/blue2.jpg}
     \caption{piece Blue2}
-    \label{fig:namerules}
 \end{figure}
   \begin{align*}
 &\Const{b21}{b22}{b23}{b24}=\\
@@ -65,7 +67,6 @@
     \centering
     \includegraphics[width=0.3\textwidth]{figs/green1.jpg}
     \caption{piece Green1}
-    \label{fig:namerules}
 \end{figure}
  \begin{align*}
 &\Const{g11}{g12}{g13}{g14}=
@@ -84,7 +85,6 @@
     \centering
     \includegraphics[width=0.2\textwidth]{figs/green2.jpg}
     \caption{piece Green2}
-    \label{fig:namerules}
 \end{figure}
  \begin{align*}
 &\Con{g21}{g22}{g23}=
@@ -103,7 +103,6 @@
     \centering
     \includegraphics[width=0.3\textwidth]{figs/red1.jpg}
     \caption{piece Red1}
-    \label{fig:namerules}
 \end{figure}
 \begin{align*}
 &\Const{r11}{r12}{r13}{r14}=\\
@@ -131,7 +130,6 @@
     \centering
     \includegraphics[width=0.3\textwidth]{figs/red2.jpg}
     \caption{piece Red2}
-    \label{fig:namerules}
 \end{figure}
 \begin{align*}
 &\Const{r21}{r22}{r23}{r24}=

@@ -17,7 +17,7 @@ Minizinc IDE~\footnote{\url{https://www.minizinc.org/}}, developed by the Univer
 \end{itemize}
 \subsection{Software Platform and Hardware Platform}
 \label{sec:softplat}
-Most of the experiments are based on the Windows subsystem for Linux 2 (WSL2)~\footnote{\url{https://docs.microsoft.com/en-us/windows/wsl/about}} which allows the developer to run a Linux environment on Windows 10. Only the experiments related to izplus based on docker. Docker is a lightweight virtual machine that applied container virtualization technology~\cite{r25}. Docker provides a Linux environment as well. Table~\ref{tab:Ubuntu} shows the version of WSL2.
+Most of the experiments are based on the Windows subsystem for Linux 2 (WSL2)~\footnote{\url{https://docs.microsoft.com/en-us/windows/wsl/about}} which allows the developer to run a Linux environment on Windows 10. Only the experiments related to izplus are based on docker. Docker is a lightweight virtual machine that applies container virtualization technology~\cite{r25}. Docker provides a Linux environment as well. Table~\ref{tab:Ubuntu} shows the version of WSL2.
 \begin{table*}[htbp]
   \centering
 
@@ -133,7 +133,7 @@ Accordingly, Figure~\ref{fig:comparisonIQtwist} illustrates the change of separa
     \label{fig:comparisonIQtwist}
 \end{figure}
 Therefore, compared with other solvers, PicatSAT, OR-Tools and Chuffed take an advantage in coverage rates.
-\\Secondly, all the execution time have been shown in Figure~\ref{fig:execution time}.
+\\Secondly, all the execution time are shown in Figure~\ref{fig:execution time}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figs/all_point_IQtwist.png}
@@ -163,12 +163,12 @@ Furthermore, Figure~\ref{fig:3comparison} indicates that Chuffed spends less tim
 \\In short, although all of Chuffed, PicatSAT and OR-Tools can get the result for each problem in 30 minutes, the solver Chuffed possesses the best performance in IQ Twist.
 \subsection{Zig Zag Puzzler Results}
 \label{sec:Zig Zag Puzzlerresult}
-In the Zig Zag Puzzler booklet, there is a total of 80 problems, 40 of them belong to playing mode1, and the other 40 belong to playing mode2. For each playing mode, every 8 problems make up a difficulty level. 
-\subsubsection{Playing Mode1}
+In the Zig Zag Puzzler booklet, there is a total of 80 problems, 40 of them belong to playing mode 1, and the other 40 belong to playing mode 2. For each playing mode, every 8 problems make up a difficulty level. 
+\subsubsection{Playing mode 1}
 Firstly, for each solver, we can calculate the coverage rates by Equation~\ref{equation:coverage}.
 \begin{table}[htbp]
 \centering
-\caption{Overall solved problems of each solver for playing mode1 (a total of 40 problems)}
+\caption{Overall solved problems of each solver for playing mode 1 (a total of 40 problems)}
 \label{tab:solvedproblem1}
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 \hline
@@ -182,13 +182,13 @@ According to the data in Table~\ref{tab:solvedproblem1}, Figure~\ref{fig:mode1ev
 \begin{figure}[H]
      \centering
     \includegraphics[width=0.8\textwidth]{figs/mode1coverage.png}
-    \caption{Overall coverage rates of each solver for playing mode1}
+    \caption{Overall coverage rates of each solver for playing mode 1}
     \label{fig:mode1eva2}
 \end{figure}
 In addition, on account of Table~\ref{tab:solvedproblemforeach difficulty1}, Figure~\ref{fig:mode1eva4} reveals that except for the four solvers that always keep 100 percent coverage rates in all difficulties, the other five solvers' separated coverage rates are decreased as the difficulties increase.
 \begin{table}[H]
 \centering
-\caption{Solved problems for each difficulty in playing mode1 (a total of 8 problems for each difficulty)}
+\caption{Solved problems for each difficulty in playing mode 1 (a total of 8 problems for each difficulty)}
 \label{tab:solvedproblemforeach difficulty1}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
@@ -218,14 +218,14 @@ That is quite reasonable because of the higher difficulty the fewer placed piece
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figs/mode1seperatedcoverage.png}
-    \caption{Coverage rates of each difficulty for playing mode1}
+    \caption{Coverage rates of each difficulty for playing mode 1}
     \label{fig:mode1eva4}
 \end{figure}
 For execution time, Figure~\ref{fig:mode1time1} illustrates that except Choco which spends a lot of time on some problems in  "wizard" difficulty, the other 3 solvers that contain 100 percent overall coverage rates only need a very short time to solve each problem. 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.8\textwidth]{figs/time1all.png}
-\caption{All execution time of all solvers for playing mode1}
+\caption{All execution time of all solvers for playing mode 1}
 \label{fig:mode1time1}
 \end{figure}
 Moreover, Figure~\ref{fig:time1three} reveals that for the problems in "wizard" difficulty, OR-Tools and PicatSAT spend more time on more problems compared with Chuffed. Accordingly, in Figure~\ref{fig:time1threeslope}, although the start point is very close, the growth rate of slopes for Chuffed is much slower than OR-Tools and PicatSAT. Meanwhile, Figure~\ref{fig:mode1time1} reveals an obvious positive correlation between the execution time of different solvers and the difficulties due to the increased number of search nodes. Therefore, Chuffed has the optimal performance in execution time because of the lowest growth rate of slopes. 
@@ -241,13 +241,13 @@ Moreover, Figure~\ref{fig:time1three} reveals that for the problems in "wizard" 
     \caption{Average execution time for Chuffed, PicatSAT and OR-Tools}
     \label{fig:time1threeslope}
     \end{subfigure}
-    \caption{Comparisons between Chuffed, PicatSAT and OR-Tools for playing mode1}
+    \caption{Comparisons between Chuffed, PicatSAT and OR-Tools for playing mode 1}
 \end{figure}
-Overall, combined coverage rates and execution time, Chuffed possesses the best performance in Zig Zag Puzzler playing mode1.
-\subsubsection{Playing Mode2}
+Overall, combined coverage rates and execution time, Chuffed possesses the best performance in Zig Zag Puzzler playing mode 1.
+\subsubsection{Playing mode 2}
 \begin{table}[H]
 \centering
-\caption{Overall solved problems of each solver for playing mode2 (a total of 40 problems)}
+\caption{Overall solved problems of each solver for playing mode 2 (a total of 40 problems)}
 \label{tab:solvedproblem2}
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 \hline
@@ -257,17 +257,17 @@ Choco & Chuffed & Coinbc& Gurobi & Izplus&Jacop& OR-Tools& PicatSAT&Yuck \\
 \hline
 \end{tabular}
 \end{table}
-Based on Table~\ref{tab:solvedproblem2}, as is shown in Figure~\ref{fig:mode2eva2}, the result of coverage rates is quite similar to the result of coverage rates in playing mode 1 because the rule of playing mode2 is quite similar to playing mode1. Both of them set fewer pieces as difficulty increases. In addition, they use the same pieces.
+Based on Table~\ref{tab:solvedproblem2}, as is shown in Figure~\ref{fig:mode2eva2}, the result of coverage rates is quite similar to the result of coverage rates in playing mode 1 because the rule of playing mode 2 is quite similar to playing mode 1. Both of them set fewer pieces as difficulty increases. In addition, they use the same pieces.
 \begin{figure}[H]
      \centering
     \includegraphics[width=0.8\textwidth]{figs/mode2coverage.png}
-    \caption{Overall coverage rates of each solver for playing mode2}
+    \caption{Overall coverage rates of each solver for playing mode 2}
     \label{fig:mode2eva2}
 \end{figure}
 Again, Chuffed, PicatSAT and OR-Tools solve each problem in 30 minutes. 
 \begin{table}[H]
 \centering
-\caption{Solved problems of each difficulty for playing mode2 (a total of 8 problems for each difficulty)}
+\caption{Solved problems of each difficulty for playing mode 2 (a total of 8 problems for each difficulty)}
 \label{tab:solvedproblemforeach difficulty2}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
@@ -293,18 +293,18 @@ Yuck	&8	&8	&4	&2	&0\\
 \hline
 \end{tabular}
 \end{table}
-Meanwhile, according to the data in Table~\ref{tab:solvedproblemforeach difficulty2}, Figure~\ref{fig:mode2eva4} indicates that the other 6 solvers' separated coverage rates are decreased as the difficulties increase, which is also very similar to playing mode1.
+Meanwhile, according to the data in Table~\ref{tab:solvedproblemforeach difficulty2}, Figure~\ref{fig:mode2eva4} indicates that the other 6 solvers' separated coverage rates are decreased as the difficulties increase, which is also very similar to playing mode 1.
  \begin{figure}[H]
    \centering
     \includegraphics[width=0.8\textwidth]{figs/mode2seperatedcoverage.png}
-    \caption{Coverage rates of each difficulty in playing mode2}
+    \caption{Coverage rates of each difficulty in playing mode 2}
     \label{fig:mode2eva4}
 \end{figure}
 For the execution time, as is shown in Figure~\ref{fig:mode2time2}, almost all the solvers' execution time has a positive correlation with the difficulties. Again, Chuffed, PicatSAT and OR-Tools spend less time to solve most problems. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figs/time2all.png}
-    \caption{All execution time of all solvers for playing mode2}
+    \caption{All execution time of all solvers for playing mode 2}
     \label{fig:mode2time2}
 \end{figure}
 Similarly, on account of Figure~\ref{fig:comparisonlast}, Chuffed achieves optimal performance. 
@@ -313,18 +313,16 @@ Similarly, on account of Figure~\ref{fig:comparisonlast}, Chuffed achieves optim
   \centering
     \includegraphics[width=\textwidth]{figs/time2three.png}
     \caption{Execution time for Chuffed, PicatSAT and OR-Tools}
-    \label{fig:compare}
 \end{subfigure}
 \begin{subfigure}[b]{0.48\textwidth}
  \centering
     \includegraphics[width=\textwidth]{figs/Threecomparison2.png}
     \caption{Average execution time for Chuffed, PicatSAT and OR-Tools}
-    \label{fig:compare}
 \end{subfigure}
-\caption{Comparisons between Chuffed, PicatSAT and OR-Tools for playing mode2}
+\caption{Comparisons between Chuffed, PicatSAT and OR-Tools for playing mode 2}
 \label{fig:comparisonlast}
 \end{figure}
 \subsection{Summary}
 \label{sec:Summary}
-The different difficulty settings in IQ Twist and Zig Zag Puzzler cause the different relationships between solvers' performance and difficulty in each game. However, for Zig Zag Puzzler, because both playing modes set fewer pieces as the increase of difficulties, the relationships between solvers' performance and the games' difficulty level are very similar. In addition, for all the problems in both IQ Twist and Zig Zag Puzzler, Chuffed, PicatSAT and OR-Tools can solve each of them in 30 minutes. Meanwhile, their performances are more stable and the average execution time for all problems is only a few seconds. To sum up, compared with other solvers, Chuffed, PicatSAT and OR-Tools have obvious advantages in such problems, moreover, Chuffed cost the shortest time in most problems. 
+The different difficulty settings in IQ Twist and Zig Zag Puzzler cause the different relationships between solvers' performance and difficulty in each game. However, for Zig Zag Puzzler, because both playing modes set fewer pieces as the difficulty increases, the relationships between solvers' performance and the games' difficulty level are very similar. In addition, for all the problems in both IQ Twist and Zig Zag Puzzler, Chuffed, PicatSAT and OR-Tools can solve each of them in 30 minutes. Meanwhile, their performances are more stable and the average execution time for all problems is only a few seconds. To sum up, compared with other solvers, Chuffed, PicatSAT and OR-Tools have obvious advantages in such problems, moreover, Chuffed cost the shortest time in most problems. 
  
