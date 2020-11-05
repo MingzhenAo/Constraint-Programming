@@ -60,8 +60,16 @@ The "timeout 1800" is used to set the time limit as 1800 seconds. The "--output-
 
 ## Solvers' websites
 
-In our case, the Chuffed, Coin-bc are built in solvers. So we don't mention them.
+In our case, the Chuffed, Coin-bc are built in solvers. All other solvers need to be configured.
 
+* Chuffed 
+
+  https://github.com/chuffed/chuffed
+
+* Coin-bc
+
+  https://projects.coin-or.org/Cbc
+  
 * Gurobi 
 
   https://www.gurobi.com/
