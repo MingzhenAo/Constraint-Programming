@@ -9,7 +9,7 @@ The goal of this project is to model two puzzle games by building their constrai
 
 The git repository is used to store some important files such as Minizinc files, contracts, report and so on.
 
-Firstly, I'd like to introduce how to run different models. Secondly, five parts of the git repository (IQ Twist, Zig Zag Puzzler, Formalities, Literature and Report) will be introduced.
+Firstly, I'd like to introduce how to run different models and the solvers' information. Secondly, five parts of the git repository (IQ Twist, Zig Zag Puzzler, Formalities, Literature and Report) will be introduced.
 
 [[_TOC_]]
 
@@ -57,6 +57,9 @@ In my case, for the model1 in the start level of IQ Twist, if I use the Chuffed 
          timeout 1800 minizinc --solver Chuffed  ../project-2020-s2-puzzle-constraints/IQTwist/start/model1/model1.mzn --output-time --sac
          
 The "timeout 1800" is used to set the time limit as 1800 seconds. The "--output-time" is used to print the runtime. And the "--sac" aims to achieve singleton arc consistency for the model. Comparably, other models and solvers are executed in the same way.
+
+## Solvers
+
 
 ## IQ Twist
 All the experiments and corresponding scripts about IQ Twist has been stored in it.
