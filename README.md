@@ -15,7 +15,7 @@ Firstly, I'd like to introduce how to run different models. Secondly, five parts
 
 ## How to compile the models?
 
-*Minizinc Version: MiniZinc 2.5.1
+**Minizinc Version: MiniZinc 2.5.1**
 
 All the models are created by Minizinc Language. So Minizinc IDE is necessary.
 
