@@ -2,11 +2,11 @@
 <img src="https://cdn.shopify.com/s/files/1/0075/3523/1012/products/SmartGames-ZigZagPuzzler-3_1024x1024.jpg?v=1595315047" width="400">
 
 # Solving Puzzle Games with CSP solvers
-> Author: Mingzhen Ao<br />
+> Student: Mingzhen Ao<br />
 > Supervisors: Pascal Bercher and Florian Geißer
 
 
-**Thesis final version: cc099a352e2441429cdf43c3c0cce327a9a092e9**
+**Thesis final version: e7d8748abb99d3c8b4b0cfc5bfd3d2cce4555e13**
 
 The goal of this project is to model two puzzle games by building their constraint satisfaction problems (CSPs) and then compare the performances of different solvers to these CSPs.
 
