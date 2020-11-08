@@ -6,7 +6,7 @@
 > Supervisors: Pascal Bercher and Florian Geißer
 
 
-**Thesis final version: e7d8748abb99d3c8b4b0cfc5bfd3d2cce4555e13**
+**Thesis final version: 7b778aea0bf0128ebe3af61367a5f7fe7804cbbf**
 
 The goal of this project is to model two puzzle games by building their constraint satisfaction problems (CSPs) and then compare the performances of different solvers to these CSPs.
 
