@@ -7,6 +7,10 @@ Created on Fri Oct  2 20:39:48 2020
 from subprocess import STDOUT, check_output
 import time
 
+"""
+The script aims to use izplus to solver all models, and log the results.
+"""
+
 modes = ["playingmode1", "playingmode2"]
 difficulties = ["start", "junior", "expert", "master", "wizard"]
 for mode in modes:

@@ -12,7 +12,7 @@ The script aims to use izplus to solver all models, and log the results.
 """
 difficulties = ["start", "junior", "expert", "master", "wizard"]
 for dif in difficulties:
-    for i in range(16, 25):
+    for i in range(1, 25):
         command = (
             'docker exec mycontainer /bin/bash -c "timeout 1805 solver  /test_container/Desktop/project-2020-s2-puzzle-constraints/IQtwist/'
             + dif

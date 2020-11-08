@@ -5,9 +5,10 @@ Created on Mon Oct 12 14:23:42 2020
 @author: Mingzhen Ao
 """
 """
-The script will print all data information, 
-the number of solved cases, coverage and average time.
+The script will print all data information for playing mode1.
+In addition, all execution time will be saved to a excel file.
 """
+
 import data_analysis_function as daf
 
 print("For the 'start' difficulty:\n")

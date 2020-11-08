@@ -4,6 +4,10 @@ Created on Mon Oct 12 14:46:09 2020
 
 @author: Mingzhen Ao
 """
+"""
+The script will print all data information.
+In addition, all execution time will be saved to a excel file.
+"""
 
 import playingmode1_data_analysis_function as daf
 
